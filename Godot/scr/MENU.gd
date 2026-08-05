@@ -225,11 +225,12 @@ func _Sound_edit(value, bus):
 	else:
 		AudioServer.set_bus_mute(bus_index, false)
 		AudioServer.set_bus_volume_db(bus_index, value)
-	C.logpass.SETTINGS["S_Master"] = $Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Master.value
-	C.logpass.SETTINGS["S_Background"] = $Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Background.value
-	C.logpass.SETTINGS["S_Action"] = $Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Action.value
-	C.logpass.SETTINGS["S_Voice"] = $Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Voice.value
-	C.logpass.SETTINGS["S_Veter"] = $Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Veter.value
+	match bus:
+		"Master" : C.logpass.SETTINGS["S_Master"] = $Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Master.value
+		"Background" : C.logpass.SETTINGS["S_Background"] = $Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Background.value
+		"VOICE" : C.logpass.SETTINGS["S_Voice"] = $Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Voice.value
+		"Action" : C.logpass.SETTINGS["S_Action"] = $Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Action.value
+		"Veter" : C.logpass.SETTINGS["S_Veter"] = $Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Veter.value
 	
 	C._save_client_local_logpass()
 

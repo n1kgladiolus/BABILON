@@ -169,6 +169,7 @@ vertical = true
 script = ExtResource("1_ridn4")
 
 [node name="ENVIRONMENT" type="Node3D" parent="." unique_id=1172776349]
+metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="ENVIRONMENT" unique_id=436988550]
 environment = SubResource("Environment_0jdu7")
@@ -182,20 +183,40 @@ metadata/_edit_lock_ = true
 
 [node name="Sanches" type="SpotLight3D" parent="ENVIRONMENT" unique_id=960321383]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.9659258, 0, -0.9659258, 0.258819, 0, 4.7, 1)
-light_color = Color(0.95000297, 0.57891196, 0.3150127, 1)
-light_energy = 0.0
+light_energy = 3.0
 light_specular = 0.1
 shadow_enabled = true
 shadow_bias = 0.2
 spot_range = 8.6
 spot_angle = 50.60364
+metadata/_edit_lock_ = true
 
 [node name="Night" type="SpotLight3D" parent="ENVIRONMENT" unique_id=1541279746]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.5, 0)
 spot_range = 6.4
 spot_angle = 67.5
+metadata/_edit_lock_ = true
+
+[node name="nuke_light" type="Node3D" parent="ENVIRONMENT" unique_id=1818326840]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="Light1" type="SpotLight3D" parent="ENVIRONMENT/nuke_light" unique_id=9775891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(0.94019276, 0, 0.0117337, 1)
+light_energy = 10.0
+spot_range = 4.5
+metadata/_edit_lock_ = true
+
+[node name="Light2" type="SpotLight3D" parent="ENVIRONMENT/nuke_light" unique_id=1155149722]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, 0)
+light_color = Color(0.94019276, 0, 0.0117337, 1)
+light_energy = 10.0
+spot_range = 4.5
+metadata/_edit_lock_ = true
 
 [node name="WORLD" type="Node3D" parent="." unique_id=619324496]
+metadata/_edit_lock_ = true
 
 [node name="TABLE" parent="WORLD" unique_id=437054224 instance=ExtResource("1_jpwd0")]
 metadata/_edit_lock_ = true
@@ -214,12 +235,15 @@ metadata/_edit_lock_ = true
 [node name="Vavilon" type="MeshInstance3D" parent="WORLD" unique_id=729149726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.45, 0)
 mesh = ExtResource("2_lto23")
+metadata/_edit_lock_ = true
 
 [node name="monolit_players" type="Node3D" parent="WORLD" unique_id=1197755481]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+metadata/_edit_lock_ = true
 
 [node name="monolit_1" parent="WORLD/monolit_players" unique_id=884502139 instance=ExtResource("3_lto23")]
 transform = Transform3D(-4.371138e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.371138e-08, 0, 0, -2.5)
+metadata/_edit_lock_ = true
 
 [node name="avatar" parent="WORLD/monolit_players/monolit_1/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_k5g52")
@@ -229,6 +253,7 @@ mesh = SubResource("PlaneMesh_ggh6k")
 
 [node name="monolit_2" parent="WORLD/monolit_players" unique_id=958510815 instance=ExtResource("3_lto23")]
 transform = Transform3D(-0.8660253, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, -0.8660253, 2.1650636, 0, -1.2499999)
+metadata/_edit_lock_ = true
 
 [node name="avatar" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_fafcu")
@@ -238,6 +263,7 @@ mesh = SubResource("PlaneMesh_okd6o")
 
 [node name="monolit_3" parent="WORLD/monolit_players" unique_id=212844513 instance=ExtResource("3_lto23")]
 transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 2.1650634, 0, 1.2500005)
+metadata/_edit_lock_ = true
 
 [node name="avatar" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_wri3d")
@@ -247,6 +273,7 @@ mesh = SubResource("PlaneMesh_50nji")
 
 [node name="monolit_4" parent="WORLD/monolit_players" unique_id=1690850865 instance=ExtResource("3_lto23")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0, 0, 2.5)
+metadata/_edit_lock_ = true
 
 [node name="avatar" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_3cwwr")
@@ -256,6 +283,7 @@ mesh = SubResource("PlaneMesh_2frox")
 
 [node name="monolit_5" parent="WORLD/monolit_players" unique_id=61905864 instance=ExtResource("3_lto23")]
 transform = Transform3D(0.8660253, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, 0.8660253, -2.1650636, 0, 1.2499999)
+metadata/_edit_lock_ = true
 
 [node name="avatar" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_emlyr")
@@ -265,6 +293,7 @@ mesh = SubResource("PlaneMesh_rf20w")
 
 [node name="monolit_6" parent="WORLD/monolit_players" unique_id=768809942 instance=ExtResource("3_lto23")]
 transform = Transform3D(0.8660253, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660253, -2.1650634, 0, -1.2500005)
+metadata/_edit_lock_ = true
 
 [node name="avatar" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_tt6rn")
@@ -279,6 +308,7 @@ mesh = SubResource("QuadMesh_bv0ed")
 
 [node name="CloudSpawn" type="Node3D" parent="WORLD" unique_id=177588761]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
+metadata/_edit_lock_ = true
 
 [node name="Cloud" parent="WORLD/CloudSpawn" unique_id=1958340692 instance=ExtResource("1_qqdlu")]
 mesh = SubResource("ImmediateMesh_fafcu")
@@ -302,6 +332,7 @@ mouse_filter = 1
 metadata/_edit_lock_ = true
 
 [node name="Time_final" type="TextureRect" parent="USER/UI" unique_id=204210584]
+visible = false
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 1
 anchors_preset = 3
@@ -318,7 +349,6 @@ texture = ExtResource("8_wx0gk")
 expand_mode = 1
 
 [node name="player_turn_go" type="Button" parent="USER/UI" unique_id=782668243]
-visible = false
 custom_minimum_size = Vector2(450, 60)
 layout_mode = 1
 anchors_preset = 5
@@ -329,7 +359,7 @@ offset_right = 225.0
 offset_bottom = 60.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
-text = "заебал -- ходи"
+metadata/_edit_lock_ = true
 
 [node name="Kazna_b" type="Button" parent="USER/UI" unique_id=877430144]
 layout_mode = 1
@@ -340,6 +370,7 @@ offset_top = -260.0
 offset_right = 160.0
 grow_vertical = 0
 flat = true
+metadata/_edit_lock_ = true
 
 [node name="Kazna" type="TextureRect" parent="USER/UI/Kazna_b" unique_id=838052679]
 custom_minimum_size = Vector2(256, 256)
@@ -355,6 +386,7 @@ offset_transform_position = Vector2(-50, 0)
 mouse_filter = 2
 texture = ExtResource("9_4hivm")
 expand_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="Count_l" type="Label" parent="USER/UI/Kazna_b" unique_id=1388349956]
 layout_mode = 1
@@ -365,6 +397,7 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 text = "0"
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Kazna_W" type="Window" parent="USER/UI" unique_id=1533540441]
 oversampling_override = 1.0
@@ -624,6 +657,79 @@ layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("17_fafcu")
 expand_mode = 5
+
+[node name="Turn_W" type="AcceptDialog" parent="USER/UI" unique_id=1881027747]
+oversampling_override = 1.0
+title = ""
+initial_position = 2
+size = Vector2i(200, 102)
+
+[node name="Label" type="Label" parent="USER/UI/Turn_W" unique_id=562273951]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 53.0
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Твой ход!"
+horizontal_alignment = 1
+
+[node name="CHAT" type="MarginContainer" parent="USER/UI" unique_id=2048860323]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 0
+offset_right = 450.0
+offset_bottom = 300.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+metadata/_edit_lock_ = true
+
+[node name="VB" type="VBoxContainer" parent="USER/UI/CHAT" unique_id=764679647]
+layout_mode = 2
+
+[node name="HButton" type="HBoxContainer" parent="USER/UI/CHAT/VB" unique_id=1366172073]
+layout_mode = 2
+
+[node name="Plus_chat" type="Button" parent="USER/UI/CHAT/VB/HButton" unique_id=245502427]
+custom_minimum_size = Vector2(50, 25)
+custom_maximum_size = Vector2(50, 25)
+layout_mode = 2
+text = "+"
+
+[node name="Minus_chat" type="Button" parent="USER/UI/CHAT/VB/HButton" unique_id=2004005208]
+custom_minimum_size = Vector2(50, 25)
+custom_maximum_size = Vector2(50, 25)
+layout_mode = 2
+text = "-"
+
+[node name="panel" type="Panel" parent="USER/UI/CHAT/VB" unique_id=751081340]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Box" type="VBoxContainer" parent="USER/UI/CHAT/VB/panel" unique_id=974769572]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="chat" type="RichTextLabel" parent="USER/UI/CHAT/VB/panel/Box" unique_id=1658829386]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/bold_font_size = 18
+theme_override_font_sizes/bold_italics_font_size = 18
+theme_override_font_sizes/italics_font_size = 18
+theme_override_font_sizes/mono_font_size = 18
+bbcode_enabled = true
+text = "Лог и чат"
+scroll_following = true
+
+[node name="LineEdit" type="LineEdit" parent="USER/UI/CHAT/VB/panel/Box" unique_id=1973587644]
+layout_mode = 2
+placeholder_text = "введите сообщение..."
+emoji_menu_enabled = false
 
 [node name="cam_piv_1" type="Node3D" parent="USER" unique_id=518556740]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)

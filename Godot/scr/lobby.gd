@@ -254,6 +254,7 @@ func king_select(index, user):
 #endregion
 
 func START_GAME():
+	$Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer/START.disabled = true
 	var data = ["!START_GAME"]
 	C.send_player_command(data)
 
@@ -275,6 +276,9 @@ func icon_spawn_set(spawn, king):
 		7 : $Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect/Control6/king.texture = king_gerb[king]
 		
 
+func coop_error():
+	$coop_error_W.popup()
+	$Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer/START.disabled = false
 
 
 

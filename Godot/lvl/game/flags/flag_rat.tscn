@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://p71kjm0dw0ak"]
+
+[ext_resource type="Texture2D" uid="uid://dywd27e8qvh1x" path="res://king/gerb/Rat.png" id="1_uyd5k"]
+[ext_resource type="ArrayMesh" uid="uid://b4n2ylqggydhk" path="res://mesh/flag_rat.res" id="2_fyhsv"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kuto5"]
+size = Vector2(0.05, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhvkp"]
+transparency = 1
+albedo_texture = ExtResource("1_uyd5k")
+
+[node name="flag_rat" type="Node3D" unique_id=503093944]
+
+[node name="gerb" type="MeshInstance3D" parent="." unique_id=450475150]
+transform = Transform3D(-1, -8.742278e-08, -4.371139e-08, 4.371139e-08, 1.9106855e-15, -1, 8.742278e-08, -1, 1.9106855e-15, 0, 0.315, -0.005)
+mesh = SubResource("PlaneMesh_kuto5")
+surface_material_override/0 = SubResource("StandardMaterial3D_dhvkp")
+
+[node name="FlagRat" type="MeshInstance3D" parent="." unique_id=659253923]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.099999994, 0)
+mesh = ExtResource("2_fyhsv")
