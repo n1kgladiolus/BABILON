@@ -317,8 +317,6 @@ func player_turn():
 	
 	var player = active_player[0] 
 	$USER/UI/player_turn_go.text = players_user[player]["username"] + " заебал, ходи!"
-	
-
 
 
 func random_first_turn():
@@ -327,7 +325,6 @@ func random_first_turn():
 	var first = active_player.pick_random()
 	active_player.erase(first)
 	active_player.insert(0, first)
-
 
 func kazna_nx(nx):
 	if nx == "entered":
@@ -343,7 +340,6 @@ func close_window(window):
 	match window:
 		"info" : $USER/UI/Info_W.hide()
 		"kazna" : $USER/UI/Kazna_W.hide()
-
 
 func magaz_connect():
 	$USER/UI/Kazna_b.pressed.connect(kazna_nx.bind("open"))

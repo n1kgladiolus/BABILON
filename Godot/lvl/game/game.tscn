@@ -27,15 +27,15 @@ sky_material = SubResource("ProceduralSkyMaterial_tnoae")
 
 [sub_resource type="Environment" id="Environment_0jdu7"]
 background_mode = 2
-background_energy_multiplier = 0.2
+background_energy_multiplier = 0.8
 sky = SubResource("Sky_vgetd")
 tonemap_mode = 2
 ssao_enabled = true
 ssao_intensity = 1.2
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.13046855, 0.14520526, 0.16916212, 1)
-fog_light_energy = 2.73
+fog_light_color = Color(0.827451, 0.84313726, 0.87058824, 1)
+fog_light_energy = 0.7
 fog_density = 0.1
 fog_height = -0.4
 fog_height_density = 1.65
@@ -192,8 +192,6 @@ spot_angle = 50.60364
 
 [node name="Night" type="SpotLight3D" parent="ENVIRONMENT" unique_id=1541279746]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.5, 0)
-light_color = Color(0.94886345, 0.85763156, 0.55434406, 1)
-light_energy = 6.0
 spot_range = 6.4
 spot_angle = 67.5
 
