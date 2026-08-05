@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://hyxo3yrfkyb6"]
+
+[ext_resource type="Texture2D" uid="uid://cxqg7rvpt82a3" path="res://koloda/figur_market/kon.png" id="1_siwsk"]
+[ext_resource type="Texture2D" uid="uid://bo65jrutjqy14" path="res://koloda/figur_market/peshk.png" id="2_00k7l"]
+[ext_resource type="Texture2D" uid="uid://red4boju6mm4" path="res://koloda/figur_market/kon_pole.png" id="3_7co2b"]
+[ext_resource type="Texture2D" uid="uid://d4he5aak4702y" path="res://koloda/figur_market/kon_fan.png" id="4_tat4v"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hjhvn"]
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+thickness = 3
+vertical = true
+
+[node name="kon" type="HBoxContainer" unique_id=531386248]
+
+[node name="Adept" type="MarginContainer" parent="." unique_id=1396209410]
+custom_minimum_size = Vector2(500, 200)
+custom_maximum_size = Vector2(500, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Fon" type="Panel" parent="Adept" unique_id=142351105]
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="Adept" unique_id=1699771625]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="Adept/HB" unique_id=1108061757]
+layout_mode = 2
+texture = ExtResource("1_siwsk")
+expand_mode = 3
+
+[node name="sub" type="TextureRect" parent="Adept/HB/Icon" unique_id=600788646]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_00k7l")
+expand_mode = 3
+
+[node name="VB_text" type="VBoxContainer" parent="Adept/HB" unique_id=1685752830]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="name_figur" type="Label" parent="Adept/HB/VB_text" unique_id=1511250462]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "Конь"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="info_figur" type="HBoxContainer" parent="Adept/HB/VB_text" unique_id=17859673]
+layout_mode = 2
+
+[node name="info_figur" type="Label" parent="Adept/HB/VB_text/info_figur" unique_id=939283584]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "Стоимость:
+Атака:
+Защита:
+Скорость:
+Ценность:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="info_figur2" type="Label" parent="Adept/HB/VB_text/info_figur" unique_id=1685101167]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "18
+1d6+1
+0
+3
+30"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Adept" unique_id=2031506136]
+layout_mode = 2
+flat = true
+
+[node name="Sep" type="VSeparator" parent="." unique_id=1184495490]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_hjhvn")
+
+[node name="Pole" type="MarginContainer" parent="." unique_id=2034544124]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Texture" type="TextureRect" parent="Pole" unique_id=503239263]
+layout_mode = 2
+texture = ExtResource("3_7co2b")
+expand_mode = 3
+
+[node name="Sep2" type="VSeparator" parent="." unique_id=1957636669]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_hjhvn")
+
+[node name="Fanat" type="MarginContainer" parent="." unique_id=297194997]
+custom_minimum_size = Vector2(500, 200)
+custom_maximum_size = Vector2(500, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Fon" type="Panel" parent="Fanat" unique_id=615296461]
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="Fanat" unique_id=140740674]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="Fanat/HB" unique_id=877635173]
+layout_mode = 2
+texture = ExtResource("4_tat4v")
+expand_mode = 3
+
+[node name="VB_text" type="VBoxContainer" parent="Fanat/HB" unique_id=303448991]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="name_figur" type="Label" parent="Fanat/HB/VB_text" unique_id=733746905]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "Шахид"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="info_figur" type="HBoxContainer" parent="Fanat/HB/VB_text" unique_id=1217019626]
+layout_mode = 2
+
+[node name="info_figur" type="Label" parent="Fanat/HB/VB_text/info_figur" unique_id=559672825]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "Стоимость:
+Ценность:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="info_figur2" type="Label" parent="Fanat/HB/VB_text/info_figur" unique_id=300628039]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "18
+48"
+vertical_alignment = 1
+
+[node name="info_dop" type="Label" parent="Fanat/HB/VB_text" unique_id=456995248]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "Может взорвать вместе с собой
+фигуру в средней клетке."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Fanat" unique_id=1172112605]
+layout_mode = 2
+flat = true

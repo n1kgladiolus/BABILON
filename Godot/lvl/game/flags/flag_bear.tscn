@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://v578cccx303g"]
+
+[ext_resource type="ArrayMesh" uid="uid://cb4haluq2psfo" path="res://mesh/flag_bear.res" id="1_vk3hv"]
+[ext_resource type="Texture2D" uid="uid://g34041lbfsm7" path="res://king/gerb/Bear.png" id="2_fhjin"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kuto5"]
+size = Vector2(0.05, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhvkp"]
+transparency = 1
+albedo_texture = ExtResource("2_fhjin")
+
+[node name="flag_bear" type="Node3D" unique_id=503093944]
+
+[node name="FlagBear" type="MeshInstance3D" parent="." unique_id=823688787]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.0025, 0.1, 0.0025)
+mesh = ExtResource("1_vk3hv")
+
+[node name="gerb" type="MeshInstance3D" parent="." unique_id=450475150]
+transform = Transform3D(-1, -8.742278e-08, -4.371139e-08, 4.371139e-08, 1.9106855e-15, -1, 8.742278e-08, -1, 1.9106855e-15, 0.0025, 0.315, -0.0025)
+mesh = SubResource("PlaneMesh_kuto5")
+surface_material_override/0 = SubResource("StandardMaterial3D_dhvkp")

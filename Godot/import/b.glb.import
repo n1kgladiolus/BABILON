@@ -1,0 +1,346 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://d3bcoeffhcw6c"
+path="res://.godot/imported/b.glb-be00e2397ffbd20fc94e472f54393b15.scn"
+
+[deps]
+
+source_file="res://import/b.glb"
+dest_files=["res://.godot/imported/b.glb-be00e2397ffbd20fc94e472f54393b15.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=3
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"bear": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/king/mBear.tres",
+"use_external/path": "uid://bikm5i2agpy5u"
+},
+"dragon": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/king/mDragon.tres",
+"use_external/path": "uid://vl3yd4ettwfy"
+},
+"eagle": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/king/mEagle.tres",
+"use_external/path": "uid://bo0jqaxiawbmx"
+},
+"fankfrid": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/king/mElephant.tres",
+"use_external/path": "uid://cdnvhv4aruyjq"
+},
+"fig_black": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figura/mFigura_black.tres",
+"use_external/path": "uid://dn11xhc5rdvij"
+},
+"fig_bomb": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figura/mFigura_bomb.tres",
+"use_external/path": "uid://bxnldoyujngfv"
+},
+"fig_fan": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figura/mFigura_fan.tres",
+"use_external/path": "uid://c0fucfhd72h01"
+},
+"fig_gold": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figura/mFigura_gold.tres",
+"use_external/path": "uid://baty06htmct2f"
+},
+"fig_osn": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figura/mFigura_osn.tres",
+"use_external/path": "uid://hyuiall76dyr"
+},
+"fig_red": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figura/mFigura_red.tres",
+"use_external/path": "uid://drh8b00amyk6b"
+},
+"flag": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/mFlag.tres",
+"use_external/path": "uid://cl3ppwsaglqpt"
+},
+"gex_osnova": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/mGex.tres",
+"use_external/path": "uid://dpb8x670u38db"
+},
+"leon": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/king/mLion.tres",
+"use_external/path": "uid://cxdrrha8twsjt"
+},
+"vavil_main": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/mVavilon_main.tres",
+"use_external/path": "uid://bd5rmpi35umw2"
+},
+"vavil_window": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/mVavilon_window.tres",
+"use_external/path": "uid://ccctu05bgtjo3"
+},
+"zubr": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/king/mBull.tres",
+"use_external/path": "uid://cbu2omv4k64ou"
+}
+},
+"meshes": {
+"b_VAVILONE_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/vavilon.res",
+"save_to_file/path": "uid://c5op6myhxw674"
+},
+"b_flag": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/flag_bull.res",
+"save_to_file/path": "uid://d25er4kdsamdq"
+},
+"b_flag_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/flag_dragon.res",
+"save_to_file/path": "uid://tyh14i31x055"
+},
+"b_flag_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/flag_lion.res",
+"save_to_file/path": "uid://csvjruh4diaq7"
+},
+"b_flag_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/flag_bear.res",
+"save_to_file/path": "uid://cb4haluq2psfo"
+},
+"b_flag_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/flag_eagle.res",
+"save_to_file/path": "uid://bx3devkgwdwgm"
+},
+"b_flag_005": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/flag_elephant.res",
+"save_to_file/path": "uid://c2cdcjogv4lev"
+},
+"b_gex": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/gex.res",
+"save_to_file/path": "uid://bdliug37q5l7q"
+},
+"b_i_krug": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/gex_krug.res",
+"save_to_file/path": "uid://c42u3jo5pu2g5"
+},
+"b_i_kube": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/gex_cube.res",
+"save_to_file/path": "uid://cddwlvymndj5g"
+},
+"b_i_minus": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/gex_minus.res",
+"save_to_file/path": "uid://chjmlotm0fsu0"
+},
+"b_i_plus": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/gex_plus.res",
+"save_to_file/path": "uid://44aofrv75apn"
+},
+"b_i_star": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/gex_star.res",
+"save_to_file/path": "uid://c2ti3qtqvfmwg"
+},
+"b_i_treug": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/gex_trio.res",
+"save_to_file/path": "uid://cv7fid6c0tsmw"
+},
+"b_king_game": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/king.res",
+"save_to_file/path": "uid://cqjeolr6a02em"
+},
+"b_kon_game": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/kon.res",
+"save_to_file/path": "uid://dria776fba8m8"
+},
+"b_kon_game_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/kon_fan.res",
+"save_to_file/path": "uid://ytjailuwhrn6"
+},
+"b_lada_game": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/lada.res",
+"save_to_file/path": "uid://dajhiii2l7es5"
+},
+"b_lada_game_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/lada_fan_ready.res",
+"save_to_file/path": "uid://bsxgp4l5t3pu0"
+},
+"b_lada_game_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/lada_fan.res",
+"save_to_file/path": "uid://chljy52fmewuj"
+},
+"b_peshk_game": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/peshk.res",
+"save_to_file/path": "uid://ddjkopcecv8cr"
+},
+"b_peshk_game_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/peshk_fan.res",
+"save_to_file/path": "uid://b13qc0kqjdi80"
+},
+"b_slon_game": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/slon.res",
+"save_to_file/path": "uid://b1k3baxjtmmpg"
+},
+"b_slon_game_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://mesh/slon_fan.res",
+"save_to_file/path": "uid://dft4qw6sd3lpy"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=0

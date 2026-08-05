@@ -1,0 +1,645 @@
+[gd_scene format=3 uid="uid://blxrvfgtq8rdw"]
+
+[ext_resource type="PackedScene" uid="uid://ctm11ynd1db06" path="res://lvl/game/table.tscn" id="1_jpwd0"]
+[ext_resource type="PackedScene" uid="uid://cvenhqkighqsg" path="res://san_clouds/Resourses/cloud.tscn" id="1_qqdlu"]
+[ext_resource type="Script" uid="uid://7i4fxwba4c5m" path="res://scr/GAME.gd" id="1_ridn4"]
+[ext_resource type="ArrayMesh" uid="uid://c5op6myhxw674" path="res://mesh/vavilon.res" id="2_lto23"]
+[ext_resource type="Material" uid="uid://rlp1rle35xhq" path="res://visual/shaider/Sky_sphere.tres" id="2_tnoae"]
+[ext_resource type="PackedScene" uid="uid://bveeukxurc7cf" path="res://lvl/game/monolit.tscn" id="3_lto23"]
+[ext_resource type="Texture2D" uid="uid://s1unvb1uisiu" path="res://import/ava_placehold.png" id="6_4hivm"]
+[ext_resource type="Texture2D" uid="uid://g34041lbfsm7" path="res://king/gerb/Bear.png" id="7_iil1l"]
+[ext_resource type="Texture2D" uid="uid://bvx81ubti08iv" path="res://visual/material/game/lain.png" id="8_iwtnq"]
+[ext_resource type="Texture2D" uid="uid://ge5mj2g22vcf" path="res://koloda/deadworldtime.png" id="8_wx0gk"]
+[ext_resource type="Texture2D" uid="uid://cmtwctvb1k11v" path="res://koloda/kazna/K_00.png" id="9_4hivm"]
+[ext_resource type="Texture2D" uid="uid://dfoa1wywmp6qd" path="res://koloda/info_1.jpg" id="11_iil1l"]
+[ext_resource type="PackedScene" uid="uid://big2y65rgll3g" path="res://lvl/game/magaz/peshk.tscn" id="12_lwgrd"]
+[ext_resource type="PackedScene" uid="uid://hyxo3yrfkyb6" path="res://lvl/game/magaz/kon.tscn" id="13_fafcu"]
+[ext_resource type="PackedScene" uid="uid://wpaihj0ltdkf" path="res://lvl/game/magaz/slon.tscn" id="14_7di75"]
+[ext_resource type="PackedScene" uid="uid://bjbjl348l6fuq" path="res://lvl/game/magaz/lada.tscn" id="15_okd6o"]
+[ext_resource type="Texture2D" uid="uid://dkcdrnmauyrts" path="res://koloda/info_2.jpg" id="17_fafcu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tnoae"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_vgetd"]
+sky_material = SubResource("ProceduralSkyMaterial_tnoae")
+
+[sub_resource type="Environment" id="Environment_0jdu7"]
+background_mode = 2
+background_energy_multiplier = 0.2
+sky = SubResource("Sky_vgetd")
+tonemap_mode = 2
+ssao_enabled = true
+ssao_intensity = 1.2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.13046855, 0.14520526, 0.16916212, 1)
+fog_light_energy = 2.73
+fog_density = 0.1
+fog_height = -0.4
+fog_height_density = 1.65
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x521r"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o61u8"]
+shading_mode = 0
+albedo_texture = ExtResource("6_4hivm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k5g52"]
+material = SubResource("StandardMaterial3D_o61u8")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k7slk"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_iil1l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ggh6k"]
+material = SubResource("StandardMaterial3D_k7slk")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwgrd"]
+shading_mode = 0
+albedo_texture = ExtResource("6_4hivm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fafcu"]
+material = SubResource("StandardMaterial3D_lwgrd")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7di75"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_iil1l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_okd6o"]
+material = SubResource("StandardMaterial3D_7di75")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwtnq"]
+shading_mode = 0
+albedo_texture = ExtResource("6_4hivm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wri3d"]
+material = SubResource("StandardMaterial3D_iwtnq")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rrdf"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_iil1l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_50nji"]
+material = SubResource("StandardMaterial3D_5rrdf")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mh2qp"]
+shading_mode = 0
+albedo_texture = ExtResource("6_4hivm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3cwwr"]
+material = SubResource("StandardMaterial3D_mh2qp")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vkll"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_iil1l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2frox"]
+material = SubResource("StandardMaterial3D_6vkll")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ggbu"]
+shading_mode = 0
+albedo_texture = ExtResource("6_4hivm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_emlyr"]
+material = SubResource("StandardMaterial3D_1ggbu")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7vso"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_iil1l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rf20w"]
+material = SubResource("StandardMaterial3D_n7vso")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mcpe"]
+shading_mode = 0
+albedo_texture = ExtResource("6_4hivm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tt6rn"]
+material = SubResource("StandardMaterial3D_3mcpe")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvh61"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_iil1l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_144qm"]
+material = SubResource("StandardMaterial3D_mvh61")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x521r"]
+shading_mode = 0
+albedo_texture = ExtResource("8_iwtnq")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_bv0ed"]
+material = SubResource("StandardMaterial3D_x521r")
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_fafcu"]
+resource_local_to_scene = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fafcu"]
+color = Color(0.646029, 0.646029, 0.646029, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hjhvn"]
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+thickness = 3
+vertical = true
+
+[node name="GAME" type="Node3D" unique_id=661614673]
+script = ExtResource("1_ridn4")
+
+[node name="ENVIRONMENT" type="Node3D" parent="." unique_id=1172776349]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="ENVIRONMENT" unique_id=436988550]
+environment = SubResource("Environment_0jdu7")
+
+[node name="Sky" type="CSGSphere3D" parent="ENVIRONMENT" unique_id=976719674]
+gi_mode = 0
+flip_faces = true
+radius = 10.0
+material = ExtResource("2_tnoae")
+metadata/_edit_lock_ = true
+
+[node name="Sanches" type="SpotLight3D" parent="ENVIRONMENT" unique_id=960321383]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.9659258, 0, -0.9659258, 0.258819, 0, 4.7, 1)
+light_color = Color(0.95000297, 0.57891196, 0.3150127, 1)
+light_energy = 0.0
+light_specular = 0.1
+shadow_enabled = true
+shadow_bias = 0.2
+spot_range = 8.6
+spot_angle = 50.60364
+
+[node name="Night" type="SpotLight3D" parent="ENVIRONMENT" unique_id=1541279746]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.5, 0)
+light_color = Color(0.94886345, 0.85763156, 0.55434406, 1)
+light_energy = 6.0
+spot_range = 6.4
+spot_angle = 67.5
+
+[node name="WORLD" type="Node3D" parent="." unique_id=619324496]
+
+[node name="TABLE" parent="WORLD" unique_id=437054224 instance=ExtResource("1_jpwd0")]
+metadata/_edit_lock_ = true
+
+[node name="anti_area" type="Area3D" parent="WORLD" unique_id=1007655877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.58986974, 0)
+collision_layer = 524288
+collision_mask = 524288
+metadata/_edit_lock_ = true
+
+[node name="Collision" type="CollisionShape3D" parent="WORLD/anti_area" unique_id=281234125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.166, 0)
+shape = SubResource("BoxShape3D_x521r")
+metadata/_edit_lock_ = true
+
+[node name="Vavilon" type="MeshInstance3D" parent="WORLD" unique_id=729149726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.45, 0)
+mesh = ExtResource("2_lto23")
+
+[node name="monolit_players" type="Node3D" parent="WORLD" unique_id=1197755481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="monolit_1" parent="WORLD/monolit_players" unique_id=884502139 instance=ExtResource("3_lto23")]
+transform = Transform3D(-4.371138e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.371138e-08, 0, 0, -2.5)
+
+[node name="avatar" parent="WORLD/monolit_players/monolit_1/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_k5g52")
+
+[node name="gerb" parent="WORLD/monolit_players/monolit_1/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_ggh6k")
+
+[node name="monolit_2" parent="WORLD/monolit_players" unique_id=958510815 instance=ExtResource("3_lto23")]
+transform = Transform3D(-0.8660253, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, -0.8660253, 2.1650636, 0, -1.2499999)
+
+[node name="avatar" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_fafcu")
+
+[node name="gerb" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_okd6o")
+
+[node name="monolit_3" parent="WORLD/monolit_players" unique_id=212844513 instance=ExtResource("3_lto23")]
+transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 2.1650634, 0, 1.2500005)
+
+[node name="avatar" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_wri3d")
+
+[node name="gerb" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_50nji")
+
+[node name="monolit_4" parent="WORLD/monolit_players" unique_id=1690850865 instance=ExtResource("3_lto23")]
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0, 0, 2.5)
+
+[node name="avatar" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_3cwwr")
+
+[node name="gerb" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_2frox")
+
+[node name="monolit_5" parent="WORLD/monolit_players" unique_id=61905864 instance=ExtResource("3_lto23")]
+transform = Transform3D(0.8660253, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, 0.8660253, -2.1650636, 0, 1.2499999)
+
+[node name="avatar" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_emlyr")
+
+[node name="gerb" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_rf20w")
+
+[node name="monolit_6" parent="WORLD/monolit_players" unique_id=768809942 instance=ExtResource("3_lto23")]
+transform = Transform3D(0.8660253, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660253, -2.1650634, 0, -1.2500005)
+
+[node name="avatar" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_tt6rn")
+
+[node name="gerb" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_144qm")
+
+[node name="lain" type="MeshInstance3D" parent="WORLD/monolit_players" unique_id=11978028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.100001, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_bv0ed")
+
+[node name="CloudSpawn" type="Node3D" parent="WORLD" unique_id=177588761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
+
+[node name="Cloud" parent="WORLD/CloudSpawn" unique_id=1958340692 instance=ExtResource("1_qqdlu")]
+mesh = SubResource("ImmediateMesh_fafcu")
+
+[node name="Timer" type="Timer" parent="WORLD/CloudSpawn" unique_id=1416216528]
+wait_time = 0.05
+autostart = true
+
+[node name="USER" type="Node3D" parent="." unique_id=1339529877]
+
+[node name="UI" type="Control" parent="USER" unique_id=1645972842]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="Time_final" type="TextureRect" parent="USER/UI" unique_id=204210584]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -256.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("8_wx0gk")
+expand_mode = 1
+
+[node name="player_turn_go" type="Button" parent="USER/UI" unique_id=782668243]
+visible = false
+custom_minimum_size = Vector2(450, 60)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -225.0
+offset_right = 225.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "заебал -- ходи"
+
+[node name="Kazna_b" type="Button" parent="USER/UI" unique_id=877430144]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -260.0
+offset_right = 160.0
+grow_vertical = 0
+flat = true
+
+[node name="Kazna" type="TextureRect" parent="USER/UI/Kazna_b" unique_id=838052679]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 256.0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-50, 0)
+mouse_filter = 2
+texture = ExtResource("9_4hivm")
+expand_mode = 1
+
+[node name="Count_l" type="Label" parent="USER/UI/Kazna_b" unique_id=1388349956]
+layout_mode = 1
+offset_right = 160.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0.95955557, 0.80830187, 0.30444378, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+
+[node name="Kazna_W" type="Window" parent="USER/UI" unique_id=1533540441]
+oversampling_override = 1.0
+title = "Казна"
+initial_position = 2
+size = Vector2i(1240, 840)
+visible = false
+popup_window = true
+min_size = Vector2i(512, 512)
+theme_override_font_sizes/title_font_size = 18
+
+[node name="Magaz" type="ScrollContainer" parent="USER/UI/Kazna_W" unique_id=913015083]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="USER/UI/Kazna_W/Magaz" unique_id=1590682131]
+layout_mode = 2
+
+[node name="Info" type="HBoxContainer" parent="USER/UI/Kazna_W/Magaz/VBox" unique_id=566169569]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="USER/UI/Kazna_W/Magaz/VBox/Info" unique_id=816681693]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Balanc" type="HBoxContainer" parent="USER/UI/Kazna_W/Magaz/VBox/Info/MarginContainer" unique_id=119482805]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Info/MarginContainer/Balanc" unique_id=884647524]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Баланс: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Balanc" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Info/MarginContainer/Balanc" unique_id=1784968724]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Info_button" type="Button" parent="USER/UI/Kazna_W/Magaz/VBox/Info" unique_id=262970264]
+layout_mode = 2
+text = "Подсказка"
+
+[node name="Info_2_button" type="Button" parent="USER/UI/Kazna_W/Magaz/VBox/Info" unique_id=1684869086]
+layout_mode = 2
+text = "Сколько ещё доступно"
+
+[node name="Title" type="HBoxContainer" parent="USER/UI/Kazna_W/Magaz/VBox" unique_id=1240273990]
+visible = false
+layout_mode = 2
+
+[node name="Text2" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title" unique_id=1672892058]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Доступно пешек: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Game_peshk" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title" unique_id=160072546]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Text4" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title" unique_id=473236329]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Доступно коней: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Game_kon" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title" unique_id=670600108]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Text5" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title" unique_id=125750043]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Доступно слонов: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Game_slon" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title" unique_id=1879581097]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Text6" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title" unique_id=1511092099]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Доступно ладей: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Game_lada" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title" unique_id=1115414995]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Text3" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title" unique_id=1321043946]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Доступно фанатиков: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Game_fan" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title" unique_id=1892703596]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Sep" type="HSeparator" parent="USER/UI/Kazna_W/Magaz/VBox" unique_id=231805081]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_fafcu")
+
+[node name="Title2" type="HBoxContainer" parent="USER/UI/Kazna_W/Magaz/VBox" unique_id=1325314157]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title2" unique_id=41953372]
+custom_minimum_size = Vector2(500, 0)
+custom_maximum_size = Vector2(500, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Адепт"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sep" type="VSeparator" parent="USER/UI/Kazna_W/Magaz/VBox/Title2" unique_id=1640203657]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_hjhvn")
+
+[node name="Text2" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title2" unique_id=698343941]
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(200, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Поле влияния"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sep2" type="VSeparator" parent="USER/UI/Kazna_W/Magaz/VBox/Title2" unique_id=1478193041]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_hjhvn")
+
+[node name="Text3" type="Label" parent="USER/UI/Kazna_W/Magaz/VBox/Title2" unique_id=532884942]
+custom_minimum_size = Vector2(500, 0)
+custom_maximum_size = Vector2(500, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Фанатик"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="VBoxContainer" parent="USER/UI/Kazna_W/Magaz/VBox" unique_id=1479204614]
+layout_mode = 2
+
+[node name="peshk" parent="USER/UI/Kazna_W/Magaz/VBox/Options" unique_id=1602307199 instance=ExtResource("12_lwgrd")]
+layout_mode = 2
+
+[node name="kon" parent="USER/UI/Kazna_W/Magaz/VBox/Options" unique_id=531386248 instance=ExtResource("13_fafcu")]
+layout_mode = 2
+
+[node name="slon" parent="USER/UI/Kazna_W/Magaz/VBox/Options" unique_id=2111485588 instance=ExtResource("14_7di75")]
+layout_mode = 2
+
+[node name="lada" parent="USER/UI/Kazna_W/Magaz/VBox/Options" unique_id=176202425 instance=ExtResource("15_okd6o")]
+layout_mode = 2
+
+[node name="Info_W" type="Window" parent="USER/UI" unique_id=513476237]
+oversampling_override = 1.0
+title = "Подсказка:"
+initial_position = 2
+size = Vector2i(1024, 816)
+visible = false
+popup_window = true
+min_size = Vector2i(1024, 816)
+theme_override_font_sizes/title_font_size = 18
+
+[node name="ScrollContainer" type="ScrollContainer" parent="USER/UI/Info_W" unique_id=1336109767]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="USER/UI/Info_W/ScrollContainer" unique_id=1345750321]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="USER/UI/Info_W/ScrollContainer/VBoxContainer" unique_id=679541425]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("11_iil1l")
+expand_mode = 5
+
+[node name="Sep" type="HSeparator" parent="USER/UI/Info_W/ScrollContainer/VBoxContainer" unique_id=1724682675]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_fafcu")
+
+[node name="TextureRect2" type="TextureRect" parent="USER/UI/Info_W/ScrollContainer/VBoxContainer" unique_id=101785177]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("17_fafcu")
+expand_mode = 5
+
+[node name="cam_piv_1" type="Node3D" parent="USER" unique_id=518556740]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="cam_piv_2" type="Node3D" parent="USER/cam_piv_1" unique_id=250237390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Camera3D" type="Camera3D" parent="USER/cam_piv_1/cam_piv_2" unique_id=229721372]
+transform = Transform3D(1, 0, 0, 0, 0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0, 2, 1.2)
+fov = 80.0
+
+[editable path="WORLD/monolit_players/monolit_1"]
+[editable path="WORLD/monolit_players/monolit_2"]
+[editable path="WORLD/monolit_players/monolit_3"]
+[editable path="WORLD/monolit_players/monolit_4"]
+[editable path="WORLD/monolit_players/monolit_5"]
+[editable path="WORLD/monolit_players/monolit_6"]

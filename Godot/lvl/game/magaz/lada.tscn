@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://bjbjl348l6fuq"]
+
+[ext_resource type="Texture2D" uid="uid://b5mu6nlsnsiuv" path="res://koloda/figur_market/lada.png" id="1_x8wdk"]
+[ext_resource type="Texture2D" uid="uid://cxqg7rvpt82a3" path="res://koloda/figur_market/kon.png" id="2_ls6p6"]
+[ext_resource type="Texture2D" uid="uid://c4tup23gdrn4l" path="res://koloda/figur_market/lada_pole.png" id="3_lgmgy"]
+[ext_resource type="Texture2D" uid="uid://jwksxcf5agut" path="res://koloda/figur_market/lada_fan.png" id="4_d8vk7"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hjhvn"]
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+thickness = 3
+vertical = true
+
+[node name="lada" type="HBoxContainer" unique_id=176202425]
+
+[node name="Adept" type="MarginContainer" parent="." unique_id=592955109]
+custom_minimum_size = Vector2(500, 200)
+custom_maximum_size = Vector2(500, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Fon" type="Panel" parent="Adept" unique_id=1325994195]
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="Adept" unique_id=1605234053]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="Adept/HB" unique_id=70250412]
+layout_mode = 2
+texture = ExtResource("1_x8wdk")
+expand_mode = 3
+
+[node name="sub" type="TextureRect" parent="Adept/HB/Icon" unique_id=1203305767]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_ls6p6")
+expand_mode = 3
+
+[node name="VB_text" type="VBoxContainer" parent="Adept/HB" unique_id=1060686637]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="name_figur" type="Label" parent="Adept/HB/VB_text" unique_id=1263329977]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "Ладья"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="info_figur" type="HBoxContainer" parent="Adept/HB/VB_text" unique_id=328351478]
+layout_mode = 2
+
+[node name="info_figur" type="Label" parent="Adept/HB/VB_text/info_figur" unique_id=1102666425]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "Стоимость:
+Атака:
+Защита:
+Скорость:
+Ценность:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="info_figur2" type="Label" parent="Adept/HB/VB_text/info_figur" unique_id=1594505350]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "30
+1d6+2
+0
+1
+60"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Adept" unique_id=271428261]
+layout_mode = 2
+flat = true
+
+[node name="Sep" type="VSeparator" parent="." unique_id=22647573]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_hjhvn")
+
+[node name="Pole" type="MarginContainer" parent="." unique_id=1945805228]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Texture" type="TextureRect" parent="Pole" unique_id=2061332813]
+layout_mode = 2
+texture = ExtResource("3_lgmgy")
+expand_mode = 3
+
+[node name="Sep2" type="VSeparator" parent="." unique_id=1780029420]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_hjhvn")
+
+[node name="Fanat" type="MarginContainer" parent="." unique_id=659158866]
+custom_minimum_size = Vector2(500, 200)
+custom_maximum_size = Vector2(500, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Fon" type="Panel" parent="Fanat" unique_id=98180865]
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="Fanat" unique_id=1176978079]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="Fanat/HB" unique_id=903025514]
+layout_mode = 2
+texture = ExtResource("4_d8vk7")
+expand_mode = 3
+
+[node name="VB_text" type="VBoxContainer" parent="Fanat/HB" unique_id=1769786603]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="name_figur" type="Label" parent="Fanat/HB/VB_text" unique_id=228987726]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "ЭБП"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="info_figur" type="HBoxContainer" parent="Fanat/HB/VB_text" unique_id=1208769682]
+layout_mode = 2
+
+[node name="info_figur" type="Label" parent="Fanat/HB/VB_text/info_figur" unique_id=1150242514]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "Стоимость:
+Ценность:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="info_figur2" type="Label" parent="Fanat/HB/VB_text/info_figur" unique_id=1251602307]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "30
+90"
+vertical_alignment = 1
+
+[node name="info_dop" type="Label" parent="Fanat/HB/VB_text" unique_id=104794206]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "Если зарядить за 36 монет,
+может выстрелить в любую
+клетку снарядом \"Ромашка\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Fanat" unique_id=1128364893]
+layout_mode = 2
+flat = true

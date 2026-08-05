@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bveeukxurc7cf"]
+
+[ext_resource type="Texture2D" uid="uid://s1unvb1uisiu" path="res://import/ava_placehold.png" id="1_cx56x"]
+[ext_resource type="Texture2D" uid="uid://civpl7ajrij5x" path="res://king/gerb/Bull.png" id="2_8a4kp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv0ed"]
+albedo_color = Color(0.12941177, 0.11372549, 0.20392157, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lyl0i"]
+material = SubResource("StandardMaterial3D_bv0ed")
+top_radius = 0.18
+bottom_radius = 0.18
+height = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x521r"]
+shading_mode = 0
+albedo_texture = ExtResource("1_cx56x")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bv0ed"]
+material = SubResource("StandardMaterial3D_x521r")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4v1ty"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_8a4kp")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x521r"]
+material = SubResource("StandardMaterial3D_4v1ty")
+size = Vector2(0.3, 0.3)
+
+[node name="monolit" type="Node3D" unique_id=1690850865]
+
+[node name="osn" type="CSGBox3D" parent="." unique_id=1873892424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.25, 0)
+cast_shadow = 0
+size = Vector3(0.2, 9.5, 1)
+material = SubResource("StandardMaterial3D_bv0ed")
+
+[node name="info" type="Node3D" parent="." unique_id=1004628484]
+visible = false
+
+[node name="pre_gerb" type="MeshInstance3D" parent="info" unique_id=1820701175]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.115, 0.77000004, -0.23)
+mesh = SubResource("CylinderMesh_lyl0i")
+
+[node name="avatar" type="MeshInstance3D" parent="info" unique_id=525250088]
+transform = Transform3D(-4.371139e-08, 1, 0, 4.371139e-08, 1.9106855e-15, -1, -1, -4.371139e-08, -4.371139e-08, 0.11, 1, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_bv0ed")
+
+[node name="gerb" type="MeshInstance3D" parent="info" unique_id=1755115897]
+transform = Transform3D(-4.371139e-08, 1, 0, 4.371139e-08, 1.9106855e-15, -1, -1, -4.371139e-08, -4.371139e-08, 0.121, 0.77000004, -0.23)
+mesh = SubResource("PlaneMesh_x521r")
+
+[node name="username_label" type="Label3D" parent="info" unique_id=1633092385]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.12, 0.5, 0)
+modulate = Color(0.7887894, 0, 0.11774104, 1)
+text = "USERNAME"
+font_size = 26
+outline_size = 5

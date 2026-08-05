@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://v8madi0lglsr"]
+
+[ext_resource type="PackedScene" uid="uid://v578cccx303g" path="res://lvl/game/flags/flag_bear.tscn" id="1_ew6di"]
+[ext_resource type="PackedScene" uid="uid://c1jxn7p2r1eys" path="res://lvl/game/flags/flag_bull.tscn" id="2_f03mp"]
+[ext_resource type="PackedScene" uid="uid://ckpfdm0nfuduk" path="res://lvl/game/flags/flag_dragon.tscn" id="3_atm7n"]
+[ext_resource type="PackedScene" uid="uid://cawrbbc5hy2xh" path="res://lvl/game/flags/flag_eagle.tscn" id="4_a3scs"]
+[ext_resource type="PackedScene" uid="uid://d1nbnk5o06fqq" path="res://lvl/game/flags/flag_elephant.tscn" id="5_eesrd"]
+[ext_resource type="PackedScene" uid="uid://w35m6uqece5m" path="res://lvl/game/flags/flag_lion.tscn" id="6_fpoe0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv0ed"]
+albedo_color = Color(0.5729883, 0.5729883, 0.57298815, 1)
+
+[node name="ded_scene" type="Node3D" unique_id=683180335]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=401598447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1535, 0.20000002)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1828734993]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 1534.9, 0)
+visible = false
+shadow_enabled = true
+
+[node name="king" type="Node3D" parent="." unique_id=1072983403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1534.9, 0)
+
+[node name="flag_bear" parent="king" unique_id=503093944 instance=ExtResource("1_ew6di")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.15, 0)
+
+[node name="flag_bull" parent="king" unique_id=1852807779 instance=ExtResource("2_f03mp")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.1, -0.15, 0)
+
+[node name="flag_dragon" parent="king" unique_id=322814657 instance=ExtResource("3_atm7n")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.1, -0.15, 0)
+
+[node name="flag_eagle" parent="king" unique_id=343395191 instance=ExtResource("4_a3scs")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.1, -0.25, 0.01)
+
+[node name="flag_elephant" parent="king" unique_id=1293016333 instance=ExtResource("5_eesrd")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.1, -0.25, 0.01)
+
+[node name="flag_lion" parent="king" unique_id=912243496 instance=ExtResource("6_fpoe0")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.25, 0.01)
+
+[node name="stena" type="CSGBox3D" parent="king" unique_id=1055618303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
+size = Vector3(3, 3, 0.2)
+material = SubResource("StandardMaterial3D_bv0ed")
+
+[node name="projector" type="SpotLight3D" parent="king" unique_id=932105786]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0.8, 0.4)

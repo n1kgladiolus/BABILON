@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://wri3dnh0wiyo"]
+
+[ext_resource type="ArrayMesh" uid="uid://bdliug37q5l7q" path="res://mesh/gex.res" id="1_xpnbu"]
+
+[sub_resource type="GDScript" id="GDScript_ew6di"]
+script/source = "extends Area3D
+var game_scene
+
+
+func _ready() -> void:
+	game_scene = get_tree().root.get_node(\"GAME\")
+	await get_tree().create_timer(1.0).timeout
+	if R.status == \"CLIENT\":
+		await get_tree().process_frame
+		mouse_entered.connect(game_scene.gex_entered.bind(self))
+		mouse_exited.connect(game_scene.gex_exited.bind(self))
+"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yxgrh"]
+height = 0.16
+radius = 0.1
+
+[node name="GEX" type="Area3D" unique_id=565438355]
+collision_layer = 3
+collision_mask = 3
+script = SubResource("GDScript_ew6di")
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=994797700]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, -0.07968759, -2.7318703e-11)
+shape = SubResource("CylinderShape3D_yxgrh")
+
+[node name="Gex" type="MeshInstance3D" parent="." unique_id=83256427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16, 0)
+mesh = ExtResource("1_xpnbu")

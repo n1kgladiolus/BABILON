@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cbdqm3j4r80bt"
+path="res://.godot/imported/the_elder_scrolls_v_skyrim_17. Jeremy Soule - Secunda.mp3-d44e790549209e27f32ba517327fda47.mp3str"
+
+[deps]
+
+source_file="res://ost/music/the_elder_scrolls_v_skyrim_17. Jeremy Soule - Secunda.mp3"
+dest_files=["res://.godot/imported/the_elder_scrolls_v_skyrim_17. Jeremy Soule - Secunda.mp3-d44e790549209e27f32ba517327fda47.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dk7hrc030siy7"
+path="res://.godot/imported/morrowind_03  Dark Caverns - Jeremy Soule.mp3-a17d820f48d5c24773b6243147839075.mp3str"
+
+[deps]
+
+source_file="res://ost/music/morrowind_03  Dark Caverns - Jeremy Soule.mp3"
+dest_files=["res://.godot/imported/morrowind_03  Dark Caverns - Jeremy Soule.mp3-a17d820f48d5c24773b6243147839075.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

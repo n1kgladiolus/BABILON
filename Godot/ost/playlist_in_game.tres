@@ -1,0 +1,21 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://csuixhm6oc302"]
+
+[ext_resource type="AudioStream" uid="uid://c8seo8q75gqx" path="res://ost/music/ost_2.mp3" id="1_y5m1x"]
+[ext_resource type="AudioStream" uid="uid://bw07ulc3qfnbk" path="res://ost/music/ost_3.mp3" id="2_0vyf1"]
+[ext_resource type="AudioStream" uid="uid://dk7hrc030siy7" path="res://ost/music/morrowind_03  Dark Caverns - Jeremy Soule.mp3" id="3_08txh"]
+[ext_resource type="AudioStream" uid="uid://dxc8d7rtodith" path="res://ost/music/morrowind_09  Seperation - Jeremy Soule.mp3" id="4_hyqky"]
+[ext_resource type="AudioStream" uid="uid://dw0df6hweuxad" path="res://ost/music/the_elder_scrolls_v_skyrim_03. Jeremy Soule - From Past to Present.mp3" id="5_1e3nh"]
+[ext_resource type="AudioStream" uid="uid://cbdqm3j4r80bt" path="res://ost/music/the_elder_scrolls_v_skyrim_17. Jeremy Soule - Secunda.mp3" id="6_5n2bh"]
+[ext_resource type="AudioStream" uid="uid://dscd6omasum2m" path="res://ost/music/the_elder_scrolls_v_skyrim_18. Jeremy Soule - Imperial Throne.mp3" id="7_0ygup"]
+[ext_resource type="AudioStream" uid="uid://cu3k10fhotgpv" path="res://ost/music/the_elder_scrolls_v_skyrim_41. Jeremy Soule - Aurora.mp3" id="8_6j0mm"]
+
+[resource]
+streams_count = 8
+stream_0/stream = ExtResource("1_y5m1x")
+stream_1/stream = ExtResource("2_0vyf1")
+stream_2/stream = ExtResource("3_08txh")
+stream_3/stream = ExtResource("4_hyqky")
+stream_4/stream = ExtResource("5_1e3nh")
+stream_5/stream = ExtResource("6_5n2bh")
+stream_6/stream = ExtResource("7_0ygup")
+stream_7/stream = ExtResource("8_6j0mm")

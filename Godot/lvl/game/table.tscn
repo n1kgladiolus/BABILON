@@ -1,0 +1,394 @@
+[gd_scene format=3 uid="uid://ctm11ynd1db06"]
+
+[ext_resource type="PackedScene" uid="uid://wri3dnh0wiyo" path="res://lvl/game/gex.tscn" id="1_tt586"]
+
+[node name="TABLE" type="Node3D" unique_id=437054224]
+
+[node name="A" type="Node3D" parent="." unique_id=1542889267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0)
+
+[node name="GEX" parent="A" unique_id=565438355 instance=ExtResource("1_tt586")]
+
+[node name="GEX2" parent="A" unique_id=1994379923 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0, -0.19)
+
+[node name="GEX3" parent="A" unique_id=268538568 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, 0, 0)
+
+[node name="GEX4" parent="A" unique_id=566595242 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11, 0, 0.19)
+
+[node name="GEX5" parent="A" unique_id=446985546 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11, 0, 0.19)
+
+[node name="GEX6" parent="A" unique_id=107394512 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 0, 0)
+
+[node name="GEX7" parent="A" unique_id=504458686 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11, 0, -0.19)
+
+[node name="B" type="Node3D" parent="." unique_id=1225185720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, 0)
+
+[node name="GEX" parent="B" unique_id=738697167 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.38)
+
+[node name="GEX2" parent="B" unique_id=1493259732 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, 0, -0.38)
+
+[node name="GEX3" parent="B" unique_id=529658545 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32999998, 0, -0.19)
+
+[node name="GEX4" parent="B" unique_id=463307169 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44, 0, 0)
+
+[node name="GEX5" parent="B" unique_id=1096092244 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32999998, 0, 0.19)
+
+[node name="GEX6" parent="B" unique_id=1389767790 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22, 0, 0.38)
+
+[node name="GEX7" parent="B" unique_id=1372804741 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.38)
+
+[node name="GEX8" parent="B" unique_id=210915464 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 0, 0.38)
+
+[node name="GEX9" parent="B" unique_id=1059588241 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.33, 0, 0.19)
+
+[node name="GEX10" parent="B" unique_id=1382685682 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43999997, 0, -4.656613e-09)
+
+[node name="GEX11" parent="B" unique_id=1284142565 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32999998, 0, -0.19)
+
+[node name="GEX12" parent="B" unique_id=816850711 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21999997, 0, -0.38)
+
+[node name="GEX13" parent="B" unique_id=1214181756 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10999997, 0, -0.57)
+
+[node name="GEX14" parent="B" unique_id=163327535 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110000014, 0, -0.57)
+
+[node name="GEX15" parent="B" unique_id=1236929754 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33000004, 0, -0.57)
+
+[node name="GEX16" parent="B" unique_id=2013423357 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44000006, 0, -0.38)
+
+[node name="GEX17" parent="B" unique_id=113178486 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0, -0.19)
+
+[node name="GEX18" parent="B" unique_id=384242934 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6600001, 0, 0)
+
+[node name="GEX19" parent="B" unique_id=46498331 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500001, 0, 0.19000001)
+
+[node name="GEX20" parent="B" unique_id=361678488 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44000006, 0, 0.37999997)
+
+[node name="GEX21" parent="B" unique_id=1450970862 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33000004, 0, 0.56999993)
+
+[node name="GEX22" parent="B" unique_id=1150145436 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.110000074, 0, 0.56999993)
+
+[node name="GEX23" parent="B" unique_id=553541930 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.109999955, 0, 0.56999993)
+
+[node name="GEX24" parent="B" unique_id=1524914906 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32999992, 0, 0.56999993)
+
+[node name="GEX25" parent="B" unique_id=704211527 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4399999, 0, 0.37999997)
+
+[node name="GEX26" parent="B" unique_id=1562173981 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5499999, 0, 0.18999997)
+
+[node name="GEX27" parent="B" unique_id=1520471865 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6599999, 0, -2.9802322e-08)
+
+[node name="GEX28" parent="B" unique_id=1188693997 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5499999, 0, -0.19000003)
+
+[node name="GEX29" parent="B" unique_id=598496836 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4399999, 0, -0.38000003)
+
+[node name="GEX30" parent="B" unique_id=1463414579 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3299999, 0, -0.57000005)
+
+[node name="C" type="Node3D" parent="." unique_id=391704657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
+
+[node name="GEX" parent="C" unique_id=269878249 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1920929e-07, 0, -0.76)
+
+[node name="GEX2" parent="C" unique_id=1344355599 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22000012, 0, -0.76)
+
+[node name="GEX3" parent="C" unique_id=140308246 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44000012, 0, -0.76)
+
+[node name="GEX4" parent="C" unique_id=822659746 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500001, 0, -0.57)
+
+[node name="GEX5" parent="C" unique_id=91957728 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6600001, 0, -0.38)
+
+[node name="GEX6" parent="C" unique_id=372318198 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7700001, 0, -0.19)
+
+[node name="GEX7" parent="C" unique_id=773150896 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8800001, 0, 0)
+
+[node name="GEX8" parent="C" unique_id=158289393 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.77000004, 0, 0.19)
+
+[node name="GEX9" parent="C" unique_id=965518835 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66, 0, 0.38)
+
+[node name="GEX10" parent="C" unique_id=2010899382 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0, 0.57)
+
+[node name="GEX11" parent="C" unique_id=980463753 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44000003, 0, 0.76)
+
+[node name="GEX12" parent="C" unique_id=80348808 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22000003, 0, 0.76)
+
+[node name="GEX13" parent="C" unique_id=1827844243 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0, 0.76)
+
+[node name="GEX14" parent="C" unique_id=2087703742 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21999994, 0, 0.76)
+
+[node name="GEX15" parent="C" unique_id=705517611 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43999994, 0, 0.76)
+
+[node name="GEX16" parent="C" unique_id=1765723866 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54999995, 0, 0.57)
+
+[node name="GEX17" parent="C" unique_id=1430760219 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6599999, 0, 0.38)
+
+[node name="GEX18" parent="C" unique_id=1878883957 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7699999, 0, 0.19000001)
+
+[node name="GEX19" parent="C" unique_id=1843833801 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.87999994, 0, 2.2351742e-08)
+
+[node name="GEX20" parent="C" unique_id=1913298132 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7699999, 0, -0.18999997)
+
+[node name="GEX21" parent="C" unique_id=304154290 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65999997, 0, -0.37999997)
+
+[node name="GEX22" parent="C" unique_id=326278396 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54999995, 0, -0.57)
+
+[node name="GEX23" parent="C" unique_id=1310871122 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43999994, 0, -0.76)
+
+[node name="GEX24" parent="C" unique_id=1388955633 instance=ExtResource("1_tt586")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21999994, 0, -0.76)
+
+[node name="D_A" type="Node3D" parent="." unique_id=301214004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16, 0)
+
+[node name="GEX" parent="D_A" unique_id=403195431 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.4505806e-08, 0, -1.52)
+
+[node name="GEX2" parent="D_A" unique_id=108070194 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -1.33)
+
+[node name="GEX3" parent="D_A" unique_id=20843948 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -1.3299999)
+
+[node name="GEX4" parent="D_A" unique_id=1018833250 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.21999991, 0, -1.14)
+
+[node name="GEX5" parent="D_A" unique_id=115411962 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.916242e-08, 0, -1.14)
+
+[node name="GEX6" parent="D_A" unique_id=412983132 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.22000007, 0, -1.14)
+
+[node name="GEX7" parent="D_A" unique_id=876930291 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.32999992, 0, -0.95)
+
+[node name="GEX8" parent="D_A" unique_id=2145705805 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -0.95)
+
+[node name="GEX9" parent="D_A" unique_id=451019262 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -0.95)
+
+[node name="GEX10" parent="D_A" unique_id=514894925 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33000004, 0, -0.95000005)
+
+[node name="D_B" type="Node3D" parent="." unique_id=2051197736]
+transform = Transform3D(0.49999997, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.49999997, 0, 0.16, 0)
+
+[node name="GEX" parent="D_B" unique_id=160722930 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.4505806e-08, 0, -1.52)
+
+[node name="GEX2" parent="D_B" unique_id=1180240570 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -1.33)
+
+[node name="GEX3" parent="D_B" unique_id=1703712532 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -1.3299999)
+
+[node name="GEX4" parent="D_B" unique_id=1098958125 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.21999991, 0, -1.14)
+
+[node name="GEX5" parent="D_B" unique_id=1268280526 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.916242e-08, 0, -1.14)
+
+[node name="GEX6" parent="D_B" unique_id=1369887927 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.22000007, 0, -1.14)
+
+[node name="GEX7" parent="D_B" unique_id=1440702833 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.32999992, 0, -0.95)
+
+[node name="GEX8" parent="D_B" unique_id=1702571594 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -0.95)
+
+[node name="GEX9" parent="D_B" unique_id=2104254268 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -0.95)
+
+[node name="GEX10" parent="D_B" unique_id=75826800 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33000004, 0, -0.95000005)
+
+[node name="D_C" type="Node3D" parent="." unique_id=507708651]
+transform = Transform3D(-0.5000001, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.5000001, 0, 0.16, 0)
+
+[node name="GEX" parent="D_C" unique_id=2042075455 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.4505806e-08, 0, -1.52)
+
+[node name="GEX2" parent="D_C" unique_id=1965494907 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -1.33)
+
+[node name="GEX3" parent="D_C" unique_id=1765351195 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -1.3299999)
+
+[node name="GEX4" parent="D_C" unique_id=811511725 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.21999991, 0, -1.14)
+
+[node name="GEX5" parent="D_C" unique_id=1346070081 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.916242e-08, 0, -1.14)
+
+[node name="GEX6" parent="D_C" unique_id=1392588628 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.22000007, 0, -1.14)
+
+[node name="GEX7" parent="D_C" unique_id=1116436812 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.32999992, 0, -0.95)
+
+[node name="GEX8" parent="D_C" unique_id=937372405 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -0.95)
+
+[node name="GEX9" parent="D_C" unique_id=1099262915 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -0.95)
+
+[node name="GEX10" parent="D_C" unique_id=786622318 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33000004, 0, -0.95000005)
+
+[node name="D_D" type="Node3D" parent="." unique_id=1254486383]
+transform = Transform3D(-1, 0, 1.1920929e-07, 0, 1, 0, -1.1920929e-07, 0, -1, 0, 0.16, 0)
+
+[node name="GEX" parent="D_D" unique_id=763548609 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.4505806e-08, 0, -1.52)
+
+[node name="GEX2" parent="D_D" unique_id=1793856450 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -1.33)
+
+[node name="GEX3" parent="D_D" unique_id=1728234508 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -1.3299999)
+
+[node name="GEX4" parent="D_D" unique_id=1759967700 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.21999991, 0, -1.14)
+
+[node name="GEX5" parent="D_D" unique_id=1188935150 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.916242e-08, 0, -1.14)
+
+[node name="GEX6" parent="D_D" unique_id=1845041589 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.22000007, 0, -1.14)
+
+[node name="GEX7" parent="D_D" unique_id=1841539017 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.32999992, 0, -0.95)
+
+[node name="GEX8" parent="D_D" unique_id=2065958084 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -0.95)
+
+[node name="GEX9" parent="D_D" unique_id=565154645 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -0.95)
+
+[node name="GEX10" parent="D_D" unique_id=1329356191 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33000004, 0, -0.95000005)
+
+[node name="D_E" type="Node3D" parent="." unique_id=444194695]
+transform = Transform3D(-0.49999988, 0, 0.8660255, 0, 1, 0, -0.8660255, 0, -0.49999988, 0, 0.16, 0)
+
+[node name="GEX" parent="D_E" unique_id=595982706 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.4505806e-08, 0, -1.52)
+
+[node name="GEX2" parent="D_E" unique_id=1840813392 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -1.33)
+
+[node name="GEX3" parent="D_E" unique_id=419988141 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -1.3299999)
+
+[node name="GEX4" parent="D_E" unique_id=870226383 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.21999991, 0, -1.14)
+
+[node name="GEX5" parent="D_E" unique_id=54661471 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.916242e-08, 0, -1.14)
+
+[node name="GEX6" parent="D_E" unique_id=720286026 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.22000007, 0, -1.14)
+
+[node name="GEX7" parent="D_E" unique_id=1212227051 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.32999992, 0, -0.95)
+
+[node name="GEX8" parent="D_E" unique_id=1804083088 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -0.95)
+
+[node name="GEX9" parent="D_E" unique_id=172484471 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -0.95)
+
+[node name="GEX10" parent="D_E" unique_id=1138594646 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33000004, 0, -0.95000005)
+
+[node name="D_F" type="Node3D" parent="." unique_id=2023446499]
+transform = Transform3D(0.5000002, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, 0.5000002, 0, 0.16, 0)
+
+[node name="GEX" parent="D_F" unique_id=1602782178 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.4505806e-08, 0, -1.52)
+
+[node name="GEX2" parent="D_F" unique_id=359119054 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -1.33)
+
+[node name="GEX3" parent="D_F" unique_id=89653252 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -1.3299999)
+
+[node name="GEX4" parent="D_F" unique_id=112818291 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.21999991, 0, -1.14)
+
+[node name="GEX5" parent="D_F" unique_id=854402602 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.916242e-08, 0, -1.14)
+
+[node name="GEX6" parent="D_F" unique_id=1727218519 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.22000007, 0, -1.14)
+
+[node name="GEX7" parent="D_F" unique_id=1432639299 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.32999992, 0, -0.95)
+
+[node name="GEX8" parent="D_F" unique_id=1512630814 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.109999925, 0, -0.95)
+
+[node name="GEX9" parent="D_F" unique_id=1265321453 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.110000074, 0, -0.95)
+
+[node name="GEX10" parent="D_F" unique_id=1030930560 instance=ExtResource("1_tt586")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.33000004, 0, -0.95000005)

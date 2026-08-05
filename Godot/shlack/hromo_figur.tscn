@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://boq0e8lf8h0k7"]
+
+[ext_resource type="PackedScene" uid="uid://cmi4yu2pxnttk" path="res://mesh_figura/slon_fan.tscn" id="1_blxic"]
+[ext_resource type="PackedScene" uid="uid://du5d54la2kt4p" path="res://mesh_figura/slon.tscn" id="2_urjd0"]
+[ext_resource type="PackedScene" uid="uid://dc43te0mip8k0" path="res://mesh_figura/peshk_fan.tscn" id="3_w2wxs"]
+[ext_resource type="PackedScene" uid="uid://c8qsp6um1vsyq" path="res://mesh_figura/peshk.tscn" id="4_qrtt6"]
+[ext_resource type="PackedScene" uid="uid://bbxbfypf80p6b" path="res://mesh_figura/lada_fan_ready.tscn" id="5_lu01q"]
+[ext_resource type="PackedScene" uid="uid://umu5336ie2dy" path="res://mesh_figura/lada_fan.tscn" id="6_0oplu"]
+[ext_resource type="PackedScene" uid="uid://dioix0kp3g7bs" path="res://mesh_figura/lada.tscn" id="7_lka8g"]
+[ext_resource type="PackedScene" uid="uid://dg4dvnrcuatob" path="res://mesh_figura/kon_fan.tscn" id="8_bss72"]
+[ext_resource type="PackedScene" uid="uid://wyx118cc734h" path="res://mesh_figura/kon.tscn" id="9_v4hyg"]
+[ext_resource type="PackedScene" uid="uid://n3va7dfticb1" path="res://mesh_figura/king.tscn" id="10_1y8d7"]
+
+[sub_resource type="Environment" id="Environment_bv0ed"]
+background_mode = 1
+background_color = Color(4.813075e-08, 0.6331395, 0.11286456, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.851769, 0.8517689, 0.85176885, 1)
+ambient_light_energy = 0.2
+
+[node name="Node3D" type="Node3D" unique_id=2052037399]
+
+[node name="slon_fan" parent="." unique_id=1001686387 instance=ExtResource("1_blxic")]
+visible = false
+
+[node name="slon" parent="." unique_id=2022663418 instance=ExtResource("2_urjd0")]
+visible = false
+
+[node name="peshk_fan" parent="." unique_id=686359653 instance=ExtResource("3_w2wxs")]
+visible = false
+
+[node name="peshk" parent="." unique_id=1666306236 instance=ExtResource("4_qrtt6")]
+visible = false
+
+[node name="lada_fan_ready" parent="." unique_id=1554134022 instance=ExtResource("5_lu01q")]
+visible = false
+
+[node name="lada_fan" parent="." unique_id=1411027623 instance=ExtResource("6_0oplu")]
+
+[node name="lada" parent="." unique_id=836928578 instance=ExtResource("7_lka8g")]
+visible = false
+
+[node name="kon_fan" parent="." unique_id=2019100027 instance=ExtResource("8_bss72")]
+visible = false
+
+[node name="kon" parent="." unique_id=1225242599 instance=ExtResource("9_v4hyg")]
+visible = false
+
+[node name="king" parent="." unique_id=1220638556 instance=ExtResource("10_1y8d7")]
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=578735698]
+environment = SubResource("Environment_bv0ed")

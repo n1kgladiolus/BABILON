@@ -1,0 +1,587 @@
+[gd_scene format=3 uid="uid://d1h6yqjvs436"]
+
+[ext_resource type="Script" uid="uid://c60xwxdfoolh2" path="res://scr/lobby.gd" id="1_lpmmn"]
+[ext_resource type="Texture2D" uid="uid://j3yunc5vic30" path="res://import/pole.png" id="3_v8e3e"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5o8vf"]
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+thickness = 3
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2bjfv"]
+color = Color(0.646029, 0.646029, 0.646029, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_v8e3e"]
+color = Color(0.646029, 0.646029, 0.646029, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lpmmn"]
+color = Color(0.646029, 0.646029, 0.646029, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8e3e"]
+bg_color = Color(0.6, 0.6, 0.7058824, 0.29411766)
+
+[sub_resource type="GDScript" id="GDScript_r8rv7"]
+script/source = "extends SpinBox
+
+
+
+func _ready() -> void:
+	get_line_edit().add_theme_font_size_override(\"font_size\", 32)
+"
+
+[node name="Lobby" type="Control" unique_id=698262095]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_lpmmn")
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="." unique_id=245623382]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Window" type="MarginContainer" parent="." unique_id=621840917]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Box" type="HBoxContainer" parent="Window" unique_id=705897582]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Sep" type="VSeparator" parent="Window/Box" unique_id=1071092093]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_5o8vf")
+
+[node name="Box_menu" type="VBoxContainer" parent="Window/Box" unique_id=212914658]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="Window/Box/Box_menu" unique_id=934999842]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, -1)
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Стол:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Sep" type="HSeparator" parent="Window/Box/Box_menu" unique_id=121065276]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_2bjfv")
+
+[node name="setting" type="Button" parent="Window/Box/Box_menu" unique_id=793617484]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Настройки"
+
+[node name="Sep2" type="HSeparator" parent="Window/Box/Box_menu" unique_id=1653119586]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_v8e3e")
+
+[node name="exit_lobby" type="Button" parent="Window/Box/Box_menu" unique_id=654384291]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Покинуть стол"
+
+[node name="Sep2" type="VSeparator" parent="Window/Box" unique_id=2056465622]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_5o8vf")
+
+[node name="lobby_window" type="MarginContainer" parent="Window/Box" unique_id=99365210]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="Window/Box/lobby_window" unique_id=991501435]
+layout_mode = 2
+
+[node name="Box_players_list" type="VBoxContainer" parent="Window/Box/lobby_window" unique_id=1592776944]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Sep" type="HSeparator" parent="Window/Box/lobby_window/Box_players_list" unique_id=469689343]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_lpmmn")
+
+[node name="players_label" type="Label" parent="Window/Box/lobby_window/Box_players_list" unique_id=1389264027]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Игроки"
+horizontal_alignment = 1
+
+[node name="Sep2" type="HSeparator" parent="Window/Box/lobby_window/Box_players_list" unique_id=682890279]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_lpmmn")
+
+[node name="players_panel" type="Panel" parent="Window/Box/lobby_window/Box_players_list" unique_id=851630961]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8e3e")
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/Box/lobby_window/Box_players_list/players_panel" unique_id=934633937]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer" unique_id=1158205774]
+layout_mode = 2
+
+[node name="you" type="Control" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer" unique_id=2052323421]
+custom_minimum_size = Vector2(1285, 60)
+layout_mode = 2
+
+[node name="Box" type="HBoxContainer" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you" unique_id=2074036038]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box" unique_id=759608393]
+custom_minimum_size = Vector2(225, 0)
+custom_maximum_size = Vector2(225, -1)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35162428, 0.6769686, 1.540184e-06, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "USERNAME"
+
+[node name="VSeparator2" type="VSeparator" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box" unique_id=1915778158]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_5o8vf")
+
+[node name="Label3" type="Label" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box" unique_id=1207380734]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Король:"
+
+[node name="king_select" type="OptionButton" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box" unique_id=1184405518]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+disabled = true
+selected = 0
+item_count = 8
+popup/item_0/text = "Наблюдатель"
+popup/item_0/id = 0
+popup/item_1/text = "Рандом"
+popup/item_1/id = 1
+popup/item_2/text = "Медведь"
+popup/item_2/id = 2
+popup/item_3/text = "Бык"
+popup/item_3/id = 3
+popup/item_4/text = "Дракон"
+popup/item_4/id = 4
+popup/item_5/text = "Орёл"
+popup/item_5/id = 5
+popup/item_6/text = "Слон"
+popup/item_6/id = 6
+popup/item_7/text = "Лев"
+popup/item_7/id = 7
+
+[node name="VSeparator" type="VSeparator" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box" unique_id=1273002915]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_5o8vf")
+
+[node name="Label2" type="Label" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box" unique_id=71390542]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Спавн:"
+
+[node name="spawn_select" type="OptionButton" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box" unique_id=1063799380]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+disabled = true
+selected = 0
+item_count = 8
+popup/item_0/text = "Наблюдатель"
+popup/item_0/id = 0
+popup/item_1/text = "Рандом"
+popup/item_1/id = 1
+popup/item_2/text = "I"
+popup/item_2/id = 2
+popup/item_3/text = "II"
+popup/item_3/id = 3
+popup/item_4/text = "III"
+popup/item_4/id = 4
+popup/item_5/text = "IV"
+popup/item_5/id = 5
+popup/item_6/text = "V"
+popup/item_6/id = 6
+popup/item_7/text = "VI"
+popup/item_7/id = 7
+
+[node name="VSeparator3" type="VSeparator" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box" unique_id=1004817584]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_5o8vf")
+
+[node name="Label4" type="Label" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box" unique_id=32071686]
+visible = false
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Громкость:"
+
+[node name="voice_volume" type="HSlider" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box" unique_id=10702565]
+visible = false
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+rounded = true
+
+[node name="other_scroll" type="ScrollContainer" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer" unique_id=1791105443]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="other" type="VBoxContainer" parent="Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/other_scroll" unique_id=265981318]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Sep3" type="HSeparator" parent="Window/Box/lobby_window/Box_players_list" unique_id=337996989]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_lpmmn")
+
+[node name="parametrs_label" type="Label" parent="Window/Box/lobby_window/Box_players_list" unique_id=98520537]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Параметры стола"
+horizontal_alignment = 1
+
+[node name="Sep4" type="HSeparator" parent="Window/Box/lobby_window/Box_players_list" unique_id=989753137]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_lpmmn")
+
+[node name="parametrs_panel" type="Panel" parent="Window/Box/lobby_window/Box_players_list" unique_id=1154325809]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8e3e")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel" unique_id=101928566]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer" unique_id=1006166405]
+custom_maximum_size = Vector2(500, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer" unique_id=233444561]
+custom_minimum_size = Vector2(475, 0)
+custom_maximum_size = Vector2(475, -1)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer/MarginContainer" unique_id=1176719853]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2070543243]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Режим:"
+
+[node name="mode" type="OptionButton" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=542447920]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+disabled = true
+selected = 0
+item_count = 2
+popup/item_0/text = "Казуальный"
+popup/item_0/id = 0
+popup/item_1/text = "Спортивный"
+popup/item_1/id = 1
+popup/item_1/disabled = true
+
+[node name="Label2" type="Label" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=411239602]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Параметры игроков:"
+
+[node name="mode_start" type="OptionButton" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2091811997]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+disabled = true
+selected = 2
+item_count = 5
+popup/item_0/text = "Лидер"
+popup/item_0/id = 0
+popup/item_1/text = "Пользователи"
+popup/item_1/id = 1
+popup/item_2/text = "Полный рандом"
+popup/item_2/id = 2
+popup/item_3/text = "Короли рандом"
+popup/item_3/id = 3
+popup/item_4/text = "Спавн рандом"
+popup/item_4/id = 4
+
+[node name="Label3" type="Label" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=210853658]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Выкинуть карт:"
+
+[node name="koloda_minus" type="SpinBox" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=206505633]
+custom_minimum_size = Vector2(450, 53)
+custom_maximum_size = Vector2(450, 53)
+layout_mode = 2
+max_value = 40.0
+value = 8.0
+rounded = true
+editable = false
+script = SubResource("GDScript_r8rv7")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer" unique_id=40598959]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3" unique_id=1800742347]
+custom_minimum_size = Vector2(475, 0)
+custom_maximum_size = Vector2(475, -1)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer" unique_id=2087659772]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer" unique_id=761526770]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Боты:"
+
+[node name="mode_bot" type="OptionButton" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer" unique_id=543087586]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+disabled = true
+selected = 1
+item_count = 2
+popup/item_0/text = "Активные"
+popup/item_0/id = 0
+popup/item_0/disabled = true
+popup/item_1/text = "Не Активные"
+popup/item_1/id = 1
+
+[node name="Label2" type="Label" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer" unique_id=799859586]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Карта:"
+
+[node name="nodata_button" type="Button" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer" unique_id=1047767926]
+custom_minimum_size = Vector2(425, 53)
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+disabled = true
+text = "No data"
+
+[node name="Label3" type="Label" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer" unique_id=1451398592]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Старт игры:"
+
+[node name="START" type="Button" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer" unique_id=1830466333]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+disabled = true
+text = "START"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer" unique_id=1457263751]
+custom_minimum_size = Vector2(445, 423)
+custom_maximum_size = Vector2(445, 423)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2" unique_id=1333950395]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="TextureRect" type="TextureRect" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer" unique_id=682308905]
+layout_mode = 2
+texture = ExtResource("3_v8e3e")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Control1" type="Control" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect" unique_id=1693058722]
+layout_mode = 1
+anchor_left = 0.50506324
+anchor_top = 0.15549597
+anchor_right = 0.50506324
+anchor_bottom = 0.15549597
+metadata/_edit_use_anchors_ = true
+
+[node name="king" type="TextureRect" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect/Control1" unique_id=564578921]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Control2" type="Control" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect" unique_id=1521380918]
+layout_mode = 1
+anchor_left = 0.78860766
+anchor_top = 0.32707775
+anchor_right = 0.78860766
+anchor_bottom = 0.32707775
+metadata/_edit_use_anchors_ = true
+
+[node name="king" type="TextureRect" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect/Control2" unique_id=149385791]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Control3" type="Control" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect" unique_id=1393783230]
+layout_mode = 1
+anchor_left = 0.78860754
+anchor_top = 0.67292225
+anchor_right = 0.78860754
+anchor_bottom = 0.67292225
+metadata/_edit_use_anchors_ = true
+
+[node name="king" type="TextureRect" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect/Control3" unique_id=696407797]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Control4" type="Control" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect" unique_id=382738466]
+layout_mode = 1
+anchor_left = 0.50506324
+anchor_top = 0.847185
+anchor_right = 0.50506324
+anchor_bottom = 0.847185
+metadata/_edit_use_anchors_ = true
+
+[node name="king" type="TextureRect" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect/Control4" unique_id=339718035]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Control5" type="Control" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect" unique_id=1183089644]
+layout_mode = 1
+anchor_left = 0.22151896
+anchor_top = 0.67292225
+anchor_right = 0.22151896
+anchor_bottom = 0.67292225
+metadata/_edit_use_anchors_ = true
+
+[node name="king" type="TextureRect" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect/Control5" unique_id=426591034]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Control6" type="Control" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect" unique_id=1520534499]
+layout_mode = 1
+anchor_left = 0.22151896
+anchor_top = 0.32707775
+anchor_right = 0.22151896
+anchor_bottom = 0.32707775
+metadata/_edit_use_anchors_ = true
+
+[node name="king" type="TextureRect" parent="Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer2/MarginContainer/TextureRect/Control6" unique_id=972331283]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://hch1qejph88m"]
+
+[ext_resource type="Script" uid="uid://dts5ieqg3yld0" path="res://scr/audio.gd" id="1_y5ab6"]
+[ext_resource type="PackedScene" uid="uid://dvpkwo6h7y0sj" path="res://addons/twovoip/voiphelper/two_voip_mic.tscn" id="3_5x3xy"]
+[ext_resource type="AudioStream" uid="uid://c1k6djspebdpy" path="res://ost/effect/heroes-click.mp3" id="4_5x3xy"]
+[ext_resource type="PackedScene" uid="uid://c613yggmsl08x" path="res://addons/twovoip/voiphelper/two_voip_speaker.tscn" id="4_bjb4n"]
+[ext_resource type="AudioStream" uid="uid://nwiq37grcas4" path="res://ost/music/ost_1.mp3" id="4_esxqa"]
+[ext_resource type="AudioStream" uid="uid://dwul4pcimuvy7" path="res://ost/effect/veter_1.mp3" id="6_esxqa"]
+
+[node name="Audio" type="Node" unique_id=1935636428]
+script = ExtResource("1_y5ab6")
+
+[node name="TwoVoipMic" parent="." unique_id=2054874447 instance=ExtResource("3_5x3xy")]
+
+[node name="TwoVoipSpeaker" parent="." unique_id=227661049 instance=ExtResource("4_bjb4n")]
+
+[node name="Background" type="AudioStreamPlayer" parent="." unique_id=676968027]
+stream = ExtResource("4_esxqa")
+bus = &"Background"
+
+[node name="Background_veter" type="AudioStreamPlayer" parent="." unique_id=2015920894]
+stream = ExtResource("6_esxqa")
+bus = &"Veter"
+
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="." unique_id=1062420423]
+bus = &"VOICE"
+
+[node name="Action" type="AudioStreamPlayer" parent="." unique_id=769200009]
+bus = &"Action"
+
+[node name="Action2" type="AudioStreamPlayer" parent="." unique_id=1709903082]
+bus = &"Action"
+
+[node name="Click" type="AudioStreamPlayer" parent="." unique_id=2080666314]
+stream = ExtResource("4_5x3xy")
+bus = &"Click"

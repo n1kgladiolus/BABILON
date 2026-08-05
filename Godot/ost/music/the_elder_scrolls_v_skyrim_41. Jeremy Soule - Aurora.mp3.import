@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cu3k10fhotgpv"
+path="res://.godot/imported/the_elder_scrolls_v_skyrim_41. Jeremy Soule - Aurora.mp3-5a3c0c070972f3f837869c9d2742ed05.mp3str"
+
+[deps]
+
+source_file="res://ost/music/the_elder_scrolls_v_skyrim_41. Jeremy Soule - Aurora.mp3"
+dest_files=["res://.godot/imported/the_elder_scrolls_v_skyrim_41. Jeremy Soule - Aurora.mp3-5a3c0c070972f3f837869c9d2742ed05.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

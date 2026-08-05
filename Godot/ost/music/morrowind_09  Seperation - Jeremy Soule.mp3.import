@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxc8d7rtodith"
+path="res://.godot/imported/morrowind_09  Seperation - Jeremy Soule.mp3-8bf1fcb8d5de5fbd248182b894b44151.mp3str"
+
+[deps]
+
+source_file="res://ost/music/morrowind_09  Seperation - Jeremy Soule.mp3"
+dest_files=["res://.godot/imported/morrowind_09  Seperation - Jeremy Soule.mp3-8bf1fcb8d5de5fbd248182b894b44151.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

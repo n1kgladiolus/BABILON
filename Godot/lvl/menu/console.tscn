@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://dfbqkpkia22xf"]
+
+[ext_resource type="Script" uid="uid://8slnds8ckaow" path="res://scr/console.gd" id="1_gqwga"]
+[ext_resource type="Texture2D" uid="uid://yqyaxbashsat" path="res://import/background.png" id="2_gfhqi"]
+
+[node name="Console" type="Control" unique_id=852249755]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_gqwga")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=2131483994]
+energy = 0.1
+
+[node name="Background" type="TextureRect" parent="." unique_id=1493719208]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gfhqi")
+
+[node name="ConsoleLayer" type="CanvasLayer" parent="." unique_id=563088819]
+layer = 100
+
+[node name="MarginContainer" type="MarginContainer" parent="ConsoleLayer" unique_id=1285791604]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Panel" type="Panel" parent="ConsoleLayer/MarginContainer" unique_id=747818767]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConsoleLayer/MarginContainer/Panel" unique_id=2017697443]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Console" type="RichTextLabel" parent="ConsoleLayer/MarginContainer/Panel/VBoxContainer" unique_id=1117323391]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/normal_font_size = 21
+scroll_following = true
+
+[node name="Command" type="LineEdit" parent="ConsoleLayer/MarginContainer/Panel/VBoxContainer" unique_id=1081280102]
+layout_mode = 2

@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://kt8ld1rcw7mp"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5o8vf"]
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+thickness = 3
+vertical = true
+
+[sub_resource type="GDScript" id="GDScript_5x3xy"]
+script/source = "extends HSlider
+var change = false
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_value_changed(value: float) -> void:
+	#print(\"AAA 1111\")
+	if !change:
+		#print(\"AAA 2222\")
+		var player_id = int($\"../..\".name)
+		Audio.set_volume(player_id, value)
+	
+"
+
+[node name="players_lobbby_panel" type="Control" unique_id=2052323421]
+layout_mode = 3
+anchor_right = 0.669
+anchor_bottom = 0.056
+offset_right = 0.51989746
+offset_bottom = -0.48000336
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="HBoxContainer" parent="." unique_id=2074036038]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="username" type="Label" parent="Box" unique_id=759608393]
+custom_minimum_size = Vector2(225, 0)
+custom_maximum_size = Vector2(225, -1)
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "USERNAME"
+
+[node name="VSeparator2" type="VSeparator" parent="Box" unique_id=1915778158]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_5o8vf")
+
+[node name="Label3" type="Label" parent="Box" unique_id=1207380734]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Король:"
+
+[node name="king_select" type="OptionButton" parent="Box" unique_id=1184405518]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+disabled = true
+selected = 0
+item_count = 8
+popup/item_0/text = "Наблюдатель"
+popup/item_0/id = 0
+popup/item_1/text = "Рандом"
+popup/item_1/id = 1
+popup/item_2/text = "Медведь"
+popup/item_2/id = 2
+popup/item_3/text = "Бык"
+popup/item_3/id = 3
+popup/item_4/text = "Дракон"
+popup/item_4/id = 4
+popup/item_5/text = "Орёл"
+popup/item_5/id = 5
+popup/item_6/text = "Слон"
+popup/item_6/id = 6
+popup/item_7/text = "Лев"
+popup/item_7/id = 7
+
+[node name="VSeparator" type="VSeparator" parent="Box" unique_id=1273002915]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_5o8vf")
+
+[node name="Label2" type="Label" parent="Box" unique_id=71390542]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Спавн:"
+
+[node name="spawn_select" type="OptionButton" parent="Box" unique_id=1063799380]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+disabled = true
+selected = 0
+item_count = 8
+popup/item_0/text = "Наблюдатель"
+popup/item_0/id = 0
+popup/item_1/text = "Рандом"
+popup/item_1/id = 1
+popup/item_2/text = "I"
+popup/item_2/id = 2
+popup/item_3/text = "II"
+popup/item_3/id = 3
+popup/item_4/text = "III"
+popup/item_4/id = 4
+popup/item_5/text = "IV"
+popup/item_5/id = 5
+popup/item_6/text = "V"
+popup/item_6/id = 6
+popup/item_7/text = "VI"
+popup/item_7/id = 7
+
+[node name="VSeparator3" type="VSeparator" parent="Box" unique_id=1004817584]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_5o8vf")
+
+[node name="Label4" type="Label" parent="Box" unique_id=32071686]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Громкость:"
+
+[node name="voice_volume" type="HSlider" parent="Box" unique_id=10702565]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+min_value = -10.0
+max_value = 35.0
+value = 15.0
+rounded = true
+script = SubResource("GDScript_5x3xy")
+
+[connection signal="value_changed" from="Box/voice_volume" to="Box/voice_volume" method="_on_value_changed"]
