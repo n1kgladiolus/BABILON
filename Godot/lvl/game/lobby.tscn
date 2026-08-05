@@ -585,3 +585,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
+
+[node name="coop_error_W" type="AcceptDialog" parent="." unique_id=791901238]
+oversampling_override = 1.0
+title = "ERROR"
+initial_position = 2
+size = Vector2i(300, 150)
+
+[node name="Label" type="Label" parent="coop_error_W" unique_id=382302529]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 292.0
+offset_bottom = 101.0
+text = "COOP режим и наблюдатели 
+временно не доступны"
+horizontal_alignment = 1
+vertical_alignment = 1

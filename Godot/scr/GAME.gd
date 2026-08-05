@@ -16,6 +16,8 @@ var select_gex
 var forward_gex
 var select_figure
 
+var you_turn = false
+
 var active_player = []
 var kazna_player = {}
 
@@ -23,6 +25,7 @@ var players_group = []
 var players_user := {}
 
 var lobby_parametrs = {}
+
 
 const figura_name := ["king", "peshk", "peshk_fan", "kon", "kon_fan", "slon", "slon_fan", "lada", "lada_fan", "lada_fan_ready"]
 
@@ -74,19 +77,16 @@ func _ready() -> void:
 		lobby_parametrs = C.lobby_scene.lobby_parametrs
 		players_user = C.lobby_scene.players_user
 	elif R.status == "SERVER_GAME":
-		lobby_parametrs = SG.lobby_scene.lobby_parametrs
-		players_user = SG.lobby_scene.players_user
+		lobby_parametrs = SG.lobby_parametrs
+		players_user = SG.players_user
 		randomize()
 		return
 	
-	magaz_connect()
-	
-	
-	
-	
+	UI_connect()
+
 
 func _process(delta: float) -> void:
-	if R.status == "CLIENT" and C.in_game:
+	if R.status == "CLIENT" and C.in_game and !$USER/UI/CHAT/VB/panel/Box/LineEdit.has_focus():
 		if C.lobby_scene.visible == false:
 			$USER/cam_piv_1/cam_piv_2.rotation_degrees.x += (rot - $USER/cam_piv_1/cam_piv_2.rotation_degrees.x)/12
 			if Input.is_action_pressed("A"):
@@ -94,9 +94,14 @@ func _process(delta: float) -> void:
 			elif Input.is_action_pressed("D"):
 				$USER/cam_piv_1.rotation_degrees.y += 0.55
 
-
 func _input(event):
-	if R.status == "CLIENT" and C.in_game:
+	if R.status == "CLIENT" and C.in_game and $USER/UI/CHAT/VB/panel/Box/LineEdit.has_focus():
+		if event is InputEventKey and event.is_action_pressed("esc"):
+			$USER/UI/CHAT/VB/panel/Box/LineEdit.release_focus()
+		#elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		#	$USER/UI/CHAT/VB/panel/Box/LineEdit.release_focus()
+	
+	if R.status == "CLIENT" and C.in_game and !$USER/UI/CHAT/VB/panel/Box/LineEdit.has_focus():
 		if C.lobby_scene.visible == false:
 			if event is InputEventMouseButton:
 				if event.button_index == MOUSE_BUTTON_WHEEL_UP:
@@ -153,7 +158,6 @@ func spawn_start():
 					"7" : $USER/cam_piv_1.rotation_degrees.y = 240
 					_ : $USER/cam_piv_1.rotation_degrees.y = 0
 	
-	
 	for u in players_user:
 		var spawn = players_user[u]["spawn"]
 		var player_gex = players_user[u]["king"]
@@ -196,6 +200,11 @@ func spawn_start():
 		figure_spawn(players_user[u], "peshk", table.get_node(gex+"/GEX4"), player_gex)
 		figure_spawn(players_user[u], "peshk", table.get_node(gex+"/GEX5"), player_gex)
 		figure_spawn(players_user[u], "peshk", table.get_node(gex+"/GEX6"), player_gex)
+	
+	if R.status == "SERVER_GAME":
+		$USER/UI/CHAT/VB/panel/Box/chat.append_text("\n SERVER_GAME")
+		await get_tree().create_timer(0.5).timeout
+		random_first_turn()
 
 func figure_spawn(player, figure, gex, player_gex):
 	var instance = figura[figure].instantiate()
@@ -248,6 +257,8 @@ func ava_update(ava_name):
 		return
 	
 	var avatar = AccData.avatar_from_base64(C.avatar_user[ava_name])
+	if avatar == null:
+		avatar = preload("res://import/ava_placehold.png")
 	for u in players_user:
 		if ava_name == players_user[u]["username"]:
 			match players_user[u]["spawn"]:
@@ -316,15 +327,29 @@ func player_turn():
 		return
 	
 	var player = active_player[0] 
-	$USER/UI/player_turn_go.text = players_user[player]["username"] + " заебал, ходи!"
+	$USER/UI/player_turn_go.text = str(players_user[player]["username"])+" - ходи уже"
 
+@rpc("any_peer", "call_local", "reliable")
+func send_chat(text):
+	$USER/UI/CHAT/VB/panel/Box/chat.append_text(text)
+
+func chat(text):
+	$USER/UI/CHAT/VB/panel/Box/LineEdit.clear()
+	$USER/UI/CHAT/VB/panel/Box/LineEdit.release_focus()
+	var messege = "\n"+"[color=#C1BD7F]"+str(C.USERNAME)+"[/color]: "+str(text)
+	rpc("send_chat", messege)
 
 func random_first_turn():
 	if active_player.size() == 0:
+		var messege = "\n"+"[color=red]"+"НЕТ ИГРОКОВ"+"[/color]"
+		rpc("send_chat", messege)
 		return
 	var first = active_player.pick_random()
 	active_player.erase(first)
 	active_player.insert(0, first)
+	rpc("send_turn", active_player)
+	var messege = "\n"+"[color=red]"+"ХОД ИГРОКА "+str(players_user[first]["username"])+"[/color]"
+	rpc("send_chat", messege)
 
 func kazna_nx(nx):
 	if nx == "entered":
@@ -341,7 +366,12 @@ func close_window(window):
 		"info" : $USER/UI/Info_W.hide()
 		"kazna" : $USER/UI/Kazna_W.hide()
 
-func magaz_connect():
+func UI_connect():
+	$USER/UI/CHAT/VB/HButton/Plus_chat.pressed.connect(func(): $USER/UI/CHAT.size += Vector2(25, 25))
+	$USER/UI/CHAT/VB/HButton/Minus_chat.pressed.connect(func(): $USER/UI/CHAT.size -= Vector2(25, 25))
+	
+	$USER/UI/CHAT/VB/panel/Box/LineEdit.text_submitted.connect(chat)
+	
 	$USER/UI/Kazna_b.pressed.connect(kazna_nx.bind("open"))
 	$USER/UI/Kazna_b.mouse_entered.connect(kazna_nx.bind("entered"))
 	$USER/UI/Kazna_b.mouse_exited.connect(kazna_nx.bind("exited"))
@@ -367,12 +397,22 @@ func magaz_connect():
 	$USER/UI/Kazna_W/Magaz/VBox/Info/Info_button.pressed.connect(func(): $USER/UI/Info_W.popup())
 
 func buy_figura(figura):
+	if !you_turn:
+		return
+	
 	$USER/UI/Kazna_W.hide()
 	print(figura)
+	
 
-
-
-
+@rpc("authority", "call_local", "reliable")
+func send_turn(active_player):
+	if R.status == "CLIENT":
+		if str(C.USERNAME) == str(players_user[active_player[0]]["username"]):
+			you_turn = true
+			$USER/UI/Turn_W.popup()
+			$USER/UI/player_turn_go.text = "ЗАВЕРШИТЬ ХОД"
+		else:
+			$USER/UI/player_turn_go.text = str(players_user[active_player[0]]["username"])+" - ходи уже"
 
 
 

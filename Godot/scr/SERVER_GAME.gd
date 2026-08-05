@@ -203,7 +203,13 @@ func START_GAME(data):
 	rand_spawn()
 	data = ["!lobby_parametrs_update", lobby_parametrs, players_user]
 	send_server_command(data)
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.5).timeout
+	
+	if check_coop():
+		data = ["!COOP_ERROR"]
+		send_server_command(data)
+		return
+	
 	data = start_data
 	send_server_command(data)
 	await get_tree().create_timer(0.1).timeout
@@ -214,7 +220,7 @@ func START_GAME(data):
 	get_tree().root.add_child(game_node)
 	game_scene = get_tree().root.get_node("GAME")
 	game_scene.rpc("spawn_start")
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.5).timeout
 	data = ["!lobby_parametrs_update", lobby_parametrs, players_user]
 	send_server_command(data)
 	
@@ -281,8 +287,31 @@ func update_avatar(data):
 	send_server_command(data)
 
 
+func check_coop():
+	var spawn = []
+	var king = []
+	
+	for u in players_user:
+		if players_user[u]["spawn"] == "0":
+			return true
+		if players_user[u]["king"] == "0":
+			return true
+		spawn.append(players_user[u]["spawn"])
+		king.append(players_user[u]["king"])
+	
+	if has_duplicates(spawn):
+		return true
+	if has_duplicates(king):
+		return true
 
-
+func has_duplicates(arr) -> bool:
+	var count = {}
+	for item in arr:
+		if count.has(item):
+			return true
+		else:
+			count[item] = 1
+	return false
 
 
 

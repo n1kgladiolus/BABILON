@@ -271,7 +271,7 @@ func lobby_new_create(data):
 	var new_lobby_password = data[2]
 	var new_lobby_leader = data[3]
 	
-	args.append("--headless")
+	#args.append("--headless")
 	
 	if port == -1:
 		print("Нет свободных портов")

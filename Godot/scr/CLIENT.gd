@@ -50,6 +50,7 @@ var user_command = {
 	"!lobby_parametrs_update" : lobby_parametrs_update,
 	"!START_GAME" : START_GAME,
 	"!update_avatar_in_game" : update_avatar_in_game,
+	"!COOP_ERROR" : coop_error,
 }
 
 func _input(event: InputEvent):
@@ -274,8 +275,8 @@ func update_avatar_in_game(data):
 			avatar_user[ava_name] = ava_b64
 			game_scene.ava_update(ava_name)
 
-
-
+func coop_error(data):
+	lobby_scene.coop_error()
 
 
 
