@@ -16,6 +16,10 @@ var select_gex
 var forward_gex
 var select_figure
 
+var walk_check = preload("res://mesh_figura/walk_check.tscn")
+var walk_pipe = preload("res://lvl/game/walk_pipe.tscn")
+var walk_ready = []
+
 var you_turn = false
 
 var active_player = []
@@ -26,6 +30,7 @@ var players_user := {}
 
 var lobby_parametrs = {}
 
+var have_tusk = 0
 
 const figura_name := ["king", "peshk", "peshk_fan", "kon", "kon_fan", "slon", "slon_fan", "lada", "lada_fan", "lada_fan_ready"]
 
@@ -118,6 +123,12 @@ func _input(event):
 				elif !event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 					rot = 0
 					cam_up()
+				elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+					print(have_tusk)
+					if forward_gex.is_in_group(C.USERNAME) and have_tusk > 0 and select_gex != forward_gex:
+						print("figure_go")
+						cansel_walk()
+						figure_go()
 			elif event is InputEventKey:
 				if event.is_action_pressed("W"):
 					rot = -40
@@ -125,9 +136,9 @@ func _input(event):
 				elif event.is_action_released("W"):
 					rot = 0
 					cam_up()
-				#elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-					#if forward_gex.is_in_group(C.USERNAME):
-					#	figure_go()
+				elif event.is_action("esc"):
+					cansel_walk()
+
 
 func cam_down():
 	for i in range(15):
@@ -211,19 +222,18 @@ func figure_spawn(player, figure, gex, player_gex):
 	var instance2 = MeshInstance3D.new()
 	
 	instance2.mesh = figura["gex_"+player_gex]
+	instance2.name = "pad"
+	
 	if !gex.get_groups():
 		gex.add_child(instance)
 		gex.add_child(instance2)
 		gex.add_to_group(player["username"])
+		gex.add_to_group(figure)
 		if figure == "king":
 			var instance3 = figura["flag_"+player_gex].instantiate()
 			gex.get_node("king").add_child(instance3)
 
 func monolit(u):
-	#var avatar = preload("res://import/ava_placehold.png")
-	#if !players_user[u]["avatar"] == null:
-		#avatar = AccData.avatar_from_base64(players_user[u]["avatar"])
-	
 	var king = int(players_user[u]["king"])
 	match players_user[u]["spawn"]:
 		"2" : 
@@ -280,7 +290,89 @@ func gex_exited(gex):
 		gex.position.y = 0.0
 
 func figure_go():
-	pass
+	select_gex = forward_gex
+	select_gex.position.y = 0.05
+	var speed = 0
+	var krug = 1
+	for f in figura_speed.keys():
+		if select_gex.is_in_group(f):
+			speed = figura_speed[f]
+			break
+	while speed > 0 :
+		print("speed "+str(speed))
+		print("krug "+str(krug))
+		var check_walk_area
+		if krug == 1: 
+			var child_walk_check = walk_check.instantiate()
+			child_walk_check.name = "walk_check"
+			select_gex.add_child(child_walk_check)
+			await get_tree().create_timer(0.05).timeout
+			check_walk_area = select_gex.get_node("walk_check").get_overlapping_areas()
+			check_walk_area(check_walk_area)
+			select_gex.get_node("walk_check").queue_free()
+			await get_tree().create_timer(0.05).timeout
+		elif krug == 2:
+			for w in walk_ready:
+				var child_walk_check = walk_check.instantiate()
+				child_walk_check.name = "walk_check"
+				w.add_child(child_walk_check)
+				await get_tree().create_timer(0.05).timeout
+				check_walk_area = w.get_node("walk_check").get_overlapping_areas()
+				check_walk_area(check_walk_area)
+				w.get_node("walk_check").queue_free()
+				await get_tree().create_timer(0.05).timeout
+				print(w)
+		elif krug == 3:
+			for w in walk_ready:
+				var child_walk_check = walk_check.instantiate()
+				child_walk_check.name = "walk_check"
+				w.add_child(child_walk_check)
+				await get_tree().create_timer(0.05).timeout
+				check_walk_area = w.get_node("walk_check").get_overlapping_areas()
+				check_walk_area(check_walk_area)
+				w.get_node("walk_check").queue_free()
+				await get_tree().create_timer(0.05).timeout
+		speed -= 1
+		krug += 1
+	print("2")
+	print(walk_ready)
+	if walk_ready.size() > 0:
+		for w in walk_ready:
+			var pipe = walk_pipe.instantiate()
+			pipe.name = "walk_pipe"
+			w.add_child(pipe)
+
+
+func check_walk_area(check_walk_area):
+	#print("1")
+	#print(check_walk_area)
+	for w in check_walk_area:
+		var gex_clear = true
+		for n in figura_name:
+			if w.is_in_group(n):
+				gex_clear = false
+				break
+		if gex_clear:
+			if !walk_ready.has(w):
+				walk_ready.append(w)
+	print("walk_ready")
+	print(walk_ready)
+
+
+func cansel_walk():
+	if select_gex:
+		select_gex.position.y = 0.0
+	if walk_ready.size() > 0:
+		for w in walk_ready:
+			var pipes = $WORLD/TABLE.find_children("walk_pipe", "", true, false)
+			for p in pipes:
+				if p:
+					p.free()
+					await get_tree().process_frame
+		
+		walk_ready.clear()
+		
+
 
 @rpc("authority", "call_local", "reliable")
 func phase_day():
@@ -336,7 +428,7 @@ func send_chat(text):
 func chat(text):
 	$USER/UI/CHAT/VB/panel/Box/LineEdit.clear()
 	$USER/UI/CHAT/VB/panel/Box/LineEdit.release_focus()
-	var messege = "\n"+"[color=#C1BD7F]"+str(C.USERNAME)+"[/color]: "+str(text)
+	var messege = "\n"+"[color=#c9001e]"+str(C.USERNAME)+"[/color]: "+str(text)
 	rpc("send_chat", messege)
 
 func random_first_turn():
@@ -410,6 +502,7 @@ func send_turn(active_player):
 		if str(C.USERNAME) == str(players_user[active_player[0]]["username"]):
 			you_turn = true
 			$USER/UI/Turn_W.popup()
+			have_tusk = 2
 			$USER/UI/player_turn_go.text = "ЗАВЕРШИТЬ ХОД"
 		else:
 			$USER/UI/player_turn_go.text = str(players_user[active_player[0]]["username"])+" - ходи уже"
