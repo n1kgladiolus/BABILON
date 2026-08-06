@@ -288,7 +288,7 @@ func gex_entered(gex):
 func gex_exited(gex):
 	if gex.is_in_group(C.USERNAME) and gex != select_gex:
 		gex.position.y = 0.0
-
+#DDDDDD
 func figure_go():
 	select_gex = forward_gex
 	select_gex.position.y = 0.05
