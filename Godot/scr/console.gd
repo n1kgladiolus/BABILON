@@ -13,8 +13,8 @@ func _init() -> void:
 func _ready() -> void:
 	var args := OS.get_cmdline_user_args()
 	if "--server" in args or "--server_game" in args:
-		queue_free()
-		return
+		$DirectionalLight2D.visible = false
+		$Background.visible = false
 	else:
 		pass
 	#log_text.text = "Консоль инициализирована."
@@ -40,8 +40,7 @@ func command_submitted(command):
 					print("Команда отправлена")
 		_:
 			write_line("Неизвестная команда: " + cmd, "error")
-		
-	
+
 
 
 

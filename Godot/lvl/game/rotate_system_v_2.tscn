@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dyjpepve3weut"]
+
+[sub_resource type="GDScript" id="GDScript_8nu8a"]
+script/source = "extends Node3D
+var game_scene
+
+func _ready() -> void:
+	#game_scene = get_tree().root.get_node(\"GAME\")
+	#await get_tree().create_timer(0.5).timeout
+	#$visual/Area3D.input_event.connect(
+		#func(camera: Node, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: int):
+			#if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and !game_scene.hard_work and game_scene.have_tusk > 0:
+				#game_scene.input_cooldown = 15
+				#game_scene.have_tusk -= 1
+				#game_scene.rotate_system_active = true
+				#print(\"ROOOOTAAAATEEEE!!\")
+	#)
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="Gradient" id="Gradient_ghdrf"]
+offsets = PackedFloat32Array(0.48409894, 0.7208481)
+colors = PackedColorArray(0.7682076, 0.814799, 0.7540403, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lyl0i"]
+gradient = SubResource("Gradient_ghdrf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+repeat = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xeel"]
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_lyl0i")
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4v1ty"]
+material = SubResource("StandardMaterial3D_5xeel")
+size = Vector2(0.06, 0.06)
+orientation = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bv0ed"]
+radius = 0.03
+
+[node name="rotate_system_v2" type="Node3D" unique_id=1330590863]
+visible = false
+script = SubResource("GDScript_8nu8a")
+
+[node name="visual" type="MeshInstance3D" parent="." unique_id=1059561136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+mesh = SubResource("PlaneMesh_4v1ty")
+
+[node name="Area3D" type="Area3D" parent="visual" unique_id=1368482558]
+collision_layer = 2048
+collision_mask = 2048
+
+[node name="Collision" type="CollisionShape3D" parent="visual/Area3D" unique_id=1349560611]
+shape = SubResource("SphereShape3D_bv0ed")

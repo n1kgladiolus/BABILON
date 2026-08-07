@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://7cv7pq5q5scm"]
+
+[resource]
+resource_name = "Cube_m_2"
+cull_mode = 2
+albedo_color = Color(0.19999753, 0.19999753, 0.19999753, 1)
+roughness = 0.5

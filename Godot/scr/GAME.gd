@@ -3,11 +3,14 @@ extends Node
 const walk_material = preload("res://visual/material/game/walk.tres")
 const attack_material = preload("res://visual/material/game/attack.tres")
 const king_gerb = [null, null, preload("res://king/gerb/Bear.png"), preload("res://king/gerb/Bull.png"), preload("res://king/gerb/Dragon.png"), preload("res://king/gerb/Eagle.png"), preload("res://king/gerb/Elephant.png"), preload("res://king/gerb/Lion.png")]
-
 const kazna_ico = [preload("res://koloda/kazna/K_00.png"), preload("res://koloda/kazna/K_00_Op.png"), preload("res://koloda/kazna/K_1.png"), preload("res://koloda/kazna/K_1_Op.png"), preload("res://koloda/kazna/K_2.png"), preload("res://koloda/kazna/K_2_Op.png"), preload("res://koloda/kazna/K_3.png"), preload("res://koloda/kazna/K_3_Op.png"), preload("res://koloda/kazna/K_4.png"), preload("res://koloda/kazna/K_4_Op.png")]
 var kazna_ico_select = 0
 
 var fon_flat = [preload("res://visual/material/market/fon_flat.tres"), preload("res://visual/material/market/fon_flat_2.tres")]
+
+var hard_work = false
+
+var input_cooldown = 0
 
 var maxWind = 0.2
 var wind = maxWind
@@ -21,6 +24,12 @@ var walk_pipe = preload("res://lvl/game/walk_pipe.tscn")
 var walk_ready = []
 
 var you_turn = false
+var king_alive = true
+
+var rotate_system_active = false
+var gex_effect
+var rotate_system_v2
+
 
 var active_player = []
 var kazna_player = {}
@@ -92,12 +101,17 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if R.status == "CLIENT" and C.in_game and !$USER/UI/CHAT/VB/panel/Box/LineEdit.has_focus():
+		if input_cooldown > 0:
+			input_cooldown -= 0.1
 		if C.lobby_scene.visible == false:
+			if rotate_system_active:
+				rotate_system()
 			$USER/cam_piv_1/cam_piv_2.rotation_degrees.x += (rot - $USER/cam_piv_1/cam_piv_2.rotation_degrees.x)/12
 			if Input.is_action_pressed("A"):
 				$USER/cam_piv_1.rotation_degrees.y -= 0.55
 			elif Input.is_action_pressed("D"):
 				$USER/cam_piv_1.rotation_degrees.y += 0.55
+
 
 func _input(event):
 	if R.status == "CLIENT" and C.in_game and $USER/UI/CHAT/VB/panel/Box/LineEdit.has_focus():
@@ -108,6 +122,17 @@ func _input(event):
 	
 	if R.status == "CLIENT" and C.in_game and !$USER/UI/CHAT/VB/panel/Box/LineEdit.has_focus():
 		if C.lobby_scene.visible == false:
+			if rotate_system_active:
+				if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and input_cooldown <= 0:
+					rpc("rotate_system_server", select_gex.get_path(), select_gex.rotation.y)
+					rotate_system_active = false
+					hard_work = false
+					await get_tree().create_timer(0.5).timeout
+					select_gex.position.y = 0
+					select_gex = null
+					await get_tree().create_timer(1).timeout
+					cansel_walk()
+				#return
 			if event is InputEventMouseButton:
 				if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 					for i in range(15):
@@ -123,12 +148,28 @@ func _input(event):
 				elif !event.pressed and event.button_index == MOUSE_BUTTON_RIGHT:
 					rot = 0
 					cam_up()
-				elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-					print(have_tusk)
-					if forward_gex.is_in_group(C.USERNAME) and have_tusk > 0 and select_gex != forward_gex:
+				elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT and input_cooldown <= 0:
+					if forward_gex.is_in_group(C.USERNAME) and have_tusk > 0 and select_gex != forward_gex and !hard_work:
 						print("figure_go")
-						cansel_walk()
+						if forward_gex:
+							cansel_walk()
 						figure_go()
+					if forward_gex.is_in_group(C.USERNAME) and have_tusk > 0 and select_gex == forward_gex and !hard_work:
+						have_tusk -= 1
+						rotate_system_active = true
+					if forward_gex.get_node_or_null("walk_pipe") and have_tusk > 0 and select_gex != forward_gex and !hard_work and !rotate_system_active:
+						if king_alive:
+							print("этаж ", check_lvl(select_gex.get_parent().get_name()) - check_lvl(forward_gex.get_parent().get_name()))
+							if check_lvl(forward_gex.get_parent().get_name()) - check_lvl(select_gex.get_parent().get_name()) == 1:
+								have_tusk -= 2
+							else:
+								have_tusk -= 1
+						else:
+							have_tusk -= 2
+						rpc("figure_go_server", select_gex.get_path(), forward_gex.get_path())
+						await get_tree().create_timer(0.05).timeout
+						cansel_walk()
+					input_cooldown = 6
 			elif event is InputEventKey:
 				if event.is_action_pressed("W"):
 					rot = -40
@@ -137,7 +178,8 @@ func _input(event):
 					rot = 0
 					cam_up()
 				elif event.is_action("esc"):
-					cansel_walk()
+					pass
+					#cansel_walk()
 
 
 func cam_down():
@@ -214,7 +256,7 @@ func spawn_start():
 	
 	if R.status == "SERVER_GAME":
 		$USER/UI/CHAT/VB/panel/Box/chat.append_text("\n SERVER_GAME")
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.1).timeout
 		random_first_turn()
 
 func figure_spawn(player, figure, gex, player_gex):
@@ -261,7 +303,6 @@ func monolit(u):
 			$WORLD/monolit_players/monolit_6.get_node("info").visible = true
 			$WORLD/monolit_players/monolit_6.get_node("info").get_node("username_label").text = str(players_user[u]["username"])
 
-
 func ava_update(ava_name):
 	if R.status == "SERVER_GAME":
 		return
@@ -279,7 +320,6 @@ func ava_update(ava_name):
 				"6" : $WORLD/monolit_players/monolit_5.get_node("info").get_node("avatar").mesh.surface_get_material(0).albedo_texture = avatar
 				"7" : $WORLD/monolit_players/monolit_6.get_node("info").get_node("avatar").mesh.surface_get_material(0).albedo_texture = avatar
 
-
 func gex_entered(gex):
 	if gex.is_in_group(C.USERNAME):
 		gex.position.y = 0.05
@@ -288,78 +328,111 @@ func gex_entered(gex):
 func gex_exited(gex):
 	if gex.is_in_group(C.USERNAME) and gex != select_gex:
 		gex.position.y = 0.0
-#DDDDDD
+
+
+
 func figure_go():
+	if hard_work:
+		return
+	walk_ready.clear()
+	hard_work = true
+	print("figure_go")
 	select_gex = forward_gex
 	select_gex.position.y = 0.05
+	gex_effect.global_position = select_gex.global_position
+	rotate_system_v2.global_position = select_gex.global_position
+	var lvl_start = check_lvl(select_gex.get_parent().get_name())
 	var speed = 0
 	var krug = 1
+	var walk_ready_copy
 	for f in figura_speed.keys():
 		if select_gex.is_in_group(f):
 			speed = figura_speed[f]
 			break
+	var child_walk_check = walk_check.instantiate()
+	child_walk_check.name = "walk_check"
 	while speed > 0 :
 		print("speed "+str(speed))
 		print("krug "+str(krug))
 		var check_walk_area
 		if krug == 1: 
-			var child_walk_check = walk_check.instantiate()
-			child_walk_check.name = "walk_check"
+			#var child_walk_check = walk_check.instantiate()
+			#child_walk_check.name = "walk_check"
 			select_gex.add_child(child_walk_check)
-			await get_tree().create_timer(0.05).timeout
+			await get_tree().create_timer(0.03).timeout
 			check_walk_area = select_gex.get_node("walk_check").get_overlapping_areas()
-			check_walk_area(check_walk_area)
-			select_gex.get_node("walk_check").queue_free()
-			await get_tree().create_timer(0.05).timeout
-		elif krug == 2:
-			for w in walk_ready:
-				var child_walk_check = walk_check.instantiate()
-				child_walk_check.name = "walk_check"
-				w.add_child(child_walk_check)
-				await get_tree().create_timer(0.05).timeout
-				check_walk_area = w.get_node("walk_check").get_overlapping_areas()
-				check_walk_area(check_walk_area)
-				w.get_node("walk_check").queue_free()
-				await get_tree().create_timer(0.05).timeout
-				print(w)
-		elif krug == 3:
-			for w in walk_ready:
-				var child_walk_check = walk_check.instantiate()
-				child_walk_check.name = "walk_check"
-				w.add_child(child_walk_check)
-				await get_tree().create_timer(0.05).timeout
-				check_walk_area = w.get_node("walk_check").get_overlapping_areas()
-				check_walk_area(check_walk_area)
-				w.get_node("walk_check").queue_free()
-				await get_tree().create_timer(0.05).timeout
+			#await get_tree().create_timer(0.05).timeout
+			check_walk_area(check_walk_area, lvl_start)
+			#select_gex.get_node("walk_check").queue_free()
+			#await get_tree().create_timer(0.05).timeout
+		else: 
+			print("elif krug > 1:!!!!!!! _walk_ ", walk_ready)
+			if walk_ready.size() > 0:
+				walk_ready_copy = walk_ready.duplicate()
+				await get_tree().create_timer(0.03).timeout
+				#print("VTOROY KRYG!! walk_ready_copy_ ", walk_ready_copy)
+				#print("VTOROY KRYG!! walk_ready_ ", walk_ready)
+				for w in walk_ready_copy:
+					#var child_walk_check = walk_check.instantiate()
+					#child_walk_check.name = "walk_check"
+					child_walk_check.global_position = w.global_position
+					await get_tree().create_timer(0.03).timeout
+					#w.add_child(child_walk_check)
+					#await get_tree().create_timer(0.05).timeout
+					#check_walk_area = w.get_node("walk_check").get_overlapping_areas()
+					check_walk_area = select_gex.get_node("walk_check").get_overlapping_areas()
+					check_walk_area(check_walk_area, lvl_start)
+					#w.get_node("walk_check").queue_free()
+					#await get_tree().create_timer(0.05).timeout
 		speed -= 1
 		krug += 1
-	print("2")
-	print(walk_ready)
+	####
+	await get_tree().process_frame
+	select_gex.get_node("walk_check").queue_free()
+	await get_tree().process_frame
+	####
 	if walk_ready.size() > 0:
 		for w in walk_ready:
-			var pipe = walk_pipe.instantiate()
-			pipe.name = "walk_pipe"
-			w.add_child(pipe)
+			if w:
+				var pipe = walk_pipe.instantiate()
+				pipe.name = "walk_pipe"
+				w.add_child(pipe)
+	hard_work = false
 
+func check_lvl(lvl):
+	match lvl:
+		"A" : return(3)
+		"B" : return(2)
+		_ : return(1)
 
-func check_walk_area(check_walk_area):
-	#print("1")
-	#print(check_walk_area)
+func check_walk_area(check_walk_area, lvl_start):
+	#print("check_walk_area_ ", check_walk_area)
 	for w in check_walk_area:
+		#print("check_walk_area_DOP: ", check_walk_area, "w: ", w, "tusk: ", have_tusk)
 		var gex_clear = true
 		for n in figura_name:
 			if w.is_in_group(n):
 				gex_clear = false
 				break
 		if gex_clear:
-			if !walk_ready.has(w):
-				walk_ready.append(w)
-	print("walk_ready")
-	print(walk_ready)
-
+			if !walk_ready.has(w) and check_lvl(w.get_parent().get_name()) - lvl_start < 2:
+				if check_lvl(w.get_parent().get_name()) - lvl_start == 1:
+					if have_tusk == 2:
+						walk_ready.append(w)
+						#print("ДОБАВЛЕНО have_tusk == 2! ", walk_ready)
+				else: 
+					walk_ready.append(w)
+					#print("ДОБАВЛЕНО else!! ", walk_ready)
 
 func cansel_walk():
+	if hard_work:
+		return
+	if !rotate_system_active:
+		gex_effect.global_position = $WORLD/gex_effect_holder.global_position
+	rotate_system_v2.global_position = $WORLD/gex_effect_holder.global_position
+	print("cansel_walk")
+	#if select_gex and select_gex.get_node_or_null("gex_effect"):
+	#	select_gex.get_node("gex_effect").free()
 	if select_gex:
 		select_gex.position.y = 0.0
 	if walk_ready.size() > 0:
@@ -369,49 +442,80 @@ func cansel_walk():
 				if p:
 					p.free()
 					await get_tree().process_frame
-		
-		walk_ready.clear()
-		
+
+
+
+func rotate_system():
+	print("ROOOOTAAAATEEEE!! process")
+	hard_work = true
+	var camera = get_viewport().get_camera_3d()
+	if camera == null:
+		return
+	var mouse_pos = get_viewport().get_mouse_position()
+	var from = camera.project_ray_origin(mouse_pos)
+	var dir = camera.project_ray_normal(mouse_pos)
+	var plane_y = select_gex.global_position.y
+	if dir.y == 0:
+		return
+	var t = (plane_y - from.y) / dir.y
+	if t <= 0:
+		return
+	var hit_point = from + dir * t
+	var to_cursor = hit_point - select_gex.global_position
+	to_cursor.y = 0
+	if to_cursor.length() < 0.001:
+		return
+	var angle = atan2(to_cursor.x, to_cursor.z)
+	var step = deg_to_rad(60)
+	var snapped_angle = round(angle / step) * step
+	select_gex.rotation.y = snapped_angle
+
+
+
+
+@rpc("any_peer", "call_local", "reliable")
+func figure_go_server(select_gex_path, forward_gex_path):
+	var sender = multiplayer.get_remote_sender_id()
+	hard_work = true
+	var select_gex_server = get_node(select_gex_path)
+	var forward_gex_server = get_node(forward_gex_path)
+	print("figure_go_server!")
+	
+	select_gex_server.get_node("pad").reparent(forward_gex_server, false)
+	for f in figura_speed.keys():
+		if select_gex_server.is_in_group(f):
+			select_gex_server.get_node(f).reparent(forward_gex_server, false)
+			select_gex_server.remove_from_group(players_user[active_player[0]]["username"])
+			select_gex_server.remove_from_group(f)
+			forward_gex_server.add_to_group(players_user[active_player[0]]["username"])
+			forward_gex_server.add_to_group(f)
+			hard_work = false
+			if R.status == "CLIENT":
+				await get_tree().process_frame
+				gex_effect.global_position = forward_gex_server.global_position
+				gex_effect.anim()
+				if sender == multiplayer.get_unique_id():
+					await get_tree().create_timer(0.1).timeout
+					select_gex = forward_gex_server
+					rotate_system_v2.global_position = forward_gex_server.global_position
+					rotate_system_active = true
+					select_gex.position.y = 0.05
+			break
+
+@rpc("any_peer", "call_local", "reliable")
+func rotate_system_server(forward_gex_path, rotate):
+	print("ROOOOTAAAATEEEE!!_SERVER !  ", forward_gex_path, "    ", rotate)
+	var forward_gex_server = get_node(forward_gex_path)
+	forward_gex_server.rotation.y = rotate
+	if R.status == "CLIENT":
+		gex_effect.global_position = forward_gex_server.global_position
+		gex_effect.anim()
+
 
 
 @rpc("authority", "call_local", "reliable")
 func phase_day():
 	pass
-
-
-#func figure_go():
-	#select_gex = forward_gex
-	#select_gex.position.y = 0.05
-	#for n in figura_name:
-		#if select_gex.has_node(n):
-			#select_figure = select_gex.get_node(n)
-			#print("bingo")
-	#
-	#
-	#var walk_area = select_figure.get_node("walk")
-	#var attack_area = select_figure.get_node("attack")
-	#
-	#var walk_gex = walk_area.get_overlapping_areas()
-	#var attack_gex = attack_area.get_overlapping_areas()
-	#print(walk_gex)
-	#print(attack_gex)
-	#for gex_w in walk_gex:
-		#if !check_gex_group(gex_w) and gex_w.has_node("Gex"):
-			#gex_w.get_node("Gex").set_surface_override_material(0, walk_material)
-			#print("green_walk")
-	#for gex_a in attack_gex:
-		#if check_gex_group(gex_a) and !gex_a.is_in_group(C.USERNAME) and gex_a.has_node("Gex"):
-			#gex_a.get_node("Gex").set_surface_override_material(0, attack_material)
-			#print("red_walk")
-#
-#
-#func check_gex_group(gex):
-	#print(players_group)
-	#for group in players_group:
-		#if gex.is_in_group(group):
-			#return true
-	#return false
-#
 
 @rpc("authority", "call_local", "reliable")
 func player_turn():
@@ -440,7 +544,7 @@ func random_first_turn():
 	active_player.erase(first)
 	active_player.insert(0, first)
 	rpc("send_turn", active_player)
-	var messege = "\n"+"[color=red]"+"ХОД ИГРОКА "+str(players_user[first]["username"])+"[/color]"
+	var messege = "\n"+"[color=green]"+"СЕРВЕР: ХОД ИГРОКА "+str(players_user[first]["username"])+"[/color]"
 	rpc("send_chat", messege)
 
 func kazna_nx(nx):
@@ -459,6 +563,14 @@ func close_window(window):
 		"kazna" : $USER/UI/Kazna_W.hide()
 
 func UI_connect():
+	gex_effect = $WORLD/gex_effect_holder/gex_effect
+	rotate_system_v2 = $WORLD/gex_effect_holder/rotate_system_v2
+	
+	$USER/UI/player_turn_go.pressed.connect(func(): 
+		have_tusk += 2 
+		print(have_tusk)
+		)
+	
 	$USER/UI/CHAT/VB/HButton/Plus_chat.pressed.connect(func(): $USER/UI/CHAT.size += Vector2(25, 25))
 	$USER/UI/CHAT/VB/HButton/Minus_chat.pressed.connect(func(): $USER/UI/CHAT.size -= Vector2(25, 25))
 	

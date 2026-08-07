@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://4hkdr7itqpqy"]
+
+[ext_resource type="PackedScene" uid="uid://wri3dnh0wiyo" path="res://lvl/game/gex.tscn" id="1_g3buh"]
+[ext_resource type="PackedScene" uid="uid://cbikbph8qcjt4" path="res://lvl/game/gex_effect.tscn" id="2_sgnht"]
+[ext_resource type="PackedScene" uid="uid://bbxbfypf80p6b" path="res://mesh_figura/lada_fan_ready.tscn" id="3_dr47b"]
+[ext_resource type="ArrayMesh" uid="uid://cddwlvymndj5g" path="res://mesh/gex_cube.res" id="4_shgaj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv0ed"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.7373294, 0.7373294, 0.7373294, 0.8)
+
+[sub_resource type="PrismMesh" id="PrismMesh_lv0yt"]
+material = SubResource("StandardMaterial3D_bv0ed")
+size = Vector3(0.15, 0.15, 0.02)
+
+[sub_resource type="GDScript" id="GDScript_x521r"]
+script/source = "extends Area3D
+
+
+# Called when the node enters the scene tree for the first time.
+#func _ready() -> void:
+	#mouse_entered.connect(func(): get_parent().size = Vector3(1.3, 1.3, 1.3))
+	#mouse_exited.connect(func(): get_parent().size = Vector3(1, 1, 1))
+	#input_event.connect(
+		#func(camera: Node, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: int):
+			#if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+				#if get_parent().get_parent().
+		#)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ni26h"]
+data = PackedVector3Array(0, 0.074999996, 0.01, 0.074999996, -0.074999996, 0.01, -0.074999996, -0.074999996, 0.01, 0, 0.074999996, -0.01, -0.074999996, -0.074999996, -0.01, 0.074999996, -0.074999996, -0.01, 0, 0.074999996, 0.01, 0, 0.074999996, -0.01, 0.074999996, -0.074999996, 0.01, 0, 0.074999996, -0.01, 0.074999996, -0.074999996, -0.01, 0.074999996, -0.074999996, 0.01, 0, 0.074999996, -0.01, 0, 0.074999996, 0.01, -0.074999996, -0.074999996, -0.01, 0, 0.074999996, 0.01, -0.074999996, -0.074999996, 0.01, -0.074999996, -0.074999996, -0.01, -0.074999996, -0.074999996, 0.01, 0.074999996, -0.074999996, 0.01, -0.074999996, -0.074999996, -0.01, 0.074999996, -0.074999996, 0.01, 0.074999996, -0.074999996, -0.01, -0.074999996, -0.074999996, -0.01)
+
+[node name="Rotate_system" type="Node3D" unique_id=2147224025]
+
+[node name="Node3D" type="Node3D" parent="." unique_id=150173195]
+
+[node name="GEX" parent="Node3D" unique_id=565438355 instance=ExtResource("1_g3buh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.049999997, 0)
+
+[node name="gex_effect" parent="Node3D" unique_id=1345992980 instance=ExtResource("2_sgnht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.049999997, 0)
+
+[node name="lada_fan_ready" parent="Node3D" unique_id=1001686387 instance=ExtResource("3_dr47b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.049999997, 0)
+
+[node name="GexCube" type="MeshInstance3D" parent="Node3D" unique_id=1562937735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.049999997, 0)
+mesh = ExtResource("4_shgaj")
+
+[node name="r1" type="MeshInstance3D" parent="." unique_id=845598127]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.120000005, -0.25)
+cast_shadow = 0
+mesh = SubResource("PrismMesh_lv0yt")
+
+[node name="Area3D" type="Area3D" parent="r1" unique_id=302553985]
+collision_layer = 2048
+collision_mask = 2048
+script = SubResource("GDScript_x521r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="r1/Area3D" unique_id=1180018883]
+shape = SubResource("ConcavePolygonShape3D_ni26h")
+
+[node name="r2" type="MeshInstance3D" parent="." unique_id=1125582413]
+transform = Transform3D(0.49999997, 0.86602545, 3.7855173e-08, 0, -4.371139e-08, 1, 0.86602545, -0.49999997, -2.1855692e-08, 0.25, 0.120000005, -0.125)
+cast_shadow = 0
+mesh = SubResource("PrismMesh_lv0yt")
+
+[node name="Area3D" type="Area3D" parent="r2" unique_id=39986803]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="r2/Area3D" unique_id=955359832]
+shape = SubResource("ConcavePolygonShape3D_ni26h")
+
+[node name="r3" type="MeshInstance3D" parent="." unique_id=303356294]
+transform = Transform3D(-0.5000001, 0.8660254, 3.7855173e-08, 0, -4.371139e-08, 1, 0.8660254, 0.5000001, 2.1855701e-08, 0.25, 0.120000005, 0.125)
+cast_shadow = 0
+mesh = SubResource("PrismMesh_lv0yt")
+
+[node name="Area3D" type="Area3D" parent="r3" unique_id=724738633]
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="r3/Area3D" unique_id=158134924]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_ni26h")
+
+[node name="r4" type="MeshInstance3D" parent="." unique_id=1226866304]
+transform = Transform3D(-1, -1.1920929e-07, -3.5527137e-15, -2.3798714e-16, -4.3711385e-08, 1, -1.1920929e-07, 1, 4.3711395e-08, 0, 0.120000005, 0.25)
+cast_shadow = 0
+mesh = SubResource("PrismMesh_lv0yt")
+
+[node name="Area3D" type="Area3D" parent="r4" unique_id=1586001864]
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="r4/Area3D" unique_id=192820606]
+shape = SubResource("ConcavePolygonShape3D_ni26h")
+
+[node name="r5" type="MeshInstance3D" parent="." unique_id=659079042]
+transform = Transform3D(-0.49999988, -0.8660255, -3.785518e-08, -2.3798714e-16, -4.3711385e-08, 1, -0.8660255, 0.49999988, 2.1855692e-08, -0.25, 0.120000005, 0.125)
+cast_shadow = 0
+mesh = SubResource("PrismMesh_lv0yt")
+
+[node name="Area3D" type="Area3D" parent="r5" unique_id=1546105856]
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="r5/Area3D" unique_id=1108556247]
+shape = SubResource("ConcavePolygonShape3D_ni26h")
+
+[node name="r6" type="MeshInstance3D" parent="." unique_id=2130594807]
+transform = Transform3D(0.5000002, -0.8660253, -3.7855173e-08, -2.3798714e-16, -4.3711385e-08, 1, -0.8660253, -0.5000002, -2.1855708e-08, -0.25, 0.120000005, -0.125)
+cast_shadow = 0
+mesh = SubResource("PrismMesh_lv0yt")
+
+[node name="Area3D" type="Area3D" parent="r6" unique_id=723892452]
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="r6/Area3D" unique_id=1917211584]
+shape = SubResource("ConcavePolygonShape3D_ni26h")
