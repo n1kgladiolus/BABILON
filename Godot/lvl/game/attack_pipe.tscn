@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://ck4famowuihca"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x521r"]
+albedo_color = Color(0.3535045, 0.5319409, 0.14089113, 1)
+roughness = 0.2
+emission_enabled = true
+emission = Color(0.3494131, 0.5725147, 0.17906293, 1)
+emission_energy_multiplier = 0.6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bv0ed"]
+material = SubResource("StandardMaterial3D_x521r")
+top_radius = 0.025
+bottom_radius = 0.0
+height = 0.05
+
+[sub_resource type="GDScript" id="GDScript_bv0ed"]
+script/source = "extends Node3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	rotate_y(0.001)
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5m7l"]
+albedo_color = Color(0.98950666, 0.19059023, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bv0ed"]
+material = SubResource("StandardMaterial3D_j5m7l")
+size = Vector3(0.01, 0.1, 0.01)
+
+[node name="walk_pipe" type="Node3D" unique_id=87365781]
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1282265149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 0)
+mesh = SubResource("CylinderMesh_bv0ed")
+
+[node name="krest" type="Node3D" parent="." unique_id=1979623226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.120000005, 0)
+script = SubResource("GDScript_bv0ed")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="krest" unique_id=727993463]
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 0, 0.14, 0)
+mesh = SubResource("BoxMesh_bv0ed")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="krest" unique_id=62683019]
+transform = Transform3D(-0.70710677, -0.70710677, -8.742278e-08, -0.70710677, 0.70710677, 0, 6.181724e-08, 6.181724e-08, -1, 0, 0.14, 0)
+mesh = SubResource("BoxMesh_bv0ed")

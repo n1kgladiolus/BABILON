@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c6326t7jno4k4"]
+
+[ext_resource type="PackedScene" uid="uid://b31kn6xowu3jv" path="res://chemodan/chemodan.tscn" id="1_htfn1"]
+
+[node name="Test" type="Node3D" unique_id=1738064149]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1643446797]
+transform = Transform3D(1, 0, 0, 0, 0.98773074, 0.1561665, 0, -0.1561665, 0.98773074, 0, 0.30942225, 1.2769042)
+
+[node name="Chemodan" parent="." unique_id=2000004096 instance=ExtResource("1_htfn1")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.6334914, -1.5734118)

@@ -2,6 +2,13 @@ extends Node
 
 @onready var TwoVoipSpeaker = preload("res://addons/twovoip/voiphelper/two_voip_speaker.gd")
 @onready var mic = $TwoVoipMic
+const Action_sound = {
+	"kazna" : preload("res://ost/effect/kazna_new.mp3"),
+	"king_dead" : preload("res://ost/effect/losecombat.mp3"),
+	"luck" : preload("res://ost/effect/goodluck.mp3"),
+	"noluck" : preload("res://ost/effect/badmrle.mp3"),
+	
+}
 #@onready var speaker = $TwoVoipSpeaker
 #@onready var audio_player = $VoicePlayer
 
@@ -128,8 +135,13 @@ func _on_ui_click():
 func background_repeat():
 	$Background.play()
 
+func Action_sound_play(action):
+	$Action.stream = Action_sound[action]
+	$Action.play()
 
-
+func Action2_sound_play(action):
+	$Action2.stream = Action_sound[action]
+	$Action2.play()
 
 
 

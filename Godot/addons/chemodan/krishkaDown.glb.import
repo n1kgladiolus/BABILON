@@ -1,0 +1,73 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://cmu1yx3xxkawj"
+path="res://.godot/imported/krishkaDown.glb-22121b8d706e76cba26662598775c173.scn"
+
+[deps]
+
+source_file="res://addons/chemodan/krishkaDown.glb"
+dest_files=["res://.godot/imported/krishkaDown.glb-22121b8d706e76cba26662598775c173.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Material": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://addons/chemodan/Materials/chemodan.tres",
+"use_external/path": "uid://bjmej0j4fkhar"
+},
+"Material.001": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://addons/chemodan/Materials/chemodanObv.tres",
+"use_external/path": "uid://0cqcdx1co18f"
+},
+"Material.002": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://addons/chemodan/Materials/chemodanZel.tres",
+"use_external/path": "uid://dfh6j51epujwv"
+},
+"Material.003": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://addons/chemodan/Materials/podKnopka.tres",
+"use_external/path": "uid://bn8kt45jumai7"
+},
+"Material.004": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://addons/chemodan/Materials/knopka.tres",
+"use_external/path": "uid://bonoo4sx1u0aq"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1
+gltf/texture_map_mode=1

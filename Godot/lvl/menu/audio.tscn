@@ -33,4 +33,4 @@ bus = &"Action"
 
 [node name="Click" type="AudioStreamPlayer" parent="." unique_id=2080666314]
 stream = ExtResource("4_5x3xy")
-bus = &"Click"
+bus = &"Action"

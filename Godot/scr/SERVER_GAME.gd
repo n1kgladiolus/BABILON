@@ -132,6 +132,8 @@ func _player_connected(id):
 		"username" : "",
 		"king" : "0",
 		"spawn" : "0",
+		"kazna" : 0,
+		"kazna_power" : 0,
 	}
 	
 	players_user[id] = user_param

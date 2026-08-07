@@ -54,7 +54,7 @@ var user_command = {
 }
 
 func _input(event: InputEvent):
-	if event.is_action_pressed("esc") and in_game:
+	if event.is_action_pressed("esc") and in_game and !game_scene.buy_flag and !game_scene.rotate_system_active:
 		if lobby_scene.visible == false:
 			lobby_scene.visible = true
 		elif lobby_scene.visible == true:

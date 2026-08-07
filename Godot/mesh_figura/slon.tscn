@@ -108,6 +108,6 @@ shape = SubResource("CylinderShape3D_jg1ut")
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, -0.11, 0, -0.19)
 shape = SubResource("CylinderShape3D_jg1ut")
 
-[node name="Slon" type="MeshInstance3D" parent="." unique_id=441728307]
+[node name="mesh" type="MeshInstance3D" parent="." unique_id=441728307]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("1_28eag")

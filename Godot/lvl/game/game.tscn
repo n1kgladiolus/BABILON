@@ -155,7 +155,7 @@ billboard_mode = 1
 [sub_resource type="QuadMesh" id="QuadMesh_bv0ed"]
 material = SubResource("StandardMaterial3D_x521r")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_wri3d"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_okd6o"]
 resource_local_to_scene = true
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_fafcu"]
@@ -313,7 +313,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
 metadata/_edit_lock_ = true
 
 [node name="Cloud" parent="WORLD/CloudSpawn" unique_id=1958340692 instance=ExtResource("1_qqdlu")]
-mesh = SubResource("ImmediateMesh_wri3d")
+mesh = SubResource("ImmediateMesh_okd6o")
 
 [node name="Timer" type="Timer" parent="WORLD/CloudSpawn" unique_id=1416216528]
 wait_time = 0.05
