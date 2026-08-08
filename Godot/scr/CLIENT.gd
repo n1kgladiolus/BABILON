@@ -54,7 +54,7 @@ var user_command = {
 }
 
 func _input(event: InputEvent):
-	if event.is_action_pressed("esc") and in_game and !game_scene.buy_flag and !game_scene.rotate_system_active:
+	if event.is_action_pressed("esc") and in_game and !game_scene.buy_flag and !game_scene.rotate_system_active and !game_scene.go_flag:
 		if lobby_scene.visible == false:
 			lobby_scene.visible = true
 		elif lobby_scene.visible == true:
@@ -121,6 +121,7 @@ func send_player_command(data):
 
 func log_in_success(data):
 	log_in_status = true
+	check_mem_hello()
 
 func log_in_password_invalid(data):
 	log_in_errors = "Неверный пароль"
@@ -278,8 +279,11 @@ func update_avatar_in_game(data):
 func coop_error(data):
 	lobby_scene.coop_error()
 
-
-
+func check_mem_hello():
+	for u in user:
+		if u.USERNAME == USERNAME:
+			Audio.Action2_sound_play(u.MEM_HELLO)
+			break
 
 
 

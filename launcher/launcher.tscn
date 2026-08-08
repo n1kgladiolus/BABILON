@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://fq14ckurmv07"]
+
+[ext_resource type="Script" uid="uid://bnaakymjh6llk" path="res://launcher.gd" id="1_4emaf"]
+
+[node name="launcher" type="Control" unique_id=1979538115]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4emaf")

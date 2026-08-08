@@ -21,6 +21,8 @@ var hard_work = false
 
 var input_cooldown = 0
 
+var rotate_cansel
+
 var maxWind = 0.2
 var wind = maxWind
 var rot = 0
@@ -28,18 +30,23 @@ var select_gex
 var forward_gex
 var select_figure
 
+
 var walk_check = preload("res://mesh_figura/walk_check.tscn")
 var walk_pipe = preload("res://lvl/game/walk_pipe.tscn")
 var attack_pipe = preload("res://lvl/game/attack_pipe.tscn")
 var walk_ready = []
 var walk_attack = []
 
+var first_turn_name
+var first_turn = false
 var you_turn = false
 var king_alive = true
+var go_flag = false
 var buy_flag = false
 var buy_ghost
 var bay_ok = false
 
+var first_spawn = true
 
 var rotate_system_active = false
 var gex_effect
@@ -229,6 +236,11 @@ func _input(event):
 					rot = 0
 					cam_up()
 				elif event.is_action("esc"):
+					if rotate_system_active:
+						have_tusk += 1
+						select_gex.global_position.y = rotate_cansel
+						rotate_cansel = null
+						rotate_system_v2.global_position = $WORLD/gex_effect_holder.global_position
 					pass
 					cansel_walk()
 
@@ -309,9 +321,10 @@ func spawn_start():
 
 @rpc("authority", "call_local", "reliable")
 func figure_spawn(player, figure, gex_path):
+	print("figure_spawn: ", player["username"], " _ ", figure)
 	var gex = get_node(gex_path)
-	var player_gex = player["king"]
-	match player_gex:
+	var player_gex
+	match player["king"]:
 		"2" : player_gex = "bear"
 		"3" : player_gex = "bull"
 		"4" : player_gex = "dragon"
@@ -325,7 +338,8 @@ func figure_spawn(player, figure, gex_path):
 	instance2.mesh = figura["gex_"+player_gex]
 	instance2.name = "pad"
 	
-	if !gex.get_groups():
+	
+	if figure == "peshka" or figure == "king":
 		gex.add_child(instance)
 		gex.add_child(instance2)
 		gex.add_to_group(player["username"])
@@ -333,6 +347,17 @@ func figure_spawn(player, figure, gex_path):
 		if figure == "king":
 			var instance3 = figura["flag_"+player_gex].instantiate()
 			gex.get_node("king").add_child(instance3)
+	else:
+		if gex.is_in_group(figura_param[figure][4]):
+			gex.get_node(figura_param[figure][4]).queue_free()
+			gex.remove_from_group(figura_param[figure][4])
+		
+		gex.add_child(instance)
+		if !gex.has_node("pad"):
+			gex.add_child(instance2)
+		gex.add_to_group(player["username"])
+		gex.add_to_group(figure)
+
 
 func monolit(u):
 	var king = int(players_user[u]["king"])
@@ -410,7 +435,7 @@ func gex_entered(gex):
 			else:
 				buy_ghost.get_node("mesh").set_surface_override_material(0, bay_material[0])
 				bay_ok = false
-			
+
 
 func gex_exited(gex):
 	if gex.is_in_group(C.USERNAME) and gex != select_gex:
@@ -423,6 +448,7 @@ func gex_exited(gex):
 
 
 func figure_go():
+	go_flag = true
 	if hard_work:
 		return
 	walk_ready.clear()
@@ -432,7 +458,7 @@ func figure_go():
 	select_gex = forward_gex
 	select_gex.position.y = 0.05
 	gex_effect.global_position = select_gex.global_position
-	rotate_system_v2.global_position = select_gex.global_position
+	#rotate_system_v2.global_position = select_gex.global_position
 	var lvl_start = check_lvl(select_gex.get_parent().get_name())
 	var speed = 0
 	var krug = 1
@@ -480,7 +506,9 @@ func figure_go():
 		krug += 1
 	####
 	await get_tree().process_frame
-	select_gex.get_node("walk_check").queue_free()
+	await get_tree().create_timer(0.02).timeout
+	if select_gex.has_node("walk_check"):
+		select_gex.get_node("walk_check").queue_free()
 	await get_tree().process_frame
 	####
 	if walk_ready.size() > 0:
@@ -488,12 +516,15 @@ func figure_go():
 			if w:
 				var pipe = walk_pipe.instantiate()
 				pipe.name = "walk_pipe"
-				w.add_child(pipe)
-		if walk_attack.size() > 0:
-			for w2 in walk_attack:
+				if !w.has_node("walk_pipe"):
+					w.add_child(pipe)
+	if walk_attack.size() > 0:
+		for w2 in walk_attack:
+			if w2:
 				var pipe2 = attack_pipe.instantiate()
 				pipe2.name = "attack_pipe"
-				w2.add_child(pipe2)
+				if !w2.has_node("attack_pipe"):
+					w2.add_child(pipe2)
 	hard_work = false
 
 func check_lvl(lvl):
@@ -514,7 +545,6 @@ func check_walk_area(check_walk_area, lvl_start):
 					if w.is_in_group(players_user[n2]["username"]) and !w.is_in_group(C.USERNAME) and w.is_in_group(C.USERNAME+"_power"):
 						walk_attack.append(w)
 				gex_clear = false
-				break
 		if gex_clear:
 			if !walk_ready.has(w) and check_lvl(w.get_parent().get_name()) - lvl_start < 2:
 				if check_lvl(w.get_parent().get_name()) - lvl_start == 1:
@@ -526,11 +556,12 @@ func check_walk_area(check_walk_area, lvl_start):
 					#print("ДОБАВЛЕНО else!! ", walk_ready)
 
 func cansel_walk():
+	go_flag = false
 	if hard_work:
 		return
 	if !rotate_system_active:
 		gex_effect.global_position = $WORLD/gex_effect_holder.global_position
-	rotate_system_v2.global_position = $WORLD/gex_effect_holder.global_position
+		rotate_system_v2.global_position = $WORLD/gex_effect_holder.global_position
 	print("cansel_walk")
 	#if select_gex and select_gex.get_node_or_null("gex_effect"):
 	#	select_gex.get_node("gex_effect").free()
@@ -545,9 +576,10 @@ func cansel_walk():
 					await get_tree().process_frame
 	if walk_attack.size() > 0:
 		for w2 in walk_attack:
-			var pipes = $WORLD/TABLE.find_children("attack_pipe", "", true, false)
-			for p in pipes:
+			var pipes2 = $WORLD/TABLE.find_children("attack_pipe", "", true, false)
+			for p in pipes2:
 				if p:
+					print("attack_pipe_delete!!!!!!!!")
 					p.free()
 					await get_tree().process_frame
 	if buy_flag:
@@ -556,6 +588,10 @@ func cansel_walk():
 
 
 func rotate_system():
+	if !rotate_cansel:
+		rotate_cansel = select_gex.global_position.y
+		rotate_system_v2.global_position = select_gex.global_position
+		
 	#print("ROOOOTAAAATEEEE!! process")
 	hard_work = true
 	var camera = get_viewport().get_camera_3d()
@@ -589,8 +625,9 @@ func figure_go_server(select_gex_path, forward_gex_path):
 	hard_work = true
 	var select_gex_server = get_node(select_gex_path)
 	var forward_gex_server = get_node(forward_gex_path)
-	print("figure_go_server!")
-	
+	if !multiplayer.is_server():
+		print("Игрок: ", players_user[sender]["username"], " походил, а ты просто: ", players_user[multiplayer.get_unique_id()]["username"])
+	#print("active_player!!! ", active_player)
 	select_gex_server.get_node("pad").reparent(forward_gex_server, false)
 	for f in figura_param.keys():
 		if select_gex_server.is_in_group(f):
@@ -598,6 +635,7 @@ func figure_go_server(select_gex_path, forward_gex_path):
 			select_gex_server.remove_from_group(players_user[active_player[0]]["username"])
 			select_gex_server.remove_from_group(f)
 			forward_gex_server.add_to_group(players_user[active_player[0]]["username"])
+			print("ОШИБКА??? ", str(players_user[active_player[0]]["username"]))
 			forward_gex_server.add_to_group(f)
 			hard_work = false
 			if R.status == "CLIENT":
@@ -637,7 +675,9 @@ func figura_buy_server(figura_buy_name_s, select_gex_path):
 		print("Игрок: ", players_user[sender]["username"], " купил: ", figura_buy_name_s,)
 		players_user[sender]["kazna"] -= figura_param[figura_buy_name_s][2]
 		rpc("figure_spawn", players_user[sender], figura_buy_name_s, select_gex_path)
+		await get_tree().create_timer(0.05).timeout
 		rpc("kazna_update", players_user)
+		await get_tree().create_timer(0.05).timeout
 	rpc("update_power")
 
 @rpc("authority", "call_local", "reliable")
@@ -669,19 +709,12 @@ func kazna_update(players_user_update):
 
 func kazna_dodep(user, count):
 	players_user[user]["kazna"] += count
-	
+
 
 @rpc("authority", "call_local", "reliable")
 func phase_day():
 	pass
 
-@rpc("authority", "call_local", "reliable")
-func player_turn():
-	if active_player.size() == 0:
-		return
-	
-	var player = active_player[0] 
-	$USER/UI/player_turn_go.text = str(players_user[player]["username"])+" - ходи уже"
 
 @rpc("any_peer", "call_local", "reliable")
 func send_chat(text):
@@ -693,17 +726,6 @@ func chat(text):
 	var messege = "\n"+"[color=#c9001e]"+str(C.USERNAME)+"[/color]: "+str(text)
 	rpc("send_chat", messege)
 
-func random_first_turn():
-	if active_player.size() == 0:
-		var messege = "\n"+"[color=red]"+"НЕТ ИГРОКОВ"+"[/color]"
-		rpc("send_chat", messege)
-		return
-	var first = active_player.pick_random()
-	active_player.erase(first)
-	active_player.insert(0, first)
-	rpc("send_turn", active_player)
-	var messege = "\n"+"[color=green]"+"СЕРВЕР: ХОД ИГРОКА "+str(players_user[first]["username"])+"[/color]"
-	rpc("send_chat", messege)
 
 func kazna_nx(nx):
 	if nx == "entered":
@@ -726,9 +748,14 @@ func UI_connect():
 	rotate_system_v2 = $WORLD/gex_effect_holder/rotate_system_v2
 	
 	$USER/UI/player_turn_go.pressed.connect(func(): 
-		have_tusk += 2 
-		print(have_tusk)
+		if you_turn:
+			if first_turn:
+				pass
+			rpc_id(1, "turn_update", "turn_final")
+		else:
+			rpc_id(1, "turn_update", "turn_zaebal")
 		)
+		
 	
 	$USER/UI/CHAT/VB/HButton/Plus_chat.pressed.connect(func(): $USER/UI/CHAT.size += Vector2(25, 25))
 	$USER/UI/CHAT/VB/HButton/Minus_chat.pressed.connect(func(): $USER/UI/CHAT.size -= Vector2(25, 25))
@@ -750,7 +777,7 @@ func UI_connect():
 		option.get_node("Fanat/Fon").add_theme_stylebox_override("panel", preload("res://visual/material/market/fon_flat.tres"))
 		
 		option.get_node("Adept/Button").pressed.connect(buy_figura.bind(name))
-		option.get_node("Fanat/Button").pressed.connect(buy_figura.bind(name+"fan"))
+		option.get_node("Fanat/Button").pressed.connect(buy_figura.bind(name+"_fan"))
 		option.get_node("Adept/Button").mouse_entered.connect(func(): option.get_node("Adept/Fon").add_theme_stylebox_override("panel", fon_flat[1]))
 		option.get_node("Fanat/Button").mouse_entered.connect(func(): option.get_node("Fanat/Fon").add_theme_stylebox_override("panel", fon_flat[1]))
 		option.get_node("Adept/Button").mouse_exited.connect(func(): option.get_node("Adept/Fon").add_theme_stylebox_override("panel", fon_flat[0]))
@@ -773,37 +800,67 @@ func buy_figura(figura_buy_name):
 	buy_ghost.set_meta("figura_buy_name", figura_buy_name)
 	hard_work = false
 
+func random_first_turn():
+	
+	first_turn = true
+	if active_player.size() == 0:
+		var messege = "\n"+"[color=red]"+"НЕТ ИГРОКОВ"+"[/color]"
+		rpc("send_chat", messege)
+		return
+	first_turn_name = active_player.pick_random()
+	active_player.erase(first_turn_name)
+	active_player.insert(0, first_turn_name)
+	
+	rpc("send_turn", active_player, first_turn)
+
 
 @rpc("authority", "call_local", "reliable")
-func send_turn(active_player):
+func send_turn(active_player, first_turn_update):
+	if multiplayer.is_server():
+		var messege = "\n"+"[color=green]"+"СЕРВЕР: ХОД ИГРОКА "+str(players_user[first_turn_name]["username"])+"[/color]"
+		rpc("send_chat", messege)
 	if R.status == "CLIENT":
+		first_turn = first_turn_update
+		if first_turn:
+			Audio.Audio.Action2_sound_play("first_turn")
+		else:
+			Audio.Audio.Action2_sound_play("turn")
 		if str(C.USERNAME) == str(players_user[active_player[0]]["username"]):
 			you_turn = true
 			$USER/UI/Turn_W.popup()
 			have_tusk = 2
 			$USER/UI/player_turn_go.text = "ЗАВЕРШИТЬ ХОД"
 		else:
+			you_turn = false
+			have_tusk = 0
 			$USER/UI/player_turn_go.text = str(players_user[active_player[0]]["username"])+" - ходи уже"
 
+@rpc("any_peer", "call_local", "reliable")
+func turn_update(info):
+	if info == "turn_final":
+		if first_turn:
+			first_turn = false
+		#if
+		rpc("send_turn", active_player, first_turn)
 
 @rpc("any_peer", "call_local", "reliable")
 func update_power():
 	for u in players_user.keys():
 		players_user[u]["kazna_power"] = 0
 	
-	var allgex = $WORLD/TABLE.find_children("GEX*")
-	print("ALLLLLLL ", allgex)
+	var allgex = $WORLD/TABLE.find_children("GEX*", "", true, false)
+	#print("ALLLLLLL ", allgex)
 	for gedel in allgex:
-		var cube_del = gedel.find_children("cute_cube")
-		print("cube_del.size!!!!!! ", cube_del.size())
+		var cube_del = gedel.find_children("cute_cube", "", true, false)
+		#print("cube_del.size!!!!!! ", cube_del.size())
 		if cube_del.size() > 0:
 			for cube_del2 in cube_del:
 				cube_del2.free()
-				print("КУБИКА УБИЛИ!")
+				#print("КУБИКА УБИЛИ!")
 		for gpdel in gedel.get_groups():
 			if gpdel.ends_with("_power"):
 				gedel.remove_from_group(gpdel)
-				print("ГРУППА УДАЛЕНА ", gpdel)
+				#print("ГРУППА УДАЛЕНА ", gpdel)
 	
 	await get_tree().create_timer(0.5).timeout
 	
@@ -828,7 +885,6 @@ func update_power():
 			var username = power_groups[0].split("_power")[0]
 			for u in players_user.keys():
 				if players_user[u]["username"] == username:
-					players_user[u]["kazna_power"] += 1
 					var cute_cube_spawn = cute_cube.instantiate()
 					cute_cube_spawn.name = "cute_cube"
 					if !multiplayer.is_server():
@@ -844,6 +900,7 @@ func update_power():
 						cute_cube_spawn.get_node("cube").set_surface_override_material(0, material_cube)
 					if !ge2.has_node("cute_cube") and !ge2.has_node("pad"):
 						ge2.add_child(cute_cube_spawn)
+						players_user[u]["kazna_power"] += 1
 					continue
 
 
