@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://br47bq567quud"]
+
+[ext_resource type="Script" uid="uid://cfs541gdn32vd" path="res://dice/scripts/d_6.gd" id="1_4h7kg"]
+[ext_resource type="ArrayMesh" uid="uid://bqo3vyibyjs7x" path="res://dice/resourses/cube_D6.res" id="2_jvkd5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3xd07"]
+
+[node name="D6" type="RigidBody3D" unique_id=854315721]
+can_sleep = false
+freeze = true
+script = ExtResource("1_4h7kg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2132014481]
+shape = SubResource("BoxShape3D_3xd07")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1306503913]
+transform = Transform3D(10.5, 0, 0, 0, 10.5, 0, 0, 0, 10.5, 0, 0, 0)
+mesh = ExtResource("2_jvkd5")

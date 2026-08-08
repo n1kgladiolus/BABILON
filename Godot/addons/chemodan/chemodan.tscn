@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b31kn6xowu3jv"]
+
+[ext_resource type="Script" uid="uid://lix71e8fyl7x" path="res://chemodan/chemodan.gd" id="1_n3eg7"]
+[ext_resource type="PackedScene" uid="uid://chqa8uji3q2a2" path="res://chemodan/krishka.glb" id="2_47h1x"]
+[ext_resource type="PackedScene" uid="uid://cmu1yx3xxkawj" path="res://chemodan/krishkaDown.glb" id="3_h2411"]
+
+[node name="Chemodan" type="Node3D" unique_id=2000004096]
+script = ExtResource("1_n3eg7")
+
+[node name="krishkaDown" parent="." unique_id=2049546973 instance=ExtResource("3_h2411")]
+
+[node name="Pivot" type="Node3D" parent="." unique_id=189200948]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, -1, 0.37, 0)
+
+[node name="krishka" parent="Pivot" unique_id=1690933724 instance=ExtResource("2_47h1x")]
+transform = Transform3D(-0.99999994, 8.742277e-08, 0, -8.742277e-08, -0.99999994, 0, 0, 0, 1, 1, 0, 0)

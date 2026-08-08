@@ -64,6 +64,6 @@ shape = SubResource("CylinderShape3D_jg1ut")
 transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, -0.21999998, 0, -0.38)
 shape = SubResource("CylinderShape3D_jg1ut")
 
-[node name="LadaFan" type="MeshInstance3D" parent="." unique_id=947177317]
+[node name="mesh" type="MeshInstance3D" parent="." unique_id=947177317]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 mesh = ExtResource("1_vxh4n")

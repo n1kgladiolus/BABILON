@@ -1,0 +1,5 @@
+{
+  "version": "0.9",
+  "windows_url": "https://example.com/download/windows.zip",
+  "windows_exe": "run.exe"
+}

@@ -13,6 +13,7 @@ extends Resource
 @export var LOG_IN: String = ""
 @export var CLAN: String = ""
 @export var CLANTEG: String = ""
+@export var MEM_HELLO: String = ""
 
 func to_dict() -> Dictionary:
 	return {
@@ -24,6 +25,7 @@ func to_dict() -> Dictionary:
 		"BUCKS": BUCKS,
 		"CLAN": CLAN,
 		"CLANTEG" : CLANTEG,
+		"MEM_HELLO" : MEM_HELLO,
 	}
 
 
@@ -37,6 +39,7 @@ static func from_dict(d: Dictionary) -> AccData:
 	obj.BUCKS = d.get("BUCKS", 0)
 	obj.CLAN = d.get("CLAN", 0)
 	obj.CLANTEG = d.get("CLANTEG", 0)
+	obj.MEM_HELLO = d.get("MEM_HELLO", 0)
 	return obj
 
 

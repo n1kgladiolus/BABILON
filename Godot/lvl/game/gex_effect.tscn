@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cbikbph8qcjt4"]
+
+[sub_resource type="Gradient" id="Gradient_iyw2h"]
+offsets = PackedFloat32Array(0, 0.12444445, 1)
+colors = PackedColorArray(0.41979906, 0.1339223, 0.022285229, 1, 0.6921219, 0.29025412, 0.18381849, 1, 0.8411834, 0.28493494, 0.21802102, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5xeel"]
+gradient = SubResource("Gradient_iyw2h")
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+repeat = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4v1ty"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_5xeel")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bv0ed"]
+material = SubResource("StandardMaterial3D_4v1ty")
+top_radius = 0.125
+bottom_radius = 0.125
+height = 0.3
+radial_segments = 6
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="GDScript" id="GDScript_x521r"]
+script/source = "extends MeshInstance3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+func anim():
+	var mat = mesh.surface_get_material(0)
+	var x = 1
+	for f in 100:
+		if x > 0:
+			x -= 0.01
+			mat.uv1_offset = Vector3(0, x, 0)
+			await get_tree().process_frame
+	
+	mat.uv1_offset = Vector3(0, 0, 0)
+	await get_tree().create_timer(0.1).timeout
+	global_position = Vector3(0, -2, 0)
+"
+
+[node name="gex_effect" type="MeshInstance3D" unique_id=1345992980]
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_bv0ed")
+script = SubResource("GDScript_x521r")

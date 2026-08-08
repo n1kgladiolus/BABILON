@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://blxrvfgtq8rdw"]
 
 [ext_resource type="PackedScene" uid="uid://ctm11ynd1db06" path="res://lvl/game/table.tscn" id="1_jpwd0"]
-[ext_resource type="PackedScene" uid="uid://cvenhqkighqsg" path="res://san_clouds/Resourses/cloud.tscn" id="1_qqdlu"]
+[ext_resource type="PackedScene" uid="uid://cvenhqkighqsg" path="res://addons/san_clouds/Resourses/cloud.tscn" id="1_qqdlu"]
 [ext_resource type="Script" uid="uid://7i4fxwba4c5m" path="res://scr/GAME.gd" id="1_ridn4"]
 [ext_resource type="ArrayMesh" uid="uid://c5op6myhxw674" path="res://mesh/vavilon.res" id="2_lto23"]
 [ext_resource type="Material" uid="uid://rlp1rle35xhq" path="res://visual/shaider/Sky_sphere.tres" id="2_tnoae"]
@@ -11,7 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bvx81ubti08iv" path="res://visual/material/game/lain.png" id="8_iwtnq"]
 [ext_resource type="Texture2D" uid="uid://ge5mj2g22vcf" path="res://koloda/deadworldtime.png" id="8_wx0gk"]
 [ext_resource type="Texture2D" uid="uid://cmtwctvb1k11v" path="res://koloda/kazna/K_00.png" id="9_4hivm"]
+[ext_resource type="PackedScene" uid="uid://cbikbph8qcjt4" path="res://lvl/game/gex_effect.tscn" id="10_okd6o"]
 [ext_resource type="Texture2D" uid="uid://dfoa1wywmp6qd" path="res://koloda/info_1.jpg" id="11_iil1l"]
+[ext_resource type="PackedScene" uid="uid://dyjpepve3weut" path="res://lvl/game/rotate_system_v_2.tscn" id="11_iwtnq"]
 [ext_resource type="PackedScene" uid="uid://big2y65rgll3g" path="res://lvl/game/magaz/peshk.tscn" id="12_lwgrd"]
 [ext_resource type="PackedScene" uid="uid://hyxo3yrfkyb6" path="res://lvl/game/magaz/kon.tscn" id="13_fafcu"]
 [ext_resource type="PackedScene" uid="uid://wpaihj0ltdkf" path="res://lvl/game/magaz/slon.tscn" id="14_7di75"]
@@ -153,7 +155,7 @@ billboard_mode = 1
 [sub_resource type="QuadMesh" id="QuadMesh_bv0ed"]
 material = SubResource("StandardMaterial3D_x521r")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_fafcu"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_okd6o"]
 resource_local_to_scene = true
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_fafcu"]
@@ -311,11 +313,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
 metadata/_edit_lock_ = true
 
 [node name="Cloud" parent="WORLD/CloudSpawn" unique_id=1958340692 instance=ExtResource("1_qqdlu")]
-mesh = SubResource("ImmediateMesh_fafcu")
+mesh = SubResource("ImmediateMesh_okd6o")
 
 [node name="Timer" type="Timer" parent="WORLD/CloudSpawn" unique_id=1416216528]
 wait_time = 0.05
 autostart = true
+
+[node name="gex_effect_holder" type="Node3D" parent="WORLD" unique_id=1328818919]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="gex_effect" parent="WORLD/gex_effect_holder" unique_id=1345992980 instance=ExtResource("10_okd6o")]
+
+[node name="rotate_system_v2" parent="WORLD/gex_effect_holder" unique_id=1330590863 instance=ExtResource("11_iwtnq")]
 
 [node name="USER" type="Node3D" parent="." unique_id=1339529877]
 
