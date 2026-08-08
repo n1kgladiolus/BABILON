@@ -82,6 +82,31 @@ func _ready()->void:
 		#end
 		# Download latest file
 		var download_success:Error = await download_to_file(download_url, game_temp_path, true)
+		
+		
+		
+		
+		var file_path = game_temp_path
+		if FileAccess.file_exists(file_path):
+			var file = FileAccess.open(file_path, FileAccess.READ)
+			if file:
+				var size = file.get_length()   # ← размер файла через экземпляр
+				print("Размер скачанного файла: ", size, " байт")
+				
+				# Проверяем сигнатуру ZIP
+				var header = file.get_32()
+				file.close()
+				if header != 0x04034b50:
+					print("Ошибка: файл не является ZIP-архивом! Первые 4 байта: ", header)
+				else:
+					print("Сигнатура ZIP верна.")
+			else:
+				print("Не удалось открыть файл для проверки.")
+		else:
+			print("Файл не существует!")
+		
+		
+		
 		if download_success != OK:
 			await display_error("FAILED_DOWNLOAD")
 			return
@@ -111,12 +136,7 @@ func _ready()->void:
 	#end
 	
 	# Run game executable
-	var launch_success:int = OS.create_process(game_path.path_join(download_exe_path), [
-		"--",
-		str("--launcher_path=", OS.get_executable_path()),
-		str("--launcher_config_url=", config_url),
-		str("--launcher_game_version=", latest_version),
-	])
+	var launch_success:int = OS.create_process(game_path.path_join(download_exe_path), [])
 	if launch_success < 0:
 		await display_error("FAILED_LAUNCH")
 		return

@@ -33,12 +33,16 @@ static func delete(path:String)->void:
 static func extract(path:String, directory:String)->void:
 	# Open zip file
 	var zip_reader := ZIPReader.new()
+	var err = zip_reader.open(path)
 	if zip_reader.open(path) != OK:
+		print("ZIPReader: не удалось открыть архив. Код ошибки: ", err)
 		return
 	#end
 	
 	# Create target directory
 	DirAccess.make_dir_recursive_absolute(directory)
+	var files = zip_reader.get_files()
+	print("ZIPReader: найдено файлов: ", files.size())
 	
 	# Get each nested zipped file
 	for file_path:String in zip_reader.get_files():
@@ -49,6 +53,11 @@ static func extract(path:String, directory:String)->void:
 		# Extract zipped file to target file
 		if target_file != null:
 			target_file.store_buffer(zip_reader.read_file(file_path))
+			target_file.close()
+		else:
+			print("Не удалось создать файл: ", file_path)
 		#end
+	zip_reader.close()
+	print("Распаковка завершена")
 	#end
 #end
