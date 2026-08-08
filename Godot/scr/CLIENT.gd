@@ -6,6 +6,8 @@ const playlist_in_game = preload("res://ost/playlist_in_game.tres")
 
 var DEBUG = false # true false
 
+var disconnect_flag = false
+
 var SETTINGS
 var controls_data
 
@@ -109,7 +111,13 @@ func server_connect():
 
 func server_connect_failed():
 	print("Ошибка подключения")
-	lobby_disconnect()
+	
+	if disconnect_flag == false:
+		disconnect_flag = true
+		lobby_disconnect()
+		Console.get_node("dissconect_W").popup()
+		Console.get_node("dissconect_W").confirmed.connect(func(): get_tree().quit())
+	
 
 func server_disconnect():
 	print("Отключение от сервера")

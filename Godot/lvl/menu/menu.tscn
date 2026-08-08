@@ -357,6 +357,17 @@ oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(300, 200)
 
+[node name="Label" type="Label" parent="Window/window_func/account_panel/MarginContainer/TabContainer/Account/box/ERROR_LOG_IN_DIALOG" unique_id=1500162627]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 292.0
+offset_bottom = 151.0
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Ошибка"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="LOG_IN_DIALOG" type="ConfirmationDialog" parent="Window/window_func/account_panel/MarginContainer/TabContainer/Account/box" unique_id=965137426]
 oversampling_override = 1.0
 title = "Вход..."
