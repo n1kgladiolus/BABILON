@@ -59,3 +59,20 @@ scroll_following = true
 
 [node name="Command" type="LineEdit" parent="ConsoleLayer/MarginContainer/Panel/VBoxContainer" unique_id=1081280102]
 layout_mode = 2
+
+[node name="dissconect_W" type="AcceptDialog" parent="." unique_id=1108438279]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(381, 102)
+ok_button_text = "Выйти"
+
+[node name="Label" type="Label" parent="dissconect_W" unique_id=665232129]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 373.0
+offset_bottom = 53.0
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
+text = "Ошибка подключения"
+horizontal_alignment = 1
+vertical_alignment = 1
