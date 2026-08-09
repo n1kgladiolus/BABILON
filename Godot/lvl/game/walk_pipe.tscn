@@ -2,7 +2,6 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x521r"]
 albedo_color = Color(0.3535045, 0.5319409, 0.14089113, 1)
-roughness = 0.2
 emission_enabled = true
 emission = Color(0.3494131, 0.5725147, 0.17906293, 1)
 emission_energy_multiplier = 0.6

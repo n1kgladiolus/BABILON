@@ -1,17 +1,17 @@
 extends Control
 
-var settings_window = false
+var settings_window := false
 
 var players_user := {}
 
-var lobby_parametrs = {
+var lobby_parametrs := {
 	"mode" : "",
 	"spawn" : "",
 	"koloda" : "",
 	"bot" : "",
 }
 
-var updating_from_server = false
+var updating_from_server := false
 
 const king_gerb = [null, null, preload("res://king/gerb/Bear.png"), preload("res://king/gerb/Bull.png"), preload("res://king/gerb/Dragon.png"), preload("res://king/gerb/Eagle.png"), preload("res://king/gerb/Elephant.png"), preload("res://king/gerb/Lion.png")]
 
@@ -29,6 +29,10 @@ func _ready() -> void:
 	
 	$Window/Box/Box_menu/setting.pressed.connect(_settings)
 	
+	leader()
+	#endregion
+
+func leader():
 	if C.is_lobby_leader:
 		$Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/mode.disabled = false
 		$Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/mode_start.disabled = false
@@ -42,8 +46,6 @@ func _ready() -> void:
 		
 		$Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer/START.disabled = false
 		$Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer/START.pressed.connect(START_GAME)
-	#endregion
-
 
 
 #region функции кнопок
@@ -84,6 +86,7 @@ func lobby_parametrs_update(data):
 	updating_from_server = true
 	lobby_parametrs = data[1]
 	players_user = data[2]
+	
 	
 	for yu in players_user:
 		if players_user[yu]["username"] == C.USERNAME:
@@ -186,6 +189,8 @@ func lobby_parametrs_update(data):
 			icon_spawn_set(spawn, king)
 	
 	updating_from_server = false
+	if !C.is_lobby_leader:
+		$Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer/START.disabled = true
 	Audio._connect_all_ui_elements(get_tree().root)
 
 #region параметры лобби
@@ -277,8 +282,9 @@ func icon_spawn_set(spawn, king):
 		
 
 func coop_error():
-	$coop_error_W.popup()
-	$Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer/START.disabled = false
+	if C.is_lobby_leader:
+		$coop_error_W.popup()
+		$Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer3/MarginContainer/VBoxContainer/START.disabled = false
 
 
 

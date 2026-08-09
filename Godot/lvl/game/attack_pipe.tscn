@@ -38,6 +38,7 @@ size = Vector3(0.01, 0.1, 0.01)
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=1282265149]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17, 0)
+visible = false
 mesh = SubResource("CylinderMesh_bv0ed")
 
 [node name="krest" type="Node3D" parent="." unique_id=1979623226]

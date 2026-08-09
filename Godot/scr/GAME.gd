@@ -6,20 +6,20 @@ var M_EAGLE = preload("res://visual/material/king/mEagle.tres")
 var M_ELEPHANT = preload("res://visual/material/king/mElephant.tres")
 var M_LION = preload("res://visual/material/king/mLion.tres")
 
-const walk_material = preload("res://visual/material/game/walk.tres")
-const attack_material = preload("res://visual/material/game/attack.tres")
-const king_gerb = [null, null, preload("res://king/gerb/Bear.png"), preload("res://king/gerb/Bull.png"), preload("res://king/gerb/Dragon.png"), preload("res://king/gerb/Eagle.png"), preload("res://king/gerb/Elephant.png"), preload("res://king/gerb/Lion.png")]
-const kazna_ico = [preload("res://koloda/kazna/K_00.png"), preload("res://koloda/kazna/K_00_Op.png"), preload("res://koloda/kazna/K_1.png"), preload("res://koloda/kazna/K_1_Op.png"), preload("res://koloda/kazna/K_2.png"), preload("res://koloda/kazna/K_2_Op.png"), preload("res://koloda/kazna/K_3.png"), preload("res://koloda/kazna/K_3_Op.png"), preload("res://koloda/kazna/K_4.png"), preload("res://koloda/kazna/K_4_Op.png")]
-const bay_material = [preload("res://visual/material/figura/buy_bad.tres"), preload("res://visual/material/figura/buy_good.tres")]
-const cute_cube = preload("res://mesh_figura/cute_cube.tscn")
+const walk_material := preload("res://visual/material/game/walk.tres")
+const attack_material := preload("res://visual/material/game/attack.tres")
+const king_gerb := [null, null, preload("res://king/gerb/Bear.png"), preload("res://king/gerb/Bull.png"), preload("res://king/gerb/Dragon.png"), preload("res://king/gerb/Eagle.png"), preload("res://king/gerb/Elephant.png"), preload("res://king/gerb/Lion.png")]
+const kazna_ico := [preload("res://koloda/kazna/K_00.png"), preload("res://koloda/kazna/K_00_Op.png"), preload("res://koloda/kazna/K_1.png"), preload("res://koloda/kazna/K_1_Op.png"), preload("res://koloda/kazna/K_2.png"), preload("res://koloda/kazna/K_2_Op.png"), preload("res://koloda/kazna/K_3.png"), preload("res://koloda/kazna/K_3_Op.png"), preload("res://koloda/kazna/K_4.png"), preload("res://koloda/kazna/K_4_Op.png")]
+const bay_material := [preload("res://visual/material/figura/buy_bad.tres"), preload("res://visual/material/figura/buy_good.tres")]
+const cute_cube := preload("res://mesh_figura/cute_cube.tscn")
 
-var kazna_ico_select = 0
+var kazna_ico_select := 0
 
-var fon_flat = [preload("res://visual/material/market/fon_flat.tres"), preload("res://visual/material/market/fon_flat_2.tres")]
+var fon_flat := [preload("res://visual/material/market/fon_flat.tres"), preload("res://visual/material/market/fon_flat_2.tres")]
 
-var hard_work = false
+var hard_work := false
 
-var input_cooldown = 0
+var input_cooldown := 0
 
 var rotate_cansel
 
@@ -34,34 +34,34 @@ var select_figure
 var walk_check = preload("res://mesh_figura/walk_check.tscn")
 var walk_pipe = preload("res://lvl/game/walk_pipe.tscn")
 var attack_pipe = preload("res://lvl/game/attack_pipe.tscn")
-var walk_ready = []
-var walk_attack = []
+var walk_ready := []
+var walk_attack := []
 
 var first_turn_name
-var first_turn = false
-var you_turn = false
-var king_alive = true
-var go_flag = false
-var buy_flag = false
+var first_turn := false
+var you_turn := false
+var king_alive := true
+var go_flag := false
+var buy_flag := false
 var buy_ghost
-var bay_ok = false
+var bay_ok := false
 
-var first_spawn = true
+var first_spawn := true
 
-var rotate_system_active = false
+var rotate_system_active := false
 var gex_effect
 var rotate_system_v2
 
 
-var active_player = []
-var kazna_player = {}
+var active_player := []
+var kazna_player := {}
 
-var players_group = []
+var players_group := []
 var players_user := {}
 
-var lobby_parametrs = {}
+var lobby_parametrs := {}
 
-var have_tusk = 0
+var have_tusk := 0
 
 
 
@@ -177,9 +177,9 @@ func _input(event):
 					if buy_flag and bay_ok and buy_ghost.has_meta("figura_buy_name") and have_tusk > 0 and !hard_work:
 						select_gex = forward_gex
 						rpc_id(1, "figura_buy_server", buy_ghost.get_meta("figura_buy_name"), select_gex.get_path())
-						print("TASK!! ", have_tusk)
+						#print("TASK!! ", have_tusk)
 						have_tusk -= 1
-						print("TASK!! ", have_tusk)
+						#print("TASK!! ", have_tusk)
 						select_gex.position.y = 0.05
 						cansel_walk()
 						await get_tree().create_timer(0.1).timeout
@@ -405,36 +405,13 @@ func ava_update(ava_name):
 				"7" : $WORLD/monolit_players/monolit_6.get_node("info").get_node("avatar").mesh.surface_get_material(0).albedo_texture = avatar
 
 func gex_entered(gex):
-	print("GEX: ", gex, " Группы: ", str(gex.get_groups()))
+	#print(gex, " Группы: ", str(gex.get_groups()))
 	#print(have_tusk)
 	if gex.is_in_group(C.USERNAME):
 		gex.position.y = 0.05
 	forward_gex = gex
 	if buy_flag:
-		buy_ghost.global_position = gex.global_position
-		if buy_ghost.get_meta("figura_buy_name") == "peshk" :
-				var power_other = false
-				if gex.is_in_group(C.USERNAME+"_power"):
-					for g in gex.get_groups():
-						if g.ends_with("_power") and g != str(C.USERNAME+"_power"):
-							power_other = true
-					if !power_other:
-						buy_ghost.get_node("mesh").set_surface_override_material(0, bay_material[1])
-						bay_ok = true
-					else:
-						buy_ghost.get_node("mesh").set_surface_override_material(0, bay_material[0])
-						bay_ok = false
-				else:
-					buy_ghost.get_node("mesh").set_surface_override_material(0, bay_material[0])
-					bay_ok = false
-		else:
-			if gex.is_in_group(figura_param[buy_ghost.get_meta("figura_buy_name")][4]) and gex.is_in_group(C.USERNAME):
-				buy_ghost.get_node("mesh").set_surface_override_material(0, bay_material[1])
-				bay_ok = true
-				gex.get_node(figura_param[buy_ghost.get_meta("figura_buy_name")][4]).visible = false
-			else:
-				buy_ghost.get_node("mesh").set_surface_override_material(0, bay_material[0])
-				bay_ok = false
+		buy_gex_entered(gex)
 
 
 func gex_exited(gex):
@@ -692,7 +669,7 @@ func kazna_update(players_user_update):
 	
 	var you_kazna = players_user[multiplayer.get_unique_id()]["kazna"]
 	$USER/UI/Kazna_b/Count_l.text = str(you_kazna)
-	if you_kazna <= 0:
+	if you_kazna == 0:
 		kazna_ico_select = 0
 	elif you_kazna > 0 and you_kazna < 12:
 		kazna_ico_select = 2
@@ -750,12 +727,42 @@ func UI_connect():
 	$USER/UI/player_turn_go.pressed.connect(func(): 
 		if you_turn:
 			if first_turn:
-				pass
-			rpc_id(1, "turn_update", "turn_final")
+				var you_sosed_A
+				var you_sosed_B
+				var you_spawn
+				for au in active_player:
+					if players_user[au]["username"] == C.USERNAME:
+						you_spawn = int(players_user[au]["spawn"])
+						match you_spawn:
+							2: 
+								you_sosed_A = 7
+								you_sosed_B = you_spawn + 1
+							7: 
+								you_sosed_A = you_spawn - 1
+								you_sosed_B = 2
+							_:
+								you_sosed_A = you_spawn - 1
+								you_sosed_B = you_spawn + 1
+				for au2 in active_player:
+					if int(players_user[au2]["spawn"]) == you_sosed_A:
+						$USER/UI/Turn_W_2/Box/Margin/Box/A_player.text = players_user[au2]["username"]
+					if int(players_user[au2]["spawn"]) == you_sosed_B:
+						$USER/UI/Turn_W_2/Box/Margin/Box/B_player.text = players_user[au2]["username"]
+				$USER/UI/Turn_W_2.popup()
+				return
+			rpc_id(1, "turn_update", "turn_final", "")
 		else:
-			rpc_id(1, "turn_update", "turn_zaebal")
+			rpc_id(1, "turn_update", "turn_zaebal", "")
 		)
-		
+	
+	$USER/UI/Turn_W_2/Box/Margin/Box/A_player.pressed.connect(func():
+		rpc_id(1, "turn_update", "turn_final", false)
+		$USER/UI/Turn_W_2.hide()
+		)
+	$USER/UI/Turn_W_2/Box/Margin/Box/B_player.pressed.connect(func():
+		rpc_id(1, "turn_update", "turn_final", true)
+		$USER/UI/Turn_W_2.hide()
+		)
 	
 	$USER/UI/CHAT/VB/HButton/Plus_chat.pressed.connect(func(): $USER/UI/CHAT.size += Vector2(25, 25))
 	$USER/UI/CHAT/VB/HButton/Minus_chat.pressed.connect(func(): $USER/UI/CHAT.size -= Vector2(25, 25))
@@ -804,7 +811,7 @@ func random_first_turn():
 	
 	first_turn = true
 	if active_player.size() == 0:
-		var messege = "\n"+"[color=red]"+"НЕТ ИГРОКОВ"+"[/color]"
+		var messege = "\n"+"[color=green]"+"НЕТ ИГРОКОВ"+"[/color]"
 		rpc("send_chat", messege)
 		return
 	first_turn_name = active_player.pick_random()
@@ -812,6 +819,32 @@ func random_first_turn():
 	active_player.insert(0, first_turn_name)
 	
 	rpc("send_turn", active_player, first_turn)
+
+func buy_gex_entered(gex):
+	buy_ghost.global_position = gex.global_position
+	if buy_ghost.get_meta("figura_buy_name") == "peshk" :
+		var power_other := false
+		if gex.is_in_group(C.USERNAME+"_power"):
+			for g in gex.get_groups():
+				if g.ends_with("_power") and g != str(C.USERNAME+"_power"):
+					power_other = true
+			if !power_other:
+				buy_ghost.get_node("mesh").material_override = bay_material[1]
+				bay_ok = true
+			else:
+				buy_ghost.get_node("mesh").material_override = bay_material[0]
+				bay_ok = false
+		else:
+			buy_ghost.get_node("mesh").material_override = bay_material[0]
+			bay_ok = false
+	else:
+		if gex.is_in_group(figura_param[buy_ghost.get_meta("figura_buy_name")][4]) and gex.is_in_group(C.USERNAME):
+			buy_ghost.get_node("mesh").material_override = bay_material[1]
+			bay_ok = true
+			gex.get_node(figura_param[buy_ghost.get_meta("figura_buy_name")][4]).visible = false
+		else:
+			buy_ghost.get_node("mesh").material_override = bay_material[0]
+			bay_ok = false
 
 
 @rpc("authority", "call_local", "reliable")
@@ -822,9 +855,9 @@ func send_turn(active_player, first_turn_update):
 	if R.status == "CLIENT":
 		first_turn = first_turn_update
 		if first_turn:
-			Audio.Audio.Action2_sound_play("first_turn")
+			Audio.Action2_sound_play("first_turn")
 		else:
-			Audio.Audio.Action2_sound_play("turn")
+			Audio.Action2_sound_play("turn")
 		if str(C.USERNAME) == str(players_user[active_player[0]]["username"]):
 			you_turn = true
 			$USER/UI/Turn_W.popup()
@@ -836,12 +869,35 @@ func send_turn(active_player, first_turn_update):
 			$USER/UI/player_turn_go.text = str(players_user[active_player[0]]["username"])+" - ходи уже"
 
 @rpc("any_peer", "call_local", "reliable")
-func turn_update(info):
+func turn_update(info, info2):
 	if info == "turn_final":
 		if first_turn:
 			first_turn = false
-		#if
-		rpc("send_turn", active_player, first_turn)
+			var first_player = active_player[0]
+			
+			var spawns := {}
+			for ap2 in active_player:
+				spawns[ap2] = int(players_user[ap2]["spawn"])
+			var sorted_ap = active_player.duplicate()
+			sorted_ap.sort_custom(func(a, b): return spawns[a] < spawns[b])
+			var first_player_index = sorted_ap.find(active_player[0])
+			var len = sorted_ap.size()
+			active_player.clear()
+			if info2:
+				for i in range(len):
+					active_player.append(sorted_ap[(first_player_index+i) % len])
+			else:
+				for i in range(len):
+					active_player.append(sorted_ap[(first_player_index-i+len) % len])
+			#active_player.erase(next_player)
+			#active_player.insert(0, next_player)
+			print(active_player)
+			rpc("send_turn", active_player, first_turn)
+		else:
+			var turn_name = active_player[0]
+			active_player.erase(turn_name)
+			active_player.append(turn_name)
+			rpc("send_turn", active_player, first_turn)
 
 @rpc("any_peer", "call_local", "reliable")
 func update_power():

@@ -167,6 +167,11 @@ color = Color(0.64705884, 0.64705884, 0.64705884, 1)
 thickness = 3
 vertical = true
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_iwtnq"]
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+thickness = 3
+vertical = true
+
 [node name="GAME" type="Node3D" unique_id=661614673]
 script = ExtResource("1_ridn4")
 
@@ -739,6 +744,56 @@ scroll_following = true
 layout_mode = 2
 placeholder_text = "введите сообщение..."
 emoji_menu_enabled = false
+
+[node name="Turn_W_2" type="Window" parent="USER/UI" unique_id=1516735531]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(450, 120)
+visible = false
+
+[node name="Box" type="VBoxContainer" parent="USER/UI/Turn_W_2" unique_id=1059866993]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="USER/UI/Turn_W_2/Box" unique_id=1474413472]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Кому передать ход?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Margin" type="MarginContainer" parent="USER/UI/Turn_W_2/Box" unique_id=564780779]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Box" type="HBoxContainer" parent="USER/UI/Turn_W_2/Box/Margin" unique_id=1075582632]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="A_player" type="Button" parent="USER/UI/Turn_W_2/Box/Margin/Box" unique_id=831104184]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "а"
+
+[node name="Sep" type="VSeparator" parent="USER/UI/Turn_W_2/Box/Margin/Box" unique_id=199807320]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_iwtnq")
+
+[node name="B_player" type="Button" parent="USER/UI/Turn_W_2/Box/Margin/Box" unique_id=1212150547]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "б"
 
 [node name="cam_piv_1" type="Node3D" parent="USER" unique_id=518556740]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
