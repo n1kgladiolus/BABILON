@@ -133,7 +133,8 @@ func _connect_all_ui_elements(node: Node):
 		_connect_all_ui_elements(child)
 
 func _on_ui_click():
-	Audio.get_node("Click").play()
+	if !get_node("Click").playing:
+		get_node("Click").play()
 
 
 func background_repeat():

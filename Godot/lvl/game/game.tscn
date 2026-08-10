@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://blxrvfgtq8rdw"]
 
 [ext_resource type="PackedScene" uid="uid://ctm11ynd1db06" path="res://lvl/game/table.tscn" id="1_jpwd0"]
+[ext_resource type="Script" uid="uid://c2vonru1eawh8" path="res://scr/GAME.gd" id="1_okd6o"]
 [ext_resource type="PackedScene" uid="uid://cvenhqkighqsg" path="res://addons/san_clouds/Resourses/cloud.tscn" id="1_qqdlu"]
-[ext_resource type="Script" uid="uid://7i4fxwba4c5m" path="res://scr/GAME.gd" id="1_ridn4"]
 [ext_resource type="ArrayMesh" uid="uid://c5op6myhxw674" path="res://mesh/vavilon.res" id="2_lto23"]
 [ext_resource type="Material" uid="uid://rlp1rle35xhq" path="res://visual/shaider/Sky_sphere.tres" id="2_tnoae"]
 [ext_resource type="PackedScene" uid="uid://bveeukxurc7cf" path="res://lvl/game/monolit.tscn" id="3_lto23"]
@@ -173,7 +173,7 @@ thickness = 3
 vertical = true
 
 [node name="GAME" type="Node3D" unique_id=661614673]
-script = ExtResource("1_ridn4")
+script = ExtResource("1_okd6o")
 
 [node name="ENVIRONMENT" type="Node3D" parent="." unique_id=1172776349]
 metadata/_edit_lock_ = true
@@ -248,64 +248,64 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 metadata/_edit_lock_ = true
 
-[node name="monolit_1" parent="WORLD/monolit_players" unique_id=884502139 instance=ExtResource("3_lto23")]
+[node name="monolit_2" parent="WORLD/monolit_players" unique_id=884502139 instance=ExtResource("3_lto23")]
 transform = Transform3D(-4.371138e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.371138e-08, 0, 0, -2.5)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_1/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_k5g52")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_1/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_ggh6k")
 
-[node name="monolit_2" parent="WORLD/monolit_players" unique_id=958510815 instance=ExtResource("3_lto23")]
+[node name="monolit_3" parent="WORLD/monolit_players" unique_id=958510815 instance=ExtResource("3_lto23")]
 transform = Transform3D(-0.8660253, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, -0.8660253, 2.1650636, 0, -1.2499999)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_fafcu")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_okd6o")
 
-[node name="monolit_3" parent="WORLD/monolit_players" unique_id=212844513 instance=ExtResource("3_lto23")]
+[node name="monolit_4" parent="WORLD/monolit_players" unique_id=212844513 instance=ExtResource("3_lto23")]
 transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 2.1650634, 0, 1.2500005)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_wri3d")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_50nji")
 
-[node name="monolit_4" parent="WORLD/monolit_players" unique_id=1690850865 instance=ExtResource("3_lto23")]
+[node name="monolit_5" parent="WORLD/monolit_players" unique_id=1690850865 instance=ExtResource("3_lto23")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0, 0, 2.5)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_3cwwr")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_2frox")
 
-[node name="monolit_5" parent="WORLD/monolit_players" unique_id=61905864 instance=ExtResource("3_lto23")]
+[node name="monolit_6" parent="WORLD/monolit_players" unique_id=61905864 instance=ExtResource("3_lto23")]
 transform = Transform3D(0.8660253, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, 0.8660253, -2.1650636, 0, 1.2499999)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_emlyr")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_rf20w")
 
-[node name="monolit_6" parent="WORLD/monolit_players" unique_id=768809942 instance=ExtResource("3_lto23")]
+[node name="monolit_7" parent="WORLD/monolit_players" unique_id=768809942 instance=ExtResource("3_lto23")]
 transform = Transform3D(0.8660253, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660253, -2.1650634, 0, -1.2500005)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_7/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_tt6rn")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_7/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_144qm")
 
 [node name="lain" type="MeshInstance3D" parent="WORLD/monolit_players" unique_id=11978028]
@@ -805,9 +805,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0, 2, 1.2)
 fov = 80.0
 
-[editable path="WORLD/monolit_players/monolit_1"]
 [editable path="WORLD/monolit_players/monolit_2"]
 [editable path="WORLD/monolit_players/monolit_3"]
 [editable path="WORLD/monolit_players/monolit_4"]
 [editable path="WORLD/monolit_players/monolit_5"]
 [editable path="WORLD/monolit_players/monolit_6"]
+[editable path="WORLD/monolit_players/monolit_7"]
