@@ -129,6 +129,7 @@ var menu_open := false
 @export var have_tusk := 0
 
 @onready var gex := {
+	"base_rotate" : 0.0,
 	"forward" : null,
 	"select" : null,
 	"buy_ghost" : null,
@@ -211,7 +212,8 @@ func _input_key(event):
 		action_cansel()
 
 func _input_mouse(event):
-	Audio._on_ui_click()
+	if event.button_index != MOUSE_BUTTON_WHEEL_UP and event.button_index != MOUSE_BUTTON_WHEEL_DOWN:
+		Audio._on_ui_click()
 	
 	if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 		_tween_rotate($USER/cam_piv_1.rotation_degrees.y + cam_settings[1])
@@ -307,6 +309,9 @@ func spawn_start():
 		rpc("update_power")
 		await get_tree().create_timer(1).timeout
 		pick_first_turn()
+		for pu in players_user.keys():
+			kazna_dodep(pu, 67)
+		rpc("kazna_update", players_user)
 
 @rpc("authority", "call_local", "reliable")
 func figura_spawn(player, fig_name, gex_path):
@@ -372,6 +377,7 @@ func send_turn(active_user, first_turn):
 	if R.status == "SERVER_GAME":
 		var text = "\n"+"[color=green]"+"ХОД ИГРОКА: "+str(players_user[first_turn_name]["username"])+"[/color]"
 		rpc("send_chat", text)
+	
 	if R.status == "CLIENT":
 		flag["first_turn"] = first_turn
 		if flag["first_turn"]:
@@ -412,7 +418,10 @@ func S_go(gex_signal_path, gex_select_path, player):
 				gex_select.remove_from_group(players_user[player]["username"])
 				gex_signal.add_to_group(f)
 				gex_signal.add_to_group(players_user[player]["username"])
-				rpc("update_power")
+		if R.status == "CLIENT" and players_user[player]["username"] == C.USERNAME:
+			gex["select"] = gex_signal
+			flag["rotate"] = true
+			rotate()
 	
 	else:
 		for f in figura_parametr.keys():
@@ -425,9 +434,9 @@ func S_go(gex_signal_path, gex_select_path, player):
 						rpc("S_go", gex_signal_path, gex_select_path, sender)
 						var text = "\n"+"[color=green]"+"Игрок: "+players_user[sender]["username"]+" сдвинул фигуру"+"[/color]"
 						rpc("send_chat", text)
-						rpc("update_power")
 	if R.status == "SERVER_GAME":
 		flag["server_check"] = true
+		rpc("update_power")
 	flag["hard_work"] = false
 
 @rpc("any_peer", "call_local", "reliable")
@@ -470,9 +479,9 @@ func S_attack(gex_signal_path, gex_select_path, player):
 								var text = "\n"+"[color=green]"+"Игрок: "+players_user[sender]["username"]+" атаковал фигуру игрока: "+oponent+"[/color]"
 								rpc("send_chat", text)
 								break
-						rpc("update_power")
 	if R.status == "SERVER_GAME":
 		flag["server_check"] = true
+		rpc("update_power")
 	flag["hard_work"] = false
 
 @rpc("any_peer", "call_local", "reliable")
@@ -485,25 +494,41 @@ func S_buy(gex_signal_path, meta, player):
 	flag["hard_work"] = true
 	
 	if !flag["server_check"]:
-		for pu in players_user.keys():
-			if players_user[pu]["username"] == players_user[player]["username"]:
-				player = pu
 		players_user[player]["kazna"] -= figura_parametr[meta][2]
-		rpc("figura_spawn", players_user[player], meta, gex_signal_path)
-		rpc("kazna_update", players_user)
-		rpc("update_power")
+		figura_spawn(players_user[player], meta, gex_signal_path)
 	
 	else:
+		print(players_user, sender, figura_parametr[meta][2])
 		if players_user[sender]["kazna"] >= figura_parametr[meta][2]:
-			if gex_signal_path.is_in_group(players_user[sender]["username"]) or gex_signal_path.is_in_group(players_user[sender]["username"]+"_power"):
+			if gex_signal.is_in_group(players_user[sender]["username"]) or gex_signal.is_in_group(players_user[sender]["username"]+"_power"):
 				flag["server_check"] = false
 				flag["hard_work"] = false
 				rpc("S_buy", gex_signal_path, meta, sender)
 				var text = "\n"+"[color=green]"+"Игрок: "+players_user[sender]["username"]+" купил фигуру"+"[/color]"
 				rpc("send_chat", text)
-				rpc("update_power")
+	
 	if R.status == "SERVER_GAME":
+		flag["hard_work"] = false
 		flag["server_check"] = true
+		rpc("update_power")
+		rpc("kazna_update", players_user)
+	flag["hard_work"] = false
+
+@rpc("any_peer", "call_local", "reliable")
+func S_rotate(gex_select_path, rotate_set):
+	var gex_select = get_node(gex_select_path)
+	if flag["hard_work"]:
+		while flag["hard_work"]:
+			await get_tree().process_frame
+	flag["hard_work"] = true
+	
+	gex_select.rotation_degrees.y = rotate_set
+	if R.status == "CLIENT":
+		gex["effect_select"].global_position = gex_select.global_position
+		gex["effect_select"].anim()
+		action_cansel()
+	if R.status == "SERVER_GAME":
+		rpc("update_power")
 	flag["hard_work"] = false
 
 @rpc("authority", "call_local", "reliable")
@@ -513,6 +538,7 @@ func kazna_update(pu):
 			await get_tree().process_frame
 	flag["hard_work"] = true
 	if multiplayer.is_server():
+		flag["hard_work"] = false
 		return
 	
 	Audio.Action_sound_play("kazna")
@@ -536,8 +562,10 @@ func kazna_update(pu):
 			kazna_ico_select = kazna_ico_select_2
 			$USER/UI/Kazna_b/Count_l.text =  str(players_user[pu2]["kazna"])
 			$USER/UI/Kazna_b/Kazna.texture = kazna_ico[kazna_ico_select]
-		else:
-			$WORLD/monolit_players.get_node("monolit_"+players_user[pu2]["spawn"]).get_node("info/kazna").texture = kazna_ico[kazna_ico_select_2]
+		
+		$WORLD/monolit_players.get_node("monolit_"+players_user[pu2]["spawn"]).get_node("info/kazna").mesh.surface_get_material(0).albedo_texture = kazna_ico[kazna_ico_select_2]
+	
+	flag["hard_work"] = false
 
 @rpc("authority", "call_local", "reliable")
 func update_power():
@@ -622,10 +650,10 @@ func turn_update(info, info2):
 			active_user.clear()
 			if info2:
 				for i in range(len_s):
-					active_user.append(sorted_ap[(first_player_index+i) % len_s])
+					active_user.append(sorted_ap[(first_player_index+1+i) % len_s])
 			else:
 				for i in range(len_s):
-					active_user.append(sorted_ap[(first_player_index-i+len_s) % len_s])
+					active_user.append(sorted_ap[(first_player_index-1-i+len_s) % len_s])
 			rpc("send_turn", active_user, flag["first_turn"])
 		else:
 			var turn_name = active_user[0]
@@ -688,10 +716,7 @@ func UI_connect():
 	chat_connect()
 	turn_button()
 	kazna()
-
-
-
-
+	rotate_buttons()
 
 func chat_connect():
 	$USER/UI/CHAT/VB/panel/Box/LineEdit.text_submitted.connect(chat)
@@ -720,13 +745,31 @@ func turn_button():
 						match you_spawn:
 							2: 
 								you_sosed_A = 7
+								for au2 in active_user:
+									if int(players_user[au2]["spawn"]) != you_sosed_A:
+										you_sosed_A -= 1
 								you_sosed_B = you_spawn + 1
+								for au2 in active_user:
+									if int(players_user[au2]["spawn"]) != you_sosed_B:
+										you_sosed_B += 1
 							7: 
 								you_sosed_A = you_spawn - 1
+								for au2 in active_user:
+									if int(players_user[au2]["spawn"]) != you_sosed_A:
+										you_sosed_A -= 1
 								you_sosed_B = 2
+								for au2 in active_user:
+									if int(players_user[au2]["spawn"]) != you_sosed_B:
+										you_sosed_B += 1
 							_:
 								you_sosed_A = you_spawn - 1
+								for au2 in active_user:
+									if int(players_user[au2]["spawn"]) != you_sosed_A:
+										you_sosed_A -= 1
 								you_sosed_B = you_spawn + 1
+								for au2 in active_user:
+									if int(players_user[au2]["spawn"]) != you_sosed_B:
+										you_sosed_B -= 1
 				for au2 in active_user:
 					if int(players_user[au2]["spawn"]) == you_sosed_A:
 						$USER/UI/Turn_W_2/Box/Margin/Box/A_player.text = players_user[au2]["username"]
@@ -747,7 +790,6 @@ func turn_button():
 		rpc_id(1, "turn_update", "turn_final", true)
 		$USER/UI/Turn_W_2.hide()
 		)
-
 
 func kazna():
 	$USER/UI/Kazna_b.pressed.connect(kazna_nx.bind("open"))
@@ -786,10 +828,25 @@ func close_window(window):
 		"info" : $USER/UI/Info_W.hide()
 		"kazna" : $USER/UI/Kazna_W.hide()
 
-
-
-
-
+func rotate_buttons():
+	$USER/UI/fig_panel/fig_options/rotate_activ.pressed.connect(
+		func():
+			if flag["you_turn"] and have_tusk > 0 :
+				have_tusk -= 1
+				rotate()
+				flag["rotate"] = true
+			)
+	
+	
+	$USER/UI/fig_panel/rotate/rot_left.pressed.connect(func(): gex["select"].rotate_y(deg_to_rad(-60)))
+	$USER/UI/fig_panel/rotate/rot_right.pressed.connect(func(): gex["select"].rotate_y(deg_to_rad(60)))
+	$USER/UI/fig_panel/rotate/rot_aceppt.pressed.connect(
+		func():
+			$USER/UI/fig_panel/fig_options.visible = true
+			$USER/UI/fig_panel/rotate.visible = false
+			var rotate_set = gex["select"].rotation_degrees.y
+			rpc("S_rotate", gex["select"].get_path(), rotate_set)
+			)
 
 #endregion
 
@@ -804,52 +861,68 @@ func gex_entered(gex_signal):
 func gex_exited(gex_signal):
 	#if flag["hard_work"] or flag["chat_focus"]:
 		#return
-	if gex_signal != gex["select"]:
+	if gex_signal.global_position != gex["effect_select"].global_position:
 		gex_signal.position.y = 0.0
 	buy_gex(gex_signal, "exited")
 
 func gex_pressed(gex_signal):
 	if flag["gex_check"]:
 		print(gex_signal, " Группы: ", str(gex_signal.get_groups()))
-	if flag["hard_work"] or flag["chat_focus"] or !flag["you_turn"]:
+	if flag["hard_work"] or flag["chat_focus"] or !flag["you_turn"] or have_tusk == 0 or flag["rotate"]:
 		return
 	
 	if gex["select"]:
 		gex["select"].position.y = 0.0
 	
-	gex["effect_select"].global_position = gex_signal.global_position
-	
 	if flag["go"]:
 		if gex_signal.get_node_or_null("pipe_go") and have_tusk:
 			if flag["king_alive"]:
-				have_tusk -= 1
+				if check_lvl(gex_signal.get_parent().get_name()) - check_lvl(gex["select"].get_parent().get_name()) == 1:
+					have_tusk -= 2
+				else:
+					have_tusk -= 1
 			else:
 				have_tusk -= 2
 			rpc_id(1, "S_go", gex_signal.get_path(), gex["select"].get_path(), C.USERNAME)
 			action_cansel()
+			return
 		if gex_signal.get_node_or_null("pipe_attack") and have_tusk == 2:
+			have_tusk -= 2
 			rpc_id(1, "S_attack", gex_signal.get_path(), gex["select"].get_path(), C.USERNAME)
 			action_cansel()
+			return
 	
 	elif flag["buy"]:
 		if flag["buy_ok"] and have_tusk:
 			if flag["king_alive"]:
-				have_tusk -= 1
+				var lvl_spawn = 0
+				for g_r in gex_signal.get_overlapping_areas():
+					if g_r.name == "attack" and g_r.get_parent().get_parent().is_in_group(C.USERNAME):
+						if check_lvl(g_r.get_parent().get_parent().get_parent().get_name()) > lvl_spawn:
+							lvl_spawn = check_lvl(g_r.get_parent().get_parent().get_parent().get_name())
+				if check_lvl(gex_signal.get_parent().get_name()) - lvl_spawn == 1:
+					have_tusk -= 2
+				else:
+					have_tusk -= 1
 			else:
 				have_tusk -= 2
 			rpc_id(1, "S_buy", gex_signal.get_path(), gex["buy_ghost"].get_meta("fig_buy_name"), C.USERNAME)
 			action_cansel()
+			return
 	
-	else:
-		if gex_signal.is_in_group(C.USERNAME) and gex_signal != gex["select"]:
-			gex["select"] = gex_signal
-			go()
+	action_cansel()
+	
+	if gex_signal.is_in_group(C.USERNAME) and gex_signal != gex["select"]:
+		gex["select"] = gex_signal
+		gex["effect_select"].global_position = gex_signal.global_position
+		go()
+
 
 func buy_gex(gex_signal, enorex):
 	if !flag["buy"] or gex["buy_ghost"] == null:
 		return
 	
-	flag["hard_work"] = true
+	#flag["hard_work"] = true
 	
 	if enorex == "exited":
 		for fnk in figura_parametr.keys():
@@ -867,7 +940,7 @@ func buy_gex(gex_signal, enorex):
 				if g.ends_with("_power") and g != str(C.USERNAME+"_power"):
 					flag["buy_ok"] = false
 					break
-				if g in figura_parametr:
+				if g in figura_parametr.keys():
 					flag["buy_ok"] = false
 					break
 	else:
@@ -894,6 +967,18 @@ func go():
 	flag["go"] = true
 	for w in walk.keys():
 		walk[w] = []
+	
+	$USER/UI/fig_panel/fig_options.visible = true
+	for f in figura_parametr.keys():
+		if gex["select"].is_in_group(f):
+			if f.ends_with("_fan"):
+				$USER/UI/fig_panel/fig_options/Sep.visible = true
+				match f:
+					"kon_fan" : $USER/UI/fig_panel/fig_options/fanat_kon_bax.visible = true
+					"slon_fan" : $USER/UI/fig_panel/fig_options/fanat_slon_krest.visible = true
+					"lada_fan" : $USER/UI/fig_panel/fig_options/fanat_yaderka_buy.visible = true
+					"lada_fan_ready" : $USER/UI/fig_panel/fig_options/fanat_yaderka_fire.visible = true
+	
 	
 	var lvl_start = check_lvl(gex["select"].get_parent().get_name())
 	var speed: int = check_speed()
@@ -962,13 +1047,25 @@ func buy(figura_buy_name):
 	gex["buy_ghost"].set_meta("fig_buy_name", figura_buy_name)
 	flag["hard_work"] = false
 
+func rotate():
+	gex["base_rotate"] = gex["select"].rotation_degrees.y
+	gex["effect_select"].global_position = gex["select"].global_position
+	gex["effect_rotate"].global_position = gex["select"].global_position
+	$USER/UI/fig_panel/fig_options.visible = false
+	$USER/UI/fig_panel/rotate.visible = true
+
+
+
+
 func action_cansel():
 	if flag["hard_work"]:
-		return
+		while flag["hard_work"]:
+			await get_tree().process_frame
 	flag["hard_work"] = true
 	
 	gex["effect_select"].global_position = gex["effect_holder"].global_position
 	gex["effect_rotate"].global_position = gex["effect_holder"].global_position
+	gex["base_rotate"] = 0.0
 	
 	for f in action_flag:
 		flag[f] = false
@@ -984,6 +1081,17 @@ func action_cansel():
 	if gex["buy_ghost"]:
 		gex["buy_ghost"].queue_free()
 	flag["buy_ok"] = false
+	
+	$USER/UI/fig_panel/fig_options.visible = false
+	$USER/UI/fig_panel/rotate.visible = false
+	
+	$USER/UI/fig_panel/fig_options/Sep.visible = false
+	$USER/UI/fig_panel/fig_options/fanat_kon_bax.visible = false
+	$USER/UI/fig_panel/fig_options/fanat_slon_krest.visible = false
+	$USER/UI/fig_panel/fig_options/fanat_yaderka_buy.visible = false
+	$USER/UI/fig_panel/fig_options/fanat_yaderka_fire.visible = false
+	
+	
 	
 	flag["hard_work"] = false
 
@@ -1028,10 +1136,16 @@ func pick_first_turn():
 	active_user.insert(0, first_turn_name)
 	
 	rpc("send_turn", active_user, flag["first_turn"])
-#endregion
 
 func pick_karta():
 	pass
+
+func kazna_dodep(user, count):
+	players_user[user]["kazna"] += count
+
+
+#endregion
+
 
 
 

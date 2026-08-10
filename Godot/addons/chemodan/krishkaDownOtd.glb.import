@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cmu1yx3xxkawj"
-path="res://.godot/imported/krishkaDown.glb-22121b8d706e76cba26662598775c173.scn"
+uid="uid://dfilyrm7ao5hx"
+path="res://.godot/imported/krishkaDownOtd.glb-85a088cbcbf34b6ec98eeca8b986d2b3.scn"
 
 [deps]
 
-source_file="res://addons/chemodan/krishkaDown.glb"
-dest_files=["res://.godot/imported/krishkaDown.glb-22121b8d706e76cba26662598775c173.scn"]
+source_file="res://addons/chemodan/krishkaDownOtd.glb"
+dest_files=["res://.godot/imported/krishkaDownOtd.glb-85a088cbcbf34b6ec98eeca8b986d2b3.scn"]
 
 [params]
 
