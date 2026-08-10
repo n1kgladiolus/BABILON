@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cq2usuu02xkjf"]
+
+[ext_resource type="Material" uid="uid://rlp1rle35xhq" path="res://Sky/Sky_sphere.tres" id="1_xhh73"]
+[ext_resource type="Script" uid="uid://c70v7sruelapp" path="res://Sky/sky.gd" id="2_yfaqj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3xd07"]
+material = ExtResource("1_xhh73")
+flip_faces = true
+radius = 10.0
+height = 20.0
+radial_segments = 12
+rings = 6
+
+[node name="Sky" type="MeshInstance3D" unique_id=292207723]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_3xd07")
+script = ExtResource("2_yfaqj")

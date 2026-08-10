@@ -1,12 +1,12 @@
 extends Node
 
-const DISCO_ELYSIUM = preload("res://ost/music/disco_elysium.mp3")
-const OST_1 = preload("res://ost/music/ost_1.mp3")
-const playlist_in_game = preload("res://ost/playlist_in_game.tres")
+const DISCO_ELYSIUM := preload("res://ost/music/disco_elysium.mp3")
+const OST_1 := preload("res://ost/music/ost_1.mp3")
+const playlist_in_game := preload("res://ost/playlist_in_game.tres")
 
-var DEBUG = false # true false
+var DEBUG := false # true false
 
-var disconnect_flag = false
+var disconnect_flag := false
 
 var SETTINGS
 var controls_data
@@ -17,7 +17,7 @@ var logpass: client_local_logpass
 var USERNAME: String = ""
 var PASSWORD: String = ""
 
-const ADRESS = "ws://188.168.138.144:"
+const ADRESS := "ws://188.168.138.144:"
 var PEER
 var VOICE
 
@@ -38,7 +38,7 @@ var lobby_scene
 var game_scene
 var avatar_user := {}
 
-var user_command = {
+var user_command := {
 	"!log_in_password_invalid" : log_in_password_invalid,
 	"!log_in_version_client_invalid" : log_in_version_client_invalid,
 	"!log_in_success" : log_in_success,
@@ -56,13 +56,16 @@ var user_command = {
 }
 
 func _input(event: InputEvent):
-	if event.is_action_pressed("esc") and in_game and !game_scene.buy_flag and !game_scene.rotate_system_active and !game_scene.go_flag:
+	if event.is_action_pressed("esc") and in_game and !game_scene.action:
 		if lobby_scene.visible == false:
 			lobby_scene.visible = true
+			game_scene.menu_open = true
 		elif lobby_scene.visible == true:
 			lobby_scene.visible = false
 			lobby_scene.settings_window = true
+			game_scene.menu_open = false
 			lobby_scene._settings()
+	
 	
 	if event.is_action_pressed("voice"):
 		mic_settings[2].set_pressed(true)

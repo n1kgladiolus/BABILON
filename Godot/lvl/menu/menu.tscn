@@ -1040,17 +1040,21 @@ theme_override_constants/margin_bottom = 50
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Window/window_func/author_panel/MarginContainer" unique_id=2039169886]
 layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window/window_func/author_panel/MarginContainer/ScrollContainer" unique_id=230019030]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Window/window_func/author_panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1356724160]
+[node name="RichTextLabel" type="RichTextLabel" parent="Window/window_func/author_panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1578011283]
+custom_minimum_size = Vector2(0, 900)
 layout_mode = 2
-size_flags_vertical = 1
+size_flags_vertical = 3
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
 text = "Авторы идеи:
 Стержанов Сергей Сергеевич — автор правил и текста карт.
 Новикова Валерия Сергеевна — дизайн поля и шаблона колоды.
@@ -1067,9 +1071,11 @@ AleSanLab — Санчес Лабаут Александр
 \"нам нужен художник :(\"
 
 Телеграмм сообщество цифровой версии игры:
-https://t.me/OnlineBabilonChat"
+[url=https://t.me/OnlineBabilonChat]OnlineBabilonChat[/url]
+
+"
+scroll_active = false
 horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Window/window_func/author_panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1068825074]
 custom_maximum_size = Vector2(-1, 500)

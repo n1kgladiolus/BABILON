@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://s1unvb1uisiu" path="res://import/ava_placehold.png" id="1_cx56x"]
 [ext_resource type="Texture2D" uid="uid://civpl7ajrij5x" path="res://king/gerb/Bull.png" id="2_8a4kp"]
+[ext_resource type="Texture2D" uid="uid://cmtwctvb1k11v" path="res://koloda/kazna/K_00.png" id="3_orv6t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv0ed"]
 albedo_color = Color(0.12941177, 0.11372549, 0.20392157, 1)
@@ -28,6 +29,15 @@ albedo_texture = ExtResource("2_8a4kp")
 [sub_resource type="PlaneMesh" id="PlaneMesh_x521r"]
 material = SubResource("StandardMaterial3D_4v1ty")
 size = Vector2(0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qm0e"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_orv6t")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4v1ty"]
+material = SubResource("StandardMaterial3D_5qm0e")
+size = Vector2(0.7, 0.7)
 
 [node name="monolit" type="Node3D" unique_id=1690850865]
 
@@ -59,3 +69,7 @@ modulate = Color(0.7887894, 0, 0.11774104, 1)
 text = "USERNAME"
 font_size = 26
 outline_size = 5
+
+[node name="kazna" type="MeshInstance3D" parent="info" unique_id=1160061716]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0.11, 0, 0)
+mesh = SubResource("PlaneMesh_4v1ty")

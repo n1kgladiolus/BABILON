@@ -144,7 +144,7 @@ func _player_connected(id):
 	data = ["!check_user_in_lobby", LOBBY_LEADER]
 	send_server_command_to_id(id, data)
 	
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(1).timeout
 	data = null
 	lobby_parametrs_update(data)
 

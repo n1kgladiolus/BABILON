@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://blxrvfgtq8rdw"]
 
 [ext_resource type="PackedScene" uid="uid://ctm11ynd1db06" path="res://lvl/game/table.tscn" id="1_jpwd0"]
+[ext_resource type="Script" uid="uid://c2vonru1eawh8" path="res://scr/GAME.gd" id="1_okd6o"]
 [ext_resource type="PackedScene" uid="uid://cvenhqkighqsg" path="res://addons/san_clouds/Resourses/cloud.tscn" id="1_qqdlu"]
-[ext_resource type="Script" uid="uid://7i4fxwba4c5m" path="res://scr/GAME.gd" id="1_ridn4"]
+[ext_resource type="PackedScene" uid="uid://cq2usuu02xkjf" path="res://addons/Sky/sky.tscn" id="2_2frox"]
 [ext_resource type="ArrayMesh" uid="uid://c5op6myhxw674" path="res://mesh/vavilon.res" id="2_lto23"]
-[ext_resource type="Material" uid="uid://rlp1rle35xhq" path="res://visual/shaider/Sky_sphere.tres" id="2_tnoae"]
 [ext_resource type="PackedScene" uid="uid://bveeukxurc7cf" path="res://lvl/game/monolit.tscn" id="3_lto23"]
 [ext_resource type="Texture2D" uid="uid://s1unvb1uisiu" path="res://import/ava_placehold.png" id="6_4hivm"]
 [ext_resource type="Texture2D" uid="uid://g34041lbfsm7" path="res://king/gerb/Bear.png" id="7_iil1l"]
@@ -19,6 +19,14 @@
 [ext_resource type="PackedScene" uid="uid://wpaihj0ltdkf" path="res://lvl/game/magaz/slon.tscn" id="14_7di75"]
 [ext_resource type="PackedScene" uid="uid://bjbjl348l6fuq" path="res://lvl/game/magaz/lada.tscn" id="15_okd6o"]
 [ext_resource type="Texture2D" uid="uid://dkcdrnmauyrts" path="res://koloda/info_2.jpg" id="17_fafcu"]
+[ext_resource type="Texture2D" uid="uid://ulo6nigwf8u" path="res://import/rotate_icon.png" id="20_3cwwr"]
+[ext_resource type="Texture2D" uid="uid://b77wvwnt5mutk" path="res://import/rotate_button.png" id="20_5rrdf"]
+[ext_resource type="Texture2D" uid="uid://sbscl0oroub7" path="res://import/dinamit.png" id="21_6vkll"]
+[ext_resource type="Texture2D" uid="uid://ca32mb2iea82f" path="res://import/rotate_button_ok.png" id="21_50nji"]
+[ext_resource type="Texture2D" uid="uid://1s6yk3pmm3p1" path="res://import/krest.png" id="22_2frox"]
+[ext_resource type="Texture2D" uid="uid://shrsl2m861te" path="res://import/rotate_button_2.png" id="22_mh2qp"]
+[ext_resource type="Texture2D" uid="uid://pw3lf1xpnmjl" path="res://import/yaderka_button_1.png" id="23_2frox"]
+[ext_resource type="Texture2D" uid="uid://cifnguej003og" path="res://import/yaderka_button_2.png" id="24_1ggbu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tnoae"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -36,7 +44,7 @@ ssao_enabled = true
 ssao_intensity = 1.2
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.827451, 0.84313726, 0.87058824, 1)
+fog_light_color = Color(0.49212623, 0.523344, 0.5781173, 1)
 fog_light_energy = 0.7
 fog_density = 0.1
 fog_height = -0.4
@@ -155,7 +163,7 @@ billboard_mode = 1
 [sub_resource type="QuadMesh" id="QuadMesh_bv0ed"]
 material = SubResource("StandardMaterial3D_x521r")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_okd6o"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_2frox"]
 resource_local_to_scene = true
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_fafcu"]
@@ -167,21 +175,26 @@ color = Color(0.64705884, 0.64705884, 0.64705884, 1)
 thickness = 3
 vertical = true
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_iwtnq"]
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+thickness = 3
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_okd6o"]
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+thickness = 3
+vertical = true
+
 [node name="GAME" type="Node3D" unique_id=661614673]
-script = ExtResource("1_ridn4")
+script = ExtResource("1_okd6o")
 
 [node name="ENVIRONMENT" type="Node3D" parent="." unique_id=1172776349]
 metadata/_edit_lock_ = true
 
+[node name="Sky" parent="ENVIRONMENT" unique_id=292207723 instance=ExtResource("2_2frox")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="ENVIRONMENT" unique_id=436988550]
 environment = SubResource("Environment_0jdu7")
-
-[node name="Sky" type="CSGSphere3D" parent="ENVIRONMENT" unique_id=976719674]
-gi_mode = 0
-flip_faces = true
-radius = 10.0
-material = ExtResource("2_tnoae")
-metadata/_edit_lock_ = true
 
 [node name="Sanches" type="SpotLight3D" parent="ENVIRONMENT" unique_id=960321383]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.9659258, 0, -0.9659258, 0.258819, 0, 4.7, 1)
@@ -243,64 +256,64 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 metadata/_edit_lock_ = true
 
-[node name="monolit_1" parent="WORLD/monolit_players" unique_id=884502139 instance=ExtResource("3_lto23")]
+[node name="monolit_2" parent="WORLD/monolit_players" unique_id=884502139 instance=ExtResource("3_lto23")]
 transform = Transform3D(-4.371138e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.371138e-08, 0, 0, -2.5)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_1/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_k5g52")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_1/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_ggh6k")
 
-[node name="monolit_2" parent="WORLD/monolit_players" unique_id=958510815 instance=ExtResource("3_lto23")]
+[node name="monolit_3" parent="WORLD/monolit_players" unique_id=958510815 instance=ExtResource("3_lto23")]
 transform = Transform3D(-0.8660253, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, -0.8660253, 2.1650636, 0, -1.2499999)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_fafcu")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_okd6o")
 
-[node name="monolit_3" parent="WORLD/monolit_players" unique_id=212844513 instance=ExtResource("3_lto23")]
+[node name="monolit_4" parent="WORLD/monolit_players" unique_id=212844513 instance=ExtResource("3_lto23")]
 transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 2.1650634, 0, 1.2500005)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_wri3d")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_50nji")
 
-[node name="monolit_4" parent="WORLD/monolit_players" unique_id=1690850865 instance=ExtResource("3_lto23")]
+[node name="monolit_5" parent="WORLD/monolit_players" unique_id=1690850865 instance=ExtResource("3_lto23")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0, 0, 2.5)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_3cwwr")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_2frox")
 
-[node name="monolit_5" parent="WORLD/monolit_players" unique_id=61905864 instance=ExtResource("3_lto23")]
+[node name="monolit_6" parent="WORLD/monolit_players" unique_id=61905864 instance=ExtResource("3_lto23")]
 transform = Transform3D(0.8660253, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, 0.8660253, -2.1650636, 0, 1.2499999)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_emlyr")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_rf20w")
 
-[node name="monolit_6" parent="WORLD/monolit_players" unique_id=768809942 instance=ExtResource("3_lto23")]
+[node name="monolit_7" parent="WORLD/monolit_players" unique_id=768809942 instance=ExtResource("3_lto23")]
 transform = Transform3D(0.8660253, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660253, -2.1650634, 0, -1.2500005)
 metadata/_edit_lock_ = true
 
-[node name="avatar" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="1" unique_id=525250088]
+[node name="avatar" parent="WORLD/monolit_players/monolit_7/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="1" unique_id=525250088]
 mesh = SubResource("PlaneMesh_tt6rn")
 
-[node name="gerb" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="2" unique_id=1755115897]
+[node name="gerb" parent="WORLD/monolit_players/monolit_7/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_144qm")
 
 [node name="lain" type="MeshInstance3D" parent="WORLD/monolit_players" unique_id=11978028]
@@ -313,7 +326,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
 metadata/_edit_lock_ = true
 
 [node name="Cloud" parent="WORLD/CloudSpawn" unique_id=1958340692 instance=ExtResource("1_qqdlu")]
-mesh = SubResource("ImmediateMesh_okd6o")
+mesh = SubResource("ImmediateMesh_2frox")
 
 [node name="Timer" type="Timer" parent="WORLD/CloudSpawn" unique_id=1416216528]
 wait_time = 0.05
@@ -740,6 +753,154 @@ layout_mode = 2
 placeholder_text = "введите сообщение..."
 emoji_menu_enabled = false
 
+[node name="Turn_W_2" type="Window" parent="USER/UI" unique_id=1516735531]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(450, 120)
+visible = false
+
+[node name="Box" type="VBoxContainer" parent="USER/UI/Turn_W_2" unique_id=1059866993]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="USER/UI/Turn_W_2/Box" unique_id=1474413472]
+layout_mode = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 32
+text = "Кому передать ход?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Margin" type="MarginContainer" parent="USER/UI/Turn_W_2/Box" unique_id=564780779]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Box" type="HBoxContainer" parent="USER/UI/Turn_W_2/Box/Margin" unique_id=1075582632]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="A_player" type="Button" parent="USER/UI/Turn_W_2/Box/Margin/Box" unique_id=831104184]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "а"
+
+[node name="Sep" type="VSeparator" parent="USER/UI/Turn_W_2/Box/Margin/Box" unique_id=199807320]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_iwtnq")
+
+[node name="B_player" type="Button" parent="USER/UI/Turn_W_2/Box/Margin/Box" unique_id=1212150547]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "б"
+
+[node name="fig_panel" type="MarginContainer" parent="USER/UI" unique_id=947287814]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 10
+
+[node name="fig_options" type="HBoxContainer" parent="USER/UI/fig_panel" unique_id=1217641541]
+visible = false
+layout_mode = 2
+
+[node name="rotate_activ" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=39334857]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+icon = ExtResource("20_3cwwr")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Sep" type="VSeparator" parent="USER/UI/fig_panel/fig_options" unique_id=1440042851]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_okd6o")
+
+[node name="fanat_kon_bax" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=1708311641]
+visible = false
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+icon = ExtResource("21_6vkll")
+icon_alignment = 1
+expand_icon = true
+
+[node name="fanat_slon_krest" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=157003602]
+visible = false
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+icon = ExtResource("22_2frox")
+icon_alignment = 1
+expand_icon = true
+
+[node name="fanat_yaderka_buy" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=1498856495]
+visible = false
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+icon = ExtResource("23_2frox")
+icon_alignment = 1
+expand_icon = true
+
+[node name="fanat_yaderka_fire" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=524002184]
+visible = false
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+icon = ExtResource("24_1ggbu")
+icon_alignment = 1
+expand_icon = true
+
+[node name="rotate" type="HBoxContainer" parent="USER/UI/fig_panel" unique_id=1325284685]
+visible = false
+layout_mode = 2
+
+[node name="rot_left" type="Button" parent="USER/UI/fig_panel/rotate" unique_id=60452525]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+icon = ExtResource("20_5rrdf")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Sep" type="VSeparator" parent="USER/UI/fig_panel/rotate" unique_id=147455874]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_okd6o")
+
+[node name="rot_aceppt" type="Button" parent="USER/UI/fig_panel/rotate" unique_id=374220827]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+icon = ExtResource("21_50nji")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Sep2" type="VSeparator" parent="USER/UI/fig_panel/rotate" unique_id=725573248]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_okd6o")
+
+[node name="rot_right" type="Button" parent="USER/UI/fig_panel/rotate" unique_id=2078971149]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+icon = ExtResource("22_mh2qp")
+icon_alignment = 1
+expand_icon = true
+
 [node name="cam_piv_1" type="Node3D" parent="USER" unique_id=518556740]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
@@ -750,9 +911,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0, 2, 1.2)
 fov = 80.0
 
-[editable path="WORLD/monolit_players/monolit_1"]
 [editable path="WORLD/monolit_players/monolit_2"]
 [editable path="WORLD/monolit_players/monolit_3"]
 [editable path="WORLD/monolit_players/monolit_4"]
 [editable path="WORLD/monolit_players/monolit_5"]
 [editable path="WORLD/monolit_players/monolit_6"]
+[editable path="WORLD/monolit_players/monolit_7"]

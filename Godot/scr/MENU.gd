@@ -25,6 +25,8 @@ func _ready() -> void:
 	#endregion
 	
 	#region подключение сигналов кнопок
+	$Window/window_func/author_panel/MarginContainer/ScrollContainer/VBoxContainer/RichTextLabel.meta_clicked.connect(_on_link_click)
+	
 	$Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Master.value_changed.connect(_Sound_edit.bind("Master"))
 	$Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Background.value_changed.connect(_Sound_edit.bind("Background"))
 	$Window/window_func/setting_panel/MarginContainer/TabContainer/setting_main/MarginContainer/HBoxContainer/VBoxContainer2/Ss_Action.value_changed.connect(_Sound_edit.bind("Action"))
@@ -194,6 +196,9 @@ func _start_label():
 	$Window/window_func/rules_panel.visible = false
 	$Window/window_func/setting_panel/MarginContainer/TabContainer/setting_dop/DED_DIALOG/color_flag/color_flag_scene/ded_scene.visible = false
 
+func _on_link_click(meta):
+	if typeof(meta) == TYPE_STRING and meta.begins_with("http"):
+		OS.shell_open(meta)
 
 func _exit_button():
 	get_tree().quit()

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmtwctvb1k11v"
-path.s3tc="res://.godot/imported/K_00.png-dc1d6342fd6645c92cbf88987917e72a.s3tc.ctex"
+uid="uid://dw8xa0qpx1mvd"
+path.s3tc="res://.godot/imported/yaderka_mem_2.png-5949c476c8c1143144a239e4a4b9bb0b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://koloda/kazna/K_00.png"
-dest_files=["res://.godot/imported/K_00.png-dc1d6342fd6645c92cbf88987917e72a.s3tc.ctex"]
+source_file="res://import/yaderka_mem_2.png"
+dest_files=["res://.godot/imported/yaderka_mem_2.png-5949c476c8c1143144a239e4a4b9bb0b.s3tc.ctex"]
 
 [params]
 
