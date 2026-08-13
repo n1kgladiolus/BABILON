@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://wpaihj0ltdkf"]
 
-[ext_resource type="Texture2D" uid="uid://bqy5ow53k6pe8" path="res://koloda/figur_market/slon.png" id="1_n34vb"]
-[ext_resource type="Texture2D" uid="uid://bo65jrutjqy14" path="res://koloda/figur_market/peshk.png" id="2_8qavp"]
-[ext_resource type="Texture2D" uid="uid://bhpo51qnf5k0g" path="res://koloda/figur_market/slon_pole.png" id="3_4houk"]
-[ext_resource type="Texture2D" uid="uid://bhr6k1bwcokhe" path="res://koloda/figur_market/slon_fan.png" id="4_vmy8o"]
+[ext_resource type="Texture2D" uid="uid://bqy5ow53k6pe8" path="res://pictures/figur_market/slon.png" id="1_n34vb"]
+[ext_resource type="Texture2D" uid="uid://bo65jrutjqy14" path="res://pictures/figur_market/peshk.png" id="2_8qavp"]
+[ext_resource type="Texture2D" uid="uid://bhpo51qnf5k0g" path="res://pictures/figur_market/slon_pole.png" id="3_4houk"]
+[ext_resource type="Texture2D" uid="uid://bhr6k1bwcokhe" path="res://pictures/figur_market/slon_fan.png" id="4_vmy8o"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_hjhvn"]
 color = Color(0.64705884, 0.64705884, 0.64705884, 1)

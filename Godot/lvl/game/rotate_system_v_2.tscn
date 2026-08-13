@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dyjpepve3weut"]
 
-[ext_resource type="Texture2D" uid="uid://ulo6nigwf8u" path="res://import/rotate_icon.png" id="1_xnecm"]
+[ext_resource type="Texture2D" uid="uid://ulo6nigwf8u" path="res://pictures/figur_ico/rotate_icon.png" id="1_xnecm"]
 
 [sub_resource type="GDScript" id="GDScript_8nu8a"]
 script/source = "extends Node3D
@@ -22,7 +22,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	rotate_y(0.001)
+	rotate_y(0.003)
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xeel"]

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://hyxo3yrfkyb6"]
 
-[ext_resource type="Texture2D" uid="uid://cxqg7rvpt82a3" path="res://koloda/figur_market/kon.png" id="1_siwsk"]
-[ext_resource type="Texture2D" uid="uid://bo65jrutjqy14" path="res://koloda/figur_market/peshk.png" id="2_00k7l"]
-[ext_resource type="Texture2D" uid="uid://red4boju6mm4" path="res://koloda/figur_market/kon_pole.png" id="3_7co2b"]
-[ext_resource type="Texture2D" uid="uid://d4he5aak4702y" path="res://koloda/figur_market/kon_fan.png" id="4_tat4v"]
+[ext_resource type="Texture2D" uid="uid://cxqg7rvpt82a3" path="res://pictures/figur_market/kon.png" id="1_siwsk"]
+[ext_resource type="Texture2D" uid="uid://bo65jrutjqy14" path="res://pictures/figur_market/peshk.png" id="2_00k7l"]
+[ext_resource type="Texture2D" uid="uid://red4boju6mm4" path="res://pictures/figur_market/kon_pole.png" id="3_7co2b"]
+[ext_resource type="Texture2D" uid="uid://d4he5aak4702y" path="res://pictures/figur_market/kon_fan.png" id="4_tat4v"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_hjhvn"]
 color = Color(0.64705884, 0.64705884, 0.64705884, 1)

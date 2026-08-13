@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dfbqkpkia22xf"]
 
 [ext_resource type="Script" uid="uid://8slnds8ckaow" path="res://scr/console.gd" id="1_gqwga"]
-[ext_resource type="Texture2D" uid="uid://yqyaxbashsat" path="res://import/background.png" id="2_gfhqi"]
+[ext_resource type="Texture2D" uid="uid://yqyaxbashsat" path="res://pictures/background.png" id="2_gfhqi"]
 
 [node name="Console" type="Control" unique_id=852249755]
 layout_mode = 3

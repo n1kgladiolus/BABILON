@@ -9,24 +9,24 @@
 [ext_resource type="Texture2D" uid="uid://s1unvb1uisiu" path="res://import/ava_placehold.png" id="6_4hivm"]
 [ext_resource type="Texture2D" uid="uid://g34041lbfsm7" path="res://king/gerb/Bear.png" id="7_iil1l"]
 [ext_resource type="Texture2D" uid="uid://bvx81ubti08iv" path="res://visual/material/game/lain.png" id="8_iwtnq"]
-[ext_resource type="Texture2D" uid="uid://ge5mj2g22vcf" path="res://koloda/deadworldtime.png" id="8_wx0gk"]
-[ext_resource type="Texture2D" uid="uid://cmtwctvb1k11v" path="res://koloda/kazna/K_00.png" id="9_4hivm"]
+[ext_resource type="Texture2D" uid="uid://ge5mj2g22vcf" path="res://pictures/deadworldtime.png" id="8_wx0gk"]
+[ext_resource type="Texture2D" uid="uid://cmtwctvb1k11v" path="res://pictures/kazna/K_00.png" id="9_4hivm"]
 [ext_resource type="PackedScene" uid="uid://cbikbph8qcjt4" path="res://lvl/game/gex_effect.tscn" id="10_okd6o"]
-[ext_resource type="Texture2D" uid="uid://dfoa1wywmp6qd" path="res://koloda/info_1.jpg" id="11_iil1l"]
+[ext_resource type="Texture2D" uid="uid://dfoa1wywmp6qd" path="res://pictures/info_1.jpg" id="11_iil1l"]
 [ext_resource type="PackedScene" uid="uid://dyjpepve3weut" path="res://lvl/game/rotate_system_v_2.tscn" id="11_iwtnq"]
 [ext_resource type="PackedScene" uid="uid://big2y65rgll3g" path="res://lvl/game/magaz/peshk.tscn" id="12_lwgrd"]
 [ext_resource type="PackedScene" uid="uid://hyxo3yrfkyb6" path="res://lvl/game/magaz/kon.tscn" id="13_fafcu"]
 [ext_resource type="PackedScene" uid="uid://wpaihj0ltdkf" path="res://lvl/game/magaz/slon.tscn" id="14_7di75"]
 [ext_resource type="PackedScene" uid="uid://bjbjl348l6fuq" path="res://lvl/game/magaz/lada.tscn" id="15_okd6o"]
-[ext_resource type="Texture2D" uid="uid://dkcdrnmauyrts" path="res://koloda/info_2.jpg" id="17_fafcu"]
-[ext_resource type="Texture2D" uid="uid://ulo6nigwf8u" path="res://import/rotate_icon.png" id="20_3cwwr"]
-[ext_resource type="Texture2D" uid="uid://b77wvwnt5mutk" path="res://import/rotate_button.png" id="20_5rrdf"]
-[ext_resource type="Texture2D" uid="uid://sbscl0oroub7" path="res://import/dinamit.png" id="21_6vkll"]
-[ext_resource type="Texture2D" uid="uid://ca32mb2iea82f" path="res://import/rotate_button_ok.png" id="21_50nji"]
-[ext_resource type="Texture2D" uid="uid://1s6yk3pmm3p1" path="res://import/krest.png" id="22_2frox"]
-[ext_resource type="Texture2D" uid="uid://shrsl2m861te" path="res://import/rotate_button_2.png" id="22_mh2qp"]
-[ext_resource type="Texture2D" uid="uid://pw3lf1xpnmjl" path="res://import/yaderka_button_1.png" id="23_2frox"]
-[ext_resource type="Texture2D" uid="uid://cifnguej003og" path="res://import/yaderka_button_2.png" id="24_1ggbu"]
+[ext_resource type="Texture2D" uid="uid://dkcdrnmauyrts" path="res://pictures/info_2.jpg" id="17_fafcu"]
+[ext_resource type="Texture2D" uid="uid://ulo6nigwf8u" path="res://pictures/figur_ico/rotate_icon.png" id="20_3cwwr"]
+[ext_resource type="Texture2D" uid="uid://b77wvwnt5mutk" path="res://pictures/figur_ico/rotate_button.png" id="20_5rrdf"]
+[ext_resource type="Texture2D" uid="uid://sbscl0oroub7" path="res://pictures/figur_ico/dinamit.png" id="21_6vkll"]
+[ext_resource type="Texture2D" uid="uid://ca32mb2iea82f" path="res://pictures/figur_ico/rotate_button_ok.png" id="21_50nji"]
+[ext_resource type="Texture2D" uid="uid://1s6yk3pmm3p1" path="res://pictures/figur_ico/krest.png" id="22_2frox"]
+[ext_resource type="Texture2D" uid="uid://shrsl2m861te" path="res://pictures/figur_ico/rotate_button_2.png" id="22_mh2qp"]
+[ext_resource type="Texture2D" uid="uid://pw3lf1xpnmjl" path="res://pictures/figur_ico/yaderka_button_1.png" id="23_2frox"]
+[ext_resource type="Texture2D" uid="uid://cifnguej003og" path="res://pictures/figur_ico/yaderka_button_2.png" id="24_1ggbu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tnoae"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -44,7 +44,7 @@ ssao_enabled = true
 ssao_intensity = 1.2
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.49212623, 0.523344, 0.5781173, 1)
+fog_light_color = Color(0.72378117, 0.74748766, 0.78889203, 1)
 fog_light_energy = 0.7
 fog_density = 0.1
 fog_height = -0.4
@@ -208,6 +208,7 @@ metadata/_edit_lock_ = true
 
 [node name="Night" type="SpotLight3D" parent="ENVIRONMENT" unique_id=1541279746]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.5, 0)
+light_energy = 0.0
 spot_range = 6.4
 spot_angle = 67.5
 metadata/_edit_lock_ = true
@@ -338,6 +339,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 [node name="gex_effect" parent="WORLD/gex_effect_holder" unique_id=1345992980 instance=ExtResource("10_okd6o")]
 
 [node name="rotate_system_v2" parent="WORLD/gex_effect_holder" unique_id=1330590863 instance=ExtResource("11_iwtnq")]
+
+[node name="gex_effect2" parent="WORLD/gex_effect_holder" unique_id=696170962 instance=ExtResource("10_okd6o")]
 
 [node name="USER" type="Node3D" parent="." unique_id=1339529877]
 
@@ -685,6 +688,7 @@ oversampling_override = 1.0
 title = ""
 initial_position = 2
 size = Vector2i(200, 102)
+exclusive = false
 
 [node name="Label" type="Label" parent="USER/UI/Turn_W" unique_id=562273951]
 offset_left = 8.0
@@ -695,6 +699,26 @@ theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 32
 text = "Твой ход!"
 horizontal_alignment = 1
+
+[node name="Karta" type="AcceptDialog" parent="USER/UI" unique_id=1216700512]
+oversampling_override = 1.0
+title = "Событие!"
+initial_position = 2
+size = Vector2i(400, 600)
+exclusive = false
+
+[node name="Texture" type="TextureRect" parent="USER/UI/Karta" unique_id=504019880]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 4
+stretch_mode = 5
 
 [node name="CHAT" type="MarginContainer" parent="USER/UI" unique_id=2048860323]
 custom_minimum_size = Vector2(200, 150)

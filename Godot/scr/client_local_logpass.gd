@@ -14,7 +14,7 @@ extends Resource
 	"S_Veter" : -5,
 	"PTT_BUTTON_NAME" : "ALT",
 	"VOX_MODE" : "ON",
-	"MICROFONE" : "ON",
+	"MICROFONE" : "OFF",
 	"DED_MODE" : "OFF",
 	"COLOR_DED" : {
 		"mBear" : Color(0.767, 0.361, 0.0, 1.0),

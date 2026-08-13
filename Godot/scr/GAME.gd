@@ -52,6 +52,8 @@ const figura := {
 	"lada_fan_ready" : preload("res://mesh_figura/lada_fan_ready.tscn"),
 	}
 
+var koloda = []
+
 const material := {
 	"walk_m" : preload("res://visual/material/game/walk.tres"),
 	"attack_m" : preload("res://visual/material/game/attack.tres"),
@@ -86,16 +88,16 @@ const king_gerb := [
 	]
 
 const kazna_ico := [
-	preload("res://koloda/kazna/K_00.png"), 
-	preload("res://koloda/kazna/K_00_Op.png"), 
-	preload("res://koloda/kazna/K_1.png"), 
-	preload("res://koloda/kazna/K_1_Op.png"), 
-	preload("res://koloda/kazna/K_2.png"), 
-	preload("res://koloda/kazna/K_2_Op.png"), 
-	preload("res://koloda/kazna/K_3.png"), 
-	preload("res://koloda/kazna/K_3_Op.png"), 
-	preload("res://koloda/kazna/K_4.png"), 
-	preload("res://koloda/kazna/K_4_Op.png")
+	preload("res://pictures/kazna/K_00.png"), 
+	preload("res://pictures/kazna/K_00_Op.png"), 
+	preload("res://pictures/kazna/K_1.png"), 
+	preload("res://pictures/kazna/K_1_Op.png"), 
+	preload("res://pictures/kazna/K_2.png"), 
+	preload("res://pictures/kazna/K_2_Op.png"), 
+	preload("res://pictures/kazna/K_3.png"), 
+	preload("res://pictures/kazna/K_3_Op.png"), 
+	preload("res://pictures/kazna/K_4.png"), 
+	preload("res://pictures/kazna/K_4_Op.png")
 	]
 
 var kazna_ico_select := 0
@@ -135,13 +137,29 @@ var menu_open := false
 	"buy_ghost" : null,
 	"effect_holder" : $WORLD/gex_effect_holder,
 	"effect_select" : $WORLD/gex_effect_holder/gex_effect,
-	"effect_rotate" : $WORLD/gex_effect_holder/rotate_system_v2
+	"effect_rotate" : $WORLD/gex_effect_holder/rotate_system_v2,
+	"effect_spawn" : $WORLD/gex_effect_holder/gex_effect2
 	}
 
 
 
 
 func _ready() -> void:
+	
+	for lvl in ["A", "B"]:
+		if TABLE.has_node(lvl):
+			for g in TABLE.get_node(lvl).get_children():
+				if g.name.begins_with("GEX"):
+					g.add_to_group("baff_"+lvl)
+	
+	var koloda_path = "res://pictures/koloda/"
+	var files = list_files_in_directory(koloda_path)
+	for f in files:
+		if f.ends_with(".png"):
+			var karta = load(koloda_path.path_join(f))
+			if karta:
+				koloda.append(karta)
+	
 	if R.status == "CLIENT":
 		lobby_parametrs = C.lobby_scene.lobby_parametrs.duplicate()
 		players_user = C.lobby_scene.players_user.duplicate()
@@ -151,12 +169,8 @@ func _ready() -> void:
 		players_user = SG.players_user.duplicate()
 		flag["server_check"] = true
 		randomize()
-	
-	for lvl in ["A", "B"]:
-		if TABLE.has_node(lvl):
-			for g in TABLE.get_node(lvl).get_children():
-				if g.name.begins_with("GEX"):
-					g.add_to_group("baff_"+lvl)
+		await get_tree().create_timer(1).timeout
+		koloda.shuffle()
 
 
 func _process(delta: float) -> void:
@@ -176,6 +190,10 @@ func _process(delta: float) -> void:
 			break
 		else:
 			action = false
+	
+	if have_tusk < 0:
+		rpc("send_chat", "ОШИБКА! Количесвто ходов отрицательно!")
+		have_tusk = 0
 	
 	#if have_tusk == 0:
 		#flag["you_turn"] = false
@@ -312,6 +330,7 @@ func spawn_start():
 		for pu in players_user.keys():
 			kazna_dodep(pu, 67)
 		rpc("kazna_update", players_user)
+		rpc("send_turn", active_user, flag["first_turn"], "")
 
 @rpc("authority", "call_local", "reliable")
 func figura_spawn(player, fig_name, gex_path):
@@ -363,19 +382,21 @@ func figura_spawn(player, fig_name, gex_path):
 	gex.add_to_group(fig_name)
 	flag["hard_work"] = false
 
+
 @rpc("any_peer", "call_local", "reliable")
 func send_chat(text):
 	$USER/UI/CHAT/VB/panel/Box/chat.append_text(text)
 
 @rpc("authority", "call_local", "reliable")
-func send_turn(active_user, first_turn):
+func send_turn(active_user, first_turn, karta):
 	if flag["hard_work"]:
 		while flag["hard_work"]:
 			await get_tree().process_frame
 	flag["hard_work"] = true
 	
+	
 	if R.status == "SERVER_GAME":
-		var text = "\n"+"[color=green]"+"ХОД ИГРОКА: "+str(players_user[first_turn_name]["username"])+"[/color]"
+		var text = "\n"+"[color=green]"+"ХОД ИГРОКА: "+str(players_user[active_user[0]]["username"])+"[/color]"
 		rpc("send_chat", text)
 	
 	if R.status == "CLIENT":
@@ -393,6 +414,13 @@ func send_turn(active_user, first_turn):
 			flag["you_turn"] = false
 			have_tusk = 0
 			$USER/UI/player_turn_go.text = str(players_user[active_user[0]]["username"])+" - ходи уже"
+		if karta != "":
+			for k in koloda:
+				if k.name == karta:
+					$USER/UI/Karta/Texture.texture = k
+					if !flag["rat_alive"]:
+						$USER/UI/Karta.popup()
+					break
 	
 	flag["hard_work"] = false
 
@@ -524,8 +552,8 @@ func S_rotate(gex_select_path, rotate_set):
 	
 	gex_select.rotation_degrees.y = rotate_set
 	if R.status == "CLIENT":
-		gex["effect_select"].global_position = gex_select.global_position
-		gex["effect_select"].anim()
+		gex["effect_spawn"].global_position = gex_select.global_position
+		gex["effect_spawn"].anim()
 		action_cansel()
 	if R.status == "SERVER_GAME":
 		rpc("update_power")
@@ -578,6 +606,8 @@ func update_power():
 	
 	var allgex = TABLE.find_children("GEX*", "", true, false)
 	for gedel in allgex:
+		for chk_przrk in gedel.get_children():
+				chk_przrk.visible = true
 		var cube_del = gedel.find_children("cute_cube", "", true, false)
 		if cube_del.size() > 0:
 			for cube_del2 in cube_del:
@@ -627,6 +657,10 @@ func update_power():
 						ge2.add_child(cute_cube)
 						players_user[u]["kazna_power"] += 1
 					continue
+	if R.status == "CLIENT":
+		for pu in players_user.keys():
+			if players_user[pu]["username"] == C.USERNAME:
+				$USER/UI/Kazna_b/Count_l.text = str(players_user[pu]["kazna"])+" +"+str(players_user[pu]["kazna_power"])
 	
 	flag["hard_work"] = false
 
@@ -639,7 +673,6 @@ func turn_update(info, info2):
 	if info == "turn_final":
 		if flag["first_turn"]:
 			flag["first_turn"] = false
-			
 			var spawns := {}
 			for ap2 in active_user:
 				spawns[ap2] = int(players_user[ap2]["spawn"])
@@ -654,12 +687,18 @@ func turn_update(info, info2):
 			else:
 				for i in range(len_s):
 					active_user.append(sorted_ap[(first_player_index-1-i+len_s) % len_s])
-			rpc("send_turn", active_user, flag["first_turn"])
+			rpc("send_turn", active_user, flag["first_turn"], "")
 		else:
 			var turn_name = active_user[0]
 			active_user.erase(turn_name)
 			active_user.append(turn_name)
-			rpc("send_turn", active_user, flag["first_turn"])
+			if !flag["first_turn"] and active_user[0] == first_turn_name:
+				flag["hard_work"] = false
+				pick_first_turn()
+				var karta = pick_koloda()
+				rpc("send_turn", active_user, flag["first_turn"], "")
+				return
+			rpc("send_turn", active_user, flag["first_turn"], "")
 	
 	flag["hard_work"] = false
 
@@ -848,6 +887,27 @@ func rotate_buttons():
 			rpc("S_rotate", gex["select"].get_path(), rotate_set)
 			)
 
+func list_files_in_directory(path):
+	var files = []
+	var dir = DirAccess.open(path)
+	if dir == null:
+		print("Ошибка открытия папки: ", path)
+		return files
+	
+	dir.list_dir_begin()  # начинаем перечисление
+	while true:
+		var file_name = dir.get_next()
+		if file_name == "":
+			break  # конец списка
+		# Пропускаем системные папки "." и ".."
+		if file_name == "." or file_name == "..":
+			continue
+		# Проверяем, является ли это файлом (не папкой)
+		if not dir.current_is_dir():
+			files.append(file_name)
+	dir.list_dir_end()
+	return files
+
 #endregion
 
 #region gex_func
@@ -894,7 +954,7 @@ func gex_pressed(gex_signal):
 	
 	elif flag["buy"]:
 		if flag["buy_ok"] and have_tusk:
-			if flag["king_alive"]:
+			if flag["king_alive"] and gex["buy_ghost"].get_meta("fig_buy_name") == "peshk":
 				var lvl_spawn = 0
 				for g_r in gex_signal.get_overlapping_areas():
 					if g_r.name == "attack" and g_r.get_parent().get_parent().is_in_group(C.USERNAME):
@@ -1066,6 +1126,7 @@ func action_cansel():
 	gex["effect_select"].global_position = gex["effect_holder"].global_position
 	gex["effect_rotate"].global_position = gex["effect_holder"].global_position
 	gex["base_rotate"] = 0.0
+	gex["select"] = null
 	
 	for f in action_flag:
 		flag[f] = false
@@ -1134,11 +1195,20 @@ func pick_first_turn():
 	first_turn_name = active_user.pick_random()
 	active_user.erase(first_turn_name)
 	active_user.insert(0, first_turn_name)
-	
-	rpc("send_turn", active_user, flag["first_turn"])
 
-func pick_karta():
-	pass
+
+func pick_koloda():
+	var karta = koloda[0]
+	koloda.erase(0)
+	match karta.name:
+		
+		_:pass
+	
+	
+	
+	
+	
+	return(karta.name)
 
 func kazna_dodep(user, count):
 	players_user[user]["kazna"] += count

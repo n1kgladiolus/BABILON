@@ -50,7 +50,8 @@ func anim():
 	
 	mat.uv1_offset = Vector3(0, 0, 0)
 	await get_tree().create_timer(0.1).timeout
-	global_position = Vector3(0, -2, 0)
+	global_position = get_parent().global_position
+	
 "
 
 [node name="gex_effect" type="MeshInstance3D" unique_id=1345992980]

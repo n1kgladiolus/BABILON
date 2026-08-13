@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d1h6yqjvs436"]
 
 [ext_resource type="Script" uid="uid://c60xwxdfoolh2" path="res://scr/lobby.gd" id="1_lpmmn"]
-[ext_resource type="Texture2D" uid="uid://j3yunc5vic30" path="res://import/pole.png" id="3_v8e3e"]
+[ext_resource type="Texture2D" uid="uid://j3yunc5vic30" path="res://pictures/pole.png" id="3_v8e3e"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_5o8vf"]
 color = Color(0.64705884, 0.64705884, 0.64705884, 1)

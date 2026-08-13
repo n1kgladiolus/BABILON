@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://big2y65rgll3g"]
 
-[ext_resource type="Texture2D" uid="uid://bo65jrutjqy14" path="res://koloda/figur_market/peshk.png" id="1_a5b1s"]
-[ext_resource type="Texture2D" uid="uid://bkw32yx860tl0" path="res://koloda/figur_market/peshk_pole.png" id="2_krs6p"]
-[ext_resource type="Texture2D" uid="uid://b6u720dswbvpj" path="res://koloda/figur_market/peshk_fan.png" id="3_er8ok"]
+[ext_resource type="Texture2D" uid="uid://bo65jrutjqy14" path="res://pictures/figur_market/peshk.png" id="1_a5b1s"]
+[ext_resource type="Texture2D" uid="uid://bkw32yx860tl0" path="res://pictures/figur_market/peshk_pole.png" id="2_krs6p"]
+[ext_resource type="Texture2D" uid="uid://b6u720dswbvpj" path="res://pictures/figur_market/peshk_fan.png" id="3_er8ok"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_hjhvn"]
 color = Color(0.64705884, 0.64705884, 0.64705884, 1)

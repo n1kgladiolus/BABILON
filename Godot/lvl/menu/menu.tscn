@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://s1unvb1uisiu" path="res://import/ava_placehold.png" id="4_hksph"]
 [ext_resource type="Shader" uid="uid://bq3uv3u8jhu77" path="res://addons/twovoip/voiphelper/voxshader.gdshader" id="5_hksph"]
 [ext_resource type="PackedScene" uid="uid://v8madi0lglsr" path="res://lvl/menu/ded_scene.tscn" id="6_2suwm"]
-[ext_resource type="Texture2D" uid="uid://bbk75gn61xtor" path="res://import/QR_tg.png" id="6_6h1mc"]
-[ext_resource type="Texture2D" uid="uid://cs5pr5hl1vb83" path="res://koloda/rules/rules.jpg" id="11_fq0f4"]
+[ext_resource type="Texture2D" uid="uid://bbk75gn61xtor" path="res://pictures/QR_tg.png" id="6_6h1mc"]
+[ext_resource type="Texture2D" uid="uid://cs5pr5hl1vb83" path="res://pictures/rules/rules.jpg" id="11_fq0f4"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_hjhvn"]
 color = Color(0.64705884, 0.64705884, 0.64705884, 1)
@@ -356,6 +356,7 @@ grow_vertical = 2
 oversampling_override = 1.0
 initial_position = 2
 size = Vector2i(300, 200)
+exclusive = false
 
 [node name="Label" type="Label" parent="Window/window_func/account_panel/MarginContainer/TabContainer/Account/box/ERROR_LOG_IN_DIALOG" unique_id=1500162627]
 offset_left = 8.0
@@ -373,6 +374,7 @@ oversampling_override = 1.0
 title = "Вход..."
 initial_position = 2
 size = Vector2i(220, 150)
+exclusive = false
 ok_button_text = "Зайти"
 cancel_button_text = "Выход"
 
@@ -401,12 +403,14 @@ oversampling_override = 1.0
 title = "Вход:"
 initial_position = 2
 size = Vector2i(220, 150)
+exclusive = false
 
 [node name="AVATAR_DIALOG" type="FileDialog" parent="Window/window_func/account_panel/MarginContainer/TabContainer/Account/box" unique_id=1746674056]
 oversampling_override = 1.0
 title = "Open a File"
 initial_position = 2
 size = Vector2i(800, 600)
+exclusive = false
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.png,*.jpg,*.jpeg;Images")
@@ -898,6 +902,7 @@ oversampling_override = 1.0
 title = "Задать цвет домов"
 initial_position = 2
 size = Vector2i(528, 569)
+exclusive = false
 
 [node name="color_flag" type="SubViewportContainer" parent="Window/window_func/setting_panel/MarginContainer/TabContainer/setting_dop/DED_DIALOG" unique_id=1094949923]
 offset_left = 8.0

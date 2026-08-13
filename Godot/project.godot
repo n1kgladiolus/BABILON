@@ -49,11 +49,11 @@ window/vsync/vsync_mode=0
 folder_colors={
 "res://import/": "gray",
 "res://king/": "orange",
-"res://koloda/": "red",
 "res://lvl/": "purple",
 "res://mesh/": "yellow",
 "res://mesh_figura/": "yellow",
 "res://ost/": "blue",
+"res://pictures/": "red",
 "res://scr/": "green",
 "res://visual/": "pink"
 }

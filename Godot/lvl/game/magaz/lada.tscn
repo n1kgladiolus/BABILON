@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bjbjl348l6fuq"]
 
-[ext_resource type="Texture2D" uid="uid://b5mu6nlsnsiuv" path="res://koloda/figur_market/lada.png" id="1_x8wdk"]
-[ext_resource type="Texture2D" uid="uid://cxqg7rvpt82a3" path="res://koloda/figur_market/kon.png" id="2_ls6p6"]
-[ext_resource type="Texture2D" uid="uid://c4tup23gdrn4l" path="res://koloda/figur_market/lada_pole.png" id="3_lgmgy"]
-[ext_resource type="Texture2D" uid="uid://jwksxcf5agut" path="res://koloda/figur_market/lada_fan.png" id="4_d8vk7"]
+[ext_resource type="Texture2D" uid="uid://b5mu6nlsnsiuv" path="res://pictures/figur_market/lada.png" id="1_x8wdk"]
+[ext_resource type="Texture2D" uid="uid://cxqg7rvpt82a3" path="res://pictures/figur_market/kon.png" id="2_ls6p6"]
+[ext_resource type="Texture2D" uid="uid://c4tup23gdrn4l" path="res://pictures/figur_market/lada_pole.png" id="3_lgmgy"]
+[ext_resource type="Texture2D" uid="uid://jwksxcf5agut" path="res://pictures/figur_market/lada_fan.png" id="4_d8vk7"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_hjhvn"]
 color = Color(0.64705884, 0.64705884, 0.64705884, 1)
