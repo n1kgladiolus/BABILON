@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://dt6e6gg5b6gbv"]
+
+[ext_resource type="Script" uid="uid://yl05eix86mp3" path="res://addons/zeton/zeton.gd" id="1_cy1f1"]
+[ext_resource type="Texture2D" uid="uid://d35vx0a2vu8uo" path="res://addons/zeton/Zoo/Bear.png" id="2_cy1f1"]
+[ext_resource type="Texture2D" uid="uid://c2rcql7vo512h" path="res://addons/zeton/Zoo/Bull.png" id="3_atnog"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jq8tk"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3xd07"]
+material = SubResource("StandardMaterial3D_jq8tk")
+height = 0.1
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_3xd07"]
+length = 35.0
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_jq8tk"]
+length = 35.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3xd07"]
+size = Vector3(5, 5, 0.1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cy1f1"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_atnog"]
+sky_material = SubResource("ProceduralSkyMaterial_cy1f1")
+
+[sub_resource type="Environment" id="Environment_5d6cn"]
+background_mode = 2
+sky = SubResource("Sky_atnog")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Zeton" type="Node3D" unique_id=979548683]
+script = ExtResource("1_cy1f1")
+
+[node name="monetochka" type="RigidBody3D" parent="." unique_id=975348285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+gravity_scale = 0.0
+can_sleep = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="monetochka" unique_id=459653350]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_3xd07")
+
+[node name="Side1" type="Sprite3D" parent="monetochka/MeshInstance3D" unique_id=1030008998]
+transform = Transform3D(-0.11, 9.616506e-09, 4.203508e-16, 0, -4.808253e-09, 0.11, 9.616506e-09, 0.11, 4.808253e-09, 0, 0.051, 0)
+texture = ExtResource("2_cy1f1")
+
+[node name="SideTrigger" type="Area3D" parent="monetochka/MeshInstance3D/Side1" unique_id=41678130]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="monetochka/MeshInstance3D/Side1/SideTrigger" unique_id=1842542166]
+shape = SubResource("SeparationRayShape3D_3xd07")
+
+[node name="Side2" type="Sprite3D" parent="monetochka/MeshInstance3D" unique_id=172688314]
+transform = Transform3D(-0.11, -9.616506e-09, 4.203508e-16, 0, -4.808253e-09, -0.11, 9.616506e-09, -0.11, 4.808253e-09, 0, -0.051, 0)
+texture = ExtResource("3_atnog")
+
+[node name="SideTrigger" type="Area3D" parent="monetochka/MeshInstance3D/Side2" unique_id=258073350]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="monetochka/MeshInstance3D/Side2/SideTrigger" unique_id=357398893]
+shape = SubResource("SeparationRayShape3D_jq8tk")
+
+[node name="Trigger" type="Area3D" parent="." unique_id=1517446202]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger" unique_id=2124624920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+shape = SubResource("BoxShape3D_3xd07")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=619862554]
+transform = Transform3D(-1, -3.492186e-15, 8.742277e-08, 2.2626676e-08, 0.9659259, 0.25881907, -8.444391e-08, 0.25881907, -0.9659258, 0, 0.4604166, -1.3015711)
+
+[node name="DELETE" type="Node3D" parent="." unique_id=1840068763]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="DELETE" unique_id=958048257]
+environment = SubResource("Environment_5d6cn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="DELETE" unique_id=1968894950]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Label3D" type="Label3D" parent="." unique_id=899131799]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.7422755e-08, 0, -0.9999997, 0, -0.6701969, -0.064809434)
+visible = false
+text = "Нажми, чтобы 
+остановить вращение!"
+
+[connection signal="area_entered" from="Trigger" to="." method="_on_trigger_area_entered"]
