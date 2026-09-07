@@ -4,7 +4,7 @@ const DISCO_ELYSIUM := preload("res://ost/music/disco_elysium.mp3")
 const OST_1 := preload("res://ost/music/ost_1.mp3")
 const playlist_in_game := preload("res://ost/playlist_in_game.tres")
 
-var DEBUG := false # true false
+var DEBUG := true # true false
 
 var disconnect_flag := false
 
@@ -120,7 +120,7 @@ func server_connect_failed():
 		lobby_disconnect()
 		Console.get_node("dissconect_W").popup()
 		Console.get_node("dissconect_W").confirmed.connect(func(): get_tree().quit())
-	
+
 
 func server_disconnect():
 	print("Отключение от сервера")
@@ -184,6 +184,7 @@ func lobby_list_update(data):
 func lobby_connect(data):
 	var port = data[1]
 	lobby_name = data[2]
+	#print("connect to ", data)
 	#send_player_command(["!connect_user_lobby"])
 	#await get_tree().process_frame
 	if multiplayer.multiplayer_peer:
@@ -245,10 +246,10 @@ func lobby_disconnect():
 	Console.get_node("Background").visible = true
 
 func check_user_in_lobby(data):
-	if in_lobby == true:
+	if in_lobby:
 		if USERNAME == str(data[1]):
 			is_lobby_leader = true
-		data = ["!check_user_in_lobby_return",USERNAME]
+		data = ["!check_user_in_lobby_return", USERNAME]
 		send_player_command(data)
 
 func lobby_parametrs_update(data):
@@ -296,7 +297,11 @@ func check_mem_hello():
 			Audio.Action2_sound_play(u.MEM_HELLO)
 			break
 
-
+func debag_connect(data):
+	var port = [""]
+	port.append(int(data))
+	port.append("name")
+	lobby_connect(port)
 
 
 

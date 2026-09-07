@@ -31,6 +31,7 @@ func command_submitted(command):
 	var parts = command.split("-", false)
 	var cmd = parts[0].to_lower()
 	var args = parts.slice(1)
+	#print(args)
 	match cmd:
 		"server":
 			if C.log_in_status:
@@ -38,6 +39,10 @@ func command_submitted(command):
 					var data = args
 					C.send_player_command(data)
 					print("Команда отправлена")
+		"client":
+			if args[0] == "connect":
+				var data = args[1]
+				C.debag_connect(data)
 		_:
 			write_line("Неизвестная команда: " + cmd, "error")
 

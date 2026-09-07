@@ -8,6 +8,8 @@ var game_scene
 
 
 func _ready() -> void:
+	if $\"../../../..\".name == \"MenuV2\":
+		return
 	game_scene = get_tree().root.get_node(\"GAME\")
 	await get_tree().create_timer(1.0).timeout
 	if R.status == \"CLIENT\":

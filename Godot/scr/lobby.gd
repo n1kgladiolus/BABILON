@@ -33,6 +33,7 @@ func _ready() -> void:
 	#endregion
 
 func leader():
+	await get_tree().create_timer(2).timeout
 	if C.is_lobby_leader:
 		$Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/mode.disabled = false
 		$Window/Box/lobby_window/Box_players_list/parametrs_panel/HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/mode_start.disabled = false
@@ -153,6 +154,10 @@ func lobby_parametrs_update(data):
 		await get_tree().process_frame
 	
 	for user in players_user:
+		if players_user[user]["username"] == "":
+			players_user.erase(user)
+			print("ошибка имя в лобби")
+			continue
 		if players_user[user]["username"] == str(C.USERNAME):
 			$Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box/king_select.select(int(players_user[user]["king"]))
 			$Window/Box/lobby_window/Box_players_list/players_panel/MarginContainer/VBoxContainer/you/Box/spawn_select.select(int(players_user[user]["spawn"]))

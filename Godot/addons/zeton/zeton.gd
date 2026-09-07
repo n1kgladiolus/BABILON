@@ -10,11 +10,6 @@ var target
 func _ready() -> void:
 	Roll(randi_range(0,5))
 
-func _input(event):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if time >= 2:
-				isStop = true
 
 func Roll(morda: int) -> void:
 	visible = true
@@ -26,15 +21,7 @@ func Roll(morda: int) -> void:
 	inertia = $monetochka.angular_velocity
 	
 	await get_tree().create_timer(2.5).timeout
-	
-	if !isStop:
-		$Label3D.visible = true
-	
-	await get_tree().create_timer(6.0).timeout
-	
-	if !isStop:
-		$Label3D.visible = false
-		isStop = true
+	isStop = true
 
 func  _physics_process(delta: float) -> void:
 	time += delta

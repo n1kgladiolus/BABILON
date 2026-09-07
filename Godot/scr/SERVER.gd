@@ -207,7 +207,7 @@ func request_avatar(data):
 			send_server_command_to_id(id, data)
 			return
 	data = ["!update_avatar", username, null]
-	
+
 
 func request_avatar_lobby(data):
 	var players_user = data[1]
@@ -271,7 +271,7 @@ func lobby_new_create(data):
 	var new_lobby_password = data[2]
 	var new_lobby_leader = data[3]
 	
-	#args.append("--headless")
+	args.append("--headless")
 	
 	if port == -1:
 		print("Нет свободных портов")
@@ -364,12 +364,18 @@ func lobby_players_count(data):
 func lobby_ready(data):
 	var lobby_name = data[1]
 	var lobby_port = data[2]
+	if lobby_name == "admin":
+		data = ["!lobby_send_pid", "", "admin"]
+		SERVER_CONTROL.send_server_command.rpc(data)
+		return
+	
 	for l in lobbies:
 		if lobbies[l]["status"] == "start":
 			if lobbies[l]["name"] == str(lobby_name) and lobbies[l]["port"] == int(lobby_port):
 				lobbies[l]["status"] = "ready"
 				data = ["!lobby_send_pid", l, lobbies[l]["lobby_leader"]]
 				SERVER_CONTROL.send_server_command.rpc(data)
+
 
 func lobby_close(data):
 	var lobby_name = data[1]

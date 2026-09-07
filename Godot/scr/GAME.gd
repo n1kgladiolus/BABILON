@@ -6,7 +6,7 @@ var wind := maxWind
 var lobby_parametrs := {}
 @export var players_user := {}
 @export var active_user := []
-var list_you_figur := []
+@export var list_you_figur := []
 @export var list_figur: Dictionary[String, Array] = {
 	"palyer" : ["figura"]
 	}
@@ -120,6 +120,7 @@ var kazna_ico_select := 0
 	"chat_mouse" : false,
 	"server_check" : false,
 	"event" : false,
+	"nuke" : false,
 	}
 
 const action_flag := ["hard_work", "go", "buy", "rotate", "chat_focus"]
@@ -129,7 +130,8 @@ var walk: Dictionary[String, Array] ={
 	"attack" : []
 	}
 
-var first_turn_name
+@export var last_turn_player = ""
+@export var first_turn_name = ""
 var action := false
 var menu_open := false
 @export var have_tusk := 0
@@ -201,6 +203,8 @@ func _process(delta: float) -> void:
 		rpc("send_chat", "ОШИБКА! Количесвто ходов отрицательно!")
 		have_tusk = 0
 	
+	if flag["nuke"]:
+		$ENVIRONMENT/nuke_light.rotate_y(0.05)
 	#if have_tusk == 0:
 		#flag["you_turn"] = false
 
@@ -319,6 +323,8 @@ func spawn_start():
 			continue
 		
 		active_user.append(u)
+		if !list_figur.has(players_user[u]["username"]):
+			list_figur[players_user[u]["username"]] = []
 		monolit(u)
 		
 		var gex = "D_"+spawn
@@ -350,6 +356,8 @@ func figura_spawn(player, fig_name, gex_path):
 			flag["king_alive"] = true
 	if R.status == "SERVER_GAME":
 		list_figur[player["username"]].append(fig_name)
+		if fig_name == "king":
+			player["king_status"] = true
 	
 	var gex = get_node(gex_path)
 	var player_gex
@@ -391,6 +399,7 @@ func figura_spawn(player, fig_name, gex_path):
 	flag["hard_work"] = false
 
 
+
 @rpc("any_peer", "call_local", "reliable")
 func send_chat(text):
 	$USER/UI/CHAT/VB/panel/Box/chat.append_text(text)
@@ -399,6 +408,8 @@ func send_chat(text):
 func send_turn(active_user, first_turn, karta):
 	if R.status == "SERVER_GAME":
 		rpc("update_power")
+		var text = "\n"+"[color=green]"+"ХОД ИГРОКА: "+str(players_user[active_user[0]]["username"])+"[/color]"
+		rpc("send_chat", text)
 	
 	if flag["event"]:
 		while flag["event"]:
@@ -409,10 +420,6 @@ func send_turn(active_user, first_turn, karta):
 			await get_tree().process_frame
 	flag["hard_work"] = true
 	
-	
-	if R.status == "SERVER_GAME":
-		var text = "\n"+"[color=green]"+"ХОД ИГРОКА: "+str(players_user[active_user[0]]["username"])+"[/color]"
-		rpc("send_chat", text)
 	
 	if R.status == "CLIENT":
 		flag["first_turn"] = first_turn
@@ -430,9 +437,11 @@ func send_turn(active_user, first_turn, karta):
 			have_tusk = 0
 			$USER/UI/player_turn_go.text = str(players_user[active_user[0]]["username"])+" - ходи уже"
 		if karta != "":
+			print("Установка карты... ", karta)
 			for k in koloda:
-				if k.resource_path.get_basename() == karta:
+				if k.resource_path.get_file().get_basename() == karta:
 					$USER/UI/Karta/Texture.texture = k
+					print("Карта попап ")
 					$USER/UI/Karta.popup()
 					break
 	
@@ -464,6 +473,10 @@ func S_go(gex_signal_path, gex_select_path, player):
 			gex["select"] = gex_signal
 			flag["rotate"] = true
 			rotate()
+		if R.status == "SERVER_GAME":
+			flag["server_check"] = true
+			await get_tree().create_timer(0.5).timeout
+			rpc("update_power")
 	
 	else:
 		for f in figura_parametr.keys():
@@ -476,9 +489,6 @@ func S_go(gex_signal_path, gex_select_path, player):
 						rpc("S_go", gex_signal_path, gex_select_path, sender)
 						var text = "\n"+"[color=green]"+"Игрок: "+players_user[sender]["username"]+" сдвинул фигуру"+"[/color]"
 						rpc("send_chat", text)
-	if R.status == "SERVER_GAME":
-		flag["server_check"] = true
-		rpc("update_power")
 	flag["hard_work"] = false
 
 @rpc("any_peer", "call_local", "reliable")
@@ -498,7 +508,12 @@ func S_attack(gex_signal_path, gex_select_path, player):
 		for f in figura_parametr.keys():
 			if gex_select.is_in_group(f):
 				pass
-				
+		
+		
+		if R.status == "SERVER_GAME":
+			flag["server_check"] = true
+			await get_tree().create_timer(0.5).timeout
+			rpc("update_power")
 				#gex_select.get_node(f).reparent(gex_signal, false)
 				#gex_select.get_node("pad").reparent(gex_signal, false)
 				#gex_select.remove_from_group(f)
@@ -521,9 +536,6 @@ func S_attack(gex_signal_path, gex_select_path, player):
 								var text = "\n"+"[color=green]"+"Игрок: "+players_user[sender]["username"]+" атаковал фигуру игрока: "+oponent+"[/color]"
 								rpc("send_chat", text)
 								break
-	if R.status == "SERVER_GAME":
-		flag["server_check"] = true
-		rpc("update_power")
 	flag["hard_work"] = false
 
 @rpc("any_peer", "call_local", "reliable")
@@ -538,6 +550,15 @@ func S_buy(gex_signal_path, meta, player):
 	if !flag["server_check"]:
 		players_user[player]["kazna"] -= figura_parametr[meta][2]
 		figura_spawn(players_user[player], meta, gex_signal_path)
+		if R.status == "CLIENT" and players_user[player]["username"] == C.USERNAME and meta == "peshk":
+			gex["select"] = gex_signal
+			flag["rotate"] = true
+			rotate()
+		if R.status == "SERVER_GAME":
+			flag["server_check"] = true
+			await get_tree().create_timer(0.5).timeout
+			rpc("update_power")
+			rpc("kazna_update", players_user)
 	
 	else:
 		print(players_user, sender, figura_parametr[meta][2])
@@ -549,11 +570,7 @@ func S_buy(gex_signal_path, meta, player):
 				var text = "\n"+"[color=green]"+"Игрок: "+players_user[sender]["username"]+" купил фигуру"+"[/color]"
 				rpc("send_chat", text)
 	
-	if R.status == "SERVER_GAME":
-		flag["hard_work"] = false
-		flag["server_check"] = true
-		rpc("update_power")
-		rpc("kazna_update", players_user)
+
 	flag["hard_work"] = false
 
 @rpc("any_peer", "call_local", "reliable")
@@ -570,8 +587,55 @@ func S_rotate(gex_select_path, rotate_set):
 		gex["effect_spawn"].anim()
 		action_cansel()
 	if R.status == "SERVER_GAME":
+		await get_tree().create_timer(0.5).timeout
 		rpc("update_power")
 	flag["hard_work"] = false
+
+@rpc("authority", "call_local", "reliable")
+func S_kill(gex_path):
+	var gex_kill = get_node(gex_path)
+	var sender = multiplayer.get_remote_sender_id()
+	if flag["hard_work"]:
+		while flag["hard_work"]:
+			await get_tree().process_frame
+	flag["hard_work"] = true
+	var fig
+	var g_group = gex_kill.get_groups()
+	if gex_kill.has_node("pad"):
+		for f in figura_parametr.keys():
+			for g in g_group:
+				if f == g:
+					if f == "king":
+						for u in players_user.keys():
+							for g2 in g_group:
+								if players_user[u]["username"] == g2:
+									if R.status == "SERVER_GAME":
+										players_user[u]["king_status"] = false
+									elif R.status == "CLIENT":
+										if C.USERNAME == players_user[u]["username"]:
+											flag["king_alive"] = false
+											Audio.Action_sound_play("king_dead")
+									break
+					if R.status == "CLIENT":
+						list_you_figur.erase(f)
+					fig = f
+					gex_kill.get_node(str(g)).queue_free()
+					gex_kill.remove_from_group(g)
+					break
+			
+		for u in players_user.keys():
+			for g in g_group:
+				if players_user[u]["username"] == g:
+					gex_kill.remove_from_group(g)
+					if R.status == "SERVER_GAME":
+						list_figur[players_user[u]["username"]].erase(fig)
+					break
+			
+		gex_kill.get_node("pad").queue_free()
+	
+	flag["hard_work"] = false
+	if R.status == "SERVER_GAME":
+		rpc("update_power")
 
 @rpc("authority", "call_local", "reliable")
 func kazna_update(pu):
@@ -579,11 +643,16 @@ func kazna_update(pu):
 		while flag["hard_work"]:
 			await get_tree().process_frame
 	flag["hard_work"] = true
-	if R.status != "SERVER_GAME":
+	if R.status == "SERVER_GAME":
 		flag["hard_work"] = false
 		return
 	
-	Audio.Action_sound_play("kazna")
+	var you_kazna
+	for u in players_user.keys():
+		if players_user[u]["username"] == C.USERNAME:
+			you_kazna = players_user[u]["kazna"]
+			break
+	
 	for pu2 in pu.keys():
 		var kazna_ico_select_2 := 0
 		players_user[pu2]["kazna"] = pu[pu2]["kazna"]
@@ -601,6 +670,8 @@ func kazna_update(pu):
 			kazna_ico_select_2 = 0
 		
 		if players_user[pu2]["username"] == C.USERNAME:
+			if you_kazna != players_user[pu2]["kazna"]:
+				Audio.Action_sound_play("kazna")
 			kazna_ico_select = kazna_ico_select_2
 			$USER/UI/Kazna_b/Count_l.text =  str(players_user[pu2]["kazna"])
 			$USER/UI/Kazna_b/Kazna.texture = kazna_ico[kazna_ico_select]
@@ -680,6 +751,7 @@ func update_power():
 
 @rpc("any_peer", "call_local", "reliable")
 func turn_update(info, info2):
+	var sender = multiplayer.get_remote_sender_id()
 	if R.status != "SERVER_GAME":
 		return
 	if flag["hard_work"]:
@@ -710,11 +782,15 @@ func turn_update(info, info2):
 			active_user.append(turn_name)
 			if !flag["first_turn"] and active_user[0] == first_turn_name:
 				flag["hard_work"] = false
+				print("Новый круг ")
+				last_turn_player = sender
 				pick_first_turn()
-				var karta = pick_koloda()
-				await event("rat")
+				var karta = await pick_koloda()
+				
 				await kazna_dodep_turn()
 				await kazna_update(players_user)
+				
+				await event("rat", "")
 				rpc("send_turn", active_user, flag["first_turn"], karta)
 				return
 			rpc("send_turn", active_user, flag["first_turn"], "")
@@ -724,6 +800,7 @@ func turn_update(info, info2):
 @rpc("authority", "call_local", "reliable")
 func long_event_update(le):
 	long_event = le
+	print("long_event: ", long_event)
 #endregion
 
 #region UI
@@ -799,42 +876,42 @@ func turn_button():
 				var you_sosed_A
 				var you_sosed_B
 				var you_spawn
-				for au in active_user:
-					if players_user[au]["username"] == C.USERNAME:
-						you_spawn = int(players_user[au]["spawn"])
-						match you_spawn:
-							2: 
-								you_sosed_A = 7
-								for au2 in active_user:
-									if int(players_user[au2]["spawn"]) != you_sosed_A:
-										you_sosed_A -= 1
-								you_sosed_B = you_spawn + 1
-								for au2 in active_user:
-									if int(players_user[au2]["spawn"]) != you_sosed_B:
-										you_sosed_B += 1
-							7: 
-								you_sosed_A = you_spawn - 1
-								for au2 in active_user:
-									if int(players_user[au2]["spawn"]) != you_sosed_A:
-										you_sosed_A -= 1
-								you_sosed_B = 2
-								for au2 in active_user:
-									if int(players_user[au2]["spawn"]) != you_sosed_B:
-										you_sosed_B += 1
-							_:
-								you_sosed_A = you_spawn - 1
-								for au2 in active_user:
-									if int(players_user[au2]["spawn"]) != you_sosed_A:
-										you_sosed_A -= 1
-								you_sosed_B = you_spawn + 1
-								for au2 in active_user:
-									if int(players_user[au2]["spawn"]) != you_sosed_B:
-										you_sosed_B -= 1
-				for au2 in active_user:
-					if int(players_user[au2]["spawn"]) == you_sosed_A:
-						$USER/UI/Turn_W_2/Box/Margin/Box/A_player.text = players_user[au2]["username"]
-					if int(players_user[au2]["spawn"]) == you_sosed_B:
-						$USER/UI/Turn_W_2/Box/Margin/Box/B_player.text = players_user[au2]["username"]
+				#for au in active_user:
+					#if players_user[au]["username"] == C.USERNAME:
+						#you_spawn = int(players_user[au]["spawn"])
+						#match you_spawn:
+							#2: 
+								#you_sosed_A = 7
+								#for au2 in active_user:
+									#if int(players_user[au2]["spawn"]) != you_sosed_A:
+										#you_sosed_A -= 1
+								#you_sosed_B = you_spawn + 1
+								#for au2 in active_user:
+									#if int(players_user[au2]["spawn"]) != you_sosed_B:
+										#you_sosed_B += 1
+							#7: 
+								#you_sosed_A = you_spawn - 1
+								#for au2 in active_user:
+									#if int(players_user[au2]["spawn"]) != you_sosed_A:
+										#you_sosed_A -= 1
+								#you_sosed_B = 2
+								#for au2 in active_user:
+									#if int(players_user[au2]["spawn"]) != you_sosed_B:
+										#you_sosed_B += 1
+							#_:
+								#you_sosed_A = you_spawn - 1
+								#for au2 in active_user:
+									#if int(players_user[au2]["spawn"]) != you_sosed_A:
+										#you_sosed_A -= 1
+								#you_sosed_B = you_spawn + 1
+								#for au2 in active_user:
+									#if int(players_user[au2]["spawn"]) != you_sosed_B:
+										#you_sosed_B -= 1
+				#for au2 in active_user:
+					#if int(players_user[au2]["spawn"]) == you_sosed_A:
+						#$USER/UI/Turn_W_2/Box/Margin/Box/A_player.text = players_user[au2]["username"]
+					#if int(players_user[au2]["spawn"]) == you_sosed_B:
+						#$USER/UI/Turn_W_2/Box/Margin/Box/B_player.text = players_user[au2]["username"]
 				$USER/UI/Turn_W_2.popup()
 				return
 			rpc_id(1, "turn_update", "turn_final", "")
@@ -1012,19 +1089,24 @@ func buy_gex(gex_signal, enorex):
 		return
 	
 	var meta_name = gex["buy_ghost"].get_meta("fig_buy_name")
-	flag["buy_ok"] = true
-	
+	flag["buy_ok"] = false
 	gex["buy_ghost"].global_position = gex_signal.global_position
+	
 	if meta_name == "peshk" :
-		if gex_signal.is_in_group(C.USERNAME+"_power"):
-			for g in gex_signal.get_groups():
-				if g.ends_with("_power") and g != str(C.USERNAME+"_power"):
+		for g in gex_signal.get_groups():
+			if g.ends_with("_power"):
+				if g == str(C.USERNAME+"_power"):
+					flag["buy_ok"] = true
+				if g != str(C.USERNAME+"_power"):
 					flag["buy_ok"] = false
 					break
-				if g in figura_parametr.keys():
+		for fp in figura_parametr.keys():
+			for g in gex_signal.get_groups():
+				if fp == g:
 					flag["buy_ok"] = false
 					break
 	else:
+		flag["buy_ok"] = true
 		if !(gex_signal.is_in_group(figura_parametr[meta_name][4]) and gex_signal.is_in_group(C.USERNAME)):
 			flag["buy_ok"] = false
 	
@@ -1119,6 +1201,13 @@ func buy(figura_buy_name):
 		return
 	if flag["hard_work"]:
 		return
+	if long_event == "war":
+		if figura_buy_name != "peshk":
+			if !figura_buy_name.ends_with("_fan"):
+				return
+	if long_event == "gomo":
+		if figura_buy_name == "peshk":
+			return
 	flag["hard_work"] = true
 	flag["buy"] = true
 	
@@ -1221,83 +1310,93 @@ func pick_first_turn():
 
 
 func pick_koloda():
-	var karta = koloda[0]
-	koloda.erase(0)
-	match karta.resource_path.get_basename():
+	var karta = koloda[0].resource_path.get_file().get_basename()
+	koloda.remove_at(0)
+	print("КАРТА: ", karta)
+	if flag["rat_alive"]:
+		print("КРЫСА!")
+		return("")
+	match karta:
 		"бубны-засуха" : 
 			long_event = "zasuha"
 		"бубны-землетрясение" : 
-			for pu in players_user:
-				pu["kazna"] = 0
+			for pu in players_user.keys():
+				players_user[pu]["kazna"] = 0
 			rpc("kazna_update", players_user)
 		"бубны-наводнение" :
 			long_event = "navod"
 		"бубны-пожар" :
-			players_user[active_user[active_user.size()-2]]["kazna"] = 0
+			players_user[last_turn_player]["kazna"] = 0
 		"бубны-пожар-2" :
-			players_user[active_user[active_user.size()-2]]["kazna"] = 0
+			players_user[last_turn_player]["kazna"] = 0
 		"бубны-пожар-3" :
-			players_user[active_user[active_user.size()-2]]["kazna"] = 0
+			players_user[last_turn_player]["kazna"] = 0
 		"кр-пики-бык" :
+			print("здох король, крыса привет")
 			for lf in list_figur.keys():
-				for f in lf:
+				for f in list_figur[lf]:
 					if f == "king":
 						for up in players_user.keys():
 							if lf == players_user[up]["username"] and players_user[up]["king"] == "3":
-								rpc("S_kill", players_user[up], "king")
-								await rat_spawn()
+								await event("king_kill", players_user[up])
+								event("rat_spawn", players_user[up])
 								break
-						break
+						
 		"кр-пики-дракон" :
+			print("здох король, крыса привет")
 			for lf in list_figur.keys():
-					for f in lf:
-						if f == "king":
-							for up in players_user.keys():
-								if lf == players_user[up]["username"] and players_user[up]["king"] == "4":
-									rpc("S_kill", players_user[up], "king")
-									await rat_spawn()
-									break
-							break
+				for f in list_figur[lf]:
+					if f == "king":
+						for up in players_user.keys():
+							if lf == players_user[up]["username"] and players_user[up]["king"] == "4":
+								await event("king_kill", players_user[up])
+								event("rat_spawn", players_user[up])
+								break
+						
 		"кр-пики-лев" :
+			print("здох король, крыса привет")
 			for lf in list_figur.keys():
-				for f in lf:
+				for f in list_figur[lf]:
 					if f == "king":
 						for up in players_user.keys():
 							if lf == players_user[up]["username"] and players_user[up]["king"] == "7":
-								rpc("S_kill", players_user[up], "king")
-								await rat_spawn()
+								await event("king_kill", players_user[up])
+								event("rat_spawn", players_user[up])
 								break
-						break
+						
 		"кр-пики-медведь" :
+			print("здох король, крыса привет")
 			for lf in list_figur.keys():
-				for f in lf:
+				for f in list_figur[lf]:
 					if f == "king":
 						for up in players_user.keys():
 							if lf == players_user[up]["username"] and players_user[up]["king"] == "2":
-								rpc("S_kill", players_user[up], "king")
-								await rat_spawn()
+								await event("king_kill", players_user[up])
+								event("rat_spawn", players_user[up])
 								break
-						break
+						
 		"кр-пики-орёл" :
+			print("здох король, крыса привет")
 			for lf in list_figur.keys():
-				for f in lf:
+				for f in list_figur[lf]:
 					if f == "king":
 						for up in players_user.keys():
 							if lf == players_user[up]["username"] and players_user[up]["king"] == "5":
-								rpc("S_kill", players_user[up], "king")
-								await rat_spawn()
+								await event("king_kill", players_user[up])
+								event("rat_spawn", players_user[up])
 								break
-						break
+						
 		"кр-пики-слон" :
+			print("здох король, крыса привет")
 			for lf in list_figur.keys():
-				for f in lf:
+				for f in list_figur[lf]:
 					if f == "king":
 						for up in players_user.keys():
 							if lf == players_user[up]["username"] and players_user[up]["king"] == "6":
-								rpc("S_kill", players_user[up], "king")
-								await rat_spawn()
+								await event("king_kill", players_user[up])
+								event("rat_spawn", players_user[up])
 								break
-						break
+						
 		"кр-червы-бык" :
 			pass
 		"кр-червы-дракон" :
@@ -1335,17 +1434,59 @@ func pick_koloda():
 		"чер-пики-слон" :
 			pass
 		"чер-червы-бык" : 
-			pass
+			print("здох король")
+			for lf in list_figur.keys():
+				for f in list_figur[lf]:
+					if f == "king":
+						for up in players_user.keys():
+							if lf == players_user[up]["username"] and players_user[up]["king"] == "3":
+								await event("king_kill", players_user[up])
+								break
 		"чер-червы-дракон" : 
-			pass
+			print("здох король")
+			for lf in list_figur.keys():
+				for f in list_figur[lf]:
+					if f == "king":
+						for up in players_user.keys():
+							if lf == players_user[up]["username"] and players_user[up]["king"] == "4":
+								await event("king_kill", players_user[up])
+								break
 		"чер-червы-лев" : 
-			pass
+			print("здох король")
+			for lf in list_figur.keys():
+				for f in list_figur[lf]:
+					if f == "king":
+						for up in players_user.keys():
+							if lf == players_user[up]["username"] and players_user[up]["king"] == "7":
+								await event("king_kill", players_user[up])
+								break
 		"чер-червы-медведь" :
-			pass
+			print("здох король")
+			for lf in list_figur.keys():
+				for f in list_figur[lf]:
+					if f == "king":
+						for up in players_user.keys():
+							if lf == players_user[up]["username"] and players_user[up]["king"] == "2":
+								await event("king_kill", players_user[up])
+								break
 		"чер-червы-орёл" :
-			pass
+			print("здох король")
+			for lf in list_figur.keys():
+				for f in list_figur[lf]:
+					if f == "king":
+						for up in players_user.keys():
+							if lf == players_user[up]["username"] and players_user[up]["king"] == "5":
+								await event("king_kill", players_user[up])
+								break
 		"чер-червы-слон" :
-			pass
+			print("здох король, крыса привет")
+			for lf in list_figur.keys():
+				for f in list_figur[lf]:
+					if f == "king":
+						for up in players_user.keys():
+							if lf == players_user[up]["username"] and players_user[up]["king"] == "6":
+								await event("king_kill", players_user[up])
+								break
 		
 		
 		
@@ -1353,19 +1494,18 @@ func pick_koloda():
 	
 	
 	
-	
+	print("Длинный евент: ", long_event)
 	rpc("long_event_update", long_event)
 	if karta != "":
-		return(karta.resource_path.get_basename())
+		return(karta)
 	else:
 		return("")
 
 
-func event(event_name):
+func event(event_name, info):
 	if flag["hard_work"]:
 		while flag["hard_work"]:
 			await get_tree().process_frame
-	flag["hard_work"] = true
 	
 	flag["event"] = true
 	match event_name:
@@ -1373,8 +1513,21 @@ func event(event_name):
 			if !flag["rat_alive"]:
 				return
 			pass
-		""
+		"rat_spawn" :
+			flag["rat_alive"] = true
+		"king_kill" :
+			var allgex = TABLE.find_children("GEX*", "", true, false)
+			for g in allgex:
+				if g.is_in_group("king") and g.is_in_group(info["username"]):
+					rpc("S_kill", g.get_path())
+		"nuke_activate" :
+			flag["nuke"] = true
+			$ENVIRONMENT/nuke_light.visible = true
+		
 		_ : pass
+	
+	
+	flag["event"] = false
 
 
 
@@ -1382,27 +1535,44 @@ func kazna_dodep(user, count):
 	players_user[user]["kazna"] += count
 
 func kazna_dodep_turn():
+	var staray_kazna = players_user.duplicate(true)
 	flag["hard_work"] = true
 	if long_event != "zasuha":
 		for pu in players_user.keys():
-			players_user[pu]["kazna"] += players_user[pu]["kazna_power"] 
-			for lf in list_figur.keys():
-				if players_user[pu]["username"] == lf:
-					for f in list_figur[lf]:
-						if f == "peshk_fan":
-							players_user[pu]["kazna"] += 1
+			if players_user[pu]["king_status"]:
+				players_user[pu]["kazna"] += players_user[pu]["kazna_power"] 
+				for lf in list_figur.keys():
+					if players_user[pu]["username"] == lf:
+						for f in list_figur[lf]:
+							if f == "peshk_fan":
+								players_user[pu]["kazna"] += 1
+			else:
+				players_user[pu]["kazna"] += list_figur[players_user[pu]["username"]].size()
 	else:
 		for pu in players_user.keys():
-			players_user[pu]["kazna"] += list_figur[players_user[pu]["username"].size()]
+			players_user[pu]["kazna"] += list_figur[players_user[pu]["username"]].size()
 	rpc("kazna_update", players_user)
-	flag["hard_work"] = false
 	
+	for pu in players_user.keys():
+		for sk in staray_kazna.keys():
+			if pu == sk:
+				#print(str(players_user[pu]["kazna"]), " and ", str(staray_kazna[sk]["kazna"]))
+				var dodep = int(players_user[pu]["kazna"]) - int(staray_kazna[sk]["kazna"])
+				var text = "\n"+"[color=green]"+"Игрок: "+str(players_user[pu]["username"])+" получил "+str(dodep)+" монет"+"[/color]"
+				rpc("send_chat", text)
+	
+	flag["hard_work"] = false
 
 
 
-func rat_spawn():
-	flag["rat_alive"] = true
+
+func nucklear_activate():
 	pass
+
+
+
+
+
 #endregion
 
 

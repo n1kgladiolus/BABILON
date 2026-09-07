@@ -9,7 +9,7 @@ var xStep = 0
 var rf = 0
 var rt = 2
 var scene = preload("res://addons/san_clouds/Resourses/cloud.tscn")
-@onready var game: Node3D = $"../../.."
+@onready var game: Node = $"../../.."
 
 
 func _on_timer_timeout() -> void:
@@ -20,7 +20,7 @@ func _on_timer_timeout() -> void:
 func _ready() -> void:
 	$"../Timer".timeout.connect(_on_timer_timeout)
 	await get_tree().process_frame
-	material_override = load("res://addons/san_clouds/Resourses/clouds.tres")
+	material_override = load("res://addons/san_clouds/Resourses/clouds2.tres")
 	CloudSpawn()
 	
 	while global_position.z < fromz + (z*0.6) - game.wind*10:

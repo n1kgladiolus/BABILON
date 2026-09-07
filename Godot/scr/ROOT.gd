@@ -4,8 +4,10 @@ var status := "" #CLIENT, SERVER, SERVER_GAME
 
 
 func _ready() -> void:
+	print("Hello Programm!")
 	var args := OS.get_cmdline_user_args()
 	print(args)
+
 
 
 @rpc("any_peer")

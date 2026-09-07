@@ -4,13 +4,13 @@ extends MeshInstance3D
 var starScene := preload("res://addons/Sky/star.tscn")
 var material := preload("res://addons/Sky/star2.tres")
 var starMaterial := preload("res://addons/Sky/star.tres")
-var amount = 10
+var amount = 15
 
 func galaxySpawn():
 	var galaxy := []
 	var angle := randf_range(0, TAU)
 	var star := starScene.instantiate()
-	star.position = position + Vector3(cos(angle), randf_range(0, 1), sin(angle)).normalized() * radius
+	star.position = position + Vector3(cos(angle), randf_range(0.1, 0.6), sin(angle)).normalized() * radius
 	add_child(star)
 	star.look_at(global_position, Vector3.UP)
 	star.get_child(0).material_override = starMaterial.duplicate()
@@ -57,3 +57,7 @@ func draw_line(from: Vector3, to: Vector3, thickness: float = 0.05):
 	instance.transform.basis = basis
 	instance.material_override = material
 	add_child(instance)
+
+func _process(delta: float) -> void:
+	rotate_y(0.00001)
+	

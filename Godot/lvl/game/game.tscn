@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cq2usuu02xkjf" path="res://addons/Sky/sky.tscn" id="2_2frox"]
 [ext_resource type="ArrayMesh" uid="uid://c5op6myhxw674" path="res://mesh/vavilon.res" id="2_lto23"]
 [ext_resource type="PackedScene" uid="uid://bveeukxurc7cf" path="res://lvl/game/monolit.tscn" id="3_lto23"]
+[ext_resource type="PackedScene" uid="uid://b31kn6xowu3jv" path="res://addons/chemodan/chemodan.tscn" id="4_n7vso"]
 [ext_resource type="Texture2D" uid="uid://s1unvb1uisiu" path="res://import/ava_placehold.png" id="6_4hivm"]
 [ext_resource type="Texture2D" uid="uid://g34041lbfsm7" path="res://king/gerb/Bear.png" id="7_iil1l"]
 [ext_resource type="Texture2D" uid="uid://bvx81ubti08iv" path="res://visual/material/game/lain.png" id="8_iwtnq"]
@@ -27,106 +28,35 @@
 [ext_resource type="Texture2D" uid="uid://shrsl2m861te" path="res://pictures/figur_ico/rotate_button_2.png" id="22_mh2qp"]
 [ext_resource type="Texture2D" uid="uid://pw3lf1xpnmjl" path="res://pictures/figur_ico/yaderka_button_1.png" id="23_2frox"]
 [ext_resource type="Texture2D" uid="uid://cifnguej003og" path="res://pictures/figur_ico/yaderka_button_2.png" id="24_1ggbu"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tnoae"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-
-[sub_resource type="Sky" id="Sky_vgetd"]
-sky_material = SubResource("ProceduralSkyMaterial_tnoae")
+[ext_resource type="Texture2D" uid="uid://dv7pwb6t8mjlq" path="res://pictures/figur_ico/koronac.png" id="29_emlyr"]
 
 [sub_resource type="Environment" id="Environment_0jdu7"]
-background_mode = 2
-background_energy_multiplier = 0.8
-sky = SubResource("Sky_vgetd")
+background_energy_multiplier = 5.0
 tonemap_mode = 2
+tonemap_exposure = 0.8
 ssao_enabled = true
 ssao_intensity = 1.2
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.72378117, 0.74748766, 0.78889203, 1)
+fog_light_color = Color(0.8243905, 0.8403771, 0.867017, 1)
 fog_light_energy = 0.7
 fog_density = 0.1
 fog_height = -0.4
 fog_height_density = 1.65
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5esph"]
+transparency = 1
+albedo_color = Color(0.427493, 0.42749307, 0.42749295, 0.48800004)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_x521r"]
 size = Vector3(5, 1, 5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o61u8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_emlyr"]
 shading_mode = 0
 albedo_texture = ExtResource("6_4hivm")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_k5g52"]
-material = SubResource("StandardMaterial3D_o61u8")
-size = Vector2(0.7, 0.7)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k7slk"]
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("7_iil1l")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_ggh6k"]
-material = SubResource("StandardMaterial3D_k7slk")
-size = Vector2(0.3, 0.3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwgrd"]
-shading_mode = 0
-albedo_texture = ExtResource("6_4hivm")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_fafcu"]
-material = SubResource("StandardMaterial3D_lwgrd")
-size = Vector2(0.7, 0.7)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7di75"]
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("7_iil1l")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_okd6o"]
-material = SubResource("StandardMaterial3D_7di75")
-size = Vector2(0.3, 0.3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwtnq"]
-shading_mode = 0
-albedo_texture = ExtResource("6_4hivm")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_wri3d"]
-material = SubResource("StandardMaterial3D_iwtnq")
-size = Vector2(0.7, 0.7)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rrdf"]
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("7_iil1l")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_50nji"]
-material = SubResource("StandardMaterial3D_5rrdf")
-size = Vector2(0.3, 0.3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mh2qp"]
-shading_mode = 0
-albedo_texture = ExtResource("6_4hivm")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_3cwwr"]
-material = SubResource("StandardMaterial3D_mh2qp")
-size = Vector2(0.7, 0.7)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vkll"]
-transparency = 1
-shading_mode = 0
-albedo_texture = ExtResource("7_iil1l")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_2frox"]
-material = SubResource("StandardMaterial3D_6vkll")
-size = Vector2(0.3, 0.3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ggbu"]
-shading_mode = 0
-albedo_texture = ExtResource("6_4hivm")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_emlyr"]
-material = SubResource("StandardMaterial3D_1ggbu")
+material = SubResource("StandardMaterial3D_emlyr")
 size = Vector2(0.7, 0.7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7vso"]
@@ -134,36 +64,133 @@ transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("7_iil1l")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_rf20w"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_ggh6k"]
 material = SubResource("StandardMaterial3D_n7vso")
 size = Vector2(0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rf20w"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("9_4hivm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n7vso"]
+material = SubResource("StandardMaterial3D_rf20w")
+size = Vector2(0.7, 0.7)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mcpe"]
 shading_mode = 0
 albedo_texture = ExtResource("6_4hivm")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_tt6rn"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_fafcu"]
 material = SubResource("StandardMaterial3D_3mcpe")
 size = Vector2(0.7, 0.7)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tt6rn"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_iil1l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_okd6o"]
+material = SubResource("StandardMaterial3D_tt6rn")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3mcpe"]
+material = SubResource("StandardMaterial3D_rf20w")
+size = Vector2(0.7, 0.7)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvh61"]
+shading_mode = 0
+albedo_texture = ExtResource("6_4hivm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wri3d"]
+material = SubResource("StandardMaterial3D_mvh61")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_144qm"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_iil1l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_50nji"]
+material = SubResource("StandardMaterial3D_144qm")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mvh61"]
+material = SubResource("StandardMaterial3D_rf20w")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8xno"]
+shading_mode = 0
+albedo_texture = ExtResource("6_4hivm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3cwwr"]
+material = SubResource("StandardMaterial3D_j8xno")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qe2sv"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_iil1l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2frox"]
+material = SubResource("StandardMaterial3D_qe2sv")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_j8xno"]
+material = SubResource("StandardMaterial3D_rf20w")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xv2fh"]
+shading_mode = 0
+albedo_texture = ExtResource("6_4hivm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_emlyr"]
+material = SubResource("StandardMaterial3D_xv2fh")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_whdtg"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("7_iil1l")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rf20w"]
+material = SubResource("StandardMaterial3D_whdtg")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qe2sv"]
+material = SubResource("StandardMaterial3D_rf20w")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6poe"]
+shading_mode = 0
+albedo_texture = ExtResource("6_4hivm")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tt6rn"]
+material = SubResource("StandardMaterial3D_v6poe")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvgni"]
 transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("7_iil1l")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_144qm"]
-material = SubResource("StandardMaterial3D_mvh61")
+material = SubResource("StandardMaterial3D_hvgni")
 size = Vector2(0.3, 0.3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x521r"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_xv2fh"]
+material = SubResource("StandardMaterial3D_rf20w")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ntyjr"]
 shading_mode = 0
 albedo_texture = ExtResource("8_iwtnq")
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_bv0ed"]
-material = SubResource("StandardMaterial3D_x521r")
+material = SubResource("StandardMaterial3D_ntyjr")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_2frox"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_mfyws"]
 resource_local_to_scene = true
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_fafcu"]
@@ -192,46 +219,66 @@ script = ExtResource("1_okd6o")
 metadata/_edit_lock_ = true
 
 [node name="Sky" parent="ENVIRONMENT" unique_id=292207723 instance=ExtResource("2_2frox")]
+metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="ENVIRONMENT" unique_id=436988550]
 environment = SubResource("Environment_0jdu7")
 
 [node name="Sanches" type="SpotLight3D" parent="ENVIRONMENT" unique_id=960321383]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.9659258, 0, -0.9659258, 0.258819, 0, 4.7, 1)
-light_energy = 3.0
+light_energy = 6.0
 light_specular = 0.1
 shadow_enabled = true
 shadow_bias = 0.2
-spot_range = 8.6
+spot_range = 10.12
 spot_angle = 50.60364
 metadata/_edit_lock_ = true
 
 [node name="Night" type="SpotLight3D" parent="ENVIRONMENT" unique_id=1541279746]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.5, 0)
-light_energy = 0.0
+light_color = Color(0.46339518, 0.7577061, 0.9834518, 1)
 spot_range = 6.4
 spot_angle = 67.5
 metadata/_edit_lock_ = true
 
 [node name="nuke_light" type="Node3D" parent="ENVIRONMENT" unique_id=1818326840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099999994, 0)
 visible = false
 metadata/_edit_lock_ = true
 
 [node name="Light1" type="SpotLight3D" parent="ENVIRONMENT/nuke_light" unique_id=9775891]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 1, 0.03)
 light_color = Color(0.94019276, 0, 0.0117337, 1)
 light_energy = 10.0
 spot_range = 4.5
 metadata/_edit_lock_ = true
 
 [node name="Light2" type="SpotLight3D" parent="ENVIRONMENT/nuke_light" unique_id=1155149722]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, -2.262668e-08, 0.9659258, 0.25881904, 8.444392e-08, 0.25881904, -0.9659258, 0, 1, -0.03)
 light_color = Color(0.94019276, 0, 0.0117337, 1)
 light_energy = 10.0
 spot_range = 4.5
 metadata/_edit_lock_ = true
 
 [node name="WORLD" type="Node3D" parent="." unique_id=619324496]
+metadata/_edit_lock_ = true
+
+[node name="Chemodan" parent="WORLD" unique_id=2000004096 instance=ExtResource("4_n7vso")]
+transform = Transform3D(-1.9670125e-08, 0, 0.45, 0, 0.45, 0, -0.45, 0, -1.9670125e-08, 0, 0.75, 0)
+visible = false
+
+[node name="brosok" type="Node3D" parent="WORLD" unique_id=497016905]
+visible = false
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="WORLD/brosok" unique_id=1676842801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59749997, 0)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+radius = 1.0
+height = 0.055000007
+sides = 32
+material = SubResource("StandardMaterial3D_5esph")
 metadata/_edit_lock_ = true
 
 [node name="TABLE" parent="WORLD" unique_id=437054224 instance=ExtResource("1_jpwd0")]
@@ -267,6 +314,9 @@ mesh = SubResource("PlaneMesh_k5g52")
 [node name="gerb" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_ggh6k")
 
+[node name="kazna" parent="WORLD/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(884502139, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_n7vso")
+
 [node name="monolit_3" parent="WORLD/monolit_players" unique_id=958510815 instance=ExtResource("3_lto23")]
 transform = Transform3D(-0.8660253, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, -0.8660253, 2.1650636, 0, -1.2499999)
 metadata/_edit_lock_ = true
@@ -276,6 +326,9 @@ mesh = SubResource("PlaneMesh_fafcu")
 
 [node name="gerb" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_okd6o")
+
+[node name="kazna" parent="WORLD/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(958510815, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_3mcpe")
 
 [node name="monolit_4" parent="WORLD/monolit_players" unique_id=212844513 instance=ExtResource("3_lto23")]
 transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 2.1650634, 0, 1.2500005)
@@ -287,6 +340,9 @@ mesh = SubResource("PlaneMesh_wri3d")
 [node name="gerb" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_50nji")
 
+[node name="kazna" parent="WORLD/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(212844513, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_mvh61")
+
 [node name="monolit_5" parent="WORLD/monolit_players" unique_id=1690850865 instance=ExtResource("3_lto23")]
 transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0, 0, 2.5)
 metadata/_edit_lock_ = true
@@ -296,6 +352,9 @@ mesh = SubResource("PlaneMesh_3cwwr")
 
 [node name="gerb" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_2frox")
+
+[node name="kazna" parent="WORLD/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_j8xno")
 
 [node name="monolit_6" parent="WORLD/monolit_players" unique_id=61905864 instance=ExtResource("3_lto23")]
 transform = Transform3D(0.8660253, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, 0.8660253, -2.1650636, 0, 1.2499999)
@@ -307,6 +366,9 @@ mesh = SubResource("PlaneMesh_emlyr")
 [node name="gerb" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_rf20w")
 
+[node name="kazna" parent="WORLD/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(61905864, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_qe2sv")
+
 [node name="monolit_7" parent="WORLD/monolit_players" unique_id=768809942 instance=ExtResource("3_lto23")]
 transform = Transform3D(0.8660253, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660253, -2.1650634, 0, -1.2500005)
 metadata/_edit_lock_ = true
@@ -316,6 +378,9 @@ mesh = SubResource("PlaneMesh_tt6rn")
 
 [node name="gerb" parent="WORLD/monolit_players/monolit_7/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="2" unique_id=1755115897]
 mesh = SubResource("PlaneMesh_144qm")
+
+[node name="kazna" parent="WORLD/monolit_players/monolit_7/info" parent_id_path=PackedInt32Array(768809942, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_xv2fh")
 
 [node name="lain" type="MeshInstance3D" parent="WORLD/monolit_players" unique_id=11978028]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.100001, 0)
@@ -327,7 +392,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
 metadata/_edit_lock_ = true
 
 [node name="Cloud" parent="WORLD/CloudSpawn" unique_id=1958340692 instance=ExtResource("1_qqdlu")]
-mesh = SubResource("ImmediateMesh_2frox")
+mesh = SubResource("ImmediateMesh_mfyws")
 
 [node name="Timer" type="Timer" parent="WORLD/CloudSpawn" unique_id=1416216528]
 wait_time = 0.05
@@ -796,7 +861,7 @@ size_flags_vertical = 3
 layout_mode = 2
 theme_override_constants/outline_size = 3
 theme_override_font_sizes/font_size = 32
-text = "Кому передать ход?"
+text = "Куда передать ход?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -812,20 +877,20 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="A_player" type="Button" parent="USER/UI/Turn_W_2/Box/Margin/Box" unique_id=831104184]
+[node name="B_player" type="Button" parent="USER/UI/Turn_W_2/Box/Margin/Box" unique_id=1212150547]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "а"
+text = "влево"
 
 [node name="Sep" type="VSeparator" parent="USER/UI/Turn_W_2/Box/Margin/Box" unique_id=199807320]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_iwtnq")
 
-[node name="B_player" type="Button" parent="USER/UI/Turn_W_2/Box/Margin/Box" unique_id=1212150547]
+[node name="A_player" type="Button" parent="USER/UI/Turn_W_2/Box/Margin/Box" unique_id=831104184]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "б"
+text = "вправо"
 
 [node name="fig_panel" type="MarginContainer" parent="USER/UI" unique_id=947287814]
 layout_mode = 1
@@ -922,6 +987,14 @@ theme_override_styles/separator = SubResource("StyleBoxLine_okd6o")
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 icon = ExtResource("22_mh2qp")
+icon_alignment = 1
+expand_icon = true
+
+[node name="king" type="Button" parent="USER/UI/fig_panel" unique_id=1066314835]
+visible = false
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+icon = ExtResource("29_emlyr")
 icon_alignment = 1
 expand_icon = true
 

@@ -66,6 +66,14 @@ _subresources={
 "use_external/fallback_path": "res://addons/chemodan/Materials/knopka.tres",
 "use_external/path": "uid://bonoo4sx1u0aq"
 }
+},
+"nodes": {
+"PATH:Cube": {
+"mesh_instance/cast_shadow": 0
+},
+"PATH:Cube_001": {
+"mesh_instance/cast_shadow": 0
+}
 }
 }
 gltf/naming_version=2

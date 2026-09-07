@@ -1,0 +1,644 @@
+[gd_scene format=3 uid="uid://bclo4ie2s10o4"]
+
+[ext_resource type="Script" uid="uid://xhmllyf0y57h" path="res://addons/menu_v2/menu_v2_scr.gd" id="1_4t2se"]
+[ext_resource type="ArrayMesh" uid="uid://c5op6myhxw674" path="res://mesh/vavilon.res" id="2_xs7gs"]
+[ext_resource type="PackedScene" uid="uid://bveeukxurc7cf" path="res://lvl/game/monolit.tscn" id="3_kbodf"]
+[ext_resource type="Texture2D" uid="uid://s1unvb1uisiu" path="res://import/ava_placehold.png" id="4_wwkmt"]
+[ext_resource type="Texture2D" uid="uid://g34041lbfsm7" path="res://king/gerb/Bear.png" id="5_adej2"]
+[ext_resource type="Texture2D" uid="uid://cmtwctvb1k11v" path="res://pictures/kazna/K_00.png" id="6_iob6m"]
+[ext_resource type="Texture2D" uid="uid://bvx81ubti08iv" path="res://visual/material/game/lain.png" id="7_au424"]
+[ext_resource type="PackedScene" uid="uid://ctm11ynd1db06" path="res://lvl/game/table.tscn" id="8_i0hlk"]
+[ext_resource type="Script" uid="uid://dbvvx0uloc2yp" path="res://addons/san_clouds/clouds_scr.gd" id="9_kbodf"]
+[ext_resource type="Script" uid="uid://c70v7sruelapp" path="res://addons/Sky/sky.gd" id="10_kbodf"]
+[ext_resource type="Theme" uid="uid://dv76ptxymkvi4" path="res://addons/menu_v2/button_theme.tres" id="11_wwkmt"]
+[ext_resource type="AudioStream" uid="uid://dwul4pcimuvy7" path="res://ost/effect/veter_1.mp3" id="12_iob6m"]
+[ext_resource type="AudioStream" uid="uid://cbdqm3j4r80bt" path="res://ost/music/the_elder_scrolls_v_skyrim_17. Jeremy Soule - Secunda.mp3" id="13_au424"]
+
+[sub_resource type="Environment" id="Environment_ot06w"]
+background_energy_multiplier = 5.0
+tonemap_mode = 2
+tonemap_exposure = 0.8
+ssao_enabled = true
+ssao_intensity = 1.2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.37955686, 0.40563083, 0.4578076, 1)
+fog_light_energy = 0.7
+fog_density = 0.1
+fog_height = -0.4
+fog_height_density = 1.65
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o61u8"]
+shading_mode = 0
+albedo_texture = ExtResource("4_wwkmt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q3r18"]
+material = SubResource("StandardMaterial3D_o61u8")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k7slk"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("5_adej2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ycltg"]
+material = SubResource("StandardMaterial3D_k7slk")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qm0e"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("6_iob6m")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1pk6p"]
+material = SubResource("StandardMaterial3D_5qm0e")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwgrd"]
+shading_mode = 0
+albedo_texture = ExtResource("4_wwkmt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gpxdq"]
+material = SubResource("StandardMaterial3D_lwgrd")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7di75"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("5_adej2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n3gkl"]
+material = SubResource("StandardMaterial3D_7di75")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bgny2"]
+material = SubResource("StandardMaterial3D_5qm0e")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwtnq"]
+shading_mode = 0
+albedo_texture = ExtResource("4_wwkmt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kwbe1"]
+material = SubResource("StandardMaterial3D_iwtnq")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5rrdf"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("5_adej2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ajbvo"]
+material = SubResource("StandardMaterial3D_5rrdf")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lyvux"]
+material = SubResource("StandardMaterial3D_5qm0e")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mh2qp"]
+shading_mode = 0
+albedo_texture = ExtResource("4_wwkmt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y15c7"]
+material = SubResource("StandardMaterial3D_mh2qp")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vkll"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("5_adej2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h3hxl"]
+material = SubResource("StandardMaterial3D_6vkll")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1kxo2"]
+material = SubResource("StandardMaterial3D_5qm0e")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ggbu"]
+shading_mode = 0
+albedo_texture = ExtResource("4_wwkmt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5wbm3"]
+material = SubResource("StandardMaterial3D_1ggbu")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7vso"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("5_adej2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rctpj"]
+material = SubResource("StandardMaterial3D_n7vso")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pa1o5"]
+material = SubResource("StandardMaterial3D_5qm0e")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mcpe"]
+shading_mode = 0
+albedo_texture = ExtResource("4_wwkmt")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lu67t"]
+material = SubResource("StandardMaterial3D_3mcpe")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mvh61"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("5_adej2")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3beo5"]
+material = SubResource("StandardMaterial3D_mvh61")
+size = Vector2(0.3, 0.3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lbgs7"]
+material = SubResource("StandardMaterial3D_5qm0e")
+size = Vector2(0.7, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x521r"]
+shading_mode = 0
+albedo_texture = ExtResource("7_au424")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_iiggq"]
+material = SubResource("StandardMaterial3D_x521r")
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_wwkmt"]
+resource_local_to_scene = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwkmt"]
+shading_mode = 0
+albedo_color = Color(0.053468823, 0.13256812, 0.22482693, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_adej2"]
+material = SubResource("StandardMaterial3D_wwkmt")
+flip_faces = true
+radius = 10.0
+height = 20.0
+radial_segments = 12
+rings = 6
+
+[sub_resource type="Gradient" id="Gradient_kbodf"]
+offsets = PackedFloat32Array(0.1953125, 0.71875)
+colors = PackedColorArray(0.30748522, 0.012920001, 0.025840001, 0.120000005, 0.44672376, 0.025840001, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kbodf"]
+frequency = 0.015
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x521r"]
+noise = SubResource("FastNoiseLite_kbodf")
+color_ramp = SubResource("Gradient_kbodf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv0ed"]
+transparency = 1
+albedo_color = Color(0.5211406, 0.5211406, 0.5211405, 1)
+albedo_texture = SubResource("NoiseTexture2D_x521r")
+
+[sub_resource type="Gradient" id="Gradient_wwkmt"]
+offsets = PackedFloat32Array(0, 0.60384613)
+colors = PackedColorArray(0.7802893, 0.13879183, 0, 1, 0.26825175, 5.9411394e-07, 0.005456848, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5xeel"]
+gradient = SubResource("Gradient_wwkmt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4v1ty"]
+albedo_color = Color(0.7780485, 0.85636944, 0.9937094, 1)
+albedo_texture = SubResource("GradientTexture1D_5xeel")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x521r"]
+material = SubResource("StandardMaterial3D_4v1ty")
+size = Vector2(3, 3)
+subdivide_width = 50
+subdivide_depth = 50
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bv0ed"]
+size = Vector3(5, 5, 5)
+
+[node name="MenuV2" type="Node" unique_id=1168896780]
+script = ExtResource("1_4t2se")
+
+[node name="world_background" type="Node3D" parent="." unique_id=496205616]
+
+[node name="Vavilon" type="MeshInstance3D" parent="world_background" unique_id=1076947505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.45, 0)
+mesh = ExtResource("2_xs7gs")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="world_background" unique_id=716532728]
+environment = SubResource("Environment_ot06w")
+
+[node name="Sanches" type="SpotLight3D" parent="world_background" unique_id=329285640]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.9659258, 0, -0.9659258, 0.258819, 0, 4.7, 1)
+light_color = Color(0.7981933, 0.98235196, 0.92231894, 1)
+light_energy = 1.86
+light_specular = 0.1
+shadow_enabled = true
+shadow_bias = 0.2
+spot_range = 10.12
+spot_angle = 50.60364
+metadata/_edit_lock_ = true
+
+[node name="Night" type="SpotLight3D" parent="world_background" unique_id=1814959922]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.5, 0)
+light_color = Color(0.059666872, 0.423767, 0.6447356, 1)
+light_energy = 6.0
+spot_range = 6.4
+spot_angle = 67.5
+metadata/_edit_lock_ = true
+
+[node name="monolit_players" type="Node3D" parent="world_background" unique_id=296533076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+metadata/_edit_lock_ = true
+
+[node name="monolit_2" parent="world_background/monolit_players" unique_id=1690850865 instance=ExtResource("3_kbodf")]
+transform = Transform3D(-4.371138e-08, 0, -0.9999999, 0, 1, 0, 0.9999999, 0, -4.371138e-08, 0, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="avatar" parent="world_background/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_q3r18")
+
+[node name="gerb" parent="world_background/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_ycltg")
+
+[node name="kazna" parent="world_background/monolit_players/monolit_2/info" parent_id_path=PackedInt32Array(1690850865, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_1pk6p")
+
+[node name="monolit_3" parent="world_background/monolit_players" unique_id=1223668224 instance=ExtResource("3_kbodf")]
+transform = Transform3D(-0.8660253, 0, -0.49999988, 0, 1, 0, 0.49999988, 0, -0.8660253, 2.1650636, 0, -1.2499999)
+metadata/_edit_lock_ = true
+
+[node name="avatar" parent="world_background/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(1223668224, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_gpxdq")
+
+[node name="gerb" parent="world_background/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(1223668224, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_n3gkl")
+
+[node name="kazna" parent="world_background/monolit_players/monolit_3/info" parent_id_path=PackedInt32Array(1223668224, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_bgny2")
+
+[node name="monolit_4" parent="world_background/monolit_players" unique_id=1793577544 instance=ExtResource("3_kbodf")]
+transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660253, 2.1650634, 0, 1.2500005)
+metadata/_edit_lock_ = true
+
+[node name="avatar" parent="world_background/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(1793577544, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_kwbe1")
+
+[node name="gerb" parent="world_background/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(1793577544, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_ajbvo")
+
+[node name="kazna" parent="world_background/monolit_players/monolit_4/info" parent_id_path=PackedInt32Array(1793577544, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_lyvux")
+
+[node name="monolit_5" parent="world_background/monolit_players" unique_id=946950840 instance=ExtResource("3_kbodf")]
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="avatar" parent="world_background/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(946950840, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_y15c7")
+
+[node name="gerb" parent="world_background/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(946950840, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_h3hxl")
+
+[node name="kazna" parent="world_background/monolit_players/monolit_5/info" parent_id_path=PackedInt32Array(946950840, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_1kxo2")
+
+[node name="monolit_6" parent="world_background/monolit_players" unique_id=145243229 instance=ExtResource("3_kbodf")]
+transform = Transform3D(0.8660253, 0, 0.49999994, 0, 1, 0, -0.49999994, 0, 0.8660253, -2.1650636, 0, 1.2499999)
+metadata/_edit_lock_ = true
+
+[node name="avatar" parent="world_background/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(145243229, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_5wbm3")
+
+[node name="gerb" parent="world_background/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(145243229, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_rctpj")
+
+[node name="kazna" parent="world_background/monolit_players/monolit_6/info" parent_id_path=PackedInt32Array(145243229, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_pa1o5")
+
+[node name="monolit_7" parent="world_background/monolit_players" unique_id=1726458427 instance=ExtResource("3_kbodf")]
+transform = Transform3D(0.8660253, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660253, -2.1650634, 0, -1.2500005)
+metadata/_edit_lock_ = true
+
+[node name="avatar" parent="world_background/monolit_players/monolit_7/info" parent_id_path=PackedInt32Array(1726458427, 1004628484) index="1" unique_id=525250088]
+mesh = SubResource("PlaneMesh_lu67t")
+
+[node name="gerb" parent="world_background/monolit_players/monolit_7/info" parent_id_path=PackedInt32Array(1726458427, 1004628484) index="2" unique_id=1755115897]
+mesh = SubResource("PlaneMesh_3beo5")
+
+[node name="kazna" parent="world_background/monolit_players/monolit_7/info" parent_id_path=PackedInt32Array(1726458427, 1004628484) index="4" unique_id=1160061716]
+mesh = SubResource("PlaneMesh_lbgs7")
+
+[node name="lain" type="MeshInstance3D" parent="world_background/monolit_players" unique_id=1663342777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.100001, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_iiggq")
+
+[node name="TABLE" parent="world_background" unique_id=437054224 instance=ExtResource("8_i0hlk")]
+metadata/_edit_lock_ = true
+
+[node name="CloudSpawn" type="Node3D" parent="world_background" unique_id=546382916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
+metadata/_edit_lock_ = true
+
+[node name="Cloud" type="MeshInstance3D" parent="world_background/CloudSpawn" unique_id=1958340692]
+mesh = SubResource("ImmediateMesh_wwkmt")
+script = ExtResource("9_kbodf")
+
+[node name="Timer" type="Timer" parent="world_background/CloudSpawn" unique_id=622869621]
+wait_time = 0.05
+autostart = true
+
+[node name="Sky" type="MeshInstance3D" parent="world_background" unique_id=292207723]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_adej2")
+script = ExtResource("10_kbodf")
+metadata/_edit_lock_ = true
+
+[node name="world_front" type="Node3D" parent="." unique_id=1378068472]
+
+[node name="SoftBody3D" type="SoftBody3D" parent="world_front" unique_id=49929279]
+transform = Transform3D(-3.0908623e-08, 0.70710677, 0.7071067, -1, -4.3711385e-08, -2.0703006e-15, 3.0908623e-08, -0.7071067, 0.70710677, 4.69, 1.6699997, 1.6899997)
+material_overlay = SubResource("StandardMaterial3D_bv0ed")
+mesh = SubResource("PlaneMesh_x521r")
+total_mass = 0.3
+linear_stiffness = 0.2
+damping_coefficient = 0.5
+pinned_points = [51, 103, 155, 207, 259, 311, 363, 415, 467, 519, 571, 623, 675, 727, 779, 831, 883, 935, 987, 1039, 1143, 1091, 1195, 1247, 1299, 1351, 1403, 1455, 1507, 1559, 1611, 1663, 1715, 1767, 1819, 1871, 2339, 2391, 1923, 1975, 2027, 2079, 2183, 2131, 2287, 2235, 2443, 2495, 2547, 2599, 2651, 2703]
+attachments/0/point_index = 51
+attachments/0/spatial_attachment_path = NodePath("")
+attachments/0/offset = Vector3(0, 0, 0)
+attachments/1/point_index = 103
+attachments/1/spatial_attachment_path = NodePath("")
+attachments/1/offset = Vector3(0, 0, 0)
+attachments/2/point_index = 155
+attachments/2/spatial_attachment_path = NodePath("")
+attachments/2/offset = Vector3(0, 0, 0)
+attachments/3/point_index = 207
+attachments/3/spatial_attachment_path = NodePath("")
+attachments/3/offset = Vector3(0, 0, 0)
+attachments/4/point_index = 259
+attachments/4/spatial_attachment_path = NodePath("")
+attachments/4/offset = Vector3(0, 0, 0)
+attachments/5/point_index = 311
+attachments/5/spatial_attachment_path = NodePath("")
+attachments/5/offset = Vector3(0, 0, 0)
+attachments/6/point_index = 363
+attachments/6/spatial_attachment_path = NodePath("")
+attachments/6/offset = Vector3(0, 0, 0)
+attachments/7/point_index = 415
+attachments/7/spatial_attachment_path = NodePath("")
+attachments/7/offset = Vector3(0, 0, 0)
+attachments/8/point_index = 467
+attachments/8/spatial_attachment_path = NodePath("")
+attachments/8/offset = Vector3(0, 0, 0)
+attachments/9/point_index = 519
+attachments/9/spatial_attachment_path = NodePath("")
+attachments/9/offset = Vector3(0, 0, 0)
+attachments/10/point_index = 571
+attachments/10/spatial_attachment_path = NodePath("")
+attachments/10/offset = Vector3(0, 0, 0)
+attachments/11/point_index = 623
+attachments/11/spatial_attachment_path = NodePath("")
+attachments/11/offset = Vector3(0, 0, 0)
+attachments/12/point_index = 675
+attachments/12/spatial_attachment_path = NodePath("")
+attachments/12/offset = Vector3(0, 0, 0)
+attachments/13/point_index = 727
+attachments/13/spatial_attachment_path = NodePath("")
+attachments/13/offset = Vector3(0, 0, 0)
+attachments/14/point_index = 779
+attachments/14/spatial_attachment_path = NodePath("")
+attachments/14/offset = Vector3(0, 0, 0)
+attachments/15/point_index = 831
+attachments/15/spatial_attachment_path = NodePath("")
+attachments/15/offset = Vector3(0, 0, 0)
+attachments/16/point_index = 883
+attachments/16/spatial_attachment_path = NodePath("")
+attachments/16/offset = Vector3(0, 0, 0)
+attachments/17/point_index = 935
+attachments/17/spatial_attachment_path = NodePath("")
+attachments/17/offset = Vector3(0, 0, 0)
+attachments/18/point_index = 987
+attachments/18/spatial_attachment_path = NodePath("")
+attachments/18/offset = Vector3(0, 0, 0)
+attachments/19/point_index = 1039
+attachments/19/spatial_attachment_path = NodePath("")
+attachments/19/offset = Vector3(0, 0, 0)
+attachments/20/point_index = 1143
+attachments/20/spatial_attachment_path = NodePath("")
+attachments/20/offset = Vector3(0, 0, 0)
+attachments/21/point_index = 1091
+attachments/21/spatial_attachment_path = NodePath("")
+attachments/21/offset = Vector3(0, 0, 0)
+attachments/22/point_index = 1195
+attachments/22/spatial_attachment_path = NodePath("")
+attachments/22/offset = Vector3(0, 0, 0)
+attachments/23/point_index = 1247
+attachments/23/spatial_attachment_path = NodePath("")
+attachments/23/offset = Vector3(0, 0, 0)
+attachments/24/point_index = 1299
+attachments/24/spatial_attachment_path = NodePath("")
+attachments/24/offset = Vector3(0, 0, 0)
+attachments/25/point_index = 1351
+attachments/25/spatial_attachment_path = NodePath("")
+attachments/25/offset = Vector3(0, 0, 0)
+attachments/26/point_index = 1403
+attachments/26/spatial_attachment_path = NodePath("")
+attachments/26/offset = Vector3(0, 0, 0)
+attachments/27/point_index = 1455
+attachments/27/spatial_attachment_path = NodePath("")
+attachments/27/offset = Vector3(0, 0, 0)
+attachments/28/point_index = 1507
+attachments/28/spatial_attachment_path = NodePath("")
+attachments/28/offset = Vector3(0, 0, 0)
+attachments/29/point_index = 1559
+attachments/29/spatial_attachment_path = NodePath("")
+attachments/29/offset = Vector3(0, 0, 0)
+attachments/30/point_index = 1611
+attachments/30/spatial_attachment_path = NodePath("")
+attachments/30/offset = Vector3(0, 0, 0)
+attachments/31/point_index = 1663
+attachments/31/spatial_attachment_path = NodePath("")
+attachments/31/offset = Vector3(0, 0, 0)
+attachments/32/point_index = 1715
+attachments/32/spatial_attachment_path = NodePath("")
+attachments/32/offset = Vector3(0, 0, 0)
+attachments/33/point_index = 1767
+attachments/33/spatial_attachment_path = NodePath("")
+attachments/33/offset = Vector3(0, 0, 0)
+attachments/34/point_index = 1819
+attachments/34/spatial_attachment_path = NodePath("")
+attachments/34/offset = Vector3(0, 0, 0)
+attachments/35/point_index = 1871
+attachments/35/spatial_attachment_path = NodePath("")
+attachments/35/offset = Vector3(0, 0, 0)
+attachments/36/point_index = 2339
+attachments/36/spatial_attachment_path = NodePath("")
+attachments/36/offset = Vector3(0, 0, 0)
+attachments/37/point_index = 2391
+attachments/37/spatial_attachment_path = NodePath("")
+attachments/37/offset = Vector3(0, 0, 0)
+attachments/38/point_index = 1923
+attachments/38/spatial_attachment_path = NodePath("")
+attachments/38/offset = Vector3(0, 0, 0)
+attachments/39/point_index = 1975
+attachments/39/spatial_attachment_path = NodePath("")
+attachments/39/offset = Vector3(0, 0, 0)
+attachments/40/point_index = 2027
+attachments/40/spatial_attachment_path = NodePath("")
+attachments/40/offset = Vector3(0, 0, 0)
+attachments/41/point_index = 2079
+attachments/41/spatial_attachment_path = NodePath("")
+attachments/41/offset = Vector3(0, 0, 0)
+attachments/42/point_index = 2183
+attachments/42/spatial_attachment_path = NodePath("")
+attachments/42/offset = Vector3(0, 0, 0)
+attachments/43/point_index = 2131
+attachments/43/spatial_attachment_path = NodePath("")
+attachments/43/offset = Vector3(0, 0, 0)
+attachments/44/point_index = 2287
+attachments/44/spatial_attachment_path = NodePath("")
+attachments/44/offset = Vector3(0, 0, 0)
+attachments/45/point_index = 2235
+attachments/45/spatial_attachment_path = NodePath("")
+attachments/45/offset = Vector3(0, 0, 0)
+attachments/46/point_index = 2443
+attachments/46/spatial_attachment_path = NodePath("")
+attachments/46/offset = Vector3(0, 0, 0)
+attachments/47/point_index = 2495
+attachments/47/spatial_attachment_path = NodePath("")
+attachments/47/offset = Vector3(0, 0, 0)
+attachments/48/point_index = 2547
+attachments/48/spatial_attachment_path = NodePath("")
+attachments/48/offset = Vector3(0, 0, 0)
+attachments/49/point_index = 2599
+attachments/49/spatial_attachment_path = NodePath("")
+attachments/49/offset = Vector3(0, 0, 0)
+attachments/50/point_index = 2651
+attachments/50/spatial_attachment_path = NodePath("")
+attachments/50/offset = Vector3(0, 0, 0)
+attachments/51/point_index = 2703
+attachments/51/spatial_attachment_path = NodePath("")
+attachments/51/offset = Vector3(0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="world_front" unique_id=1267927453]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 3.8099997, 1.9699999, 2.4799998)
+wind_force_magnitude = 0.1
+wind_source_path = NodePath("Node3D")
+
+[node name="Node3D" type="Node3D" parent="world_front/Area3D" unique_id=945117896]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 4.463482, 0.10000026, -0.12902832)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world_front/Area3D" unique_id=2132585808]
+shape = SubResource("BoxShape3D_bv0ed")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="world_front" unique_id=1587063441]
+transform = Transform3D(-0.7071068, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, -0.7071068, 6.5, 2.1999998, -0.10000005)
+light_color = Color(0.276979, 0.45595634, 0.67061543, 1)
+light_energy = 5.0
+spot_range = 6.5299997
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=273828280]
+transform = Transform3D(-0.5000001, -0.43301266, 0.75, -1.0334046e-09, 0.8660254, 0.5, -0.8660254, 0.25000006, -0.4330128, 4.6089993, 2.7809792, -0.25420842)
+fov = 80.0
+
+[node name="UI" type="Control" parent="." unique_id=660169025]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="UI" unique_id=295802014]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 288.0
+offset_right = 640.0
+offset_bottom = 352.0
+theme = ExtResource("11_wwkmt")
+theme_override_font_sizes/font_size = 42
+text = "СПИСОК ЛОББИ"
+
+[node name="Button2" type="Button" parent="UI" unique_id=2013925899]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 384.0
+offset_right = 640.0
+offset_bottom = 448.0
+theme = ExtResource("11_wwkmt")
+theme_override_font_sizes/font_size = 42
+text = "ПРОФИЛЬ"
+
+[node name="Button3" type="Button" parent="UI" unique_id=2132750993]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 480.0
+offset_right = 640.0
+offset_bottom = 544.0
+theme = ExtResource("11_wwkmt")
+theme_override_font_sizes/font_size = 42
+text = "ЗАЛ СЛАВЫ"
+
+[node name="Button4" type="Button" parent="UI" unique_id=72120581]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 576.0
+offset_right = 640.0
+offset_bottom = 640.0
+theme = ExtResource("11_wwkmt")
+theme_override_font_sizes/font_size = 42
+text = "НАСТРОЙКИ"
+
+[node name="Button5" type="Button" parent="UI" unique_id=469676554]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 672.0
+offset_right = 640.0
+offset_bottom = 736.0
+theme = ExtResource("11_wwkmt")
+theme_override_font_sizes/font_size = 42
+text = "ПРАВИЛА"
+
+[node name="Button6" type="Button" parent="UI" unique_id=179938369]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 768.0
+offset_right = 640.0
+offset_bottom = 832.0
+theme = ExtResource("11_wwkmt")
+theme_override_font_sizes/font_size = 42
+text = "ВЫХОД"
+
+[node name="Label" type="Label" parent="UI" unique_id=1793983760]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 160.0
+offset_right = 640.0
+offset_bottom = 232.0
+theme = ExtResource("11_wwkmt")
+theme_override_font_sizes/font_size = 60
+text = "ВАВИЛОН ОНЛАЙН"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1420743938]
+stream = ExtResource("12_iob6m")
+volume_db = -15.78
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1509694983]
+stream = ExtResource("13_au424")
+volume_db = -4.303
+
+[editable path="world_background/monolit_players/monolit_2"]
+[editable path="world_background/monolit_players/monolit_3"]
+[editable path="world_background/monolit_players/monolit_4"]
+[editable path="world_background/monolit_players/monolit_5"]
+[editable path="world_background/monolit_players/monolit_6"]
+[editable path="world_background/monolit_players/monolit_7"]

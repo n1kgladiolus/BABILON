@@ -3,16 +3,16 @@ extends Node
 @onready var TwoVoipSpeaker = preload("res://addons/twovoip/voiphelper/two_voip_speaker.gd")
 @onready var mic = $TwoVoipMic
 const Action_sound = {
-	"mem_1" : preload("res://ost/effect/sanches_zvuk_mem.mp3"),
-	"mem_2" : preload("res://ost/effect/admin_zvuk_mem.mp3"),
+	"mem_1" : preload("res://ost/effect/hello/sanches_zvuk_mem.mp3"),
+	"mem_2" : preload("res://ost/effect/hello/admin_zvuk_mem.mp3"),
 	"kazna" : preload("res://ost/effect/kazna_new.mp3"),
 	"king_dead" : preload("res://ost/effect/losecombat.mp3"),
 	"luck" : preload("res://ost/effect/goodluck.mp3"),
 	"noluck" : preload("res://ost/effect/badmrle.mp3"),
 	"first_turn" : preload("res://ost/effect/heroes-new-week.mp3"),
 	"turn" : preload("res://ost/effect/turn.mp3"),
-	
-}
+	}
+
 #@onready var speaker = $TwoVoipSpeaker
 #@onready var audio_player = $VoicePlayer
 
@@ -25,7 +25,11 @@ func _ready() -> void:
 		queue_free()
 		return
 	else:
-		pass
+		if C.DEBUG:
+			queue_free()
+			return
+		else:
+			pass
 	
 	$Background.finished.connect(background_repeat)
 	

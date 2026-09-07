@@ -216,31 +216,37 @@ transform = Transform3D(-0.99999976, -8.7422755e-08, 0, 8.7422755e-08, -0.999999
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot/krishka" unique_id=719515026]
 transform = Transform3D(-0.28583503, 0, 0.9582786, 0, 0.9999999, 0, -0.9582791, 0, -0.28583488, -0.03752259, 0.12637171, 0.88009393)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_bv0ed")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Pivot/krishka" unique_id=1446906331]
 transform = Transform3D(0.42798293, 0, 0.9037865, 0, 0.99999976, 0, -0.9037871, 0, 0.4279827, -0.30899486, 0.12637183, -1.1828332)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_b4815")
 
 [node name="krishkaDownOtd" type="Node3D" parent="." unique_id=1940390419]
 
 [node name="Cube" type="MeshInstance3D" parent="krishkaDownOtd" unique_id=263141876]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_h3wxi")
 
 [node name="CSGTorus3D" type="CSGTorus3D" parent="krishkaDownOtd/Cube" unique_id=2032756306]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.08435714, 0)
-material_override = ExtResource("3_3p45h")
+cast_shadow = 0
 inner_radius = 0.25
 outer_radius = 0.4
+material = ExtResource("3_3p45h")
 
 [node name="Knopa" type="MeshInstance3D" parent="krishkaDownOtd" unique_id=1826149604]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_u8f7d")
 
 [node name="Obv" type="MeshInstance3D" parent="krishkaDownOtd/Knopa" unique_id=1278327096]
 transform = Transform3D(1.1, 0, 0, 0, -1.1, 1.923301e-07, 0, -4.8082526e-08, -1.1, 0, 1.23, 0)
 visible = false
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_f1cxm")
 
 [node name="Area3D" type="Area3D" parent="krishkaDownOtd/Knopa" unique_id=322199631]

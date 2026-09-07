@@ -51,10 +51,10 @@ func _ready() -> void:
 			PORT = a.get_slice("=", 1).to_int()
 		elif a.begins_with("--lobby_name="):
 			LOBBY_NAME = a.get_slice("=", 1)
-		else:
-			if !R.status == "SERVER_GAME":
-				queue_free()
-				return
+	
+	if !R.status == "SERVER_GAME":
+		queue_free()
+		return
 	
 	await get_tree().create_timer(0.5).timeout
 	
@@ -90,7 +90,7 @@ func _ready() -> void:
 	#get_tree().call_deferred("change_scene_to_file", "res://lvl/game/lobby.tscn")
 	
 	var dead_timer = Timer.new()
-	dead_timer.wait_time = 20.0
+	dead_timer.wait_time = 60.0
 	dead_timer.one_shot = false
 	dead_timer.timeout.connect(dead_timer_timeout)
 	get_tree().root.add_child(dead_timer)
@@ -134,6 +134,7 @@ func _player_connected(id):
 		"spawn" : "0",
 		"kazna" : 0,
 		"kazna_power" : 0,
+		"king_status" : false,
 	}
 	
 	players_user[id] = user_param
@@ -142,11 +143,9 @@ func _player_connected(id):
 	var data = ["!lobby_players_count", players_count, LOBBY_PID, players_user]
 	SERVER_CONTROL.send_server_game_command.rpc(data)
 	data = ["!check_user_in_lobby", LOBBY_LEADER]
+	await get_tree().create_timer(0.5).timeout
 	send_server_command_to_id(id, data)
-	
-	await get_tree().create_timer(1).timeout
-	data = null
-	lobby_parametrs_update(data)
+
 
 func _player_disconnected(id):
 	print("Отключился ", id)
@@ -155,7 +154,7 @@ func _player_disconnected(id):
 	SERVER_CONTROL.send_server_game_command.rpc(data)
 	players_user.erase(id)
 	
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().create_timer(0.5).timeout
 	data = null
 	lobby_parametrs_update(data)
 
@@ -168,6 +167,8 @@ func lobby_set_pid(data):
 func check_user_in_lobby_return(data):
 	var id = int(data[data.size() - 1])
 	players_user[id]["username"] = str(data[1])
+	data = null
+	lobby_parametrs_update(data)
 
 func lobby_parametrs_update(data):
 	if data == null:

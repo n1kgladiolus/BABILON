@@ -1,10 +1,12 @@
 extends Node3D
+var game_scene
 
 var isClick = false
 var isOpen = false
 var rot = 0
 
 func _ready() -> void:
+	game_scene = get_tree().root.get_node("GAME")
 	open()
 
 func open():
@@ -32,6 +34,7 @@ func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Ve
 				await get_tree().process_frame
 				$krishkaDownOtd/Knopa.global_position.y -= 0.005
 			await get_tree().create_timer(0.5).timeout
+			game_scene.nucklear_activate()
 			open()
 
 func _on_area_3d_mouse_entered() -> void:
