@@ -2,15 +2,15 @@ extends Node
 
 var audioplayeropus = null
 var audiostreamopus : AudioStreamOpus = null
-var audiostreamplaybackopus : AudioStreamPlaybackOpus = null
+var audio_stream_playback_opus : AudioStreamPlaybackOpus = null
 
 # Consider looking at netem for simulating network traffic
 # https://man7.org/linux/man-pages/man8/tc-netem.8.html
 
 #frametimems = opusframesize*1000.0/opusframesize
 var audioserveroutputlatency = AudioServer.get_output_latency()
-@export var audiobufferlagtimetarget = 0.6
-@export var audiobufferlagtimetargettolerance = 0.35
+@export var audio_buffer_lag_time_target = 0.6
+@export var audio_buffer_lag_time_target_tolerance = 0.35
 
 const asciiopenbrace = 123 # "{".to_ascii_buffer()[0]
 const asciiclosebrace = 125 # "}".to_ascii_buffer()[0]
@@ -30,78 +30,51 @@ var lastemittedaudiobufferpitchscale = 1.0
 var runninglagtimeminimum = -1.0
 
 
-#func _ready():
-	#audioplayeropus = get_parent().findaudioplayer() if get_parent().has_method("findaudioplayer") else get_parent()
-	#if audioplayeropus and audioplayeropus.has_method("set_stream"):
-		#audiostreamopus = AudioStreamOpus.new()
-		#audioplayeropus.set_stream(audiostreamopus)
-	#else:
-		#pass
-		#audioplayeropus = null
-		##assert(false, "Audiostream player not found!")
-
 func _ready():
-	# Если плеер уже передан (установлен вручную), используем его
-	if audioplayeropus == null:
-		# Иначе пытаемся найти через родителя
-		if get_parent().has_method("findaudioplayer"):
-			audioplayeropus = get_parent().findaudioplayer()
-		else:
-			audioplayeropus = get_parent()
-	# Теперь проверяем, что это AudioStreamPlayer (имеет set_stream)
-	if audioplayeropus and audioplayeropus.has_method("set_stream"):
+	audioplayeropus = get_parent().findaudioplayer() if get_parent().has_method("findaudioplayer") else get_parent()
+	if audioplayeropus.has_method("set_stream"):
 		audiostreamopus = AudioStreamOpus.new()
 		audioplayeropus.set_stream(audiostreamopus)
 	else:
-		print("No valid audioplayeropus found")
+		audioplayeropus = null
+		assert(false, "Audiostream player not found!")
 
 
 func setrecopusvalues(opus_sample_rate, opus_channels):
-	if audioplayeropus == null:
-		#print("audioplayeropus not set, cannot play")
-		return
-	if audiostreamopus == null:
-		audiostreamopus = AudioStreamOpus.new()
-		audioplayeropus.set_stream(audiostreamopus)
-	
 	if not audioplayeropus.playing or audiostreamopus.opus_sample_rate != opus_sample_rate or audiostreamopus.opus_channels != opus_channels:
-		#prints(":newplay: ", audioplayeropus.playing, audiostreamopus.opus_sample_rate, opus_sample_rate, audiostreamopus.opus_channels, opus_channels)
+		prints(":newplay: ", audioplayeropus.playing, audiostreamopus.opus_sample_rate, opus_sample_rate, audiostreamopus.opus_channels, opus_channels)
 		audiostreamopus.opus_sample_rate = opus_sample_rate
 		audiostreamopus.opus_channels = opus_channels
 		audioplayeropus.play()  # creates a new playback
-		audiostreamplaybackopus = audioplayeropus.get_stream_playback()
+		audio_stream_playback_opus = audioplayeropus.get_stream_playback()
 		set_sinewave_out(sinewaveoutmode)
 		# begins in a paused state
-		# audiostreamplaybackopus.mark_end_opus_stream(false)
+		# audio_stream_playback_opus.mark_end_opus_stream(false)
 		playbackpausedonmark = true
 		pausereached = false
 
 func unpausewhenbufferready():
 	assert (playbackpausedonmark)
-	if audiostreamplaybackopus == null:
-		return
-	var bufferlengthtime = audioserveroutputlatency + audiostreamplaybackopus.queue_length_frames()*1.0/audiostreamopus.opus_sample_rate
-	if bufferlengthtime > audiobufferlagtimetarget:
-		audiostreamplaybackopus.mark_end_opus_stream(true)
+	var bufferlengthtime = audioserveroutputlatency + audio_stream_playback_opus.queue_length_frames()*1.0/audiostreamopus.opus_sample_rate
+	if bufferlengthtime > audio_buffer_lag_time_target:
+		audio_stream_playback_opus.mark_end_opus_stream(true)
 		playbackpausedonmark = false
 		runninglagtimeminimum = bufferlengthtime
 
 func external_end_stream():
 	if inopusstream:
-		#print(":externally ending the stream at cutout")
-		tv_incomingaudiopacket(JSON.stringify({"talkingtimeend":-1}).to_ascii_buffer())
+		print(":externally ending the stream at cutout")
+		receive_audio_packet(JSON.stringify({"talkingtimeend":-1}).to_ascii_buffer())
 
-func tv_incomingaudiopacket(packet):
+func receive_audio_packet(packet):
 	if audiostreamopus == null:
 		return
 	if len(packet) <= 3:
-		print("")
-		#print("Bad packet too short")
+		print("Bad packet too short")
 	elif packet[0] == asciiopenbrace and packet[-1] == asciiclosebrace:
 		var h = JSON.parse_string(packet.get_string_from_ascii())
 		if h != null:
-			print("")
-			#print("audio json packet ", h)
+			print("audio json packet ", h)
 
 			if h.has("talkingtimestart"):
 				setrecopusvalues(h["opussamplerate"], h.get("opuschannels", 2))
@@ -110,7 +83,7 @@ func tv_incomingaudiopacket(packet):
 				opusframesize = int(h["opusframesize"])
 				opusframecount = 0
 				if h.get("opusframecount", 0) != 0:
-					#prints("Mid speech header!!! ", h["opusframecount"])
+					prints("Mid speech header!!! ", h["opusframecount"])
 					opusframecount = int(h["opusframecount"]) + 1
 				outoforderchunkqueue.clear()
 				for i in range(Noutoforderqueue):
@@ -121,13 +94,12 @@ func tv_incomingaudiopacket(packet):
 				inopusstream = true
 
 			elif h.has("talkingtimeend"):
-				if audiostreamplaybackopus != null:
-					if playbackpausedonmark and audiostreamplaybackopus.queue_length_frames() == 0:
-						audiostreamplaybackopus.mark_end_opus_stream(true)
-					audiostreamplaybackopus.mark_end_opus_stream(false)
-					playbackpausedonmark = true
-					pausereached = false
-					#print("runninglagtimeminimum: ", runninglagtimeminimum, " (target: ", audiobufferlagtimetarget, ")")
+				if playbackpausedonmark and audio_stream_playback_opus.queue_length_frames() == 0:
+					audio_stream_playback_opus.mark_end_opus_stream(true)
+				audio_stream_playback_opus.mark_end_opus_stream(false)
+				playbackpausedonmark = true
+				pausereached = false
+				print("runninglagtimeminimum: ", runninglagtimeminimum, " (target: ", audio_buffer_lag_time_target, ")")
 				inopusstream = true
 
 	elif lenchunkprefix == -1:
@@ -145,20 +117,17 @@ func tv_incomingaudiopacket(packet):
 		var opusframecountR = opusframecountI - opusframecount
 		if opusframecountR < 0:
 			if opusframecountR < -30000:
-				#print("framecount Wrapround 10mins? ", opusframecount, " ", opusframecountI)
+				print("framecount Wrapround 10mins? ", opusframecount, " ", opusframecountI)
 				opusframecount = opusframecountI
 				opusframecountR = 0
 			else:
-				print("")
-				#print("late arriving frame ignored ", opusframecountR)
+				print("late arriving frame ignored ", opusframecountR)
 			
 		if opusframecountR >= 0:
 			while opusframecountR >= Noutoforderqueue:
-				#print("shifting outoforderqueue ", opusframecountI, " ", ("null" if outoforderchunkqueue[0] == null else len(outoforderchunkqueue[0])))
-				if !outoforderchunkqueue:
-					break
+				print("shifting outoforderqueue ", opusframecountI, " ", ("null" if outoforderchunkqueue[0] == null else len(outoforderchunkqueue[0])))
 				if outoforderchunkqueue[0] != null:
-					audiostreamplaybackopus.push_opus_packet(outoforderchunkqueue[0], lenchunkprefix, 0)
+					audio_stream_playback_opus.push_opus_packet(outoforderchunkqueue[0], lenchunkprefix, 0)
 					opusframequeuecount -= 1
 				else:
 					var nextvalidpacketforfec = packet
@@ -166,7 +135,7 @@ func tv_incomingaudiopacket(packet):
 						if outoforderchunkqueue[i] != null:
 							nextvalidpacketforfec = outoforderchunkqueue[i]
 							break
-					audiostreamplaybackopus.push_opus_packet(nextvalidpacketforfec, lenchunkprefix, 1)
+					audio_stream_playback_opus.push_opus_packet(nextvalidpacketforfec, lenchunkprefix, 1)
 				outoforderchunkqueue.pop_front()
 				outoforderchunkqueue.push_back(null)
 				opusframecountR -= 1
@@ -176,10 +145,10 @@ func tv_incomingaudiopacket(packet):
 			outoforderchunkqueue[opusframecountR] = packet
 			opusframequeuecount += 1
 			while outoforderchunkqueue[0] != null and opusframecount + opusframequeuecount >= Npacketinitialbatching:
-				if opusframesize > audiostreamplaybackopus.available_space_frames():
-					#print("!!! segment space filled up")
+				if opusframesize > audio_stream_playback_opus.available_space_frames():
+					print("!!! segment space filled up")
 					break
-				audiostreamplaybackopus.push_opus_packet(outoforderchunkqueue.pop_front(), lenchunkprefix, 0)
+				audio_stream_playback_opus.push_opus_packet(outoforderchunkqueue.pop_front(), lenchunkprefix, 0)
 				outoforderchunkqueue.push_back(null)
 				opusframecount += 1
 				opusframequeuecount -= 1
@@ -187,10 +156,9 @@ func tv_incomingaudiopacket(packet):
 
 		if playbackpausedonmark:
 			unpausewhenbufferready()
-
+	
 	else:
-		print("")
-		#prints("dropping frame with opusstream number mismatch", opusstreamcount, packet[0], packet[1])
+		prints("dropping frame with opusstream number mismatch", opusstreamcount, packet[0], packet[1], "streamcount", opusstreamcount)
 
 func setpitchscale(pitchscale):
 	if pitchscale != lastemittedaudiobufferpitchscale:
@@ -201,28 +169,28 @@ var playingrecording = false
 var pausereached = false
 var prevskips = 0
 func _physics_process(delta):
-	if audiostreamplaybackopus == null:
+	if audio_stream_playback_opus == null:
 		return
 	if playingrecording:
 		return
-	var queuelengthframes = audiostreamplaybackopus.queue_length_frames()
+	var queuelengthframes = audio_stream_playback_opus.queue_length_frames()
 	if not pausereached and queuelengthframes == 0:
 		pausereached = true
-		var currskips = audiostreamplaybackopus.get_skips(false)
-		#print("Skips during playback: ", currskips - prevskips)
+		var currskips = audio_stream_playback_opus.get_skips(false)
+		print("Skips during playback: ", currskips - prevskips)
 		prevskips = currskips
 		
 	var bufferlengthtime = audioserveroutputlatency + queuelengthframes*1.0/audiostreamopus.opus_sample_rate
 	if not playbackpausedonmark:
 		runninglagtimeminimum = bufferlengthtime
 		if lastemittedaudiobufferpitchscale == 1.0:
-			if abs(bufferlengthtime - audiobufferlagtimetarget) > audiobufferlagtimetargettolerance:
-				setpitchscale(0.7 if (bufferlengthtime < audiobufferlagtimetarget) else 1.4)
-				#print(" set lastemittedaudiobufferpitchscale to ", lastemittedaudiobufferpitchscale)
+			if abs(bufferlengthtime - audio_buffer_lag_time_target) > audio_buffer_lag_time_target_tolerance:
+				setpitchscale(0.7 if (bufferlengthtime < audio_buffer_lag_time_target) else 1.4)
+				print(" set lastemittedaudiobufferpitchscale to ", lastemittedaudiobufferpitchscale)
 
-		elif (lastemittedaudiobufferpitchscale < 1.0) == (bufferlengthtime > audiobufferlagtimetarget):
+		elif (lastemittedaudiobufferpitchscale < 1.0) == (bufferlengthtime > audio_buffer_lag_time_target):
 			setpitchscale(1.0)
-			#print(" set lastemittedaudiobufferpitchscale to ", lastemittedaudiobufferpitchscale)
+			print(" set lastemittedaudiobufferpitchscale to ", lastemittedaudiobufferpitchscale)
 	
 	# leave the run-out at the same pitchscale
 	#elif lastemittedaudiobufferpitchscale != 1.0:
@@ -232,18 +200,18 @@ func _physics_process(delta):
 
 func replayrecording(speedup, recordedheader, recordedopuspackets, recordedfooter):
 	playingrecording = true
-	tv_incomingaudiopacket(JSON.stringify(recordedheader).to_ascii_buffer())
+	receive_audio_packet(JSON.stringify(recordedheader).to_ascii_buffer())
 	setpitchscale(speedup)
 	for x in recordedopuspackets:
-		if recordedheader["opusframesize"] > audiostreamplaybackopus.available_space_frames():
-			var tmm = audiostreamplaybackopus.queue_length_frames()*0.5/audiostreamopus.opus_sample_rate
+		if recordedheader["opusframesize"] > audio_stream_playback_opus.available_space_frames():
+			var tmm = audio_stream_playback_opus.queue_length_frames()*0.5/audiostreamopus.opus_sample_rate
 			await get_tree().create_timer(tmm).timeout
-		tv_incomingaudiopacket(x)
-	tv_incomingaudiopacket(JSON.stringify(recordedfooter).to_ascii_buffer())
+		receive_audio_packet(x)
+	receive_audio_packet(JSON.stringify(recordedfooter).to_ascii_buffer())
 	playingrecording = false
 
 var sinewaveoutmode = false
 func set_sinewave_out(toggled_on):
 	sinewaveoutmode = toggled_on
-	if audiostreamplaybackopus:
-		audiostreamplaybackopus.set_sinewave_frames(audiostreamopus.opus_sample_rate/440 if toggled_on else 0, 0.05)
+	if audio_stream_playback_opus:
+		audio_stream_playback_opus.set_sinewave_frames(audiostreamopus.opus_sample_rate/440 if toggled_on else 0, 0.05)

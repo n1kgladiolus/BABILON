@@ -216,7 +216,7 @@ subdivide_width = 50
 subdivide_depth = 50
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bv0ed"]
-size = Vector3(5, 5, 5)
+size = Vector3(7.66, 5, 9.78)
 
 [node name="MenuV2" type="Node" unique_id=1168896780]
 script = ExtResource("1_4t2se")
@@ -523,16 +523,19 @@ attachments/50/offset = Vector3(0, 0, 0)
 attachments/51/point_index = 2703
 attachments/51/spatial_attachment_path = NodePath("")
 attachments/51/offset = Vector3(0, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="Area3D" type="Area3D" parent="world_front" unique_id=1267927453]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 3.8099997, 1.9699999, 2.4799998)
 wind_force_magnitude = 0.1
 wind_source_path = NodePath("Node3D")
+metadata/_edit_lock_ = true
 
 [node name="Node3D" type="Node3D" parent="world_front/Area3D" unique_id=945117896]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 4.463482, 0.10000026, -0.12902832)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="world_front/Area3D" unique_id=2132585808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3300002, 0, -2.39)
 shape = SubResource("BoxShape3D_bv0ed")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="world_front" unique_id=1587063441]
@@ -544,6 +547,7 @@ spot_range = 6.5299997
 [node name="Camera3D" type="Camera3D" parent="." unique_id=273828280]
 transform = Transform3D(-0.5000001, -0.43301266, 0.75, -1.0334046e-09, 0.8660254, 0.5, -0.8660254, 0.25000006, -0.4330128, 4.6089993, 2.7809792, -0.25420842)
 fov = 80.0
+metadata/_edit_lock_ = true
 
 [node name="UI" type="Control" parent="." unique_id=660169025]
 layout_mode = 3

@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://7sxg5bcp3vud"]
+
+[ext_resource type="ArrayMesh" uid="uid://c5op6myhxw674" path="res://mesh/vavilon.res" id="1_ere7p"]
+[ext_resource type="PackedScene" uid="uid://ctm11ynd1db06" path="res://lvl/game/table.tscn" id="2_tie6a"]
+[ext_resource type="ArrayMesh" uid="uid://b1k3baxjtmmpg" path="res://mesh/slon.res" id="3_unsym"]
+[ext_resource type="ArrayMesh" uid="uid://b13qc0kqjdi80" path="res://mesh/peshk_fan.res" id="4_iepje"]
+[ext_resource type="ArrayMesh" uid="uid://dajhiii2l7es5" path="res://mesh/lada.res" id="5_ldvw6"]
+[ext_resource type="Material" uid="uid://vl3yd4ettwfy" path="res://visual/material/king/mDragon.tres" id="6_pi2fr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_bv0ed"]
+size = Vector3(0.035, 0.035, 0.035)
+
+[node name="deco_object_table" type="Node3D" unique_id=1502427487]
+
+[node name="Vavilon" type="MeshInstance3D" parent="." unique_id=486419027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.45, 0)
+mesh = ExtResource("1_ere7p")
+metadata/_edit_lock_ = true
+
+[node name="TABLE" parent="." unique_id=437054224 instance=ExtResource("2_tie6a")]
+metadata/_edit_lock_ = true
+
+[node name="Slon" type="MeshInstance3D" parent="." unique_id=1007135419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53259975, 0.0532, 1.0145)
+mesh = ExtResource("3_unsym")
+
+[node name="PeshkFan" type="MeshInstance3D" parent="." unique_id=881683068]
+transform = Transform3D(-0.25881904, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, -0.25881904, 0.6861998, 0.053099997, 1.0822)
+mesh = ExtResource("4_iepje")
+
+[node name="Lada" type="MeshInstance3D" parent="." unique_id=1930030840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5160262, 0.0532, 1.1543901)
+mesh = ExtResource("5_ldvw6")
+
+[node name="cute_cube" type="Node3D" parent="." unique_id=1134469759]
+transform = Transform3D(0.9659258, 0, -0.25881904, 0, 1, 0, 0.25881904, 0, 0.9659258, 0.63982, 0.050799996, 0.97622794)
+
+[node name="cube" type="MeshInstance3D" parent="cute_cube" unique_id=488146775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("BoxMesh_bv0ed")
+surface_material_override/0 = ExtResource("6_pi2fr")
+
+[node name="cute_cube2" type="Node3D" parent="." unique_id=236945335]
+transform = Transform3D(0.7071068, 0, 0.70710695, 0, 1, 0, -0.70710695, 0, 0.7071068, 0.67981994, 0.050799996, 0.94622797)
+
+[node name="cube" type="MeshInstance3D" parent="cute_cube2" unique_id=1530920343]
+transform = Transform3D(0.9659258, 0, 0.25881907, 0, 1, 0, -0.25881907, 0, 0.9659258, 0, 0.019999996, 0)
+mesh = SubResource("BoxMesh_bv0ed")
+surface_material_override/0 = ExtResource("6_pi2fr")
+
+[node name="cute_cube3" type="Node3D" parent="." unique_id=699085460]
+transform = Transform3D(0.7071068, 0, 0.70710695, 0, 1, 0, -0.70710695, 0, 0.7071068, 0.65981996, 0.085799985, 0.95622796)
+
+[node name="cube" type="MeshInstance3D" parent="cute_cube3" unique_id=1594376404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("BoxMesh_bv0ed")
+surface_material_override/0 = ExtResource("6_pi2fr")
+
+[node name="cute_cube4" type="Node3D" parent="." unique_id=1989781047]
+transform = Transform3D(0.96592593, 0, 0.25881916, 0, 1, 0, -0.25881916, 0, 0.96592593, 0.74456865, 0.05079999, 0.9714792)
+
+[node name="cube" type="MeshInstance3D" parent="cute_cube4" unique_id=1911851160]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("BoxMesh_bv0ed")
+surface_material_override/0 = ExtResource("6_pi2fr")

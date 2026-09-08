@@ -3,11 +3,9 @@ extends Node
 var opusencoder : TwovoipOpusEncoder = TwovoipOpusEncoder.new()
 var chunkprefix : PackedByteArray = PackedByteArray([0,0]) 
 
-var leadtime : float = 0.15
-var hangtime : float  = 0.7
-var voxthreshhold = 0.05
-var microphone_gain = 1.0
-
+var lead_time : float = 0.15
+var hang_time : float  = 0.7
+var vox_threshhold = 0.07
 var currentlytalking = false
 var opusframecount = 0
 var opusstreamcount = 0
@@ -20,14 +18,16 @@ var audiosampleframetextureimage : Image
 var audiosampleframetexture : ImageTexture
 var audiosampleframematerial = null
 
-signal transmitaudiopacket(opuspacket : PackedByteArray, opusframecount : int)
-signal transmitaudiojsonpacket(audiostreampacketheader : Dictionary)
+signal transmit_audio_json_packet(audiostreampacketheader : Dictionary)
+signal transmit_audio_packet(opuspacket : PackedByteArray)
+var json_packets_as_binary : bool = false
 
 const rootmeansquaremaxmeasurement = false
 
 var microphoneaudiosamplescountSeconds = 0.0
 var microphoneaudiosamplescount = 0
 var microphoneaudiosamplescountSecondsSampleWindow = 10.0
+var automatic_gain = false
 
 var talkingtimestart = 0
 var opus_chunk_size = 960
@@ -35,18 +35,17 @@ var audio_chunk_size = 882
 var frametimesecs = 0.02
 var opussamplerate = 48000
 var opuschannels = 2
-
-func setopusvalues(p_opussamplerate, opusframedurationms, p_channels, opusbitrate, opuscomplexity, opusoptimizeforvoice):
+func set_opus_values(p_opussamplerate, p_opusframedurationms, p_channels, p_opusbitrate, p_opuscomplexity, p_opusoptimizeforvoice):
 	processtalkstreamends(false)
 	assert (not currentlytalking)
 
 	opussamplerate = p_opussamplerate
 	opuschannels = p_channels
-	opusencoder.create_sampler(AudioServer.get_input_mix_rate(), opussamplerate, opuschannels, denoisebutton.button_pressed)
-	opusencoder.create_opus_encoder(opusbitrate, opuscomplexity, opusoptimizeforvoice)
-	opus_chunk_size = int(opussamplerate*opusframedurationms/1000.0)
-	audio_chunk_size = opusencoder.calc_audio_chunk_size(opus_chunk_size)
-	frametimesecs = opusframedurationms/1000.0
+	opus_chunk_size = int(opussamplerate*p_opusframedurationms/1000.0)
+	opusencoder.create_sampler(AudioServer.get_input_mix_rate(), opussamplerate, opuschannels, denoisebutton.button_pressed, opus_chunk_size)
+	opusencoder.create_opus_encoder(p_opusbitrate, p_opuscomplexity, p_opusoptimizeforvoice)
+	audio_chunk_size = opusencoder.get_required_input_chunk_size()
+	frametimesecs = p_opusframedurationms/1000.0
 	if audiosampleframematerial:
 		var audiosampleframedata = PackedVector2Array()
 		audiosampleframedata.resize(audio_chunk_size)
@@ -68,18 +67,18 @@ func _ready():
 func _on_miconbutton(toggled_on):
 	if toggled_on:
 		if OS.get_name() == "Android" and not OS.request_permission("android.permission.RECORD_AUDIO"):
-			#print("Waiting for user response after requesting audio permissions")
+			print("Waiting for user response after requesting audio permissions")
 			# Must enable Record Audio permission in on Android
 			@warning_ignore("untyped_declaration")
 			var x = await get_tree().on_request_permissions_result
 			var permission: String = x[0]
 			var granted: bool = x[1]
 			assert(permission == "android.permission.RECORD_AUDIO")
-			#print("Android Audio permission granted ", granted)
+			print("Android Audio permission granted ", granted)
 
 		var err = AudioServer.set_input_device_active(true)
 		if err != OK:
-			#print("Mic input err: ", err)
+			print("Mic input err: ", err)
 			miconbutton.set_pressed_no_signal(false)
 	else:
 		AudioServer.set_input_device_active(false)
@@ -89,17 +88,24 @@ func _on_optioninputdevice(index: int) -> void:
 	if micwason:
 		miconbutton.set_pressed(false)
 	var input_device: String = optioninputdevice.get_item_text(index)
-	#print("Set input device: ", input_device)
+	print("Set input device: ", input_device)
 	AudioServer.set_input_device(input_device)
 	if micwason:
 		miconbutton.set_pressed(true)
 
 func _on_vox_toggled(toggled_on):
-	#pttbutton.toggle_mode = toggled_on
+	pttbutton.toggle_mode = toggled_on
 	pttbutton.set_pressed(false)
 
-func initvoipmic(lmiconbutton: Button, loptioninputdevice: OptionButton, lpttbutton: Button, lvoxbutton: Button, ldenoisebutton: Button, laudiosampleframematerial: Material):
-	miconbutton = lmiconbutton
+func init_voip_mic(p_json_packets_as_binary: bool,
+				   p_miconbutton: Button, 
+				   p_optioninputdevice: OptionButton, 
+				   p_pttbutton: Button,
+				   p_voxbutton: Button, 
+				   p_denoisebutton: Button, 
+				   p_audiosampleframematerial: Material):
+	json_packets_as_binary = p_json_packets_as_binary
+	miconbutton = p_miconbutton
 	if miconbutton == null:
 		miconbutton = Button.new()
 		miconbutton.toggle_mode = true
@@ -108,9 +114,9 @@ func initvoipmic(lmiconbutton: Button, loptioninputdevice: OptionButton, lpttbut
 	miconbutton.connect("toggled", _on_miconbutton)
 	_on_miconbutton(miconbutton.button_pressed)
 
-	pttbutton = (lpttbutton if lpttbutton else Button.new())
+	pttbutton = (p_pttbutton if p_pttbutton else Button.new())
 
-	voxbutton = lvoxbutton
+	voxbutton = p_voxbutton
 	if voxbutton == null:
 		voxbutton = Button.new()
 		voxbutton.toggle_mode = true
@@ -119,15 +125,15 @@ func initvoipmic(lmiconbutton: Button, loptioninputdevice: OptionButton, lpttbut
 	voxbutton.connect("toggled", _on_vox_toggled)
 	_on_vox_toggled(voxbutton.button_pressed)
 
-	denoisebutton = ldenoisebutton
+	denoisebutton = p_denoisebutton
 	if denoisebutton == null:
 		denoisebutton = Button.new()
 		denoisebutton.toggle_mode = true
 	assert(denoisebutton.toggle_mode, "Denoise must be a toggle button")
 
-	audiosampleframematerial = laudiosampleframematerial
+	audiosampleframematerial = p_audiosampleframematerial
 	
-	optioninputdevice = loptioninputdevice if loptioninputdevice else OptionButton.new()
+	optioninputdevice = p_optioninputdevice if p_optioninputdevice else OptionButton.new()
 	assert(optioninputdevice.item_count == 0)
 	for d in AudioServer.get_input_device_list():
 		optioninputdevice.add_item(d)
@@ -139,9 +145,9 @@ func initvoipmic(lmiconbutton: Button, loptioninputdevice: OptionButton, lpttbut
 func processtalkstreamends(talking: bool):
 	if talking and not currentlytalking:
 		talkingtimestart = Time.get_ticks_msec()*0.001
-		var leadframes = leadtime/frametimesecs
-		hangframes = hangtime/frametimesecs
-		#print("leadframes ", leadframes)
+		var leadframes = lead_time/frametimesecs
+		hangframes = int(hang_time/frametimesecs)
+		prints("leadframes ", leadframes, "hangframes", hangframes)
 		#while leadframes > 0.0 and audioopuschunkedeffect.undrop_chunk():
 		#	leadframes -= 1
 		#	talkingtimestart -= frametimesecs
@@ -155,7 +161,10 @@ func processtalkstreamends(talking: bool):
 			"talkingtimestart":talkingtimestart
 		}
 		opusencoder.reset_opus_encoder()
-		transmitaudiojsonpacket.emit(audiostreampacketheader)
+		if json_packets_as_binary:
+			transmit_audio_packet.emit(JSON.stringify(audiostreampacketheader).to_ascii_buffer())
+		else:
+			transmit_audio_json_packet.emit(audiostreampacketheader)
 		#get_parent().PlayerConnections.peerconnections_possiblymissingaudioheaders.clear()
 		opusframecount = 0
 		currentlytalking = true
@@ -170,18 +179,45 @@ func processtalkstreamends(talking: bool):
 			"talkingtimeduration":talkingtimeduration,
 			"talkingtimeend":talkingtimeend 
 		}
-		#print("My voice chunktime=", talkingtimeduration/opusframecount, " over ", talkingtimeduration, " seconds")
-		transmitaudiojsonpacket.emit(audiopacketstreamfooter)
+		print("My voice chunktime=", talkingtimeduration/opusframecount, " over ", talkingtimeduration, " seconds")
+		if json_packets_as_binary:
+			transmit_audio_packet.emit(JSON.stringify(audiopacketstreamfooter).to_ascii_buffer())
+		else:
+			transmit_audio_json_packet.emit(audiopacketstreamfooter)
 		opusstreamcount += 1
 
-func set_voxthreshhold(lvoxthreshhold):
-	voxthreshhold = lvoxthreshhold
+func request_audio_json_packet_mid_header():
+	if not currentlytalking:
+		return null
+	var audiostreampacketmidheader = { 
+			"opusframesize":opus_chunk_size, 
+			"opussamplerate":opussamplerate, 
+			"opuschannels":opuschannels,
+			"lenchunkprefix":len(chunkprefix), 
+			"opusstreamcount":opusstreamcount, 
+			"opusframecount":opusframecount-1,
+			"talkingtimestart":talkingtimestart
+		}
+	if json_packets_as_binary:
+		return JSON.stringify(audiostreampacketmidheader).to_ascii_buffer()
+	else:
+		return audiostreampacketmidheader
+
+func set_vox_threshhold(p_vox_threshhold):
+	vox_threshhold = p_vox_threshhold
 	if audiosampleframematerial:
-		audiosampleframematerial.set_shader_parameter("voxthreshhold", voxthreshhold)
+		audiosampleframematerial.set_shader_parameter("voxthreshhold", vox_threshhold)
 
 func set_gain(gain):
-	#print("set microphone gain to ", gain)
-	microphone_gain = gain
+	opusencoder.set_gain(gain)
+
+func get_gain():
+	return opusencoder.get_gain()
+
+func set_automatic_gain(enabled):
+	var error = opusencoder.set_automatic_gain(enabled)
+	automatic_gain = opusencoder.get_automatic_gain()
+	return error
 
 func processvox(chunkmax, audio_chunk):
 	if audiosampleframematerial:
@@ -189,7 +225,7 @@ func processvox(chunkmax, audio_chunk):
 			audiosampleframematerial.set_shader_parameter("speechnoiseprobability", chunkmax)
 		audiosampleframematerial.set_shader_parameter("chunkmax", chunkmax)
 
-	if chunkmax >= voxthreshhold:
+	if chunkmax >= vox_threshhold:
 		if voxbutton.button_pressed and not pttbutton.button_pressed:
 			pttbutton.button_pressed = true
 		hangframescountup = 0
@@ -221,10 +257,11 @@ func processopuschunk():
 		chunkprefix.set(1, (int(opusframecount/256)&127) + (opusstreamcount%2)*128)
 	else:
 		assert (len(chunkprefix) == 0)
-	var opuspacket : PackedByteArray = opusencoder.encode_chunk(chunkprefix, microphone_gain)
-	transmitaudiopacket.emit(opuspacket, opusframecount)
+	var opuspacket : PackedByteArray = opusencoder.encode_chunk(chunkprefix)
+	transmit_audio_packet.emit(opuspacket)
 	opusframecount += 1
-	
+
+
 var audio_chunk = null
 var last_chunkmax = 0.0
 
@@ -232,13 +269,20 @@ func _process(delta):
 	microphoneaudiosamplescountSeconds += delta
 	processtalkstreamends(pttbutton.button_pressed)
 	while true:
-		audio_chunk = AudioServer.get_input_frames(opusencoder.calc_audio_chunk_size(opus_chunk_size))
+		audio_chunk = AudioServer.get_input_frames(opusencoder.get_required_input_chunk_size())
 		if len(audio_chunk) == 0:
 			break
-		last_chunkmax = opusencoder.process_pre_encoded_chunk(audio_chunk, opus_chunk_size, denoisebutton.button_pressed, rootmeansquaremaxmeasurement)
+		if opusencoder.process_chunk(audio_chunk) < 0:
+			break
+		if denoisebutton.button_pressed:
+			last_chunkmax = opusencoder.get_speech_probability()
+		elif rootmeansquaremaxmeasurement:
+			last_chunkmax = opusencoder.get_rms()
+		else:
+			last_chunkmax = opusencoder.get_peak()
 		microphoneaudiosamplescount += len(audio_chunk)
 		if microphoneaudiosamplescountSeconds > microphoneaudiosamplescountSecondsSampleWindow:
-			#print("measured mic audiosamples rate ", microphoneaudiosamplescount/microphoneaudiosamplescountSeconds)
+			print("measured mic audiosamples rate ", microphoneaudiosamplescount/microphoneaudiosamplescountSeconds)
 			microphoneaudiosamplescount = 0
 			microphoneaudiosamplescountSeconds = 0.0
 			microphoneaudiosamplescountSecondsSampleWindow *= 1.5
