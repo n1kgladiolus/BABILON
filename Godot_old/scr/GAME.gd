@@ -153,7 +153,7 @@ var menu_open := false
 
 
 func _ready() -> void:
-	
+	return
 	for lvl in ["A", "B"]:
 		if TABLE.has_node(lvl):
 			for g in TABLE.get_node(lvl).get_children():
@@ -182,6 +182,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	return#########################################################
 	if R.status != "CLIENT":
 		return
 	

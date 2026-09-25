@@ -16,8 +16,6 @@ dest_files=["res://.godot/imported/gex.glb-90108c70ac7bdcd60a4b1b2ca08e1b20.scn"
 nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
-mesh_library/use_node_names_as_mesh_names=false
-array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -39,7 +37,79 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"gex_osnova": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/other/mGex.tres",
+"use_external/path": "uid://dpb8x670u38db"
+}
+},
+"meshes": {
+"gex_gex": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/gex/gex_gex.res",
+"save_to_file/path": "uid://cka043hlsj4xe"
+},
+"gex_i_krug": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/gex/gex_i_krug.res",
+"save_to_file/path": "uid://dfyqch1g6ckjj"
+},
+"gex_i_kube": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/gex/gex_i_kube.res",
+"save_to_file/path": "uid://k7w4fyjwpghy"
+},
+"gex_i_minus": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/gex/gex_i_minus.res",
+"save_to_file/path": "uid://w4emgpmqsysi"
+},
+"gex_i_plus": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/gex/gex_i_plus.res",
+"save_to_file/path": "uid://b3qk1sc63exyp"
+},
+"gex_i_star": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/gex/gex_i_star.res",
+"save_to_file/path": "uid://e14jvgnj6bkm"
+},
+"gex_i_treug": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/gex/gex_i_treug.res",
+"save_to_file/path": "uid://b3k4sllgjbaw5"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
-gltf/texture_map_mode=1

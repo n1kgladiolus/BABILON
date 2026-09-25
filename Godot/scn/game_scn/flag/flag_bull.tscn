@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c1jxn7p2r1eys"]
+
+[ext_resource type="ArrayMesh" uid="uid://rqtodlndtxj0" path="res://object/flags/flags_flag_zubr.res" id="1_gbpif"]
+[ext_resource type="Texture2D" uid="uid://civpl7ajrij5x" path="res://image/gerb/Bull.png" id="2_3xmmr"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kuto5"]
+size = Vector2(0.05, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhvkp"]
+transparency = 1
+albedo_texture = ExtResource("2_3xmmr")
+
+[node name="flag_bull" type="Node3D" unique_id=503093944]
+
+[node name="gerb" type="MeshInstance3D" parent="." unique_id=450475150]
+transform = Transform3D(-1, -1.509958e-07, 6.600236e-15, 0, -4.371139e-08, -1, 1.509958e-07, -1, 4.371139e-08, 0, 0.315, -0.005)
+mesh = SubResource("PlaneMesh_kuto5")
+surface_material_override/0 = SubResource("StandardMaterial3D_dhvkp")
+
+[node name="FlagBull" type="MeshInstance3D" parent="." unique_id=387986932]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.099999994, 0)
+mesh = ExtResource("1_gbpif")

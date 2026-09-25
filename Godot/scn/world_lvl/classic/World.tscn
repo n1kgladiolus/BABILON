@@ -1,0 +1,146 @@
+[gd_scene format=3 uid="uid://cwuvnewnbxqxj"]
+
+[ext_resource type="PackedScene" uid="uid://ctm11ynd1db06" path="res://scn/game_scn/gex/table.tscn" id="1_5eukg"]
+[ext_resource type="PackedScene" uid="uid://raav3higl0eu" path="res://addons/san_dice/scenes/brosok.tscn" id="1_mgia2"]
+[ext_resource type="ArrayMesh" uid="uid://dh4v348k7jmb4" path="res://object/world/world_object_VAVILONE_001.res" id="2_3ii52"]
+[ext_resource type="Texture2D" uid="uid://bjsg3ui6xvbmp" path="res://visual/material/other/lain.png" id="2_5qa0x"]
+[ext_resource type="PackedScene" uid="uid://bveeukxurc7cf" path="res://scn/game_scn/monolit.tscn" id="3_3ii52"]
+[ext_resource type="Script" uid="uid://dkma7q3vhvbl0" path="res://scn/world_lvl/classic/environment.gd" id="4_sace3"]
+[ext_resource type="Script" uid="uid://ldmth6v8yk6i" path="res://addons/san_star/sky.gd" id="7_dtjvf"]
+[ext_resource type="PackedScene" uid="uid://cvenhqkighqsg" path="res://addons/san_clouds/Resourses/cloud.tscn" id="7_lsdv3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tp3yf"]
+shading_mode = 0
+albedo_texture = ExtResource("2_5qa0x")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_lsdv3"]
+material = SubResource("StandardMaterial3D_tp3yf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtjvf"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.42745098, 0.7490196, 0.7019608, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_mgia2"]
+material = SubResource("StandardMaterial3D_dtjvf")
+radius = 10.0
+height = 20.0
+radial_segments = 32
+rings = 16
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_dtjvf"]
+resource_local_to_scene = true
+
+[node name="World" type="Node3D" unique_id=237964239]
+
+[node name="brosok" parent="." unique_id=78087330 instance=ExtResource("1_mgia2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="TABLE" parent="." unique_id=437054224 instance=ExtResource("1_5eukg")]
+metadata/_edit_lock_ = true
+
+[node name="Lain" type="MeshInstance3D" parent="." unique_id=1192149541]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.5, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_lsdv3")
+metadata/_edit_lock_ = true
+
+[node name="WorldObjectVavilone001" type="MeshInstance3D" parent="." unique_id=2038083696]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.45, 0)
+mesh = ExtResource("2_3ii52")
+metadata/_edit_lock_ = true
+
+[node name="monolit_players" type="Node3D" parent="." unique_id=1908974729]
+metadata/_edit_lock_ = true
+
+[node name="monolit" parent="monolit_players" unique_id=1690850865 instance=ExtResource("3_3ii52")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -2.5)
+metadata/_edit_lock_ = true
+
+[node name="monolit2" parent="monolit_players" unique_id=1651431682 instance=ExtResource("3_3ii52")]
+transform = Transform3D(-0.8660254, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660254, 2.165, 0, -1.25)
+metadata/_edit_lock_ = true
+
+[node name="monolit3" parent="monolit_players" unique_id=103995637 instance=ExtResource("3_3ii52")]
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, 2.165, 0, 1.25)
+metadata/_edit_lock_ = true
+
+[node name="monolit4" parent="monolit_players" unique_id=615131612 instance=ExtResource("3_3ii52")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 2.5)
+metadata/_edit_lock_ = true
+
+[node name="monolit5" parent="monolit_players" unique_id=497769354 instance=ExtResource("3_3ii52")]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, -2.165, 0, 1.25)
+metadata/_edit_lock_ = true
+
+[node name="monolit6" parent="monolit_players" unique_id=1907672179 instance=ExtResource("3_3ii52")]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -2.165, 0, -1.25)
+metadata/_edit_lock_ = true
+
+[node name="environment" type="Node" parent="." unique_id=1504033714 node_paths=PackedStringArray("sanches_light", "night_light", "sky_mesh")]
+script = ExtResource("4_sace3")
+sanches_light = NodePath("Sanches")
+night_light = NodePath("Night")
+sky_mesh = NodePath("Sky")
+
+[node name="Sanches" type="SpotLight3D" parent="environment" unique_id=227628673]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 4.7, 1)
+light_energy = 6.0
+light_specular = 0.1
+shadow_enabled = true
+shadow_bias = 0.2
+spot_range = 12.0
+spot_angle = 50.0
+
+[node name="Night" type="SpotLight3D" parent="environment" unique_id=722221957]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.5, 0)
+light_color = Color(0.4627451, 0.75686276, 0.9843137, 1)
+light_specular = 0.1
+shadow_enabled = true
+spot_range = 6.5
+spot_angle = 67.0
+
+[node name="Sky" type="MeshInstance3D" parent="environment" unique_id=1225380208]
+cast_shadow = 0
+mesh = SubResource("SphereMesh_mgia2")
+script = ExtResource("7_dtjvf")
+metadata/_edit_lock_ = true
+
+[node name="CloudSpawn" type="Node3D" parent="environment" unique_id=1042429460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
+metadata/_edit_lock_ = true
+
+[node name="Cloud" parent="environment/CloudSpawn" unique_id=1958340692 instance=ExtResource("7_lsdv3")]
+mesh = SubResource("ImmediateMesh_dtjvf")
+
+[node name="Timer" type="Timer" parent="environment/CloudSpawn" unique_id=1122969966]
+wait_time = 0.05
+autostart = true
+
+[node name="Button" type="Button" parent="environment" unique_id=25566337]
+offset_left = -512.0
+offset_right = -320.0
+offset_bottom = 64.0
+text = "День"
+
+[node name="Button2" type="Button" parent="environment" unique_id=1108036419]
+offset_left = -512.0
+offset_top = 96.0
+offset_right = -320.0
+offset_bottom = 160.0
+text = "Вечер"
+
+[node name="Button3" type="Button" parent="environment" unique_id=1967916124]
+offset_left = -512.0
+offset_top = 192.0
+offset_right = -320.0
+offset_bottom = 256.0
+text = "Ночь"
+
+[node name="Button4" type="Button" parent="environment" unique_id=1544453295]
+offset_left = -512.0
+offset_top = 288.0
+offset_right = -320.0
+offset_bottom = 352.0
+text = "Утро"

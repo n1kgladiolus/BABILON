@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cvenhqkighqsg"]
+
+[ext_resource type="Script" uid="uid://dbvvx0uloc2yp" path="res://addons/san_clouds/clouds_scr.gd" id="1_bhesg"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_ywhnu"]
+resource_local_to_scene = true
+
+[node name="Cloud" type="MeshInstance3D" unique_id=1958340692]
+mesh = SubResource("ImmediateMesh_ywhnu")
+script = ExtResource("1_bhesg")

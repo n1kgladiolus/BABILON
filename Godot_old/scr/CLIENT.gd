@@ -73,6 +73,8 @@ func _input(event: InputEvent):
 		mic_settings[2].set_pressed(false)
 
 func _ready() -> void:
+	return
+	
 	var args := OS.get_cmdline_user_args()
 	if "--server" in args or "--server_game" in args:
 		queue_free()
@@ -239,7 +241,7 @@ func lobby_disconnect():
 		is_lobby_leader = false
 	
 	
-	
+	return
 	Audio.get_node("Background").set_stream(OST_1)
 	Audio.get_node("Background").play()
 	Audio.get_node("Background_veter").stop()

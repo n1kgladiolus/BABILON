@@ -9,7 +9,7 @@ var M_LION = preload("res://visual/material/king/mLion.tres")
 const walk_material := preload("res://visual/material/game/walk.tres")
 const attack_material := preload("res://visual/material/game/attack.tres")
 const king_gerb := [null, null, preload("res://king/gerb/Bear.png"), preload("res://king/gerb/Bull.png"), preload("res://king/gerb/Dragon.png"), preload("res://king/gerb/Eagle.png"), preload("res://king/gerb/Elephant.png"), preload("res://king/gerb/Lion.png")]
-const kazna_ico := [preload("res://koloda/kazna/K_00.png"), preload("res://koloda/kazna/K_00_Op.png"), preload("res://koloda/kazna/K_1.png"), preload("res://koloda/kazna/K_1_Op.png"), preload("res://koloda/kazna/K_2.png"), preload("res://koloda/kazna/K_2_Op.png"), preload("res://koloda/kazna/K_3.png"), preload("res://koloda/kazna/K_3_Op.png"), preload("res://koloda/kazna/K_4.png"), preload("res://koloda/kazna/K_4_Op.png")]
+const kazna_ico := [preload("res://pictures/kazna/K_00.png"), preload("res://pictures/kazna/K_00_Op.png"), preload("res://pictures/kazna/K_1.png"), preload("res://pictures/kazna/K_1_Op.png"), preload("res://pictures/kazna/K_2.png"), preload("res://pictures/kazna/K_2_Op.png"), preload("res://pictures/kazna/K_3.png"), preload("res://pictures/kazna/K_3_Op.png"), preload("res://pictures/kazna/K_4.png"), preload("res://pictures/kazna/K_4_Op.png")]
 const bay_material := [preload("res://visual/material/figura/buy_bad.tres"), preload("res://visual/material/figura/buy_good.tres")]
 const cute_cube := preload("res://mesh_figura/cute_cube.tscn")
 

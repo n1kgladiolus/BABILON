@@ -1,0 +1,9 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://dyn5ypjqedtek"]
+
+[ext_resource type="Texture2D" uid="uid://cjlk47ov8hbw" path="res://visual/texture/stone.png" id="1_kouh5"]
+
+[resource]
+texture = ExtResource("1_kouh5")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.3855767, 0.47808403, 0.53182244, 1)

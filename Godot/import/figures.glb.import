@@ -16,8 +16,6 @@ dest_files=["res://.godot/imported/figures.glb-7f52037a5474bf75e6aac1b1e44fd879.
 nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
-mesh_library/use_node_names_as_mesh_names=false
-array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -39,7 +37,131 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"fig_black": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figures/mFigura_black.tres",
+"use_external/path": "uid://dn11xhc5rdvij"
+},
+"fig_bomb": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figures/mFigura_bomb.tres",
+"use_external/path": "uid://bxnldoyujngfv"
+},
+"fig_fan": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figures/mFigura_fan.tres",
+"use_external/path": "uid://c0fucfhd72h01"
+},
+"fig_gold": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figures/mFigura_gold.tres",
+"use_external/path": "uid://baty06htmct2f"
+},
+"fig_osn": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figures/mFigura_osn.tres",
+"use_external/path": "uid://hyuiall76dyr"
+},
+"fig_red": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/figures/mFigura_red.tres",
+"use_external/path": "uid://drh8b00amyk6b"
+}
+},
+"meshes": {
+"figures_king_game": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/figures/figures_king_game.res",
+"save_to_file/path": "uid://do43pvuqnfhxx"
+},
+"figures_kon_game": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/figures/figures_kon_game.res",
+"save_to_file/path": "uid://d3p5xccphwgqr"
+},
+"figures_kon_game_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/figures/figures_kon_game_001.res",
+"save_to_file/path": "uid://bjvxobtgrk7b7"
+},
+"figures_lada_game": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/figures/figures_lada_game.res",
+"save_to_file/path": "uid://bmvqfj0q0fj7m"
+},
+"figures_lada_game_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/figures/figures_lada_game_001.res",
+"save_to_file/path": "uid://cwui245vr58rl"
+},
+"figures_lada_game_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/figures/figures_lada_game_002.res",
+"save_to_file/path": "uid://doql0uqxhfore"
+},
+"figures_peshk_game": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/figures/figures_peshk_game.res",
+"save_to_file/path": "uid://c4uvw5nm2dql5"
+},
+"figures_peshk_game_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/figures/figures_peshk_game_001.res",
+"save_to_file/path": "uid://clegauo4e0d6d"
+},
+"figures_slon_game": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/figures/figures_slon_game.res",
+"save_to_file/path": "uid://yqn00nks2khu"
+},
+"figures_slon_game_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/figures/figures_slon_game_001.res",
+"save_to_file/path": "uid://b4hsfc0kduoka"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
-gltf/texture_map_mode=1

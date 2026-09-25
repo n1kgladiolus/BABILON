@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://s1unvb1uisiu" path="res://import/ava_placehold.png" id="1_cx56x"]
 [ext_resource type="Texture2D" uid="uid://civpl7ajrij5x" path="res://king/gerb/Bull.png" id="2_8a4kp"]
+[ext_resource type="FontFile" uid="uid://dqlnx10etcgew" path="res://addons/menu_v2/ofont.ru_Balkara Condensed.ttf" id="3_5qm0e"]
 [ext_resource type="Texture2D" uid="uid://cmtwctvb1k11v" path="res://pictures/kazna/K_00.png" id="3_orv6t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv0ed"]
@@ -67,6 +68,7 @@ mesh = SubResource("PlaneMesh_x521r")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.12, 0.5, 0)
 modulate = Color(0.7887894, 0, 0.11774104, 1)
 text = "USERNAME"
+font = ExtResource("3_5qm0e")
 font_size = 26
 outline_size = 5
 

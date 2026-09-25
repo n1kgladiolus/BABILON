@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bkufnk8kq8sol"]
+
+[node name="NET" type="Node" unique_id=1115788803]
+
+[node name="GAME_SERVER" type="Node" parent="." unique_id=412871221]
+
+[node name="MAIN_SERVER" type="Node" parent="." unique_id=227531461]
+
+[node name="VOICE_SERVER" type="Node" parent="." unique_id=1487974229]

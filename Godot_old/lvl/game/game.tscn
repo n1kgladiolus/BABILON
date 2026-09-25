@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://big2y65rgll3g" path="res://lvl/game/magaz/peshk.tscn" id="12_lwgrd"]
 [ext_resource type="PackedScene" uid="uid://hyxo3yrfkyb6" path="res://lvl/game/magaz/kon.tscn" id="13_fafcu"]
 [ext_resource type="PackedScene" uid="uid://wpaihj0ltdkf" path="res://lvl/game/magaz/slon.tscn" id="14_7di75"]
+[ext_resource type="FontFile" uid="uid://dqlnx10etcgew" path="res://addons/menu_v2/ofont.ru_Balkara Condensed.ttf" id="15_n7vso"]
 [ext_resource type="PackedScene" uid="uid://bjbjl348l6fuq" path="res://lvl/game/magaz/lada.tscn" id="15_okd6o"]
 [ext_resource type="Texture2D" uid="uid://dkcdrnmauyrts" path="res://pictures/info_2.jpg" id="17_fafcu"]
 [ext_resource type="Texture2D" uid="uid://ulo6nigwf8u" path="res://pictures/figur_ico/rotate_icon.png" id="20_3cwwr"]
@@ -38,7 +39,7 @@ ssao_enabled = true
 ssao_intensity = 1.2
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.8243905, 0.8403771, 0.867017, 1)
+fog_light_color = Color(0.68443495, 0.42593274, 0.2583993, 1)
 fog_light_energy = 0.7
 fog_density = 0.1
 fog_height = -0.4
@@ -190,8 +191,11 @@ billboard_mode = 1
 [sub_resource type="QuadMesh" id="QuadMesh_bv0ed"]
 material = SubResource("StandardMaterial3D_ntyjr")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_mfyws"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_n7vso"]
 resource_local_to_scene = true
+
+[sub_resource type="Theme" id="Theme_3mcpe"]
+default_font = ExtResource("15_n7vso")
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_fafcu"]
 color = Color(0.646029, 0.646029, 0.646029, 1)
@@ -226,6 +230,7 @@ environment = SubResource("Environment_0jdu7")
 
 [node name="Sanches" type="SpotLight3D" parent="ENVIRONMENT" unique_id=960321383]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.9659258, 0, -0.9659258, 0.258819, 0, 4.7, 1)
+light_color = Color(0.83202535, 0.33728597, 0.08090662, 1)
 light_energy = 6.0
 light_specular = 0.1
 shadow_enabled = true
@@ -237,6 +242,8 @@ metadata/_edit_lock_ = true
 [node name="Night" type="SpotLight3D" parent="ENVIRONMENT" unique_id=1541279746]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2.5, 0)
 light_color = Color(0.46339518, 0.7577061, 0.9834518, 1)
+light_energy = 5.0
+shadow_enabled = true
 spot_range = 6.4
 spot_angle = 67.5
 metadata/_edit_lock_ = true
@@ -392,7 +399,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
 metadata/_edit_lock_ = true
 
 [node name="Cloud" parent="WORLD/CloudSpawn" unique_id=1958340692 instance=ExtResource("1_qqdlu")]
-mesh = SubResource("ImmediateMesh_mfyws")
+mesh = SubResource("ImmediateMesh_n7vso")
 
 [node name="Timer" type="Timer" parent="WORLD/CloudSpawn" unique_id=1416216528]
 wait_time = 0.05
@@ -497,6 +504,8 @@ size = Vector2i(1240, 840)
 visible = false
 popup_window = true
 min_size = Vector2i(512, 512)
+theme = SubResource("Theme_3mcpe")
+theme_override_fonts/title_font = ExtResource("15_n7vso")
 theme_override_font_sizes/title_font_size = 18
 
 [node name="Magaz" type="ScrollContainer" parent="USER/UI/Kazna_W" unique_id=913015083]
@@ -907,10 +916,10 @@ grow_vertical = 0
 theme_override_constants/margin_bottom = 10
 
 [node name="fig_options" type="HBoxContainer" parent="USER/UI/fig_panel" unique_id=1217641541]
-visible = false
 layout_mode = 2
 
 [node name="rotate_activ" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=39334857]
+visible = false
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 icon = ExtResource("20_3cwwr")
@@ -918,13 +927,18 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Sep" type="VSeparator" parent="USER/UI/fig_panel/fig_options" unique_id=1440042851]
-visible = false
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_okd6o")
 
+[node name="king" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=1066314835]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+icon = ExtResource("29_emlyr")
+icon_alignment = 1
+expand_icon = true
+
 [node name="fanat_kon_bax" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=1708311641]
-visible = false
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 icon = ExtResource("21_6vkll")
@@ -932,7 +946,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="fanat_slon_krest" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=157003602]
-visible = false
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 icon = ExtResource("22_2frox")
@@ -940,7 +953,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="fanat_yaderka_buy" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=1498856495]
-visible = false
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 icon = ExtResource("23_2frox")
@@ -948,7 +960,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="fanat_yaderka_fire" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=524002184]
-visible = false
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 icon = ExtResource("24_1ggbu")
@@ -987,14 +998,6 @@ theme_override_styles/separator = SubResource("StyleBoxLine_okd6o")
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 icon = ExtResource("22_mh2qp")
-icon_alignment = 1
-expand_icon = true
-
-[node name="king" type="Button" parent="USER/UI/fig_panel" unique_id=1066314835]
-visible = false
-custom_minimum_size = Vector2(150, 80)
-layout_mode = 2
-icon = ExtResource("29_emlyr")
 icon_alignment = 1
 expand_icon = true
 

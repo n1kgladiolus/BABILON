@@ -1,0 +1,14 @@
+[gd_resource type="Theme" format=3 uid="uid://dv76ptxymkvi4"]
+
+[ext_resource type="FontFile" uid="uid://dqlnx10etcgew" path="res://addons/menu_v2/ofont.ru_Balkara Condensed.ttf" id="1_kjr4y"]
+
+[resource]
+default_font = ExtResource("1_kjr4y")
+default_font_size = 32
+Button/constants/outline_size = 25
+Label/constants/outline_size = 25
+LineEdit/constants/outline_size = 25
+ProgressBar/constants/outline_size = 25
+TabBar/constants/outline_size = 25
+TextEdit/constants/outline_size = 25
+Tree/constants/outline_size = 25

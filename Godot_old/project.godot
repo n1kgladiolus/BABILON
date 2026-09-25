@@ -44,6 +44,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/StyleboxFancy/plugin.cfg")
+
 [file_customization]
 
 folder_colors={

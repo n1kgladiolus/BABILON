@@ -19,6 +19,7 @@ const Action_sound = {
 var players_user_audio := {}
 
 func _ready() -> void:
+	return
 	pass
 	var args := OS.get_cmdline_user_args()
 	if "--server" in args or "--server_game" in args:
@@ -29,6 +30,7 @@ func _ready() -> void:
 			queue_free()
 			return
 		else:
+			
 			pass
 	
 	$Background.finished.connect(background_repeat)

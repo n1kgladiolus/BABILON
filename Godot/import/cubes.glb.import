@@ -16,8 +16,6 @@ dest_files=["res://.godot/imported/cubes.glb-ea10cc12c2b46bebfe02ef7b8938435a.sc
 nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
-mesh_library/use_node_names_as_mesh_names=false
-array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -39,7 +37,39 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"Cube_m_1": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/other/cube_1.tres",
+"use_external/path": "uid://cb4angktow075"
+},
+"Cube_m_2": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/other/cube_2.tres",
+"use_external/path": "uid://btv18en4idhoi"
+}
+},
+"meshes": {
+"cubes_D12": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/items/cubes_D12.res",
+"save_to_file/path": "uid://btpg5q0akq6dh"
+},
+"cubes_D6": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/items/cubes_D6.res",
+"save_to_file/path": "uid://uoymwqi3j0ly"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
-gltf/texture_map_mode=1

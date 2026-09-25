@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dnkplfio044sw"]
+
+[sub_resource type="TextMesh" id="TextMesh_3xd07"]
+text = "★"
+
+[node name="Star" type="Node3D" unique_id=1674780035]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1597231320]
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("TextMesh_3xd07")

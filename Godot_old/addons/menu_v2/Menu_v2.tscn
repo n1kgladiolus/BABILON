@@ -10,9 +10,20 @@
 [ext_resource type="PackedScene" uid="uid://ctm11ynd1db06" path="res://lvl/game/table.tscn" id="8_i0hlk"]
 [ext_resource type="Script" uid="uid://dbvvx0uloc2yp" path="res://addons/san_clouds/clouds_scr.gd" id="9_kbodf"]
 [ext_resource type="Script" uid="uid://c70v7sruelapp" path="res://addons/Sky/sky.gd" id="10_kbodf"]
-[ext_resource type="Theme" uid="uid://dv76ptxymkvi4" path="res://addons/menu_v2/button_theme.tres" id="11_wwkmt"]
+[ext_resource type="Theme" uid="uid://dv76ptxymkvi4" path="res://addons/menu_v2/theme.tres" id="11_iob6m"]
 [ext_resource type="AudioStream" uid="uid://dwul4pcimuvy7" path="res://ost/effect/veter_1.mp3" id="12_iob6m"]
+[ext_resource type="Texture2D" uid="uid://yaplxd2rbdh0" path="res://pictures/figur_ico/fon_1_2_2.png" id="12_kwbe1"]
+[ext_resource type="Texture2D" uid="uid://bo65jrutjqy14" path="res://pictures/figur_market/peshk.png" id="13_ajbvo"]
 [ext_resource type="AudioStream" uid="uid://cbdqm3j4r80bt" path="res://ost/music/the_elder_scrolls_v_skyrim_17. Jeremy Soule - Secunda.mp3" id="13_au424"]
+[ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="14_i0hlk"]
+[ext_resource type="Texture2D" uid="uid://bkw32yx860tl0" path="res://pictures/figur_market/peshk_pole.png" id="14_lyvux"]
+[ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="15_vxblb"]
+[ext_resource type="Texture2D" uid="uid://b6u720dswbvpj" path="res://pictures/figur_market/peshk_fan.png" id="15_y15c7"]
+[ext_resource type="PackedScene" uid="uid://hyxo3yrfkyb6" path="res://lvl/game/magaz/kon.tscn" id="16_h3hxl"]
+[ext_resource type="PackedScene" uid="uid://wpaihj0ltdkf" path="res://lvl/game/magaz/slon.tscn" id="17_1kxo2"]
+[ext_resource type="PackedScene" uid="uid://bjbjl348l6fuq" path="res://lvl/game/magaz/lada.tscn" id="18_5wbm3"]
+[ext_resource type="Texture2D" uid="uid://djm2ubr40nxpv" path="res://pictures/figur_ico/scroll.png" id="23_rctpj"]
+[ext_resource type="Texture2D" uid="uid://spgix6nqp7o8" path="res://pictures/figur_ico/ЕУЕУЕЕУЕ.png" id="24_pa1o5"]
 
 [sub_resource type="Environment" id="Environment_ot06w"]
 background_energy_multiplier = 5.0
@@ -218,8 +229,55 @@ subdivide_depth = 50
 [sub_resource type="BoxShape3D" id="BoxShape3D_bv0ed"]
 size = Vector3(7.66, 5, 9.78)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x521r"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xeel"]
+bg_color = Color(1, 0.5142793, 0.5992271, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hjhvn"]
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+thickness = 3
+vertical = true
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lu67t"]
+color = Color(0.646029, 0.646029, 0.646029, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_3beo5"]
+color = Color(0.64705884, 0.64705884, 0.64705884, 1)
+thickness = 3
+vertical = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lv0yt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lul1n"]
+noise = SubResource("FastNoiseLite_lv0yt")
+
+[sub_resource type="StyleBox" id="StyleBox_bv0ed"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
+script = ExtResource("15_vxblb")
+color = Color(0.45080668, 0.6767665, 1, 1)
+texture = SubResource("NoiseTexture2D_lul1n")
+corner_radius_top_left = 115
+corner_radius_top_right = 115
+corner_radius_bottom_right = 115
+corner_radius_bottom_left = 115
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+shadow_blur = 7
+shadow_offset = Vector2(0.32, 3.325)
+metadata/_custom_type_script = "uid://bkl6g25jwb47h"
+
 [node name="MenuV2" type="Node" unique_id=1168896780]
 script = ExtResource("1_4t2se")
+metadata/_edit_vertical_guides_ = [177.0, 1747.0]
+metadata/_edit_horizontal_guides_ = [12.0]
 
 [node name="world_background" type="Node3D" parent="." unique_id=496205616]
 
@@ -566,7 +624,7 @@ offset_left = 128.0
 offset_top = 288.0
 offset_right = 640.0
 offset_bottom = 352.0
-theme = ExtResource("11_wwkmt")
+theme = ExtResource("11_iob6m")
 theme_override_font_sizes/font_size = 42
 text = "СПИСОК ЛОББИ"
 
@@ -576,7 +634,7 @@ offset_left = 128.0
 offset_top = 384.0
 offset_right = 640.0
 offset_bottom = 448.0
-theme = ExtResource("11_wwkmt")
+theme = ExtResource("11_iob6m")
 theme_override_font_sizes/font_size = 42
 text = "ПРОФИЛЬ"
 
@@ -586,7 +644,7 @@ offset_left = 128.0
 offset_top = 480.0
 offset_right = 640.0
 offset_bottom = 544.0
-theme = ExtResource("11_wwkmt")
+theme = ExtResource("11_iob6m")
 theme_override_font_sizes/font_size = 42
 text = "ЗАЛ СЛАВЫ"
 
@@ -596,7 +654,7 @@ offset_left = 128.0
 offset_top = 576.0
 offset_right = 640.0
 offset_bottom = 640.0
-theme = ExtResource("11_wwkmt")
+theme = ExtResource("11_iob6m")
 theme_override_font_sizes/font_size = 42
 text = "НАСТРОЙКИ"
 
@@ -606,7 +664,7 @@ offset_left = 128.0
 offset_top = 672.0
 offset_right = 640.0
 offset_bottom = 736.0
-theme = ExtResource("11_wwkmt")
+theme = ExtResource("11_iob6m")
 theme_override_font_sizes/font_size = 42
 text = "ПРАВИЛА"
 
@@ -616,7 +674,7 @@ offset_left = 128.0
 offset_top = 768.0
 offset_right = 640.0
 offset_bottom = 832.0
-theme = ExtResource("11_wwkmt")
+theme = ExtResource("11_iob6m")
 theme_override_font_sizes/font_size = 42
 text = "ВЫХОД"
 
@@ -626,11 +684,417 @@ offset_left = 128.0
 offset_top = 160.0
 offset_right = 640.0
 offset_bottom = 232.0
-theme = ExtResource("11_wwkmt")
+theme = ExtResource("11_iob6m")
 theme_override_font_sizes/font_size = 60
 text = "ВАВИЛОН ОНЛАЙН"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button7" type="Button" parent="UI" unique_id=1935616729]
+visible = false
+layout_mode = 0
+offset_left = 192.0
+offset_top = 296.0
+offset_right = 576.0
+offset_bottom = 344.0
+
+[node name="Window" type="Window" parent="UI" unique_id=1277017010]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(1322, 886)
+visible = false
+theme_override_styles/embedded_border = SubResource("StyleBoxFlat_x521r")
+theme_override_styles/embedded_unfocused_border = SubResource("StyleBoxFlat_5xeel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Window" unique_id=1428932709]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Window/VBoxContainer" unique_id=2065471094]
+layout_mode = 2
+texture = ExtResource("12_kwbe1")
+expand_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Window" unique_id=1784516683]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HSeparator" type="HSeparator" parent="UI/Window/VBoxContainer2" unique_id=1466556795]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/Window/VBoxContainer2" unique_id=1201894818]
+layout_mode = 2
+theme = ExtResource("11_iob6m")
+text = "ПРОВЕРОЧНЫЙ ТЕКСТ"
+horizontal_alignment = 1
+
+[node name="peshk" type="HBoxContainer" parent="UI/Window/VBoxContainer2" unique_id=1602307199]
+custom_minimum_size = Vector2(0, 241.805)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("11_iob6m")
+
+[node name="Adept" type="MarginContainer" parent="UI/Window/VBoxContainer2/peshk" unique_id=1969004521]
+custom_minimum_size = Vector2(500, 200)
+custom_maximum_size = Vector2(5005, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Fon" type="Panel" parent="UI/Window/VBoxContainer2/peshk/Adept" unique_id=1536709831]
+visible = false
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="UI/Window/VBoxContainer2/peshk/Adept" unique_id=135385896]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="UI/Window/VBoxContainer2/peshk/Adept/HB" unique_id=1435171961]
+layout_mode = 2
+texture = ExtResource("13_ajbvo")
+expand_mode = 3
+
+[node name="VB_text" type="VBoxContainer" parent="UI/Window/VBoxContainer2/peshk/Adept/HB" unique_id=1157761257]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="name_figur" type="Label" parent="UI/Window/VBoxContainer2/peshk/Adept/HB/VB_text" unique_id=1163388397]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Пешка"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/Window/VBoxContainer2/peshk/Adept/HB/VB_text" unique_id=1061268077]
+layout_mode = 2
+
+[node name="info_figur" type="HBoxContainer" parent="UI/Window/VBoxContainer2/peshk/Adept/HB/VB_text" unique_id=992899217]
+layout_mode = 2
+
+[node name="info_figur" type="Label" parent="UI/Window/VBoxContainer2/peshk/Adept/HB/VB_text/info_figur" unique_id=2123641107]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Стоимость:
+Атака:
+Защита:
+Скорость:
+Ценность:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="info_figur2" type="Label" parent="UI/Window/VBoxContainer2/peshk/Adept/HB/VB_text/info_figur" unique_id=861599494]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "12
+1d6
+0
+2
+12"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="UI/Window/VBoxContainer2/peshk/Adept" unique_id=959971925]
+layout_mode = 2
+flat = true
+
+[node name="Sep" type="VSeparator" parent="UI/Window/VBoxContainer2/peshk" unique_id=1875315987]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_hjhvn")
+
+[node name="Pole" type="MarginContainer" parent="UI/Window/VBoxContainer2/peshk" unique_id=320236058]
+custom_maximum_size = Vector2(200, 200)
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Texture" type="TextureRect" parent="UI/Window/VBoxContainer2/peshk/Pole" unique_id=1026056899]
+layout_mode = 2
+texture = ExtResource("14_lyvux")
+expand_mode = 3
+
+[node name="Sep2" type="VSeparator" parent="UI/Window/VBoxContainer2/peshk" unique_id=243646748]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_hjhvn")
+
+[node name="Fanat" type="MarginContainer" parent="UI/Window/VBoxContainer2/peshk" unique_id=1632491377]
+custom_minimum_size = Vector2(500, 300)
+custom_maximum_size = Vector2(500, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Fon" type="Panel" parent="UI/Window/VBoxContainer2/peshk/Fanat" unique_id=570869928]
+visible = false
+layout_mode = 2
+
+[node name="HB" type="HBoxContainer" parent="UI/Window/VBoxContainer2/peshk/Fanat" unique_id=1006504720]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Icon" type="TextureRect" parent="UI/Window/VBoxContainer2/peshk/Fanat/HB" unique_id=1524811540]
+layout_mode = 2
+texture = ExtResource("15_y15c7")
+expand_mode = 3
+
+[node name="VB_text" type="VBoxContainer" parent="UI/Window/VBoxContainer2/peshk/Fanat/HB" unique_id=1654478788]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="name_figur" type="Label" parent="UI/Window/VBoxContainer2/peshk/Fanat/HB/VB_text" unique_id=122832223]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Самурай"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="info_figur" type="HBoxContainer" parent="UI/Window/VBoxContainer2/peshk/Fanat/HB/VB_text" unique_id=786218551]
+layout_mode = 2
+
+[node name="info_figur" type="Label" parent="UI/Window/VBoxContainer2/peshk/Fanat/HB/VB_text/info_figur" unique_id=1259343834]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Стоимость:
+Ценность:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="info_figur2" type="Label" parent="UI/Window/VBoxContainer2/peshk/Fanat/HB/VB_text/info_figur" unique_id=272609363]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "12
+24"
+vertical_alignment = 1
+
+[node name="info_dop" type="Label" parent="UI/Window/VBoxContainer2/peshk/Fanat/HB/VB_text" unique_id=468689869]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Может защитить от революции.
+Собирают +1 монету.
+Умирают вместе с королём."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="UI/Window/VBoxContainer2/peshk/Fanat" unique_id=184354444]
+layout_mode = 2
+flat = true
+
+[node name="Magaz" type="ScrollContainer" parent="UI" unique_id=342039082]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2085.0
+offset_top = 46.0
+offset_right = 2085.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="UI/Magaz" unique_id=633608265]
+layout_mode = 2
+
+[node name="Info" type="HBoxContainer" parent="UI/Magaz/VBox" unique_id=763001526]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Magaz/VBox/Info" unique_id=1884960842]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Balanc" type="HBoxContainer" parent="UI/Magaz/VBox/Info/MarginContainer" unique_id=577938790]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="UI/Magaz/VBox/Info/MarginContainer/Balanc" unique_id=1918789828]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Баланс: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Balanc" type="Label" parent="UI/Magaz/VBox/Info/MarginContainer/Balanc" unique_id=651014287]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Info_button" type="Button" parent="UI/Magaz/VBox/Info" unique_id=876782136]
+layout_mode = 2
+text = "Подсказка"
+
+[node name="Info_2_button" type="Button" parent="UI/Magaz/VBox/Info" unique_id=1610814102]
+layout_mode = 2
+text = "Сколько ещё доступно"
+
+[node name="Title" type="HBoxContainer" parent="UI/Magaz/VBox" unique_id=899965206]
+visible = false
+layout_mode = 2
+
+[node name="Text2" type="Label" parent="UI/Magaz/VBox/Title" unique_id=27742141]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Доступно пешек: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Game_peshk" type="Label" parent="UI/Magaz/VBox/Title" unique_id=2007638906]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Text4" type="Label" parent="UI/Magaz/VBox/Title" unique_id=1469453204]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Доступно коней: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Game_kon" type="Label" parent="UI/Magaz/VBox/Title" unique_id=1710128817]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Text5" type="Label" parent="UI/Magaz/VBox/Title" unique_id=697932795]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Доступно слонов: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Game_slon" type="Label" parent="UI/Magaz/VBox/Title" unique_id=1315748529]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Text6" type="Label" parent="UI/Magaz/VBox/Title" unique_id=1671032192]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Доступно ладей: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Game_lada" type="Label" parent="UI/Magaz/VBox/Title" unique_id=2021820557]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Text3" type="Label" parent="UI/Magaz/VBox/Title" unique_id=1461004704]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Доступно фанатиков: "
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Game_fan" type="Label" parent="UI/Magaz/VBox/Title" unique_id=1762117868]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Sep" type="HSeparator" parent="UI/Magaz/VBox" unique_id=131945507]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_lu67t")
+
+[node name="Title2" type="HBoxContainer" parent="UI/Magaz/VBox" unique_id=322784553]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="UI/Magaz/VBox/Title2" unique_id=131790671]
+custom_minimum_size = Vector2(500, 0)
+custom_maximum_size = Vector2(500, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Адепт"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sep" type="VSeparator" parent="UI/Magaz/VBox/Title2" unique_id=988195038]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_3beo5")
+
+[node name="Text2" type="Label" parent="UI/Magaz/VBox/Title2" unique_id=198493883]
+custom_minimum_size = Vector2(200, 0)
+custom_maximum_size = Vector2(200, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Поле влияния"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sep2" type="VSeparator" parent="UI/Magaz/VBox/Title2" unique_id=730555598]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/separator = SubResource("StyleBoxLine_3beo5")
+
+[node name="Text3" type="Label" parent="UI/Magaz/VBox/Title2" unique_id=1954135553]
+custom_minimum_size = Vector2(500, 0)
+custom_maximum_size = Vector2(500, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
+text = "Фанатик"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Options" type="VBoxContainer" parent="UI/Magaz/VBox" unique_id=584139535]
+layout_mode = 2
+
+[node name="kon" parent="UI/Magaz/VBox/Options" unique_id=531386248 instance=ExtResource("16_h3hxl")]
+layout_mode = 2
+
+[node name="slon" parent="UI/Magaz/VBox/Options" unique_id=2111485588 instance=ExtResource("17_1kxo2")]
+layout_mode = 2
+
+[node name="lada" parent="UI/Magaz/VBox/Options" unique_id=176202425 instance=ExtResource("18_5wbm3")]
+layout_mode = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1420743938]
 stream = ExtResource("12_iob6m")
@@ -639,6 +1103,54 @@ volume_db = -15.78
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1509694983]
 stream = ExtResource("13_au424")
 volume_db = -4.303
+
+[node name="Button" type="Button" parent="." unique_id=136539021]
+offset_left = -560.0
+offset_top = 256.0
+offset_right = -48.0
+offset_bottom = 320.0
+theme_override_constants/outline_size = 19
+theme_override_font_sizes/font_size = 39
+theme_override_styles/normal = SubResource("StyleBox_bv0ed")
+text = "1165162132165"
+
+[node name="TEST UI" type="Node" parent="." unique_id=1160217250]
+
+[node name="TextureRect5" type="TextureRect" parent="TEST UI" unique_id=1099882571]
+offset_left = 2224.0
+offset_top = 1030.0
+offset_right = 3257.0
+offset_bottom = 1361.0
+texture = ExtResource("23_rctpj")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="TEST UI" unique_id=833032968]
+offset_left = 2317.0
+offset_top = 1290.0
+offset_right = 3171.0
+offset_bottom = 2075.0
+texture = ExtResource("12_kwbe1")
+
+[node name="TextureRect" type="TextureRect" parent="TEST UI" unique_id=2009131903]
+offset_left = 2326.0
+offset_top = 1301.0
+offset_right = 3160.0
+offset_bottom = 1501.0
+texture = ExtResource("24_pa1o5")
+
+[node name="TextureRect3" type="TextureRect" parent="TEST UI" unique_id=1052837440]
+offset_left = 2331.0
+offset_top = 1469.0
+offset_right = 3165.0
+offset_bottom = 1669.0
+texture = ExtResource("24_pa1o5")
+
+[node name="TextureRect4" type="TextureRect" parent="TEST UI" unique_id=2025963016]
+offset_left = 2328.0
+offset_top = 1659.0
+offset_right = 3162.0
+offset_bottom = 1859.0
+texture = ExtResource("24_pa1o5")
 
 [editable path="world_background/monolit_players/monolit_2"]
 [editable path="world_background/monolit_players/monolit_3"]

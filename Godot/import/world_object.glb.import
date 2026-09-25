@@ -16,8 +16,6 @@ dest_files=["res://.godot/imported/world_object.glb-19161eda8145270356e1ed03ccab
 nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
-mesh_library/use_node_names_as_mesh_names=false
-array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -39,7 +37,30 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"vavil_main": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/other/mVavilon_main.tres",
+"use_external/path": "uid://bd5rmpi35umw2"
+},
+"vavil_window": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://visual/material/other/mVavilon_window.tres",
+"use_external/path": "uid://ccctu05bgtjo3"
+}
+},
+"meshes": {
+"world_object_VAVILONE_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://object/world/world_object_VAVILONE_001.res",
+"save_to_file/path": "uid://cfnw5depbloic"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
-gltf/texture_map_mode=1
