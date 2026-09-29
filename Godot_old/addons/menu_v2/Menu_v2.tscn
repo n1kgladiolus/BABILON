@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bclo4ie2s10o4"]
 
 [ext_resource type="Script" uid="uid://xhmllyf0y57h" path="res://addons/menu_v2/menu_v2_scr.gd" id="1_4t2se"]
+[ext_resource type="PackedScene" uid="uid://dijhyad7qskt5" path="res://lvl/post_proccess.tscn" id="2_ajbvo"]
 [ext_resource type="ArrayMesh" uid="uid://c5op6myhxw674" path="res://mesh/vavilon.res" id="2_xs7gs"]
 [ext_resource type="PackedScene" uid="uid://bveeukxurc7cf" path="res://lvl/game/monolit.tscn" id="3_kbodf"]
 [ext_resource type="Texture2D" uid="uid://s1unvb1uisiu" path="res://import/ava_placehold.png" id="4_wwkmt"]
@@ -24,6 +25,28 @@
 [ext_resource type="PackedScene" uid="uid://bjbjl348l6fuq" path="res://lvl/game/magaz/lada.tscn" id="18_5wbm3"]
 [ext_resource type="Texture2D" uid="uid://djm2ubr40nxpv" path="res://pictures/figur_ico/scroll.png" id="23_rctpj"]
 [ext_resource type="Texture2D" uid="uid://spgix6nqp7o8" path="res://pictures/figur_ico/ЕУЕУЕЕУЕ.png" id="24_pa1o5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bv0ed"]
+emission_shape_scale = Vector3(8, 2, 8)
+emission_shape = 1
+emission_sphere_radius = 1.0
+initial_velocity_min = 0.19999999
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.5
+turbulence_noise_strength = 0.01
+turbulence_noise_scale = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajbvo"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.33481905, 0.8556871, 0.8750017, 0.38431373)
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ajbvo"]
+material = SubResource("StandardMaterial3D_ajbvo")
+size = Vector3(0.03, 0.03, 0.03)
 
 [sub_resource type="Environment" id="Environment_ot06w"]
 background_energy_multiplier = 5.0
@@ -194,7 +217,7 @@ radial_segments = 12
 rings = 6
 
 [sub_resource type="Gradient" id="Gradient_kbodf"]
-offsets = PackedFloat32Array(0.1953125, 0.71875)
+offsets = PackedFloat32Array(0.1953125, 0.7131474)
 colors = PackedColorArray(0.30748522, 0.012920001, 0.025840001, 0.120000005, 0.44672376, 0.025840001, 0, 0)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kbodf"]
@@ -210,8 +233,9 @@ albedo_color = Color(0.5211406, 0.5211406, 0.5211405, 1)
 albedo_texture = SubResource("NoiseTexture2D_x521r")
 
 [sub_resource type="Gradient" id="Gradient_wwkmt"]
-offsets = PackedFloat32Array(0, 0.60384613)
+offsets = PackedFloat32Array(0, 0.6)
 colors = PackedColorArray(0.7802893, 0.13879183, 0, 1, 0.26825175, 5.9411394e-07, 0.005456848, 1)
+metadata/_snap_enabled = true
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_5xeel"]
 gradient = SubResource("Gradient_wwkmt")
@@ -278,6 +302,18 @@ metadata/_custom_type_script = "uid://bkl6g25jwb47h"
 script = ExtResource("1_4t2se")
 metadata/_edit_vertical_guides_ = [177.0, 1747.0]
 metadata/_edit_horizontal_guides_ = [12.0]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=259312279]
+transform = Transform3D(-0.9659258, 0, -0.25881895, 0, 1, 0, 0.25881895, 0, -0.9659258, 1.8099997, 1.25, 0.14999981)
+amount = 20
+lifetime = 8.0
+trail_lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_bv0ed")
+draw_passes = 2
+draw_pass_1 = SubResource("BoxMesh_ajbvo")
+draw_pass_2 = null
+
+[node name="post_proccess" parent="." unique_id=2011894051 instance=ExtResource("2_ajbvo")]
 
 [node name="world_background" type="Node3D" parent="." unique_id=496205616]
 

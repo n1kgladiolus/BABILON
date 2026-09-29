@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dlu51xbkka03p"]
+
+[ext_resource type="Script" uid="uid://b52qfr30l2ty" path="res://addons/twovoip/voiphelper/two_voip_mic.gd" id="1_tw5rb"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_udj15"]
+
+[node name="Mic" type="AudioStreamPlayer" unique_id=1252100505]
+stream = SubResource("AudioStreamMicrophone_udj15")
+autoplay = true
+bus = &"Mic"
+script = ExtResource("1_tw5rb")

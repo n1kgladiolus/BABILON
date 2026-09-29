@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://wri3dnh0wiyo"]
 
-[ext_resource type="ArrayMesh" uid="uid://drf8ymx8bv7tn" path="res://object/gex/gex_gex.res" id="1_xpnbu"]
+[ext_resource type="ArrayMesh" uid="uid://cka043hlsj4xe" path="res://object/gex/gex_gex.res" id="1_xpnbu"]
 
 [sub_resource type="GDScript" id="GDScript_ew6di"]
 script/source = "extends Area3D

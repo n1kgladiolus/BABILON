@@ -9,7 +9,6 @@ radius = 0.05
 [node name="kon_fan" type="Node3D" unique_id=1001686387]
 
 [node name="walk" type="Area3D" parent="." unique_id=502957221]
-visible = false
 input_ray_pickable = false
 
 [node name="Collision2" type="CollisionShape3D" parent="walk" unique_id=994797700]
@@ -161,7 +160,6 @@ transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, -0.6
 shape = SubResource("CylinderShape3D_jg1ut")
 
 [node name="attack" type="Area3D" parent="." unique_id=1501348647]
-visible = false
 collision_layer = 2
 collision_mask = 2
 input_ray_pickable = false

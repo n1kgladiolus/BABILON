@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dyfjgkenni77g"]
+
+[ext_resource type="Script" uid="uid://bhkshs775lv48" path="res://scn/voip/player_row.gd" id="1_xk0c3"]
+
+[node name="PlayerRow" type="HBoxContainer" unique_id=2087712605]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xk0c3")
+
+[node name="IDLabel" type="Label" parent="." unique_id=56701398]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "ID"
+vertical_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="." unique_id=701023903]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1

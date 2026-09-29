@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cw8rcb1aqna32"]
+
+[ext_resource type="Script" uid="uid://c6or4f2qs7svx" path="res://scr/game/camera.gd" id="1_ar2hh"]
+[ext_resource type="Environment" uid="uid://dcrmdj4rwnhww" path="res://scn/game_scn/main_environment.tres" id="2_hnqgf"]
+
+[node name="CAMERA" type="Node3D" unique_id=1125562472]
+script = ExtResource("1_ar2hh")
+
+[node name="piv_1" type="Node3D" parent="." unique_id=2045690049]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="piv_2" type="Node3D" parent="piv_1" unique_id=6442904]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="Camera3D" type="Camera3D" parent="piv_1/piv_2" unique_id=429476926]
+transform = Transform3D(1, 0, 0, 0, 0.81915206, 0.57357645, 0, -0.57357645, 0.81915206, 0, 2, 1.2)
+environment = ExtResource("2_hnqgf")
+current = true
+fov = 80.0

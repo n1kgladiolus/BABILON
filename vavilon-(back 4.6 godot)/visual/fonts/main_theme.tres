@@ -1,0 +1,28 @@
+[gd_resource type="Theme" format=3 uid="uid://3u1sptp2eqeb"]
+
+[ext_resource type="StyleBox" uid="uid://dj1byjd7e161" path="res://visual/fonts/buttons_style_box_3.tres" id="1_l5gee"]
+[ext_resource type="FontVariation" uid="uid://bpgt21ocxmms4" path="res://visual/fonts/main_font.tres" id="1_taubw"]
+[ext_resource type="StyleBox" uid="uid://c0jqc2tpprlmp" path="res://visual/fonts/buttons_style_box_2.tres" id="2_sjvho"]
+[ext_resource type="StyleBox" uid="uid://miuvm4q23cxa" path="res://visual/fonts/buttons_style_box_1.tres" id="3_l5gee"]
+[ext_resource type="StyleBox" uid="uid://dyn5ypjqedtek" path="res://visual/fonts/buttons_style_box_4.tres" id="4_xb37d"]
+
+[resource]
+default_font = ExtResource("1_taubw")
+default_font_size = 24
+Button/constants/outline_size = 12
+Button/styles/disabled = ExtResource("1_l5gee")
+Button/styles/focus = ExtResource("2_sjvho")
+Button/styles/hover = ExtResource("2_sjvho")
+Button/styles/normal = ExtResource("3_l5gee")
+Button/styles/pressed = ExtResource("4_xb37d")
+CheckBox/constants/outline_size = 12
+CheckButton/constants/outline_size = 12
+ColorPickerButton/constants/outline_size = 12
+Label/constants/outline_size = 12
+LineEdit/constants/outline_size = 12
+MenuButton/constants/outline_size = 12
+OptionButton/constants/outline_size = 12
+ProgressBar/constants/outline_size = 12
+TabBar/constants/outline_size = 12
+TextEdit/constants/outline_size = 12
+Tree/constants/outline_size = 12

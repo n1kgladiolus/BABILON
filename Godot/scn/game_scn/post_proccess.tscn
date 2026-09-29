@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dijhyad7qskt5"]
+
+[sub_resource type="Shader" id="Shader_oks1d"]
+code = "shader_type canvas_item;
+
+uniform float outer_radius : hint_range(0.0, 5.0) = 0.3;
+uniform float intensity : hint_range(0.0, 1.0) = 0.25;
+uniform vec4 vignette_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+
+void fragment() {
+    // Расстояние от центра, нормализованное (0 в центре, ~1.4 в углу)
+    float x = abs(UV.x - 0.5) * 0.1;
+    float y = abs(UV.y - 0.5) * 1.0;
+    float dist = sqrt(x*x + y*y) / outer_radius;
+    
+    COLOR = vec4(vignette_color.rgb, dist * intensity);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nhj48"]
+shader = SubResource("Shader_oks1d")
+shader_parameter/outer_radius = 0.30000001425
+shader_parameter/intensity = 0.2000000095
+shader_parameter/vignette_color = Color(0.086247064, 0.097693555, 0.11985018, 1)
+
+[node name="post_proccess" type="CanvasLayer" unique_id=2011894051]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=410017050]
+material = SubResource("ShaderMaterial_nhj48")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true

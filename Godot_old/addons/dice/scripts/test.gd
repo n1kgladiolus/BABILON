@@ -5,7 +5,7 @@ func _ready() -> void:
 	
 	for i in range(12):
 		$D12.dice(6, $DiceSpawn.position, $DiceSpawn.rotation)
-		await get_tree().create_timer(5.0).timeout
+		await get_tree().create_timer(7.0).timeout
 	for i in range(12):
 		$D12.dice(12-i, $DiceSpawn.position, $DiceSpawn.rotation)
 		await get_tree().create_timer(5.0).timeout

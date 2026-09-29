@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://mff6xbcip2fg"]
+
+[ext_resource type="PackedScene" uid="uid://duthcy6cyl8dr" path="res://scn/voip/VoiceManager.tscn" id="1_kndgs"]
+
+[node name="LOBBY" type="CanvasLayer" unique_id=895655268]
+layer = 4
+
+[node name="VoiceManager" parent="." unique_id=734076286 instance=ExtResource("1_kndgs")]
+
+[node name="list_user" type="VBoxContainer" parent="." unique_id=1169413332]
+offset_left = 768.0
+offset_top = 64.0
+offset_right = 1280.0
+offset_bottom = 576.0
+
+[node name="Label" type="Label" parent="list_user" unique_id=488374271]
+layout_mode = 2
+text = "Игроки:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mic" type="Control" parent="." unique_id=866510590]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MicOn" type="Button" parent="mic" unique_id=1552716546]
+layout_mode = 0
+offset_left = 1472.0
+offset_top = 128.0
+offset_right = 1792.0
+offset_bottom = 168.0
+toggle_mode = true
+text = "MicOn"
+
+[node name="PTT" type="Button" parent="mic" unique_id=1763315939]
+layout_mode = 0
+offset_left = 1472.0
+offset_top = 192.0
+offset_right = 1792.0
+offset_bottom = 232.0
+text = "PTT"
+
+[node name="Vox" type="Button" parent="mic" unique_id=1652306052]
+layout_mode = 0
+offset_left = 1472.0
+offset_top = 256.0
+offset_right = 1792.0
+offset_bottom = 296.0
+toggle_mode = true
+text = "Vox"
+
+[node name="Denoise" type="Button" parent="mic" unique_id=1164275330]
+layout_mode = 0
+offset_left = 1472.0
+offset_top = 320.0
+offset_right = 1792.0
+offset_bottom = 352.0
+toggle_mode = true
+text = "Denoise"
+
+[node name="InputOption" type="OptionButton" parent="mic" unique_id=1822971464]
+layout_mode = 0
+offset_left = 1472.0
+offset_top = 64.0
+offset_right = 1792.0
+offset_bottom = 104.0

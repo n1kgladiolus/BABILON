@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://c5ns4ywe6jsi2"]
+
+[ext_resource type="Texture2D" uid="uid://bukn2hbgqu1y1" path="res://addons/wind_lines/wind_line.png" id="1_b70ee"]
+
+[sub_resource type="Shader" id="Shader_36pi3"]
+code = "shader_type particles;
+
+uniform vec2 emission_plane_size = vec2(10.0);
+uniform float min_velocity = 10.0;
+uniform float max_velocity = 15.0;
+uniform float domain_scale = 0.01;
+uniform float min_intensity = 1.0;
+uniform float max_intensity = 2.0;
+
+uniform float min_alpha : hint_range(0.0, 1.0, 0.1) = 0.3;
+uniform float max_alpha : hint_range(0.0, 1.0, 0.1) = 0.8;
+
+uniform sampler2D noise_texture;
+
+#include \"random_utils.gdshaderinc\"
+
+
+void start() {
+	uint seed = hash(NUMBER + RANDOM_SEED);
+	
+	float random_x = (random(seed) - 0.5) * emission_plane_size.x;
+	float random_y = (random(seed) - 0.5) * emission_plane_size.y;
+	
+	float random_angle = random_range(seed, -PI, PI);
+	
+	mat3 random_rotation_z = mat3(
+		vec3(cos(random_angle), sin(random_angle), 0.0),
+		vec3(-sin(random_angle), cos(random_angle), 0.0),
+		vec3(0.0, 0.0, 1.0)
+	);
+	
+	TRANSFORM = mat4(random_rotation_z);
+	
+	TRANSFORM[3].xyz = vec3(random_x, random_y, 0.0);
+	TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
+	
+	USERDATA1 = TRANSFORM[3];
+}
+
+void process() {
+	uint seed = hash(NUMBER + RANDOM_SEED + 1u);
+	
+	float velocity = random_range(seed, min_velocity, max_velocity);
+	
+	vec3 spawn_position = USERDATA1.xyz;
+	vec3 world_position = TRANSFORM[3].xyz;
+	vec3 spawn_relative_position = world_position - spawn_position;
+	
+	vec3 local_position = inverse(mat3(TRANSFORM)) * spawn_relative_position;
+	
+	float amplitude = random_range(seed, min_intensity, max_intensity);
+	
+	vec3 new_local_position = vec3(
+		amplitude * (texture(noise_texture, domain_scale * world_position.yz).r - 0.5),
+		amplitude * (texture(noise_texture, domain_scale * world_position.xz).r - 0.5),
+		local_position.z + DELTA * velocity
+	);
+	
+	TRANSFORM[3].xyz = mat3(TRANSFORM) * new_local_position + spawn_position;
+	
+	COLOR.a = random_range(seed, min_alpha, max_alpha);
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b70ee"]
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_36pi3"]
+noise = SubResource("FastNoiseLite_b70ee")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60fhn"]
+shader = SubResource("Shader_36pi3")
+shader_parameter/emission_plane_size = Vector2(25, 5)
+shader_parameter/min_velocity = 1.0
+shader_parameter/max_velocity = 3.0
+shader_parameter/domain_scale = 0.025
+shader_parameter/min_intensity = 1.0
+shader_parameter/max_intensity = 2.0
+shader_parameter/min_alpha = 0.3
+shader_parameter/max_alpha = 0.8
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_36pi3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p836m"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.8158916, 0.9079329, 0.95759374, 1)
+albedo_texture = ExtResource("1_b70ee")
+texture_filter = 5
+texture_repeat = false
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_iwqee"]
+material = SubResource("StandardMaterial3D_p836m")
+shape = 0
+size = 0.05
+sections = 16
+
+[node name="WindPart" type="GPUParticles3D" unique_id=1194945283]
+amount = 25
+lifetime = 10.0
+preprocess = 10.0
+fixed_fps = 45
+trail_enabled = true
+trail_lifetime = 2.0
+process_material = SubResource("ShaderMaterial_60fhn")
+draw_pass_1 = SubResource("RibbonTrailMesh_iwqee")
