@@ -4,4 +4,10 @@
 
 [resource]
 base_font = ExtResource("1_ncy05")
-spacing_glyph = 3
+variation_opentype = {
+0: 1
+}
+opentype_features = {
+1667329140: 0
+}
+spacing_glyph = 2

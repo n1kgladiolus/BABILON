@@ -23,7 +23,7 @@ var _sky_material: StandardMaterial3D
 	"Fog_Energy" : 0.7,
 	"Fog_Density" : 0.1,
 	"Sanches_Color" : Color(0.906, 0.894, 0.776, 1.0),
-	"Sanches_Energy" : 8.0,
+	"Sanches_Energy" : 10.0,
 	"Night_Color" : Color(0.463, 0.757, 0.984, 1.0),
 	"Night_Energy" : 2.0,
 	"Sky_Color" : Color(0.427, 0.749, 0.702, 1.0),
@@ -34,7 +34,7 @@ var _sky_material: StandardMaterial3D
 	"Fog_Energy" : 0.7,
 	"Fog_Density" : 0.1,
 	"Sanches_Color" : Color(0.831, 0.337, 0.082, 1.0),
-	"Sanches_Energy" : 6.0,
+	"Sanches_Energy" : 8.0,
 	"Night_Color" : Color(0.463, 0.757, 0.984, 1.0),
 	"Night_Energy" : 5.0,
 	"Sky_Color" : Color(0.882, 0.416, 0.357, 1.0),
@@ -45,7 +45,7 @@ var _sky_material: StandardMaterial3D
 	"Fog_Energy" : 0.7,
 	"Fog_Density" : 0.1,
 	"Sanches_Color" : Color(0.8, 0.98, 0.922, 1.0),
-	"Sanches_Energy" : 1.85,
+	"Sanches_Energy" : 5.5,
 	"Night_Color" : Color(0.059, 0.424, 0.643, 1.0),
 	"Night_Energy" : 8.0,
 	"Sky_Color" : Color(0.055, 0.133, 0.224, 1.0),
@@ -56,7 +56,7 @@ var _sky_material: StandardMaterial3D
 	"Fog_Energy" : 0.7,
 	"Fog_Density" : 0.1,
 	"Sanches_Color" : Color(0.898, 0.792, 0.42, 1.0),
-	"Sanches_Energy" : 8.0,
+	"Sanches_Energy" : 12.0,
 	"Night_Color" : Color(0.463, 0.757, 0.984, 1.0),
 	"Night_Energy" : 2.0,
 	"Sky_Color" : Color(0.835, 0.694, 0.494, 1.0),
@@ -117,7 +117,7 @@ func start_full_cycle(step_duration: float = 20.0) -> void:
 
 
 func buttons_con():
-	$Button.pressed.connect(func(): to_day(8))
-	$Button2.pressed.connect(func(): to_evening(8))
-	$Button3.pressed.connect(func(): to_night(8))
-	$Button4.pressed.connect(func(): to_morning(8))
+	$day.pressed.connect(func(): to_day(8))
+	$eveng.pressed.connect(func(): to_evening(8))
+	$night.pressed.connect(func(): to_night(8))
+	$morn.pressed.connect(func(): to_morning(8))

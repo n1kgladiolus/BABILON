@@ -16,9 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://yaplxd2rbdh0" path="res://pictures/figur_ico/fon_1_2_2.png" id="12_kwbe1"]
 [ext_resource type="Texture2D" uid="uid://bo65jrutjqy14" path="res://pictures/figur_market/peshk.png" id="13_ajbvo"]
 [ext_resource type="AudioStream" uid="uid://cbdqm3j4r80bt" path="res://ost/music/the_elder_scrolls_v_skyrim_17. Jeremy Soule - Secunda.mp3" id="13_au424"]
-[ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="14_i0hlk"]
 [ext_resource type="Texture2D" uid="uid://bkw32yx860tl0" path="res://pictures/figur_market/peshk_pole.png" id="14_lyvux"]
-[ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="15_vxblb"]
 [ext_resource type="Texture2D" uid="uid://b6u720dswbvpj" path="res://pictures/figur_market/peshk_fan.png" id="15_y15c7"]
 [ext_resource type="PackedScene" uid="uid://hyxo3yrfkyb6" path="res://lvl/game/magaz/kon.tscn" id="16_h3hxl"]
 [ext_resource type="PackedScene" uid="uid://wpaihj0ltdkf" path="res://lvl/game/magaz/slon.tscn" id="17_1kxo2"]
@@ -272,31 +270,6 @@ thickness = 3
 color = Color(0.64705884, 0.64705884, 0.64705884, 1)
 thickness = 3
 vertical = true
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_lv0yt"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lul1n"]
-noise = SubResource("FastNoiseLite_lv0yt")
-
-[sub_resource type="StyleBox" id="StyleBox_bv0ed"]
-resource_local_to_scene = false
-resource_name = ""
-content_margin_left = -1.0
-content_margin_top = -1.0
-content_margin_right = -1.0
-content_margin_bottom = -1.0
-script = ExtResource("15_vxblb")
-color = Color(0.45080668, 0.6767665, 1, 1)
-texture = SubResource("NoiseTexture2D_lul1n")
-corner_radius_top_left = 115
-corner_radius_top_right = 115
-corner_radius_bottom_right = 115
-corner_radius_bottom_left = 115
-shadow_enabled = true
-shadow_color = Color(0, 0, 0, 1)
-shadow_blur = 7
-shadow_offset = Vector2(0.32, 3.325)
-metadata/_custom_type_script = "uid://bkl6g25jwb47h"
 
 [node name="MenuV2" type="Node" unique_id=1168896780]
 script = ExtResource("1_4t2se")
@@ -667,9 +640,9 @@ text = "СПИСОК ЛОББИ"
 [node name="Button2" type="Button" parent="UI" unique_id=2013925899]
 layout_mode = 0
 offset_left = 128.0
-offset_top = 384.0
+offset_top = 480.0
 offset_right = 640.0
-offset_bottom = 448.0
+offset_bottom = 544.0
 theme = ExtResource("11_iob6m")
 theme_override_font_sizes/font_size = 42
 text = "ПРОФИЛЬ"
@@ -677,9 +650,9 @@ text = "ПРОФИЛЬ"
 [node name="Button3" type="Button" parent="UI" unique_id=2132750993]
 layout_mode = 0
 offset_left = 128.0
-offset_top = 480.0
+offset_top = 576.0
 offset_right = 640.0
-offset_bottom = 544.0
+offset_bottom = 640.0
 theme = ExtResource("11_iob6m")
 theme_override_font_sizes/font_size = 42
 text = "ЗАЛ СЛАВЫ"
@@ -687,9 +660,9 @@ text = "ЗАЛ СЛАВЫ"
 [node name="Button4" type="Button" parent="UI" unique_id=72120581]
 layout_mode = 0
 offset_left = 128.0
-offset_top = 576.0
+offset_top = 384.0
 offset_right = 640.0
-offset_bottom = 640.0
+offset_bottom = 448.0
 theme = ExtResource("11_iob6m")
 theme_override_font_sizes/font_size = 42
 text = "НАСТРОЙКИ"
@@ -721,6 +694,10 @@ offset_top = 160.0
 offset_right = 640.0
 offset_bottom = 232.0
 theme = ExtResource("11_iob6m")
+theme_override_colors/font_shadow_color = Color(0.012920001, 0.012920001, 0.012920001, 0.367)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 60
 text = "ВАВИЛОН ОНЛАЙН"
 horizontal_alignment = 1
@@ -1147,7 +1124,6 @@ offset_right = -48.0
 offset_bottom = 320.0
 theme_override_constants/outline_size = 19
 theme_override_font_sizes/font_size = 39
-theme_override_styles/normal = SubResource("StyleBox_bv0ed")
 text = "1165162132165"
 
 [node name="TEST UI" type="Node" parent="." unique_id=1160217250]

@@ -1,0 +1,35 @@
+[gd_resource type="StyleBox" script_class="StyleBoxFancy" format=3 uid="uid://dc20x7tym7prb"]
+
+[ext_resource type="Script" uid="uid://cjmmhbp1b5312" path="res://addons/StyleboxFancy/StyleBorder.gd" id="1_ja7kc"]
+[ext_resource type="Script" uid="uid://bkl6g25jwb47h" path="res://addons/StyleboxFancy/StyleBoxFancy.gd" id="2_f71se"]
+[ext_resource type="Texture2D" uid="uid://cjlk47ov8hbw" path="res://pictures/other/stone.png" id="3_f71se"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xgk0f"]
+
+[sub_resource type="Resource" id="Resource_odbov"]
+script = ExtResource("1_ja7kc")
+texture = SubResource("PlaceholderTexture2D_xgk0f")
+metadata/_custom_type_script = "uid://cjmmhbp1b5312"
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
+script = ExtResource("2_f71se")
+borders = Array[ExtResource("1_ja7kc")]([SubResource("Resource_odbov"), null])
+texture = ExtResource("3_f71se")
+texture_stretch_mode = 5
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+corner_curvature_top_left = -0.3799999999999999
+corner_curvature_top_right = -0.3799999999999999
+corner_curvature_bottom_right = -0.3799999999999999
+corner_curvature_bottom_left = -0.3799999999999999
+shadow_enabled = true
+shadow_blur = 25
+metadata/_custom_type_script = "uid://bkl6g25jwb47h"

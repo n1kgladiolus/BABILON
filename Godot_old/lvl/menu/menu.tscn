@@ -66,6 +66,18 @@ color_ramp = SubResource("GradientTexture1D_lv0yt")
 color = Color(0.646029, 0.646029, 0.646029, 1)
 thickness = 3
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2suwm"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8e3e"]
 bg_color = Color(0.6, 0.6, 0.7058824, 0.29411766)
 
@@ -248,6 +260,7 @@ theme_override_constants/margin_bottom = 50
 [node name="lobby_panel" type="Panel" parent="Window/window_func" unique_id=1267649953]
 visible = false
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2suwm")
 
 [node name="MarginContainer" type="MarginContainer" parent="Window/window_func/lobby_panel" unique_id=645973758]
 layout_mode = 1
@@ -1028,7 +1041,6 @@ theme_override_font_sizes/font_size = 32
 text = "РЕЖИМ ДЕДА"
 
 [node name="author_panel" type="Panel" parent="Window/window_func" unique_id=110820378]
-visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Window/window_func/author_panel" unique_id=1680148923]
@@ -1118,6 +1130,7 @@ texture = ExtResource("11_fq0f4")
 expand_mode = 5
 
 [node name="start_label" type="Label" parent="Window/window_func" unique_id=442992296]
+visible = false
 layout_mode = 2
 theme_override_constants/outline_size = 30
 theme_override_font_sizes/font_size = 120

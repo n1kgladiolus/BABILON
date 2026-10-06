@@ -53,6 +53,8 @@ func _boot():
 			sg.name = "SERVER_GAME"
 			get_tree().root.add_child(sg)
 		"CLIENT":
+			get_tree().root.add_child(preload("res://scn/game_scn/post_proccess.tscn").instantiate())
+			await get_tree().process_frame
 			NET.get_node("net_main").setup("client", {"url": "ws://188.168.138.144:6767"})
 			var c := preload("res://scr/CLIENT.gd").new()
 			c.name = "CLIENT"

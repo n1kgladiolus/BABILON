@@ -1,7 +1,13 @@
 extends Node
 
+var command_list: Dictionary = {
+	
+	}
+
+
 var NET
 var RUN
+
 
 
 func _ready() -> void:

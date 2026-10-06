@@ -18,9 +18,9 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nhj48"]
 shader = SubResource("Shader_oks1d")
-shader_parameter/outer_radius = 0.30000001425
+shader_parameter/outer_radius = 0.938000044555
 shader_parameter/intensity = 0.3
-shader_parameter/vignette_color = Color(0.04922881, 0.07008409, 0.10136735, 1)
+shader_parameter/vignette_color = Color(0.05421201, 0.0744118, 0.10269139, 1)
 
 [node name="post_proccess" type="CanvasLayer" unique_id=2011894051]
 layer = 100

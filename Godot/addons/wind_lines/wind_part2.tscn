@@ -104,10 +104,11 @@ size = 0.05
 sections = 16
 
 [node name="WindPart" type="GPUParticles3D" unique_id=1194945283]
-amount = 200
+amount = 100
 lifetime = 10.0
 preprocess = 10.0
 fixed_fps = 45
+visibility_aabb = AABB(-16.07, -10, -3.194, 32.212, 30, 36.338)
 trail_enabled = true
 trail_lifetime = 1.0
 process_material = SubResource("ShaderMaterial_60fhn")

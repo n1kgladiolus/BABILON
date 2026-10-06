@@ -89,17 +89,19 @@ func disconnect_main() -> void:
 
 
 @rpc("any_peer", "call_remote", "reliable")
-func to_server(data: Dictionary) -> void:
+func to_server(data: Array) -> void:
 	if not multiplayer.is_server():
 		return
 	var sender_id := multiplayer.get_remote_sender_id()
+	print(sender_id, " ", data)
 	if get_tree().root.has_node("SERVER"):
 		get_tree().root.get_node("SERVER").command(sender_id, data)
 
 @rpc("authority", "call_remote", "reliable")
-func from_server(data: Dictionary) -> void:
+func from_server(data: Array) -> void:
 	if multiplayer.is_server():
 		return
+	print(data)
 	if get_tree().root.has_node("CLIENT"):
 		get_tree().root.get_node("CLIENT").command(data)
 

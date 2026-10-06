@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cwuvnewnbxqxj"]
 
 [ext_resource type="PackedScene" uid="uid://ctm11ynd1db06" path="res://scn/game_scn/gex/table.tscn" id="1_5eukg"]
-[ext_resource type="PackedScene" uid="uid://raav3higl0eu" path="res://addons/san_dice/scenes/brosok.tscn" id="1_mgia2"]
 [ext_resource type="ArrayMesh" uid="uid://dh4v348k7jmb4" path="res://object/world/world_object_VAVILONE_001.res" id="2_3ii52"]
 [ext_resource type="Texture2D" uid="uid://bjsg3ui6xvbmp" path="res://visual/material/other/lain.png" id="2_5qa0x"]
 [ext_resource type="PackedScene" uid="uid://bveeukxurc7cf" path="res://scn/game_scn/monolit.tscn" id="3_3ii52"]
@@ -31,13 +30,10 @@ height = 20.0
 radial_segments = 32
 rings = 16
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_0j1ap"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_mgia2"]
 resource_local_to_scene = true
 
 [node name="World" type="Node3D" unique_id=237964239]
-
-[node name="brosok" parent="." unique_id=78087330 instance=ExtResource("1_mgia2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
 [node name="TABLE" parent="." unique_id=437054224 instance=ExtResource("1_5eukg")]
 metadata/_edit_lock_ = true
@@ -90,7 +86,7 @@ sky_mesh = NodePath("Sky")
 transform = Transform3D(0.9901878, 0, -0.13974342, 0, 1, 0, 0.13974342, 0, 0.9901878, 0.305, 0.92192674, -10.469313)
 
 [node name="WindPart2" parent="environment" unique_id=2127573040 instance=ExtResource("8_0j1ap")]
-transform = Transform3D(0.99026805, 0, -0.1391731, 0, 1, 0, 0.1391731, 0, 0.99026805, 0.31357574, -0.84363484, -10.469313)
+transform = Transform3D(0.99026805, 0, -0.1391731, 0, 1, 0, 0.1391731, 0, 0.99026805, 0.31357574, -1.1725473, -10.469313)
 
 [node name="Sanches" type="SpotLight3D" parent="environment" unique_id=227628673]
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 4.7, 1)
@@ -122,36 +118,36 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
 metadata/_edit_lock_ = true
 
 [node name="Cloud" parent="environment/CloudSpawn" unique_id=1958340692 instance=ExtResource("7_lsdv3")]
-mesh = SubResource("ImmediateMesh_0j1ap")
+mesh = SubResource("ImmediateMesh_mgia2")
 
 [node name="Timer" type="Timer" parent="environment/CloudSpawn" unique_id=1122969966]
 wait_time = 0.05
 autostart = true
 
-[node name="Button" type="Button" parent="environment" unique_id=25566337]
-offset_left = -235.0
-offset_top = 39.0
-offset_right = -43.0
-offset_bottom = 103.0
+[node name="day" type="Button" parent="environment" unique_id=25566337]
+offset_left = -320.0
+offset_top = 48.0
+offset_right = -128.0
+offset_bottom = 112.0
 text = "День"
 
-[node name="Button2" type="Button" parent="environment" unique_id=1108036419]
-offset_left = -235.0
-offset_top = 135.0
-offset_right = -43.0
-offset_bottom = 199.0
+[node name="eveng" type="Button" parent="environment" unique_id=1108036419]
+offset_left = -320.0
+offset_top = 144.0
+offset_right = -128.0
+offset_bottom = 208.0
 text = "Вечер"
 
-[node name="Button3" type="Button" parent="environment" unique_id=1967916124]
-offset_left = -235.0
-offset_top = 231.0
-offset_right = -43.0
-offset_bottom = 295.0
+[node name="night" type="Button" parent="environment" unique_id=1967916124]
+offset_left = -320.0
+offset_top = 240.0
+offset_right = -128.0
+offset_bottom = 304.0
 text = "Ночь"
 
-[node name="Button4" type="Button" parent="environment" unique_id=1544453295]
-offset_left = -235.0
-offset_top = 327.0
-offset_right = -43.0
-offset_bottom = 391.0
+[node name="morn" type="Button" parent="environment" unique_id=1544453295]
+offset_left = -320.0
+offset_top = 336.0
+offset_right = -128.0
+offset_bottom = 400.0
 text = "Утро"
