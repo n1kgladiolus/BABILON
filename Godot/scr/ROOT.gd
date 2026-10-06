@@ -36,10 +36,10 @@ func start():
 	NET = preload("res://scn/NET.tscn").instantiate()
 	get_tree().root.add_child(NET)
 	await get_tree().process_frame
-	_boot()
+	_boot(args)
 
 
-func _boot():
+func _boot(args):
 	match mode:
 		"SERVER":
 			NET.get_node("net_main").setup("server", {"port": 6767})
@@ -47,8 +47,14 @@ func _boot():
 			s.name = "SERVER"
 			get_tree().root.add_child(s)
 		"SERVER_GAME":
-			NET.get_node("net_game").setup("server", {"port": 6769})
-			NET.get_node("net_voice").setup("server", {"port": 6770})
+			var port
+			for a in args:
+				if a.begins_with("--port="):
+					port = a.get_slice("=", 1).to_int()
+			NET.get_node("net_main").setup("client", {"url": "ws://188.168.138.144:6767"})
+			await get_tree().process_frame
+			NET.get_node("net_game").setup("server", {"port": port})
+			NET.get_node("net_voice").setup("server", {"port": port+1})
 			var sg := preload("res://scr/SERVER_GAME.gd").new()
 			sg.name = "SERVER_GAME"
 			get_tree().root.add_child(sg)

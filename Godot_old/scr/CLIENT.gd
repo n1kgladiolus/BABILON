@@ -4,7 +4,7 @@ const DISCO_ELYSIUM := preload("res://ost/music/disco_elysium.mp3")
 const OST_1 := preload("res://ost/music/ost_1.mp3")
 const playlist_in_game := preload("res://ost/playlist_in_game.tres")
 
-var DEBUG := true # true false
+var DEBUG := false # true false
 
 var disconnect_flag := false
 

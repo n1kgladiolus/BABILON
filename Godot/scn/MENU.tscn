@@ -213,6 +213,39 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list" unique_id=1821224222]
+layout_mode = 2
+
+[node name="List" type="Tree" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer" unique_id=1009084189]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+column_titles_visible = true
+hide_root = true
+select_mode = 1
+scroll_horizontal_enabled = false
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer" unique_id=641765675]
+layout_mode = 2
+
+[node name="Create" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer" unique_id=502765365]
+layout_mode = 2
+
+[node name="Create_Button" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer/Create" unique_id=798113689]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Создать"
+
+[node name="lobby_name" type="LineEdit" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer/Create" unique_id=712837480]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Название"
+
+[node name="lobby_pass" type="LineEdit" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer/Create" unique_id=1057258419]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Пароль"
+
 [node name="profile" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel" unique_id=1990016913]
 visible = false
 layout_mode = 1
@@ -474,7 +507,7 @@ theme_override_font_sizes/font_size = 32
 text = "Микрофон (вкл/выкл):"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=877756976]
+[node name="mic" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=877756976]
 layout_mode = 2
 text = "выключен"
 
@@ -488,7 +521,7 @@ theme_override_font_sizes/font_size = 32
 text = "Устройство ввода:"
 horizontal_alignment = 1
 
-[node name="OptionButton" type="OptionButton" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=447278446]
+[node name="use_devace" type="OptionButton" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=447278446]
 custom_minimum_size = Vector2(0, 59)
 layout_mode = 2
 
@@ -501,7 +534,7 @@ theme_override_font_sizes/font_size = 32
 text = "Кнопка активации:"
 horizontal_alignment = 1
 
-[node name="Button2" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=491940267]
+[node name="ptt" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=491940267]
 layout_mode = 2
 text = "ALT"
 
@@ -515,7 +548,7 @@ theme_override_font_sizes/font_size = 32
 text = "Активация по голосу:"
 horizontal_alignment = 1
 
-[node name="Button3" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=974879302]
+[node name="vox" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=974879302]
 layout_mode = 2
 text = "выключена"
 
@@ -539,116 +572,116 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2" unique_id=1078843233]
+[node name="Audio_value" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2" unique_id=1078843233]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=1609209015]
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1609209015]
 layout_mode = 2
 
-[node name="Label6" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=454574321]
+[node name="Label6" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=454574321]
 layout_mode = 2
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Общая громкость:"
 horizontal_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=264463537]
+[node name="master" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=264463537]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 
-[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=584011245]
+[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=584011245]
 layout_mode = 2
 
-[node name="Label7" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=1838032159]
+[node name="Label7" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1838032159]
 layout_mode = 2
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Громкость музыки:"
 horizontal_alignment = 1
 
-[node name="HSlider2" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=1056149762]
+[node name="music" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1056149762]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 value = -14.0
 
-[node name="HSeparator3" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=654961124]
+[node name="HSeparator3" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=654961124]
 layout_mode = 2
 
-[node name="Label8" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=1270135251]
+[node name="Label8" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1270135251]
 layout_mode = 2
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Громкость игроков:"
 horizontal_alignment = 1
 
-[node name="HSlider3" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=328268740]
+[node name="players" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=328268740]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 
-[node name="HSeparator4" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=1228232416]
+[node name="HSeparator4" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1228232416]
 layout_mode = 2
 
-[node name="Label9" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=767034253]
+[node name="Label9" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=767034253]
 layout_mode = 2
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Громкость эффектов"
 horizontal_alignment = 1
 
-[node name="HSlider4" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=417411459]
+[node name="effect" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=417411459]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 value = -8.0
 
-[node name="HSeparator5" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=1958449454]
+[node name="HSeparator5" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1958449454]
 layout_mode = 2
 
-[node name="Label10" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=1028195768]
+[node name="Label10" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1028195768]
 layout_mode = 2
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Громкость ветра:"
 horizontal_alignment = 1
 
-[node name="HSlider5" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=709575019]
+[node name="wind" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=709575019]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 min_value = -30.0
 max_value = 10.0
 value = -5.0
 
-[node name="HSeparator6" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer3" unique_id=364875880]
+[node name="HSeparator6" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=364875880]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2" unique_id=1383320970]
+[node name="Dop" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2" unique_id=1383320970]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=2052615185]
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Dop" unique_id=2052615185]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=2144878785]
+[node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Dop" unique_id=2144878785]
 layout_mode = 2
 theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "Режим Деда:"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=1584506000]
+[node name="ded_settings" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Dop" unique_id=1584506000]
 layout_mode = 2
 text = "Настроить"
 
-[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/VBoxContainer" unique_id=421505778]
+[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Dop" unique_id=421505778]
 layout_mode = 2
 
 [node name="DED_DIALOG" type="AcceptDialog" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings" unique_id=353900809]
@@ -812,6 +845,7 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
 [node name="debug" type="Control" parent="." unique_id=1751707260]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

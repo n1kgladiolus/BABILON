@@ -9,9 +9,9 @@ class_name VoiceManager
 
 const SpeakerScript := preload("res://addons/twovoip/voiphelper/two_voip_speaker.gd")
 
-var _speakers: Dictionary = {}       # peer_id(int) -> Node (two_voip_speaker)
-var _audio_players: Dictionary = {}  # peer_id(int) -> AudioStreamPlayer
-var _rows: Dictionary = {}           # peer_id(int) -> Control (плашка игрока)
+var _speakers: Dictionary = {}
+var _audio_players: Dictionary = {}
+var _rows: Dictionary = {}
 
 
 func _ready() -> void:
@@ -56,37 +56,23 @@ func _ready() -> void:
 	voice.voice_packet_received.connect(_on_voice_packet_received)
 
 	if mic:
-		# Микрофон должен эмитить БИНАРНЫЕ пакеты (json_packets_as_binary = true
-		# при вызове init_voip_mic), т.к. VOICE.send_voice() шлёт только PackedByteArray
-		# через WRITE_MODE_BINARY.
 		mic.transmit_audio_packet.connect(_on_mic_packet)
 
 
-# --- как только локальный игрок получил свой multiplayer id от GAME,
-#     сообщаем этот же id голосовому транспорту, чтобы peer_id совпадали
-#     между GAME и VOICE для одного и того же человека ---
 func _on_game_connected() -> void:
 	voice.set_my_peer_id(game.get_my_id())
 
 
-# --- микрофон -> голосовой сокет ---
 func _on_mic_packet(data: PackedByteArray) -> void:
 	voice.send_voice(data)
 
 
-# --- голосовой сокет -> декодер конкретного собеседника ---
 func _on_voice_packet_received(sender_id: int, data: PackedByteArray) -> void:
 	var speaker: Node = _speakers.get(sender_id)
 	if speaker == null:
-		# Пакет от игрока, для которого ещё не создан speaker (например VOICE
-		# подключился быстрее, чем успела прийти GAME.peer_connected). Просто игнорируем —
-		# как только плашка/speaker для него создастся, поток продолжится с ближайшего заголовка.
 		return
 	speaker.receive_audio_packet(data)
 
-
-# --- GAME сообщил, что подключился новый игрок: плашка + speaker создаются ВМЕСТЕ,
-#     но именно факт создания определяется GAME, а не VOICE ---
 func _on_game_peer_connected(id: int) -> void:
 	if id == 1:
 		return
@@ -121,22 +107,14 @@ func _remove_player_row(id: int) -> void:
 func _create_speaker(id: int) -> void:
 	if _speakers.has(id):
 		return
-
 	var audio_player := AudioStreamPlayer.new()
 	audio_player.name = "AudioPlayer_%d" % id
-	audio_player.bus = "Voice"
-	# audio_player.bus = "Voice"  # раскомментируйте, если создадите отдельную шину "Voice"
+	audio_player.bus = "players"
 	add_child(audio_player)
-
-	# two_voip_speaker._ready() делает:
-	#   audioplayeropus = get_parent().findaudioplayer() if has_method(...) else get_parent()
-	# У AudioStreamPlayer такого метода нет, поэтому get_parent() (сам AudioStreamPlayer)
-	# и станет audioplayeropus — этого достаточно (есть set_stream/play/playing).
 	var speaker := Node.new()
 	speaker.name = "Speaker_%d" % id
 	speaker.set_script(SpeakerScript)
 	audio_player.add_child(speaker)
-
 	_speakers[id] = speaker
 	_audio_players[id] = audio_player
 
@@ -144,7 +122,7 @@ func _create_speaker(id: int) -> void:
 func _remove_speaker(id: int) -> void:
 	var audio_player: AudioStreamPlayer = _audio_players.get(id)
 	if audio_player:
-		audio_player.queue_free()  # заодно освобождает и дочерний speaker
+		audio_player.queue_free()
 	_speakers.erase(id)
 	_audio_players.erase(id)
 

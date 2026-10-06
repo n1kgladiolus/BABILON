@@ -58,5 +58,6 @@ TabContainer/constants/tab_separation = 5
 TabContainer/styles/panel = SubResource("StyleBoxTexture_a2py3")
 TextEdit/constants/outline_size = 12
 Tree/constants/outline_size = 12
-VSeparator/constants/separation = 26
+Tree/styles/panel = SubResource("StyleBoxTexture_a2py3")
+VSeparator/constants/separation = 42
 VSeparator/styles/separator = SubResource("StyleBoxTexture_5l4m5")

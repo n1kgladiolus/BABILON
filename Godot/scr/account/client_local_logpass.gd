@@ -7,6 +7,7 @@ extends Resource
 @export var controls_data: Dictionary = {}
 
 @export var SETTINGS := {
+	"Prolog" : false,
 	"S_Master" : 0,
 	"S_Background" : -14,
 	"S_Action" : -8,
@@ -28,31 +29,16 @@ extends Resource
 }
 
 
-# ControlsResource.gd
-
-# --- СОХРАНЕНИЕ ---
-# Этот метод заполняет наш словарь controls_data данными из InputMap
 func capture_from_input_map() -> void:
-	controls_data.clear() # Очищаем словарь перед сохранением
-	
-	# Получаем список всех действий
+	controls_data.clear()
 	var actions = InputMap.get_actions()
 	for action in actions:
-		# Получаем массив событий (клавиш, кнопок) для этого действия
 		var events = InputMap.action_get_events(action)
-		# Копируем события в наш словарь
-		# Важно: мы создаем копию событий, а не ссылку на оригинал
 		controls_data[action] = events.duplicate(true)
 
-# --- ЗАГРУЗКА ---
-# Этот метод применяет настройки из нашего словаря к InputMap
 func apply_to_input_map() -> void:
 	for action in controls_data:
-		# Очищаем существующие события для этого действия в InputMap
 		InputMap.action_erase_events(action)
-		
-		# Добавляем новые события из нашего словаря
 		var events = controls_data[action]
 		for event in events:
-			# Добавляем событие в InputMap
 			InputMap.action_add_event(action, event)

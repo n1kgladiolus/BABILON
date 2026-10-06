@@ -27,6 +27,7 @@ var log_in_data: Dictionary[String, String] = {
 	"debug_cam" : false,
 	"in_menu" : false,
 	"in_game" : false,
+	"in_lobby" : false,
 	"server_connect" : false,
 	}
 

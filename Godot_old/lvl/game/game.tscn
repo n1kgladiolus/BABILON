@@ -23,13 +23,13 @@
 [ext_resource type="Texture2D" uid="uid://dkcdrnmauyrts" path="res://pictures/info_2.jpg" id="17_fafcu"]
 [ext_resource type="Texture2D" uid="uid://ulo6nigwf8u" path="res://pictures/figur_ico/rotate_icon.png" id="20_3cwwr"]
 [ext_resource type="Texture2D" uid="uid://b77wvwnt5mutk" path="res://pictures/figur_ico/rotate_button.png" id="20_5rrdf"]
-[ext_resource type="Texture2D" uid="uid://sbscl0oroub7" path="res://pictures/figur_ico/dinamit.png" id="21_6vkll"]
 [ext_resource type="Texture2D" uid="uid://ca32mb2iea82f" path="res://pictures/figur_ico/rotate_button_ok.png" id="21_50nji"]
-[ext_resource type="Texture2D" uid="uid://1s6yk3pmm3p1" path="res://pictures/figur_ico/krest.png" id="22_2frox"]
 [ext_resource type="Texture2D" uid="uid://shrsl2m861te" path="res://pictures/figur_ico/rotate_button_2.png" id="22_mh2qp"]
-[ext_resource type="Texture2D" uid="uid://pw3lf1xpnmjl" path="res://pictures/figur_ico/yaderka_button_1.png" id="23_2frox"]
-[ext_resource type="Texture2D" uid="uid://cifnguej003og" path="res://pictures/figur_ico/yaderka_button_2.png" id="24_1ggbu"]
-[ext_resource type="Texture2D" uid="uid://dv7pwb6t8mjlq" path="res://pictures/figur_ico/koronac.png" id="29_emlyr"]
+[ext_resource type="Texture2D" uid="uid://bupnuvn0enm1x" path="res://pictures/figures_ico/crown.png" id="23_n7vso"]
+[ext_resource type="Texture2D" uid="uid://bwlpy807e1bub" path="res://pictures/figures_ico/tnt.png" id="24_rf20w"]
+[ext_resource type="Texture2D" uid="uid://3wjvb8gs62ak" path="res://pictures/figures_ico/priest.png" id="25_3mcpe"]
+[ext_resource type="Texture2D" uid="uid://bt0hwl4f51cec" path="res://pictures/figures_ico/nuclear2.png" id="26_tt6rn"]
+[ext_resource type="Texture2D" uid="uid://cj0onat61bmml" path="res://pictures/figures_ico/nuclear1.png" id="27_mvh61"]
 
 [sub_resource type="Environment" id="Environment_0jdu7"]
 background_energy_multiplier = 5.0
@@ -191,7 +191,7 @@ billboard_mode = 1
 [sub_resource type="QuadMesh" id="QuadMesh_bv0ed"]
 material = SubResource("StandardMaterial3D_ntyjr")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_n7vso"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_144qm"]
 resource_local_to_scene = true
 
 [sub_resource type="Theme" id="Theme_3mcpe"]
@@ -399,7 +399,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
 metadata/_edit_lock_ = true
 
 [node name="Cloud" parent="WORLD/CloudSpawn" unique_id=1958340692 instance=ExtResource("1_qqdlu")]
-mesh = SubResource("ImmediateMesh_n7vso")
+mesh = SubResource("ImmediateMesh_144qm")
 
 [node name="Timer" type="Timer" parent="WORLD/CloudSpawn" unique_id=1416216528]
 wait_time = 0.05
@@ -934,35 +934,35 @@ theme_override_styles/separator = SubResource("StyleBoxLine_okd6o")
 [node name="king" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=1066314835]
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
-icon = ExtResource("29_emlyr")
+icon = ExtResource("23_n7vso")
 icon_alignment = 1
 expand_icon = true
 
 [node name="fanat_kon_bax" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=1708311641]
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
-icon = ExtResource("21_6vkll")
+icon = ExtResource("24_rf20w")
 icon_alignment = 1
 expand_icon = true
 
 [node name="fanat_slon_krest" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=157003602]
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
-icon = ExtResource("22_2frox")
+icon = ExtResource("25_3mcpe")
 icon_alignment = 1
 expand_icon = true
 
 [node name="fanat_yaderka_buy" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=1498856495]
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
-icon = ExtResource("23_2frox")
+icon = ExtResource("26_tt6rn")
 icon_alignment = 1
 expand_icon = true
 
 [node name="fanat_yaderka_fire" type="Button" parent="USER/UI/fig_panel/fig_options" unique_id=524002184]
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
-icon = ExtResource("24_1ggbu")
+icon = ExtResource("27_mvh61")
 icon_alignment = 1
 expand_icon = true
 
