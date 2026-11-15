@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bkufnk8kq8sol"]
+
+[ext_resource type="Script" uid="uid://d1lc5okbj3e0w" path="res://scr/NET/net_main.gd" id="2_25xfe"]
+[ext_resource type="Script" uid="uid://8tretsct83js" path="res://scr/NET/net_game.gd" id="3_gwrhg"]
+[ext_resource type="Script" uid="uid://bd6gmve33tuwo" path="res://scr/NET/net_voice.gd" id="4_l5khi"]
+
+[node name="NET" type="Node" unique_id=1115788803]
+
+[node name="net_main" type="Node" parent="." unique_id=227531461]
+script = ExtResource("2_25xfe")
+
+[node name="net_game" type="Node" parent="." unique_id=412871221]
+script = ExtResource("3_gwrhg")
+
+[node name="net_voice" type="Node" parent="." unique_id=1487974229]
+script = ExtResource("4_l5khi")

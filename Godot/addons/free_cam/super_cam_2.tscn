@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://bopjo7lw14h7m"]
+
+[ext_resource type="Environment" uid="uid://dcrmdj4rwnhww" path="res://scn/game_scn/main_environment.tres" id="1_luaj4"]
+
+[sub_resource type="GDScript" id="GDScript_yct8u"]
+script/source = "extends Camera3D
+
+## Чувствительность мыши (чем меньше, тем медленнее поворот)
+@export var sensitivity: float = 0.002
+## Базовая скорость движения (единиц в секунду)
+@export var speed: float = 5.0
+## Коэффициент плавности (чем выше, тем быстрее камера «догоняет» цель;
+## значение ~5–10 даёт приятную инерцию)
+@export var smoothness: float = 5.0
+
+# Целевые значения для интерполяции (куда камера стремится)
+var target_position: Vector3
+var target_yaw: float = 0.0      # поворот по горизонтали (вокруг Y)
+var target_pitch: float = 0.0    # поворот по вертикали (вокруг X)
+
+# Текущие значения для плавного вращения
+var current_yaw: float = 0.0
+var current_pitch: float = 0.0
+
+func _ready() -> void:
+	# Захватываем курсор мыши для управления обзором
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	# Инициализируем состояние из текущего положения и поворота камеры
+	target_position = global_transform.origin
+	var euler = rotation
+	current_yaw = euler.y
+	current_pitch = euler.x
+	target_yaw = current_yaw
+	target_pitch = current_pitch
+
+func _input(event: InputEvent) -> void:
+	# Поворот камеры от движения мыши (только при захваченном курсоре)
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		target_yaw -= event.relative.x * sensitivity
+		target_pitch -= event.relative.y * sensitivity
+		# Ограничиваем угол подъёма/опускания, чтобы камера не переворачивалась
+		target_pitch = clamp(target_pitch, deg_to_rad(-90.0), deg_to_rad(90.0))
+
+	# Переключение захвата мыши по клавише Esc
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _process(delta: float) -> void:
+	# ---- 1. Сбор ввода для движения ----
+	var input_dir := Vector3.ZERO
+
+	# Направления в локальном пространстве камеры
+	var forward := -transform.basis.z   # вперёд (обычно -Z)
+	var right := transform.basis.x      # вправо
+	var up := Vector3.UP                # глобальный верх (для Space / Shift)
+
+	if Input.is_key_pressed(KEY_W):
+		input_dir += forward
+	if Input.is_key_pressed(KEY_S):
+		input_dir -= forward
+	if Input.is_key_pressed(KEY_A):
+		input_dir -= right
+	if Input.is_key_pressed(KEY_D):
+		input_dir += right
+	if Input.is_key_pressed(KEY_SPACE):
+		input_dir += up
+	if Input.is_key_pressed(KEY_SHIFT):
+		input_dir -= up
+
+	# Нормализуем, чтобы диагональное движение не было быстрее
+	if input_dir.length_squared() > 0:
+		input_dir = input_dir.normalized()
+
+	# Обновляем целевую позицию, добавляя смещение
+	target_position += input_dir * speed * delta
+
+	# ---- 2. Плавная интерполяция позиции (экспоненциальное сглаживание) ----
+	var factor := 1.0 - exp(-smoothness * delta)
+	global_transform.origin = global_transform.origin.lerp(target_position, factor)
+
+	# ---- 3. Плавная интерполяция вращения (через кватернионы) ----
+	var target_quat := Quaternion.from_euler(Vector3(target_pitch, target_yaw, 0.0))
+	var current_quat := Quaternion.from_euler(Vector3(current_pitch, current_yaw, 0.0))
+	current_quat = current_quat.slerp(target_quat, factor)
+
+	# Извлекаем углы и обновляем текущие значения (чтобы избежать дрейфа)
+	var new_euler := current_quat.get_euler()
+	current_pitch = new_euler.x
+	current_yaw = new_euler.y
+	rotation = new_euler
+"
+
+[node name="debug_cam" type="Camera3D" unique_id=1880818362]
+environment = ExtResource("1_luaj4")
+fov = 80.0
+script = SubResource("GDScript_yct8u")

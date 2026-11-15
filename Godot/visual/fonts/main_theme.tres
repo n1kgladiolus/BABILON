@@ -1,0 +1,63 @@
+[gd_resource type="Theme" format=3 uid="uid://3u1sptp2eqeb"]
+
+[ext_resource type="Texture2D" uid="uid://daan0g321hwo3" path="res://image/ui/panel-border-028.png" id="1_4hc8c"]
+[ext_resource type="Texture2D" uid="uid://cfq3sy1gfukq6" path="res://image/ui/divider-fade-001.png" id="1_5l4m5"]
+[ext_resource type="FontVariation" uid="uid://bpgt21ocxmms4" path="res://visual/fonts/main_font.tres" id="1_taubw"]
+[ext_resource type="Texture2D" uid="uid://c0hqwd6eii0xl" path="res://image/ui/2divider-fade-001.png" id="3_l5gee"]
+[ext_resource type="Texture2D" uid="uid://dk5m3ty1qutnq" path="res://image/ui/panel-border-004.png" id="3_sjvho"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s6fvk"]
+texture = ExtResource("1_5l4m5")
+texture_margin_left = 16.0
+texture_margin_top = 22.0
+texture_margin_right = 16.0
+texture_margin_bottom = 22.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hfqbo"]
+texture = ExtResource("1_4hc8c")
+texture_margin_left = 21.0
+texture_margin_top = 21.0
+texture_margin_right = 21.0
+texture_margin_bottom = 21.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a2py3"]
+texture = ExtResource("3_sjvho")
+texture_margin_left = 13.0
+texture_margin_top = 13.0
+texture_margin_right = 13.0
+texture_margin_bottom = 13.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5l4m5"]
+texture = ExtResource("3_l5gee")
+texture_margin_left = 22.0
+texture_margin_top = 16.0
+texture_margin_right = 22.0
+texture_margin_bottom = 16.0
+region_rect = Rect2(0, 0, 44, 192)
+
+[resource]
+default_font = ExtResource("1_taubw")
+default_font_size = 24
+Button/constants/outline_size = 25
+Button/font_sizes/font_size = 42
+CheckBox/constants/outline_size = 12
+CheckButton/constants/outline_size = 12
+ColorPickerButton/constants/outline_size = 12
+HSeparator/constants/separation = 22
+HSeparator/styles/separator = SubResource("StyleBoxTexture_s6fvk")
+Label/constants/outline_size = 12
+LineEdit/constants/outline_size = 25
+LineEdit/font_sizes/font_size = 42
+MenuButton/constants/outline_size = 12
+OptionButton/constants/outline_size = 12
+Panel/styles/panel = SubResource("StyleBoxTexture_hfqbo")
+ProgressBar/constants/outline_size = 12
+TabBar/constants/outline_size = 12
+TabContainer/constants/outline_size = 12
+TabContainer/constants/tab_separation = 5
+TabContainer/styles/panel = SubResource("StyleBoxTexture_a2py3")
+TextEdit/constants/outline_size = 12
+Tree/constants/outline_size = 12
+Tree/styles/panel = SubResource("StyleBoxTexture_a2py3")
+VSeparator/constants/separation = 42
+VSeparator/styles/separator = SubResource("StyleBoxTexture_5l4m5")

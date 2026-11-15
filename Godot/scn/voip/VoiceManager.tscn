@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://duthcy6cyl8dr"]
+
+[ext_resource type="Script" uid="uid://dyasyxu78oclq" path="res://scn/voip/VoiceManager.gd" id="1_exv1x"]
+[ext_resource type="PackedScene" uid="uid://dlu51xbkka03p" path="res://scn/voip/Mic.tscn" id="2_i78sd"]
+
+[node name="VoiceManager" type="Node" unique_id=734076286]
+script = ExtResource("1_exv1x")
+
+[node name="Mic" parent="." unique_id=1252100505 instance=ExtResource("2_i78sd")]

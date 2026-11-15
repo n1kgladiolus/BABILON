@@ -1,0 +1,15 @@
+[gd_resource type="Environment" format=3 uid="uid://dcrmdj4rwnhww"]
+
+[resource]
+background_energy_multiplier = 2.0
+tonemap_mode = 2
+tonemap_exposure = 0.8
+ssao_enabled = true
+ssao_intensity = 1.2
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.8235294, 0.8392157, 0.8666667, 1)
+fog_light_energy = 0.7
+fog_density = 0.1
+fog_height = -0.4
+fog_height_density = 1.65

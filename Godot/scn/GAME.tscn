@@ -1,0 +1,1190 @@
+[gd_scene format=3 uid="uid://cauqgen7b4dva"]
+
+[ext_resource type="Script" uid="uid://co0n1imfifr84" path="res://scr/game/GAME.gd" id="1_76md2"]
+[ext_resource type="PackedScene" uid="uid://cwuvnewnbxqxj" path="res://scn/world_lvl/classic/World.tscn" id="2_a668n"]
+[ext_resource type="PackedScene" uid="uid://cw8rcb1aqna32" path="res://scn/game_scn/CAMERA.tscn" id="3_ejrxx"]
+[ext_resource type="Texture2D" uid="uid://bfrrhfq6e16mm" path="res://image/other/black_fon.png" id="4_57jko"]
+[ext_resource type="Script" uid="uid://dw00ygtqulsu5" path="res://scr/game/ui.gd" id="4_h08ni"]
+[ext_resource type="Texture2D" uid="uid://2c3nwqtk7n37" path="res://image/kazna/K_4.png" id="5_u24x5"]
+[ext_resource type="Texture2D" uid="uid://bo65jrutjqy14" path="res://image/figures_market/peshk.png" id="6_mw4sk"]
+[ext_resource type="Texture2D" uid="uid://dc0s2l12wwwkg" path="res://image/koloda/бубны-засуха.png" id="6_u24x5"]
+[ext_resource type="Texture2D" uid="uid://cxqg7rvpt82a3" path="res://image/figures_market/kon.png" id="7_u24x5"]
+[ext_resource type="Texture2D" uid="uid://bqy5ow53k6pe8" path="res://image/figures_market/slon.png" id="8_57jko"]
+[ext_resource type="Texture2D" uid="uid://b5mu6nlsnsiuv" path="res://image/figures_market/lada.png" id="9_gv643"]
+[ext_resource type="Texture2D" uid="uid://b6u720dswbvpj" path="res://image/figures_market/peshk_fan.png" id="10_33noi"]
+[ext_resource type="Texture2D" uid="uid://dbolnl01r0wah" path="res://image/kazna/coins.png" id="11_57jko"]
+[ext_resource type="Texture2D" uid="uid://d4he5aak4702y" path="res://image/figures_market/kon_fan.png" id="11_h08ni"]
+[ext_resource type="Texture2D" uid="uid://bhr6k1bwcokhe" path="res://image/figures_market/slon_fan.png" id="12_4f8xy"]
+[ext_resource type="Texture2D" uid="uid://jwksxcf5agut" path="res://image/figures_market/lada_fan.png" id="13_4je25"]
+[ext_resource type="Texture2D" uid="uid://dcrjl3i1ylvmu" path="res://image/other/lock.png" id="16_5yj1v"]
+[ext_resource type="Texture2D" uid="uid://dk5m3ty1qutnq" path="res://image/ui/panel-border-004.png" id="16_33noi"]
+[ext_resource type="Texture2D" uid="uid://dnuqh2atk0ey1" path="res://image/actions_ico/arrow3.png" id="16_kekch"]
+[ext_resource type="Texture2D" uid="uid://cfwfnrobqquhn" path="res://image/actions_ico/arrow.png" id="16_l0wig"]
+[ext_resource type="Texture2D" uid="uid://cqq85pfc03tal" path="res://image/actions_ico/accept.png" id="17_kekch"]
+[ext_resource type="Texture2D" uid="uid://bv2ghyr3bo0fe" path="res://image/actions_ico/arrow2.png" id="18_5yj1v"]
+[ext_resource type="Texture2D" uid="uid://bkw32yx860tl0" path="res://image/figures_market/peshk_pole.png" id="18_h08ni"]
+[ext_resource type="Texture2D" uid="uid://c3cl5yfjwun88" path="res://image/koloda/трефы-гомо.png" id="19_4f8xy"]
+[ext_resource type="Texture2D" uid="uid://bupnuvn0enm1x" path="res://image/actions_ico/crown.png" id="19_c35ns"]
+[ext_resource type="Texture2D" uid="uid://bwlpy807e1bub" path="res://image/actions_ico/tnt.png" id="20_7y1fk"]
+[ext_resource type="Texture2D" uid="uid://3wjvb8gs62ak" path="res://image/actions_ico/priest.png" id="21_5svk2"]
+[ext_resource type="Texture2D" uid="uid://cj0onat61bmml" path="res://image/actions_ico/nuclear1.png" id="22_fusbp"]
+[ext_resource type="Texture2D" uid="uid://bt0hwl4f51cec" path="res://image/actions_ico/nuclear2.png" id="23_j1bxf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x521r"]
+size = Vector2(2216, 400)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7y1fk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x521r"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bv0ed"]
+texture = ExtResource("16_33noi")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4v1ty"]
+
+[node name="GAME" type="CanvasLayer" unique_id=328332056]
+layer = 2
+script = ExtResource("1_76md2")
+
+[node name="World" parent="." unique_id=237964239 instance=ExtResource("2_a668n")]
+
+[node name="CAMERA" parent="." unique_id=1125562472 instance=ExtResource("3_ejrxx")]
+
+[node name="triger" type="CanvasLayer" parent="." unique_id=1699871291]
+layer = 3
+
+[node name="Area2D" type="Area2D" parent="triger" unique_id=1231343777]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="triger/Area2D" unique_id=1144915025]
+visible = false
+position = Vector2(960, 76)
+shape = SubResource("RectangleShape2D_x521r")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=2066258817]
+layer = 4
+script = ExtResource("4_h08ni")
+
+[node name="ui_node" type="Control" parent="UI" unique_id=2063602411]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_lock_ = true
+
+[node name="UP_PANEL" type="Panel" parent="UI/ui_node" unique_id=1778314207]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 224.0
+grow_horizontal = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7y1fk")
+
+[node name="UP_PANEL" type="TextureRect" parent="UI/ui_node/UP_PANEL" unique_id=1849729242]
+self_modulate = Color(1, 1, 1, 0.85)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_right = -24.0
+offset_bottom = 176.0
+grow_horizontal = 2
+texture = ExtResource("4_57jko")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="ramka" type="Panel" parent="UI/ui_node/UP_PANEL/UP_PANEL" unique_id=1127685975]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Margin" type="MarginContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka" unique_id=1378898844]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="box" type="HBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin" unique_id=487662509]
+layout_mode = 2
+
+[node name="VSeparator2" type="VSeparator" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box" unique_id=249257326]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="info" type="HBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box" unique_id=2065222884]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="kazna" type="MarginContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info" unique_id=1742456420]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="kazna" type="VBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/kazna" unique_id=310411413]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/kazna/kazna" unique_id=347070662]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("5_u24x5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/kazna/kazna" unique_id=1025305290]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/kazna/kazna/HBoxContainer" unique_id=118577653]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("11_57jko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Count_sikl" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/kazna/kazna/HBoxContainer" unique_id=819842426]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "67"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/kazna/kazna/HBoxContainer" unique_id=199211969]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("11_57jko")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="VSeparator4" type="VSeparator" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info" unique_id=1231143174]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="koloda" type="MarginContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info" unique_id=325517113]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/koloda" unique_id=88405544]
+layout_mode = 2
+
+[node name="karta" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/koloda/VBoxContainer" unique_id=1788113883]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("6_u24x5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/koloda/VBoxContainer" unique_id=1113709737]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Карт 0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator5" type="VSeparator" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info" unique_id=1320623922]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="limits" type="MarginContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info" unique_id=1604270512]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="limits" type="VBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/limits" unique_id=436617474]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/limits/limits" unique_id=319417662]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "пешек 0/0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/limits/limits" unique_id=1452238778]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "коней 0/0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/limits/limits" unique_id=968392439]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "слонов 0/0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/limits/limits" unique_id=1261471806]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "ладей 0/0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/info/limits/limits" unique_id=1716376264]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "фанатов 0/0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box" unique_id=859161061]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="shops" type="HBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box" unique_id=446624197]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.8
+
+[node name="shop" type="MarginContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops" unique_id=462200042]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop" unique_id=434156759]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox" unique_id=450625512]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Адепт"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox" unique_id=658014367]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2" unique_id=699511019]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="peshk" type="Button" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer" unique_id=1890095956]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/peshk" unique_id=1460959569]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_mw4sk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/peshk/TextureRect" unique_id=901243617]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_position = Vector2(-8, -24)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="price" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/peshk" unique_id=1210948287]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 45.0
+grow_vertical = 0
+size_flags_horizontal = 3
+texture = ExtResource("11_57jko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="count" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/peshk/price" unique_id=1438478958]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+offset_right = 14.0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="kon" type="Button" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer" unique_id=920036301]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/kon" unique_id=1865888896]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_u24x5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/kon/TextureRect2" unique_id=119469891]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_position = Vector2(-8, -24)
+texture = ExtResource("6_mw4sk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="price" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/kon" unique_id=867542178]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 45.0
+grow_vertical = 0
+size_flags_horizontal = 3
+texture = ExtResource("11_57jko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="count" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/kon/price" unique_id=967235709]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+offset_right = 14.0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "18"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="slon" type="Button" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer" unique_id=101234443]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/slon" unique_id=1989182247]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("8_57jko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/slon/TextureRect3" unique_id=875748361]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_position = Vector2(-8, -24)
+texture = ExtResource("6_mw4sk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="price" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/slon" unique_id=1243919431]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 45.0
+grow_vertical = 0
+size_flags_horizontal = 3
+texture = ExtResource("11_57jko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="count" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/slon/price" unique_id=1019367356]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+offset_right = 18.0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "24"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="lada" type="Button" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer" unique_id=1931260826]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="TextureRect4" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/lada" unique_id=1719489287]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("9_gv643")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/lada/TextureRect4" unique_id=351634512]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_position = Vector2(-8, -24)
+texture = ExtResource("7_u24x5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="price" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/lada" unique_id=1515092160]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 45.0
+grow_vertical = 0
+size_flags_horizontal = 3
+texture = ExtResource("11_57jko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="count" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop/VBox/HBoxContainer2/HBoxContainer/lada/price" unique_id=1391843485]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+offset_right = 17.0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="VSeparator2" type="VSeparator" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops" unique_id=2010070279]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="shop2" type="MarginContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops" unique_id=175982596]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2" unique_id=2076801877]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox" unique_id=1907169379]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Фанатик"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox" unique_id=1972422423]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2" unique_id=1422128982]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="peshk_fan" type="Button" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2" unique_id=708847945]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="TextureRect5" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/peshk_fan" unique_id=1592772761]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("10_33noi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/peshk_fan/TextureRect5" unique_id=1722211999]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_position = Vector2(-8, -24)
+texture = ExtResource("6_mw4sk")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="price" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/peshk_fan" unique_id=1377281655]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 45.0
+grow_vertical = 0
+size_flags_horizontal = 3
+texture = ExtResource("11_57jko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="count" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/peshk_fan/price" unique_id=1124306077]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+offset_right = 14.0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="kon_fan" type="Button" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2" unique_id=676964885]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="TextureRect6" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/kon_fan" unique_id=963336171]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("11_h08ni")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/kon_fan/TextureRect6" unique_id=2124482110]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_position = Vector2(-8, -24)
+texture = ExtResource("7_u24x5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="price" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/kon_fan" unique_id=395726499]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 45.0
+grow_vertical = 0
+size_flags_horizontal = 3
+texture = ExtResource("11_57jko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="count" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/kon_fan/price" unique_id=376566516]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+offset_right = 14.0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "18"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="slon_fan" type="Button" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2" unique_id=773082178]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="TextureRect7" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/slon_fan" unique_id=1618402922]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("12_4f8xy")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/slon_fan/TextureRect7" unique_id=41766631]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_position = Vector2(-8, -24)
+texture = ExtResource("8_57jko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="price" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/slon_fan" unique_id=1987409028]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 45.0
+grow_vertical = 0
+size_flags_horizontal = 3
+texture = ExtResource("11_57jko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="count" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/slon_fan/price" unique_id=885975928]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+offset_right = 18.0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "24"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="lada_fan" type="Button" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2" unique_id=1663469132]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+
+[node name="TextureRect8" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/lada_fan" unique_id=1881634324]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("13_4je25")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/lada_fan/TextureRect8" unique_id=649954730]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_position = Vector2(-8, -24)
+texture = ExtResource("9_gv643")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="price" type="TextureRect" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/lada_fan" unique_id=1701495591]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 45.0
+grow_vertical = 0
+size_flags_horizontal = 3
+texture = ExtResource("11_57jko")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="count" type="Label" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/shops/shop2/VBox/HBoxContainer2/HBoxContainer2/lada_fan/price" unique_id=1711547152]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+offset_right = 17.0
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(8, 0)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 16
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="VSeparator3" type="VSeparator" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box" unique_id=364000792]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="chat" type="MarginContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box" unique_id=306719966]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="box" type="VBoxContainer" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/chat" unique_id=1408077242]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+
+[node name="output" type="RichTextLabel" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/chat/box" unique_id=728757873]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/italics_font_size = 20
+theme_override_font_sizes/mono_font_size = 20
+bbcode_enabled = true
+text = "NTCN
+efsfs
+sefsefdsf
+esfdsf
+efdsef
+dsef
+dsefds
+feswfsdfes
+dfsef
+"
+scroll_following = true
+
+[node name="input" type="LineEdit" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box/chat/box" unique_id=1467581136]
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Написать в чат"
+emoji_menu_enabled = false
+caret_blink = true
+
+[node name="VSeparator4" type="VSeparator" parent="UI/ui_node/UP_PANEL/UP_PANEL/ramka/Margin/box" unique_id=229270577]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="lock_b" type="Button" parent="UI/ui_node/UP_PANEL/UP_PANEL" unique_id=1073222725]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_right = -40.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+toggle_mode = true
+icon = ExtResource("16_5yj1v")
+icon_alignment = 1
+expand_icon = true
+
+[node name="DOWN_PANEL" type="MarginContainer" parent="UI/ui_node" unique_id=1064384275]
+custom_minimum_size = Vector2(128, 96)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -96.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HB" type="HBoxContainer" parent="UI/ui_node/DOWN_PANEL" unique_id=293700947]
+layout_mode = 2
+
+[node name="rotate_active" type="Button" parent="UI/ui_node/DOWN_PANEL/HB" unique_id=341067529]
+visible = false
+custom_minimum_size = Vector2(124, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+icon = ExtResource("16_kekch")
+icon_alignment = 1
+expand_icon = true
+
+[node name="rotate" type="HBoxContainer" parent="UI/ui_node/DOWN_PANEL/HB" unique_id=2112558092]
+visible = false
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI/ui_node/DOWN_PANEL/HB/rotate" unique_id=2085084852]
+custom_minimum_size = Vector2(124, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+icon = ExtResource("16_l0wig")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button2" type="Button" parent="UI/ui_node/DOWN_PANEL/HB/rotate" unique_id=1229201175]
+custom_minimum_size = Vector2(124, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+icon = ExtResource("17_kekch")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button3" type="Button" parent="UI/ui_node/DOWN_PANEL/HB/rotate" unique_id=623313732]
+custom_minimum_size = Vector2(124, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+icon = ExtResource("18_5yj1v")
+icon_alignment = 1
+expand_icon = true
+
+[node name="actions" type="HBoxContainer" parent="UI/ui_node/DOWN_PANEL/HB" unique_id=1070144109]
+visible = false
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="UI/ui_node/DOWN_PANEL/HB/actions" unique_id=2424987]
+visible = false
+custom_minimum_size = Vector2(124, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+icon = ExtResource("19_c35ns")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button5" type="Button" parent="UI/ui_node/DOWN_PANEL/HB/actions" unique_id=1809471322]
+visible = false
+custom_minimum_size = Vector2(124, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+icon = ExtResource("20_7y1fk")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button6" type="Button" parent="UI/ui_node/DOWN_PANEL/HB/actions" unique_id=875068129]
+visible = false
+custom_minimum_size = Vector2(124, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+icon = ExtResource("21_5svk2")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button8" type="Button" parent="UI/ui_node/DOWN_PANEL/HB/actions" unique_id=1889927205]
+visible = false
+custom_minimum_size = Vector2(124, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+icon = ExtResource("23_j1bxf")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Button7" type="Button" parent="UI/ui_node/DOWN_PANEL/HB/actions" unique_id=1339136988]
+visible = false
+custom_minimum_size = Vector2(124, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+icon = ExtResource("22_fusbp")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Popup_fig" type="PanelContainer" parent="UI/ui_node" unique_id=420536165]
+custom_minimum_size = Vector2(512, 256)
+custom_maximum_size = Vector2(512, 512)
+layout_mode = 0
+offset_left = -600.0
+offset_top = -300.0
+offset_right = -88.0
+offset_bottom = -35.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_x521r")
+metadata/_edit_lock_ = true
+
+[node name="popup_fon" type="TextureRect" parent="UI/ui_node/Popup_fig" unique_id=779227385]
+self_modulate = Color(1, 1, 1, 0.85)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_57jko")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Panel" type="Panel" parent="UI/ui_node/Popup_fig" unique_id=328304313]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bv0ed")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/ui_node/Popup_fig" unique_id=1932985275]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="UI/ui_node/Popup_fig/MarginContainer" unique_id=1015336002]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="info_name" type="Label" parent="UI/ui_node/Popup_fig/MarginContainer/HBoxContainer2" unique_id=927246371]
+layout_mode = 2
+text = "NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="UI/ui_node/Popup_fig/MarginContainer/HBoxContainer2" unique_id=1133990170]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ui_node/Popup_fig/MarginContainer/HBoxContainer2" unique_id=1855354788]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="pole_help_texture" type="TextureRect" parent="UI/ui_node/Popup_fig/MarginContainer/HBoxContainer2/HBoxContainer" unique_id=619694253]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 2
+texture = ExtResource("18_h08ni")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VSeparator" type="VSeparator" parent="UI/ui_node/Popup_fig/MarginContainer/HBoxContainer2/HBoxContainer" unique_id=1774236300]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ui_node/Popup_fig/MarginContainer/HBoxContainer2/HBoxContainer" unique_id=14728218]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="info_1" type="Label" parent="UI/ui_node/Popup_fig/MarginContainer/HBoxContainer2/HBoxContainer/HBoxContainer" unique_id=529251781]
+layout_mode = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "Стоимость:
+Атака:
+Защита:
+Скорость:
+Ценность:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="info_2" type="Label" parent="UI/ui_node/Popup_fig/MarginContainer/HBoxContainer2/HBoxContainer/HBoxContainer" unique_id=568131636]
+layout_mode = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+text = "0
+0
+0
+0
+0"
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/ui_node/Popup_fig/MarginContainer/HBoxContainer2" unique_id=1106542275]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="info_3" type="Label" parent="UI/ui_node/Popup_fig/MarginContainer/HBoxContainer2" unique_id=1771453859]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Popup_kart" type="PanelContainer" parent="UI/ui_node" unique_id=1353420273]
+custom_minimum_size = Vector2(352, 512)
+layout_mode = 0
+offset_left = -992.0
+offset_top = -560.0
+offset_right = -640.0
+offset_bottom = -48.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4v1ty")
+
+[node name="popup_fon" type="TextureRect" parent="UI/ui_node/Popup_kart" unique_id=349098962]
+self_modulate = Color(1, 1, 1, 0.85)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("4_57jko")
+expand_mode = 1
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="UI/ui_node/Popup_kart" unique_id=1844804654]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bv0ed")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/ui_node/Popup_kart" unique_id=1064757930]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+metadata/_edit_lock_ = true
+
+[node name="Texture_kart" type="TextureRect" parent="UI/ui_node/Popup_kart/MarginContainer" unique_id=1832452253]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+texture = ExtResource("19_4f8xy")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_lock_ = true

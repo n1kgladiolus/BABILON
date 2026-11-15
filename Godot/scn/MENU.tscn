@@ -1,0 +1,1144 @@
+[gd_scene format=3 uid="uid://biis2jjrcdras"]
+
+[ext_resource type="Script" uid="uid://bq3kx8ioemuqg" path="res://scr/game/MENU.gd" id="1_4dll8"]
+[ext_resource type="PackedScene" uid="uid://cwuvnewnbxqxj" path="res://scn/world_lvl/classic/World.tscn" id="2_efg6b"]
+[ext_resource type="PackedScene" uid="uid://cygnj0ffdmfu6" path="res://scn/game_scn/world_dop.tscn" id="2_ixw27"]
+[ext_resource type="Environment" uid="uid://dcrmdj4rwnhww" path="res://scn/game_scn/main_environment.tres" id="3_agkir"]
+[ext_resource type="Texture2D" uid="uid://dg6u1diutptuo" path="res://image/other/Icon.png" id="3_qvunp"]
+[ext_resource type="PackedScene" uid="uid://v8madi0lglsr" path="res://scn/game_scn/ded_scene.tscn" id="4_ningm"]
+[ext_resource type="Shader" uid="uid://bq3uv3u8jhu77" path="res://addons/twovoip/voiphelper/voxshader.gdshader" id="4_qvunp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ningm"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_bv0ed"]
+allow_unpress = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bv0ed"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u676u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57q57"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5xeel"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyl0i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j31th"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lul1n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lv0yt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bv0ed"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x521r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5n8i"]
+shader = ExtResource("4_qvunp")
+shader_parameter/backgroundcolor = Color(0.1, 0.2, 0.8, 1)
+shader_parameter/voxthresholdcolor = Color(0.602, 0.43, 0.508, 1)
+shader_parameter/voxchunkmaxcolor = Color(0.8, 0.8, 0.08, 0.2)
+shader_parameter/voxwavecolor = Color(0.8, 0.8, 0.9, 1)
+shader_parameter/voxthreshhold = 0.2
+shader_parameter/chunkmax = 0.0
+shader_parameter/chunkmaxpersist = 0.0
+shader_parameter/speechnoiseprobability = 0.0
+shader_parameter/chunktexenabled = false
+
+[node name="MENU" type="CanvasLayer" unique_id=1901585591]
+layer = 6
+script = ExtResource("1_4dll8")
+
+[node name="Zanaves" type="SubViewportContainer" parent="." unique_id=1222885285]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+metadata/_edit_lock_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Zanaves" unique_id=1474085589]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="World_dop" parent="Zanaves/SubViewport" unique_id=470698122 instance=ExtResource("2_ixw27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -20, 0)
+
+[node name="UI" type="Control" parent="." unique_id=1415632059]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="mainbox" type="MarginContainer" parent="UI" unique_id=2064921285]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="mainbox2" type="HBoxContainer" parent="UI/mainbox" unique_id=1001532645]
+layout_mode = 2
+
+[node name="Menu" type="MarginContainer" parent="UI/mainbox/mainbox2" unique_id=1499500900]
+layout_mode = 2
+theme_override_constants/margin_top = 128
+
+[node name="Menu" type="VBoxContainer" parent="UI/mainbox/mainbox2/Menu" unique_id=1436688061]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="LOGO" type="Label" parent="UI/mainbox/mainbox2/Menu/Menu" unique_id=1874694124]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.42800003)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 30
+theme_override_constants/shadow_outline_size = 20
+theme_override_font_sizes/font_size = 60
+text = "ВАВИЛОН ОНЛАЙН"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Container" type="VBoxContainer" parent="UI/mainbox/mainbox2/Menu/Menu" unique_id=403509562]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=1523404693]
+layout_mode = 2
+theme_override_constants/separation = 5
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ningm")
+
+[node name="username" type="LineEdit" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=1087349391]
+layout_mode = 2
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 42
+placeholder_text = "Ваш никнейм"
+alignment = 1
+
+[node name="pass" type="LineEdit" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=1164476010]
+layout_mode = 2
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 42
+placeholder_text = "Ваш пароль"
+alignment = 1
+
+[node name="log_in" type="Button" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=2050491324]
+layout_mode = 2
+text = "Вход"
+
+[node name="Timer" type="Timer" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=520332034]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="log_in_errors" type="Label" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=1027249378]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="lobby_list" type="Button" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=512625536]
+visible = false
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_bv0ed")
+text = "СПИСОК ЛОББИ"
+
+[node name="profile" type="Button" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=2076023545]
+visible = false
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_bv0ed")
+text = "ПРОФИЛЬ"
+
+[node name="settings" type="Button" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=1253811737]
+visible = false
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_bv0ed")
+text = "НАСТРОЙКИ"
+
+[node name="autors" type="Button" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=152297570]
+visible = false
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_bv0ed")
+text = "ЗАЛ СЛАВЫ"
+
+[node name="rules" type="Button" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=150800294]
+visible = false
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_bv0ed")
+text = "ПРАВИЛА"
+
+[node name="exit" type="Button" parent="UI/mainbox/mainbox2/Menu/Menu/Container" unique_id=36779249]
+visible = false
+layout_mode = 2
+text = "ВЫХОД"
+
+[node name="Window" type="MarginContainer" parent="UI/mainbox/mainbox2" unique_id=1848309854]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="UI/mainbox/mainbox2/Window" unique_id=723359867]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bv0ed")
+
+[node name="Panel" type="Panel" parent="UI/mainbox/mainbox2/Window/Panel" unique_id=1210071410]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="lobby_list" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel" unique_id=303706010]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list" unique_id=1821224222]
+layout_mode = 2
+
+[node name="List" type="Tree" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer" unique_id=1009084189]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 3
+column_titles_visible = true
+hide_root = true
+select_mode = 1
+scroll_horizontal_enabled = false
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer" unique_id=641765675]
+layout_mode = 2
+
+[node name="Create" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer" unique_id=502765365]
+layout_mode = 2
+
+[node name="Create_Button" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer/Create" unique_id=798113689]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Создать"
+
+[node name="lobby_name" type="LineEdit" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer/Create" unique_id=712837480]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Название"
+
+[node name="lobby_pass" type="LineEdit" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer/Create" unique_id=1057258419]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+placeholder_text = "Пароль"
+
+[node name="profile" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel" unique_id=1990016913]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Tab" type="TabContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile" unique_id=2144748397]
+layout_mode = 2
+current_tab = 0
+tab_0/title = "Профиль"
+tab_1/title = "Рейтинг"
+tab_2/title = "Награды"
+
+[node name="profile" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab" unique_id=1295671620]
+layout_mode = 2
+metadata/_tab_index = 0
+metadata/_tab_name = "Профиль"
+
+[node name="dop" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile" unique_id=1396024513]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label2" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop" unique_id=1316816999]
+layout_mode = 2
+text = "Статистика"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="stats" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop" unique_id=97376210]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats" unique_id=1512026079]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats" unique_id=946311994]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer" unique_id=1073548856]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Побед"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer" unique_id=1149489626]
+layout_mode = 2
+text = " : "
+
+[node name="Label2" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer" unique_id=1976995018]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats" unique_id=2092354215]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats" unique_id=2114677507]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer2" unique_id=1667702297]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "\"Любимый дом\""
+horizontal_alignment = 2
+
+[node name="Label4" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer2" unique_id=1363128466]
+layout_mode = 2
+text = " : "
+
+[node name="Label2" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer2" unique_id=689236396]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator3" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats" unique_id=1649186203]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats" unique_id=1354131755]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer3" unique_id=1567162609]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 2
+
+[node name="Label5" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer3" unique_id=940247159]
+layout_mode = 2
+text = " : "
+
+[node name="Label2" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer3" unique_id=283476885]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator4" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats" unique_id=1950381586]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop" unique_id=2130205619]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_u676u")
+
+[node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop" unique_id=1157050793]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "Достижения"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HSeparator5" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop" unique_id=2113106186]
+layout_mode = 2
+
+[node name="achivka_list_margin" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop" unique_id=417359793]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="achivka_list_scroll" type="ScrollContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/achivka_list_margin" unique_id=1791664109]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="achivka_list" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/achivka_list_margin/achivka_list_scroll" unique_id=1626661829]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VSeparator" type="VSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile" unique_id=210731056]
+layout_mode = 2
+theme_override_constants/separation = 15
+theme_override_styles/separator = SubResource("StyleBoxEmpty_57q57")
+
+[node name="main" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile" unique_id=1751375188]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="avatar" type="TextureRect" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main" unique_id=1643316450]
+custom_minimum_size = Vector2(250, 250)
+custom_maximum_size = Vector2(250, 250)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_qvunp")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main/avatar" unique_id=1480090285]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ava_edit" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main/avatar" unique_id=1024564812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5xeel")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lyl0i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_j31th")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lul1n")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lv0yt")
+disabled = true
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main" unique_id=514273068]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bv0ed")
+
+[node name="HSeparator3" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main" unique_id=247924072]
+layout_mode = 2
+
+[node name="username" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main" unique_id=1366199586]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main" unique_id=2136709378]
+layout_mode = 2
+
+[node name="rang" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main" unique_id=1668640059]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+text = "Рейтинг:"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator5" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main" unique_id=558616446]
+layout_mode = 2
+
+[node name="part_play" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main" unique_id=437717340]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+text = "Сыграно:"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator6" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main" unique_id=1732708465]
+layout_mode = 2
+
+[node name="clan" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main" unique_id=1247970476]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator4" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main" unique_id=1819887781]
+layout_mode = 2
+
+[node name="players_list" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab" unique_id=338501092]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+metadata/_tab_name = "Рейтинг"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list" unique_id=2048364711]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 10
+
+[node name="Tree" type="Tree" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer" unique_id=1943014679]
+layout_mode = 2
+columns = 3
+column_titles_visible = true
+hide_root = true
+scroll_horizontal_enabled = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list" unique_id=313238560]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="main" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2" unique_id=1268300827]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="avatar" type="TextureRect" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=2069206029]
+custom_minimum_size = Vector2(250, 250)
+custom_maximum_size = Vector2(250, 250)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_qvunp")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main/avatar" unique_id=1457665108]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=1985958404]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bv0ed")
+
+[node name="HSeparator3" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=157014998]
+layout_mode = 2
+
+[node name="username" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=1315006954]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=38462770]
+layout_mode = 2
+
+[node name="rang" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=1439275073]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+text = "Рейтинг:"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator5" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=563817979]
+layout_mode = 2
+
+[node name="part_play" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=1054789202]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+text = "Сыграно:"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator6" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=901774553]
+layout_mode = 2
+
+[node name="clan" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=141146623]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator4" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=2138447972]
+layout_mode = 2
+
+[node name="market" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab" unique_id=179484072]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+metadata/_tab_name = "Награды"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market" unique_id=868060693]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer" unique_id=2038737882]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer/ScrollContainer" unique_id=143883559]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button4" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer/ScrollContainer/VBoxContainer" unique_id=537663633]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "клан"
+
+[node name="Button" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer/ScrollContainer/VBoxContainer" unique_id=2137334624]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Редактор дома"
+
+[node name="Button2" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1557129570]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Редактор монолита"
+
+[node name="Button3" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer/ScrollContainer/VBoxContainer" unique_id=486645235]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "башня"
+
+[node name="VSeparator" type="VSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market" unique_id=1427836575]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market" unique_id=1639303535]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer2" unique_id=1856747984]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_styles/panel = SubResource("StyleBoxEmpty_x521r")
+
+[node name="settings" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel" unique_id=2073632185]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings" unique_id=1161102400]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer" unique_id=54356823]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1505444596]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=2114260050]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Микрофон (вкл/выкл):"
+horizontal_alignment = 1
+
+[node name="mic" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=877756976]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "выключен"
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1112383609]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1945269307]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Устройство ввода:"
+horizontal_alignment = 1
+
+[node name="use_devace" type="OptionButton" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=447278446]
+custom_minimum_size = Vector2(0, 59)
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+
+[node name="HSeparator3" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=793394930]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1489553699]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Кнопка активации:"
+horizontal_alignment = 1
+
+[node name="ptt" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=491940267]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "ALT"
+
+[node name="HSeparator4" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1212899144]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1876688854]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Активация по голосу:"
+horizontal_alignment = 1
+
+[node name="vox" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=974879302]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "выключена"
+
+[node name="HSeparator5" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=750196559]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1501029578]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Проверка:"
+horizontal_alignment = 1
+
+[node name="FeedbackDisplay" type="ColorRect" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=158457952]
+material = SubResource("ShaderMaterial_t5n8i")
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="HSeparator6" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1626580044]
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1694697394]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Оконный режим:"
+horizontal_alignment = 1
+
+[node name="window" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=462122933]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+disabled = true
+toggle_mode = true
+text = "выключен"
+
+[node name="HSeparator7" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=912454181]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer" unique_id=1129182625]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer" unique_id=968807929]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Audio_value" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2" unique_id=1078843233]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1609209015]
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=454574321]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Общая громкость:"
+horizontal_alignment = 1
+
+[node name="master" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=264463537]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+min_value = -30.0
+max_value = 10.0
+
+[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=584011245]
+layout_mode = 2
+
+[node name="Label7" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1838032159]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Громкость музыки:"
+horizontal_alignment = 1
+
+[node name="music" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1056149762]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+min_value = -30.0
+max_value = 10.0
+value = -14.0
+
+[node name="HSeparator3" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=654961124]
+layout_mode = 2
+
+[node name="Label8" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1270135251]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Громкость игроков:"
+horizontal_alignment = 1
+
+[node name="players" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=328268740]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+min_value = -30.0
+max_value = 10.0
+
+[node name="HSeparator4" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1228232416]
+layout_mode = 2
+
+[node name="Label9" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=767034253]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Громкость эффектов"
+horizontal_alignment = 1
+
+[node name="effect" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=417411459]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+min_value = -30.0
+max_value = 10.0
+value = -8.0
+
+[node name="HSeparator5" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1958449454]
+layout_mode = 2
+
+[node name="Label10" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1028195768]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Громкость ветра:"
+horizontal_alignment = 1
+
+[node name="wind" type="HSlider" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=709575019]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+min_value = -30.0
+max_value = 10.0
+value = -5.0
+
+[node name="HSeparator6" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=364875880]
+layout_mode = 2
+
+[node name="Dop" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2" unique_id=1383320970]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Dop" unique_id=2052615185]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Dop" unique_id=2144878785]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Режим Деда:"
+horizontal_alignment = 1
+
+[node name="ded_settings" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Dop" unique_id=1584506000]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Настроить"
+
+[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Dop" unique_id=421505778]
+layout_mode = 2
+
+[node name="DED_DIALOG" type="AcceptDialog" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings" unique_id=353900809]
+oversampling_override = 1.0
+title = "Изменить цвет?:"
+initial_position = 1
+size = Vector2i(528, 597)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/DED_DIALOG" unique_id=637960390]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/DED_DIALOG/SubViewportContainer" unique_id=1921679824]
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="ded_scene" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/DED_DIALOG/SubViewportContainer/SubViewport" unique_id=683180335 instance=ExtResource("4_ningm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="buttons" type="Control" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/DED_DIALOG" unique_id=1332799105]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 520.0
+offset_bottom = 520.0
+
+[node name="Dragon" type="ColorPickerButton" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/DED_DIALOG/buttons" unique_id=1547677105]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -137.5
+offset_right = -120.0
+offset_bottom = -1.5
+grow_horizontal = 2
+grow_vertical = 2
+edit_alpha = false
+edit_intensity = false
+
+[node name="Bear" type="ColorPickerButton" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/DED_DIALOG/buttons" unique_id=2096162457]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -137.5
+offset_right = 38.0
+offset_bottom = -1.5
+grow_horizontal = 2
+grow_vertical = 2
+edit_alpha = false
+edit_intensity = false
+
+[node name="Bull" type="ColorPickerButton" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/DED_DIALOG/buttons" unique_id=217476530]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 120.0
+offset_top = -137.5
+offset_right = 192.0
+offset_bottom = -1.5
+grow_horizontal = 2
+grow_vertical = 2
+edit_alpha = false
+edit_intensity = false
+
+[node name="Elephant" type="ColorPickerButton" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/DED_DIALOG/buttons" unique_id=746316278]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 19.5
+offset_right = -128.0
+offset_bottom = 155.5
+grow_horizontal = 2
+grow_vertical = 2
+edit_alpha = false
+edit_intensity = false
+
+[node name="Lion" type="ColorPickerButton" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/DED_DIALOG/buttons" unique_id=1757238975]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 22.5
+offset_right = 38.0
+offset_bottom = 158.5
+grow_horizontal = 2
+grow_vertical = 2
+edit_alpha = false
+edit_intensity = false
+
+[node name="Eagle" type="ColorPickerButton" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/DED_DIALOG/buttons" unique_id=950302350]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = 19.5
+offset_right = 200.0
+offset_bottom = 155.5
+grow_horizontal = 2
+grow_vertical = 2
+edit_alpha = false
+edit_intensity = false
+
+[node name="autors" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel" unique_id=1892111879]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors" unique_id=2147180871]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors/VBoxContainer" unique_id=1899870143]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Над игрой работали"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors/VBoxContainer" unique_id=1078715119]
+layout_mode = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors/VBoxContainer" unique_id=418619063]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/outline_size = 12
+bbcode_enabled = true
+text = "[table=2, center]
+[cell][right]Автор идеи [/right][/cell][cell][left]: Стержанов Сергей[/left][/cell]
+[cell][right]Ведущий разработчик [/right][/cell][cell][left]: Никита Кислица (GLADIUS)[/left][/cell]
+[cell][right]Второй разработчик [/right][/cell][cell][left]: Санчес Александр (AleSanLab)[/left][/cell]
+[cell][right]Дизайн колоды [/right][/cell][cell][left]: Новикова Валерия[/left][/cell]
+[cell][right]Арт (иконки) [/right][/cell][cell][left]: Нурай Амангелды (cbhamsky)[/left][/cell]
+[cell][right]Саунд [/right][/cell][cell][left]: ютуб фонотека :( [/left][/cell]"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors/VBoxContainer" unique_id=730994249]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors/VBoxContainer" unique_id=2062242869]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/outline_size = 12
+bbcode_enabled = true
+text = "Телеграмм сообщество цифровой версии игры:
+[url=https://t.me/OnlineBabilonChat]OnlineBabilonChat[/url]"
+horizontal_alignment = 1
+selection_enabled = true
+
+[node name="rules" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel" unique_id=605539725]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="debug" type="Control" parent="." unique_id=1751707260]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Container" type="HBoxContainer" parent="debug" unique_id=1423175890]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 59.0
+grow_horizontal = 2
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="debug/Container" unique_id=1577671381]
+layout_mode = 2
+text = "Дебаг панель:"
+
+[node name="log_in" type="Button" parent="debug/Container" unique_id=600705153]
+layout_mode = 2
+text = "зайти"
+
+[node name="log_out" type="Button" parent="debug/Container" unique_id=1765906021]
+layout_mode = 2
+text = "выйти"
+
+[node name="zan_test" type="Button" parent="debug/Container" unique_id=1966821067]
+layout_mode = 2
+toggle_mode = true
+text = "test zan"
+
+[node name="delete_world" type="Button" parent="debug/Container" unique_id=1631438486]
+layout_mode = 2
+text = "delete_world"
+
+[node name="World" parent="." unique_id=237964239 instance=ExtResource("2_efg6b")]
+transform = Transform3D(0.9271838, 0, -0.37460655, 0, 1, 0, 0.37460655, 0, 0.9271838, 0, 0, 0)
+
+[node name="Menu_cam" type="Camera3D" parent="." unique_id=65621238]
+transform = Transform3D(-0.17298743, -0.41505104, 0.893201, 0.015134438, 0.9056457, 0.42376497, -0.9848078, 0.086824104, -0.15038376, 4.4000006, 2.8500001, 1.5999999)
+environment = ExtResource("3_agkir")
+current = true
+fov = 80.0

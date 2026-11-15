@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ckpfdm0nfuduk"]
+
+[ext_resource type="ArrayMesh" uid="uid://c7cuhgyo55m50" path="res://object/flags/flags_flag_dragon.res" id="1_2hsd7"]
+[ext_resource type="Texture2D" uid="uid://nk3x127n157s" path="res://image/gerb/Dragon.png" id="2_32p8v"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kuto5"]
+size = Vector2(0.05, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhvkp"]
+transparency = 1
+albedo_texture = ExtResource("2_32p8v")
+
+[node name="flag_dragon" type="Node3D" unique_id=503093944]
+
+[node name="gerb" type="MeshInstance3D" parent="." unique_id=450475150]
+transform = Transform3D(-1, -1.509958e-07, 6.600236e-15, 0, -4.371139e-08, -1, 1.509958e-07, -1, 4.371139e-08, 0, 0.315, -0.005)
+mesh = SubResource("PlaneMesh_kuto5")
+surface_material_override/0 = SubResource("StandardMaterial3D_dhvkp")
+
+[node name="FlagDragon" type="MeshInstance3D" parent="." unique_id=672285142]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.099999994, 0)
+mesh = ExtResource("1_2hsd7")

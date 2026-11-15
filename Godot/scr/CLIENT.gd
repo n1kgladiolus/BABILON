@@ -1,147 +1,145 @@
 extends Node
 
-const DISCO_ELYSIUM := preload("res://ost/music/disco_elysium.mp3")
-const OST_1 := preload("res://ost/music/ost_1.mp3")
-const playlist_in_game := preload("res://ost/playlist_in_game.tres")
+var NET
+var RUN
+var GAME
+var MENU
 
-var DEBUG := false # true false
-
-var disconnect_flag := false
-
-var SETTINGS
-var controls_data
+var Curent_Cam: Camera3D
 
 var base_path = OS.get_executable_path().get_base_dir()
 var SAVE_PATH = base_path.path_join("client_local_logpass.tres")
 var logpass: client_local_logpass
-var USERNAME: String = ""
-var PASSWORD: String = ""
+var SETTINGS
+var controls_data
 
-const ADRESS := "ws://188.168.138.144:"
-var PEER
-var VOICE
-
-var lobby_list
-var in_lobby := false
-var is_lobby_leader := false
-var in_game := false
-
-var log_in_status := false
-var connect_status := false
 var user: Array[AccData] = []
-var log_in_errors := ""
-
-var mic_settings = []
-
-var lobby_name
-var lobby_scene
-var game_scene
 var avatar_user := {}
 
-var user_command := {
-	"!log_in_password_invalid" : log_in_password_invalid,
-	"!log_in_version_client_invalid" : log_in_version_client_invalid,
-	"!log_in_success" : log_in_success,
-	"!log_in_online_invalid" : log_in_online_invalid,
-	"!user_list_update" : user_list_update,
-	"!update_avatar" : update_avatar,
-	"!lobby_list_update" : lobby_list_update,
-	"!lobby_connect" : lobby_connect,
-	"!lobby_connect_error" : lobby_connect_error,
-	"!check_user_in_lobby" : check_user_in_lobby,
-	"!lobby_parametrs_update" : lobby_parametrs_update,
-	"!START_GAME" : START_GAME,
-	"!update_avatar_in_game" : update_avatar_in_game,
-	"!COOP_ERROR" : coop_error,
-}
 
-func _input(event: InputEvent):
-	if event.is_action_pressed("esc") and in_game and !game_scene.action:
-		if lobby_scene.visible == false:
-			lobby_scene.visible = true
-			game_scene.menu_open = true
-		elif lobby_scene.visible == true:
-			lobby_scene.visible = false
-			lobby_scene.settings_window = true
-			game_scene.menu_open = false
-			lobby_scene._settings()
+var log_in_data: Dictionary[String, String] = {
+	"USERNAME" : "",
+	"PASSWORD" : "",
+	"VERSION" : ""
+	}
+
+@export var flag: Dictionary[String, bool] = {
+	"debug_cam" : false,
+	"in_menu" : false,
+	"in_game" : false,
+	"in_lobby" : false,
+	"server_connect" : false,
+	}
+
+var command_list: Dictionary = {
 	
-	
-	if event.is_action_pressed("voice"):
-		mic_settings[2].set_pressed(true)
-	elif event.is_action_released("voice"):
-		mic_settings[2].set_pressed(false)
+	}
+
 
 func _ready() -> void:
-	var args := OS.get_cmdline_user_args()
-	if "--server" in args or "--server_game" in args:
-		queue_free()
-		return
-	else:
-		R.status = "CLIENT"
-		pass
-	print("Запущен в режиме КЛИЕНТА")
-	PEER = WebSocketMultiplayerPeer.new()
-	if PEER.create_client(ADRESS+"6767") != OK:
-		print("Ошибка подключения к серверу")
-		return
-	multiplayer.multiplayer_peer = PEER
-	multiplayer.connected_to_server.connect(server_connect)
-	multiplayer.server_disconnected.connect(server_disconnect)
-	multiplayer.connection_failed.connect(server_connect_failed)
+	NET = R.NET
+	if has_node("/root/RUN"):
+		RUN = get_node("/root/RUN")
+	if RUN:
+		conn_signal()
 	
 	if ResourceLoader.exists(SAVE_PATH):
 		logpass = ResourceLoader.load(SAVE_PATH) as client_local_logpass
-		USERNAME = logpass.USERNAME
-		PASSWORD = logpass.PASSWORD
+		log_in_data["USERNAME"] = logpass.USERNAME
+		log_in_data["PASSWORD"] = logpass.PASSWORD
 		SETTINGS = logpass.SETTINGS
 		controls_data = logpass.controls_data
 		logpass.apply_to_input_map()
 	else:
 		logpass = client_local_logpass.new()
-		_save_client_local_logpass()
+		save_client_local_logpass()
 	
-	await get_tree().process_frame
-	if !DEBUG:
-		get_tree().call_deferred("change_scene_to_file", "res://lvl/menu/menu.tscn")
+	
+	if RUN and !RUN.has_node("MENU"):
+		RUN.add_child(preload("res://scn/MENU.tscn").instantiate())
+		await get_tree().process_frame
+		if !RUN.has_node("MENU"):
+			printerr("MENU НЕ НАЙДЕНО")
+		MENU = RUN.get_node("MENU")
+		await get_tree().process_frame
+		Curent_Cam = MENU.get_node("Menu_cam")
 
-func _save_client_local_logpass():
+
+
+
+func _process(delta: float) -> void:
+	pass
+
+func _input(event):
+	if event.is_action_pressed("debug_cam"):
+		debug_cam()
+
+
+func command(data: Array):
+	if data.size() < 2:
+		return
+	if data[0] in command_list:
+		command_list[data[0]].call(data)
+	if RUN.has_node("MENU"):
+		if data[0] in RUN.get_node("MENU").command_list:
+			RUN.get_node("MENU").command_list[data[0]].call(data)
+	if RUN.has_node("GAME"):
+		if data[0] in RUN.get_node("GAME").command_list:
+			RUN.get_node("MENU").command_list[data[0]].call(data)
+
+
+func send_ms(data: Array):
+	if NET.has_node("net_main"):
+		NET.get_node("net_main").to_server.rpc_id(1, data)
+
+func send_gs(data: Array):
+	if NET.has_node("net_game"):
+		NET.get_node("net_game").to_server.rpc_id(1, data)
+
+func save_client_local_logpass():
 	ResourceSaver.save(logpass, SAVE_PATH)
 
-func server_connect():
-	print("Успешное подключение")
-	connect_status = true
+func debug_cam():
+	if !flag["debug_cam"]:
+		print("debug_cam active")
+		flag["debug_cam"] = true
+		get_tree().root.add_child((preload("res://addons/free_cam/super_cam_2.tscn")).instantiate())
+		await get_tree().create_timer(1).timeout
+		if get_tree().root.has_node("debug_cam"):
+			get_tree().root.get_node("debug_cam").current = true
+	else:
+		get_tree().root.get_node("debug_cam").queue_free()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		flag["debug_cam"] = false
+		if Curent_Cam:
+			Curent_Cam.current = true
 
-func server_connect_failed():
-	print("Ошибка подключения")
+func conn_signal():
+	NET.get_node("net_main").main_connected.connect(func():
+		pass
+		)
+	NET.get_node("net_main").main_disconnected.connect(func():
+		pass
+		)
 	
-	if disconnect_flag == false:
-		disconnect_flag = true
-		lobby_disconnect()
-		Console.get_node("dissconect_W").popup()
-		Console.get_node("dissconect_W").confirmed.connect(func(): get_tree().quit())
+	NET.get_node("net_game").game_connected.connect(func():
+		if !RUN.has_node("LOBBY"):
+			RUN.add_child(preload("res://scn/LOBBY.tscn").instantiate())
+		)
+	NET.get_node("net_game").game_disconnected.connect(func():
+		if RUN.has_node("LOBBY"):
+			RUN.get_node("LOBBY").queue_free()
+		if RUN.has_node("GAME"):
+			RUN.get_node("GAME").queue_free()
+		)
 	
+	NET.get_node("net_voice").voice_connected.connect(func():
+		pass
+		)
+	NET.get_node("net_voice").voice_disconnected.connect(func():
+		pass
+		)
 
-func server_disconnect():
-	print("Отключение от сервера")
-	connect_status = false
-
-func send_player_command(data):
-	if multiplayer.multiplayer_peer and multiplayer.multiplayer_peer.get_connection_status() == 2:
-		R.rpc_id(1, "send_player_command", data)
-
-func log_in_success(data):
-	log_in_status = true
-	check_mem_hello()
-
-func log_in_password_invalid(data):
-	log_in_errors = "Неверный пароль"
-
-func log_in_version_client_invalid(data):
-	log_in_errors = "Ваша версия игры устарела"
-
-func log_in_online_invalid(data):
-	log_in_errors = "Такой пользователь уже в сети"
 
 
 func user_list_update(data):
@@ -164,119 +162,7 @@ func update_avatar(data):
 
 func check_avatar(leader_name):
 	var data = ["!request_avatar", leader_name]
-	send_player_command(data)
-
-func send_avatar_to_server(avatar_texture):
-	if not avatar_texture:
-		return
-	var img = avatar_texture.get_image()
-	var png_buffer = img.save_png_to_buffer()
-	var b64 = Marshalls.raw_to_base64(png_buffer)
-	send_player_command(["!set_avatar", USERNAME, b64])
-
-
-func lobby_list_update(data):
-	lobby_list = data[1]
-	print("Список лобби: ")
-	print(lobby_list)
-
-
-func lobby_connect(data):
-	var port = data[1]
-	lobby_name = data[2]
-	#send_player_command(["!connect_user_lobby"])
-	#await get_tree().process_frame
-	if multiplayer.multiplayer_peer:
-		multiplayer.multiplayer_peer.close()
-		multiplayer.multiplayer_peer = null
-	PEER = WebSocketMultiplayerPeer.new()
-	if PEER.create_client(ADRESS+str(port)) != OK:
-		print("Ошибка подключения к лобби")
-		return
-	multiplayer.multiplayer_peer = PEER
-	#multiplayer.connected_to_server.connect(server_connect)
-	#multiplayer.server_disconnected.connect(server_disconnect)
-	#multiplayer.connection_failed.connect(server_connect_failed)
-	await get_tree().process_frame
-	get_tree().current_scene.visible = false
-	var lobby_node = preload("res://lvl/game/lobby.tscn").instantiate()
-	get_tree().root.add_child(lobby_node)
-	lobby_scene = get_tree().root.get_node("Lobby")
-	#get_tree().call_deferred("change_scene_to_file", "res://lvl/game/lobby.tscn")
-	await get_tree().process_frame
-	in_lobby = true
-	Audio._connect_all_ui_elements(get_tree().root)
-
-
-func lobby_connect_error(data):
-	in_lobby = false
-
-func lobby_disconnect():
-	if in_game:
-		get_tree().root.get_node("GAME").queue_free()
-		in_game = false
-	await get_tree().process_frame
-	if multiplayer.multiplayer_peer:
-		multiplayer.multiplayer_peer.close()
-		multiplayer.multiplayer_peer = null
-		
-	PEER = WebSocketMultiplayerPeer.new()
-	if PEER.create_client(ADRESS+"6767") != OK:
-		print("Ошибка подключения к лобби")
-		return
-	multiplayer.multiplayer_peer = PEER
-	
-	if in_lobby:
-		await get_tree().process_frame
-		get_tree().current_scene.visible = true
-		get_tree().current_scene.get_node("Window").visible = true
-		get_tree().current_scene._start_label()
-		get_tree().current_scene.get_node("Window").get_node("menu_buttons").visible = true
-		get_tree().current_scene.get_node("Window").get_node("menu_fake").visible = false
-		get_tree().root.get_node("Lobby").queue_free()
-		in_lobby = false
-		is_lobby_leader = false
-	
-	
-	
-	Audio.get_node("Background").set_stream(OST_1)
-	Audio.get_node("Background").play()
-	Audio.get_node("Background_veter").stop()
-	Console.get_node("Background").visible = true
-
-func check_user_in_lobby(data):
-	if in_lobby == true:
-		if USERNAME == str(data[1]):
-			is_lobby_leader = true
-		data = ["!check_user_in_lobby_return",USERNAME]
-		send_player_command(data)
-
-func lobby_parametrs_update(data):
-	print(data)
-	lobby_scene.lobby_parametrs_update(data)
-
-
-
-func START_GAME(data):
-	in_game = true
-	await get_tree().process_frame
-	var game_node = preload("res://lvl/game/game.tscn").instantiate()
-	get_tree().root.add_child(game_node)
-	game_scene = get_tree().root.get_node("GAME")
-	lobby_scene.get_node("Window").get_node("Box").get_node("lobby_window").get_node("Box_players_list").get_node("parametrs_panel").visible = false
-	lobby_scene.get_node("Window").get_node("Box").get_node("lobby_window").get_node("Box_players_list").get_node("parametrs_label").visible = false
-	lobby_scene.get_node("Window").get_node("Box").get_node("lobby_window").get_node("Box_players_list").get_node("Sep4").visible = false
-	Console.get_node("Background").visible = false
-	lobby_scene.visible = false
-	
-	(get_tree().root).move_child(lobby_scene, (get_tree().root).get_child_count() - 1)
-	(get_tree().root).move_child(get_tree().current_scene, (get_tree().root).get_child_count() - 2)
-	await get_tree().process_frame
-	Audio._connect_all_ui_elements(get_tree().root)
-	Audio.get_node("Background").set_stream(playlist_in_game)
-	Audio.get_node("Background").play()
-	Audio.get_node("Background_veter").play()
-
+	send_ms(data)
 
 func update_avatar_in_game(data):
 	if data.size() > 0:
@@ -285,16 +171,32 @@ func update_avatar_in_game(data):
 			var ava_name = data2[1]
 			var ava_b64 = data2[2]
 			avatar_user[ava_name] = ava_b64
-			game_scene.ava_update(ava_name)
+			GAME.ava_update(ava_name)
 
-func coop_error(data):
-	lobby_scene.coop_error()
+func send_avatar_to_server(avatar_texture):
+	if not avatar_texture:
+		return
+	var img = avatar_texture.get_image()
+	var png_buffer = img.save_png_to_buffer()
+	var b64 = Marshalls.raw_to_base64(png_buffer)
+	var data = ["!set_avatar", log_in_data["USERNAME"], b64]
+	send_ms(data)
 
-func check_mem_hello():
-	for u in user:
-		if u.USERNAME == USERNAME:
-			Audio.Action2_sound_play(u.MEM_HELLO)
-			break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

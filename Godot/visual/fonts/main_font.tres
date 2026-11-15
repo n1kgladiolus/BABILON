@@ -1,0 +1,13 @@
+[gd_resource type="FontVariation" format=3 uid="uid://bpgt21ocxmms4"]
+
+[ext_resource type="FontFile" uid="uid://wdsoaplfol0c" path="res://visual/fonts/Balkara_Condensed.ttf" id="1_ncy05"]
+
+[resource]
+base_font = ExtResource("1_ncy05")
+variation_opentype = {
+0: 1
+}
+opentype_features = {
+1667329140: 0
+}
+spacing_glyph = 2

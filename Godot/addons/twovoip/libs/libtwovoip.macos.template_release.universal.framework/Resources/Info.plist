@@ -17,9 +17,9 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright (c) Julian Todd.</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.0</string>
+	<string>6.4.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.0</string>
+	<string>6.4.0</string>
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CSResourcesFileMapped</key>
