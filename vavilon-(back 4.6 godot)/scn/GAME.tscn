@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://cauqgen7b4dva"]
-
-[ext_resource type="Script" uid="uid://co0n1imfifr84" path="res://scr/game/GAME.gd" id="1_76md2"]
-
-[node name="GAME" type="CanvasLayer" unique_id=328332056]
-layer = 3
-script = ExtResource("1_76md2")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dyjpepve3weut"]
 
-[ext_resource type="Texture2D" uid="uid://ulo6nigwf8u" path="res://image/figures_ico/staroe/rotate_icon.png" id="1_xnecm"]
+[ext_resource type="Texture2D" uid="uid://ulo6nigwf8u" path="res://image/actions_ico/staroe/rotate_icon.png" id="1_xnecm"]
 
 [sub_resource type="GDScript" id="GDScript_8nu8a"]
 script/source = "extends Node3D

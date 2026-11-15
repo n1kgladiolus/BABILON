@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://bm5yosr5cxws0"]
+
+[ext_resource type="Texture2D" uid="uid://dh3tsrl2vp2uy" path="res://image/ui/panel-border-002.png" id="1_0f2i0"]
+[ext_resource type="Texture2D" uid="uid://l4bgtmiempw0" path="res://image/other/achievement_1.png" id="2_typls"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bv0ed"]
+texture = ExtResource("1_0f2i0")
+texture_margin_left = 25.0
+texture_margin_top = 25.0
+texture_margin_right = 25.0
+texture_margin_bottom = 25.0
+
+[node name="Achivka" type="Control" unique_id=1433234886]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -1216.0
+offset_bottom = 168.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1446985065]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Panel" type="Panel" parent="MarginContainer" unique_id=714037673]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_bv0ed")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=875704424]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/MarginContainer" unique_id=130954690]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=1067622225]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="icon" type="TextureRect" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1705151670]
+custom_minimum_size = Vector2(124, 64)
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("2_typls")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="info" type="Label" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=175236623]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+text = "Описание"
+vertical_alignment = 1

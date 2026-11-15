@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://duthcy6cyl8dr" path="res://scn/voip/VoiceManager.tscn" id="1_kndgs"]
 
 [node name="LOBBY" type="CanvasLayer" unique_id=895655268]
-layer = 4
+layer = 5
 
 [node name="VoiceManager" parent="." unique_id=734076286 instance=ExtResource("1_kndgs")]
 

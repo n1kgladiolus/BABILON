@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bq3kx8ioemuqg" path="res://scr/game/MENU.gd" id="1_4dll8"]
 [ext_resource type="PackedScene" uid="uid://cwuvnewnbxqxj" path="res://scn/world_lvl/classic/World.tscn" id="2_efg6b"]
-[ext_resource type="Texture2D" uid="uid://c2uxna7s0dmns" path="res://image/other/ava_placehold.png" id="2_hfqbo"]
 [ext_resource type="PackedScene" uid="uid://cygnj0ffdmfu6" path="res://scn/game_scn/world_dop.tscn" id="2_ixw27"]
 [ext_resource type="Environment" uid="uid://dcrmdj4rwnhww" path="res://scn/game_scn/main_environment.tres" id="3_agkir"]
+[ext_resource type="Texture2D" uid="uid://dg6u1diutptuo" path="res://image/other/Icon.png" id="3_qvunp"]
 [ext_resource type="PackedScene" uid="uid://v8madi0lglsr" path="res://scn/game_scn/ded_scene.tscn" id="4_ningm"]
+[ext_resource type="Shader" uid="uid://bq3uv3u8jhu77" path="res://addons/twovoip/voiphelper/voxshader.gdshader" id="4_qvunp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ningm"]
 
@@ -31,8 +32,22 @@ bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0.6)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bv0ed"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x521r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5n8i"]
+shader = ExtResource("4_qvunp")
+shader_parameter/backgroundcolor = Color(0.1, 0.2, 0.8, 1)
+shader_parameter/voxthresholdcolor = Color(0.602, 0.43, 0.508, 1)
+shader_parameter/voxchunkmaxcolor = Color(0.8, 0.8, 0.08, 0.2)
+shader_parameter/voxwavecolor = Color(0.8, 0.8, 0.9, 1)
+shader_parameter/voxthreshhold = 0.2
+shader_parameter/chunkmax = 0.0
+shader_parameter/chunkmaxpersist = 0.0
+shader_parameter/speechnoiseprobability = 0.0
+shader_parameter/chunktexenabled = false
+
 [node name="MENU" type="CanvasLayer" unique_id=1901585591]
-layer = 5
+layer = 6
 script = ExtResource("1_4dll8")
 
 [node name="Zanaves" type="SubViewportContainer" parent="." unique_id=1222885285]
@@ -180,7 +195,6 @@ layout_mode = 2
 text = "ВЫХОД"
 
 [node name="Window" type="MarginContainer" parent="UI/mainbox/mainbox2" unique_id=1848309854]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 64
@@ -208,10 +222,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list" unique_id=1821224222]
 layout_mode = 2
@@ -234,36 +248,42 @@ layout_mode = 2
 [node name="Create_Button" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer/Create" unique_id=798113689]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Создать"
 
 [node name="lobby_name" type="LineEdit" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer/Create" unique_id=712837480]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 placeholder_text = "Название"
 
 [node name="lobby_pass" type="LineEdit" parent="UI/mainbox/mainbox2/Window/Panel/Panel/lobby_list/VBoxContainer/Create" unique_id=1057258419]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 placeholder_text = "Пароль"
 
 [node name="profile" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel" unique_id=1990016913]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
 [node name="Tab" type="TabContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile" unique_id=2144748397]
 layout_mode = 2
 current_tab = 0
 tab_0/title = "Профиль"
-tab_1/title = "Список игроков"
+tab_1/title = "Рейтинг"
 tab_2/title = "Награды"
 
 [node name="profile" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab" unique_id=1295671620]
@@ -294,17 +314,15 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Побед"
-horizontal_alignment = 1
+horizontal_alignment = 2
 
 [node name="Label3" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer" unique_id=1149489626]
 layout_mode = 2
-text = ":"
+text = " : "
 
 [node name="Label2" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer" unique_id=1976995018]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "0"
-horizontal_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats" unique_id=2092354215]
 layout_mode = 2
@@ -316,16 +334,15 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "\"Любимый дом\""
-horizontal_alignment = 1
+horizontal_alignment = 2
 
 [node name="Label4" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer2" unique_id=1363128466]
 layout_mode = 2
-text = ":"
+text = " : "
 
 [node name="Label2" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer2" unique_id=689236396]
 layout_mode = 2
 size_flags_horizontal = 3
-horizontal_alignment = 1
 
 [node name="HSeparator3" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats" unique_id=1649186203]
 layout_mode = 2
@@ -336,16 +353,15 @@ layout_mode = 2
 [node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer3" unique_id=1567162609]
 layout_mode = 2
 size_flags_horizontal = 3
-horizontal_alignment = 1
+horizontal_alignment = 2
 
 [node name="Label5" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer3" unique_id=940247159]
 layout_mode = 2
-text = ":"
+text = " : "
 
 [node name="Label2" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats/HBoxContainer3" unique_id=283476885]
 layout_mode = 2
 size_flags_horizontal = 3
-horizontal_alignment = 1
 
 [node name="HSeparator4" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/stats" unique_id=1950381586]
 layout_mode = 2
@@ -366,15 +382,22 @@ autowrap_mode = 2
 [node name="HSeparator5" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop" unique_id=2113106186]
 layout_mode = 2
 
-[node name="achivka_list" type="ScrollContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop" unique_id=1791664109]
+[node name="achivka_list_margin" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop" unique_id=417359793]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="achivka_list_scroll" type="ScrollContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/achivka_list_margin" unique_id=1791664109]
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="achivka_list" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/achivka_list" unique_id=1626661829]
+[node name="achivka_list" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/dop/achivka_list_margin/achivka_list_scroll" unique_id=1626661829]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="VSeparator" type="VSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile" unique_id=210731056]
 layout_mode = 2
@@ -390,7 +413,7 @@ custom_minimum_size = Vector2(250, 250)
 custom_maximum_size = Vector2(250, 250)
 layout_mode = 2
 size_flags_vertical = 4
-texture = ExtResource("2_hfqbo")
+texture = ExtResource("3_qvunp")
 expand_mode = 1
 
 [node name="Panel" type="Panel" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/profile/main/avatar" unique_id=1480090285]
@@ -426,7 +449,6 @@ layout_mode = 2
 custom_minimum_size = Vector2(250, 0)
 custom_maximum_size = Vector2(250, 200)
 layout_mode = 2
-text = "Admin"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -469,13 +491,163 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
-metadata/_tab_name = "Список игроков"
+metadata/_tab_name = "Рейтинг"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list" unique_id=2048364711]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 10
+
+[node name="Tree" type="Tree" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer" unique_id=1943014679]
+layout_mode = 2
+columns = 3
+column_titles_visible = true
+hide_root = true
+scroll_horizontal_enabled = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list" unique_id=313238560]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="main" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2" unique_id=1268300827]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="avatar" type="TextureRect" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=2069206029]
+custom_minimum_size = Vector2(250, 250)
+custom_maximum_size = Vector2(250, 250)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_qvunp")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main/avatar" unique_id=1457665108]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=1985958404]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_bv0ed")
+
+[node name="HSeparator3" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=157014998]
+layout_mode = 2
+
+[node name="username" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=1315006954]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=38462770]
+layout_mode = 2
+
+[node name="rang" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=1439275073]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+text = "Рейтинг:"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator5" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=563817979]
+layout_mode = 2
+
+[node name="part_play" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=1054789202]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+text = "Сыграно:"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator6" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=901774553]
+layout_mode = 2
+
+[node name="clan" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=141146623]
+custom_minimum_size = Vector2(250, 0)
+custom_maximum_size = Vector2(250, 200)
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator4" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/players_list/MarginContainer2/main" unique_id=2138447972]
+layout_mode = 2
 
 [node name="market" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab" unique_id=179484072]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 metadata/_tab_name = "Награды"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market" unique_id=868060693]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer" unique_id=2038737882]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer/ScrollContainer" unique_id=143883559]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button4" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer/ScrollContainer/VBoxContainer" unique_id=537663633]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "клан"
+
+[node name="Button" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer/ScrollContainer/VBoxContainer" unique_id=2137334624]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Редактор дома"
+
+[node name="Button2" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1557129570]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "Редактор монолита"
+
+[node name="Button3" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer/ScrollContainer/VBoxContainer" unique_id=486645235]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+disabled = true
+text = "башня"
+
+[node name="VSeparator" type="VSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market" unique_id=1427836575]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market" unique_id=1639303535]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" type="Panel" parent="UI/mainbox/mainbox2/Window/Panel/Panel/profile/Tab/market/MarginContainer2" unique_id=1856747984]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_styles/panel = SubResource("StyleBoxEmpty_x521r")
 
 [node name="settings" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel" unique_id=2073632185]
 visible = false
@@ -485,10 +657,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings" unique_id=1161102400]
 layout_mode = 2
@@ -502,13 +674,15 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=2114260050]
 layout_mode = 2
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Микрофон (вкл/выкл):"
 horizontal_alignment = 1
 
 [node name="mic" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=877756976]
 layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "выключен"
 
 [node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1112383609]
@@ -516,26 +690,31 @@ layout_mode = 2
 
 [node name="Label2" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1945269307]
 layout_mode = 2
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Устройство ввода:"
 horizontal_alignment = 1
 
 [node name="use_devace" type="OptionButton" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=447278446]
 custom_minimum_size = Vector2(0, 59)
 layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 
 [node name="HSeparator3" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=793394930]
 layout_mode = 2
 
 [node name="Label3" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1489553699]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Кнопка активации:"
 horizontal_alignment = 1
 
 [node name="ptt" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=491940267]
 layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "ALT"
 
 [node name="HSeparator4" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1212899144]
@@ -543,13 +722,15 @@ layout_mode = 2
 
 [node name="Label4" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1876688854]
 layout_mode = 2
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Активация по голосу:"
 horizontal_alignment = 1
 
 [node name="vox" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=974879302]
 layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "выключена"
 
 [node name="HSeparator5" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=750196559]
@@ -557,12 +738,35 @@ layout_mode = 2
 
 [node name="Label5" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1501029578]
 layout_mode = 2
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Проверка:"
 horizontal_alignment = 1
 
+[node name="FeedbackDisplay" type="ColorRect" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=158457952]
+material = SubResource("ShaderMaterial_t5n8i")
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
 [node name="HSeparator6" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1626580044]
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=1694697394]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+text = "Оконный режим:"
+horizontal_alignment = 1
+
+[node name="window" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=462122933]
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
+disabled = true
+toggle_mode = true
+text = "выключен"
+
+[node name="HSeparator7" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer" unique_id=912454181]
 layout_mode = 2
 
 [node name="VSeparator" type="VSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer" unique_id=1129182625]
@@ -582,8 +786,8 @@ layout_mode = 2
 
 [node name="Label6" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=454574321]
 layout_mode = 2
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Общая громкость:"
 horizontal_alignment = 1
 
@@ -598,8 +802,8 @@ layout_mode = 2
 
 [node name="Label7" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1838032159]
 layout_mode = 2
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Громкость музыки:"
 horizontal_alignment = 1
 
@@ -615,8 +819,8 @@ layout_mode = 2
 
 [node name="Label8" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1270135251]
 layout_mode = 2
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Громкость игроков:"
 horizontal_alignment = 1
 
@@ -631,8 +835,8 @@ layout_mode = 2
 
 [node name="Label9" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=767034253]
 layout_mode = 2
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Громкость эффектов"
 horizontal_alignment = 1
 
@@ -648,8 +852,8 @@ layout_mode = 2
 
 [node name="Label10" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Audio_value" unique_id=1028195768]
 layout_mode = 2
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Громкость ветра:"
 horizontal_alignment = 1
 
@@ -672,13 +876,15 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Dop" unique_id=2144878785]
 layout_mode = 2
-theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 32
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Режим Деда:"
 horizontal_alignment = 1
 
 [node name="ded_settings" type="Button" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Dop" unique_id=1584506000]
 layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Настроить"
 
 [node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/settings/HBoxContainer/VBoxContainer2/Dop" unique_id=421505778]
@@ -826,10 +1032,53 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors" unique_id=2147180871]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors/VBoxContainer" unique_id=1899870143]
+layout_mode = 2
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Над игрой работали"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors/VBoxContainer" unique_id=1078715119]
+layout_mode = 2
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors/VBoxContainer" unique_id=418619063]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/outline_size = 12
+bbcode_enabled = true
+text = "[table=2, center]
+[cell][right]Автор идеи [/right][/cell][cell][left]: Стержанов Сергей[/left][/cell]
+[cell][right]Ведущий разработчик [/right][/cell][cell][left]: Никита Кислица (GLADIUS)[/left][/cell]
+[cell][right]Второй разработчик [/right][/cell][cell][left]: Санчес Александр (AleSanLab)[/left][/cell]
+[cell][right]Дизайн колоды [/right][/cell][cell][left]: Новикова Валерия[/left][/cell]
+[cell][right]Арт (иконки) [/right][/cell][cell][left]: Нурай Амангелды (cbhamsky)[/left][/cell]
+[cell][right]Саунд [/right][/cell][cell][left]: ютуб фонотека :( [/left][/cell]"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors/VBoxContainer" unique_id=730994249]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/mainbox/mainbox2/Window/Panel/Panel/autors/VBoxContainer" unique_id=2062242869]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/outline_size = 12
+bbcode_enabled = true
+text = "Телеграмм сообщество цифровой версии игры:
+[url=https://t.me/OnlineBabilonChat]OnlineBabilonChat[/url]"
+horizontal_alignment = 1
+selection_enabled = true
 
 [node name="rules" type="MarginContainer" parent="UI/mainbox/mainbox2/Window/Panel/Panel" unique_id=605539725]
 visible = false
@@ -839,10 +1088,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
 [node name="debug" type="Control" parent="." unique_id=1751707260]
 visible = false

@@ -4,6 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dh4v348k7jmb4" path="res://object/world/world_object_VAVILONE_001.res" id="2_3ii52"]
 [ext_resource type="Texture2D" uid="uid://bjsg3ui6xvbmp" path="res://visual/material/other/lain.png" id="2_5qa0x"]
 [ext_resource type="PackedScene" uid="uid://bveeukxurc7cf" path="res://scn/game_scn/monolit.tscn" id="3_3ii52"]
+[ext_resource type="PackedScene" uid="uid://dhriq8anmjakb" path="res://import/new_table.glb" id="4_0j1ap"]
 [ext_resource type="Script" uid="uid://dkma7q3vhvbl0" path="res://scn/world_lvl/classic/environment.gd" id="4_sace3"]
 [ext_resource type="Script" uid="uid://ldmth6v8yk6i" path="res://addons/san_star/sky.gd" id="7_dtjvf"]
 [ext_resource type="PackedScene" uid="uid://cvenhqkighqsg" path="res://addons/san_clouds/Resourses/cloud.tscn" id="7_lsdv3"]
@@ -30,7 +31,7 @@ height = 20.0
 radial_segments = 32
 rings = 16
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_mgia2"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_0j1ap"]
 resource_local_to_scene = true
 
 [node name="World" type="Node3D" unique_id=237964239]
@@ -48,6 +49,10 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.45, 0)
 mesh = ExtResource("2_3ii52")
 metadata/_edit_lock_ = true
+
+[node name="new_table2" parent="." unique_id=426832241 instance=ExtResource("4_0j1ap")]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0, -2.61, 0)
+visible = false
 
 [node name="monolit_players" type="Node3D" parent="." unique_id=1908974729]
 metadata/_edit_lock_ = true
@@ -90,7 +95,7 @@ transform = Transform3D(0.99026805, 0, -0.1391731, 0, 1, 0, 0.1391731, 0, 0.9902
 
 [node name="Sanches" type="SpotLight3D" parent="environment" unique_id=227628673]
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 4.7, 1)
-light_energy = 6.0
+light_energy = 10.0
 light_specular = 0.1
 shadow_enabled = true
 shadow_bias = 0.005
@@ -118,7 +123,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -2, -12)
 metadata/_edit_lock_ = true
 
 [node name="Cloud" parent="environment/CloudSpawn" unique_id=1958340692 instance=ExtResource("7_lsdv3")]
-mesh = SubResource("ImmediateMesh_mgia2")
+mesh = SubResource("ImmediateMesh_0j1ap")
 
 [node name="Timer" type="Timer" parent="environment/CloudSpawn" unique_id=1122969966]
 wait_time = 0.05

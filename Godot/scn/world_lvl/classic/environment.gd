@@ -18,7 +18,7 @@ var _sky_material: StandardMaterial3D
 
 
 
-@export var Day = {
+@export var day = {
 	"Fog_Color" : Color(0.824, 0.839, 0.867, 1.0),
 	"Fog_Energy" : 0.7,
 	"Fog_Density" : 0.1,
@@ -70,6 +70,10 @@ func _ready() -> void:
 		_sky_material = sky_mesh.mesh.surface_get_material(0)
 	await get_tree().create_timer(1).timeout
 	buttons_con()
+	
+	LimboConsole.register_command(phase_set, "phase_set", "Меняет время суток: day, evening, night, morning")
+	LimboConsole.add_argument_autocomplete_source("phase_set", 0, func()->Array:
+		return ["day", "evening", "night", "morning"])
 
 func transition_to(target: Dictionary, duration: float = -1.0) -> void:
 	if duration < 0:
@@ -91,9 +95,17 @@ func transition_to(target: Dictionary, duration: float = -1.0) -> void:
 	if _sky_material:
 		_current_tween.tween_property(_sky_material, "albedo_color", target["Sky_Color"], duration)
 
+func phase_set(phase: String)-> void:
+	LimboConsole.info("время суток изменено на: " + phase)
+	match phase:
+		"day" : to_day(1);
+		"evening" : to_evening(1);
+		"night" : to_night(1);
+		"morning" : to_morning(1);
+		_ : pass
 
 func to_day(duration: float = -1.0) -> void:
-	transition_to(Day, duration)
+	transition_to(day, duration)
 
 func to_evening(duration: float = -1.0) -> void:
 	transition_to(evening, duration)

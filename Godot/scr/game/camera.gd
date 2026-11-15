@@ -1,6 +1,6 @@
 extends Node3D
 @export var cam_settings := [0, 15, 0.15, null, null]
-@export var cam_block = true
+@export var cam_block = false
 
 
 func _ready() -> void:
